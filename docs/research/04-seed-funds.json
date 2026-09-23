@@ -1,0 +1,75 @@
+{
+  "table": "04-seed-funds",
+  "rows": [
+    {
+      "id": "F1",
+      "program": "America's Seed Fund AR/VR/MR topic",
+      "agency": "NSF SBIR/STTR",
+      "topic_fit": "Closest named topic for an AR construction-QA product. Subtopics AV1-AV5 on the live page.",
+      "eligibility_sketch": "US small business <500 employees; >=50% US citizen/permanent-resident equity; not majority-owned by multiple VCs/PE/hedge funds; work in the US; PI >=20 h/week at the company.",
+      "url": "https://seedfund.nsf.gov/topics/augmented-virtual-reality/",
+      "notes": "Combined-topics PDF wording differs from the live page. Pitch required.",
+      "status": "surveyed"
+    },
+    {
+      "id": "F2",
+      "program": "NSF SBIR/STTR Phase I, II, Fast-Track (NSF 26-510)",
+      "agency": "NSF",
+      "topic_fit": "Funding vehicle for F1. No equity taken.",
+      "eligibility_sketch": "Project Pitch invitation. STTR needs a research-institution subaward (40% company / 30% institute). Phase II needs Phase I.",
+      "url": "https://www.nsf.gov/funding/opportunities/small-business-innovation-research-small-business-technology/nsf26-510/solicitation",
+      "notes": "Phase I up to $305,000; Phase II up to $1,250,000; Fast-Track up to $1,555,555. Subject to funds.",
+      "status": "surveyed"
+    },
+    {
+      "id": "F3",
+      "program": "NSF I-Corps inside SBIR",
+      "agency": "NSF",
+      "topic_fit": "Customer discovery, not scanner R&D.",
+      "eligibility_sketch": "Optional inside Phase I. Standalone I-Corps eligibility not re-read.",
+      "url": "https://www.nsf.gov/funding/initiatives/i-corps",
+      "notes": "Phase I cap includes I-Corps. Standalone rules unverified this pass.",
+      "status": "surveyed; standalone unverified"
+    },
+    {
+      "id": "F4",
+      "program": "NIST SBIR/STTR",
+      "agency": "NIST",
+      "topic_fit": "Metrology would fit conceptually. No open NOFO.",
+      "eligibility_sketch": "Topics only when a NOFO is open. Reauthorized through FY2031.",
+      "url": "https://www.nist.gov/tpo/small-business-innovation-research-program-sbir",
+      "notes": "Do not propose against a closed year.",
+      "status": "surveyed"
+    },
+    {
+      "id": "F5",
+      "program": "DOE SBIR/STTR",
+      "agency": "DOE",
+      "topic_fit": "Energy commercialization. Genesis Mission topics not confirmed to include construction QA.",
+      "eligibility_sketch": "SBA small business. Phase II is prior DOE awardees.",
+      "url": "https://www.energy.gov/technologycommercialization/doe-small-business-innovation-research-sbir-and-small-business",
+      "notes": "Secondary. Read the live topic list first.",
+      "status": "surveyed"
+    },
+    {
+      "id": "F6",
+      "program": "HUD robotics and AI for factory-built housing (PDR-2600-DC-029Q)",
+      "agency": "HUD",
+      "topic_fit": "Offsite housing robotics. Not XR stud plumb.",
+      "eligibility_sketch": "Announcement lists state, county, city, and tribal governments. Startup eligibility not stated.",
+      "url": "https://www.huduser.gov/Portal/elist/2026-June-1.html",
+      "notes": "Applications were due 13 Jul 2026. Closed as of 2026-09-23.",
+      "status": "surveyed; closed"
+    },
+    {
+      "id": "F7",
+      "program": "SBA SBIR/STTR policy",
+      "agency": "SBA",
+      "topic_fit": "Eligibility rules for the SBIR agencies, not a grant.",
+      "eligibility_sketch": "Ownership and size. 2026 reauthorization summarized on NIST/DOE pages.",
+      "url": "https://www.nist.gov/tpo/small-business-innovation-research-program-sbir",
+      "notes": "Policy directive not re-read line by line.",
+      "status": "surveyed"
+    }
+  ]
+}

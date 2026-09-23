@@ -1,0 +1,102 @@
+{
+  "table": "03-sample-datasets",
+  "rows": [
+    {
+      "id": "D1",
+      "name": "Rohbau3D",
+      "stage": "Shell construction, not light wood frame. 504 TLS scans, 14 sites, some residential apartments.",
+      "density_labels": "xyz, RGB, intensity, normals. 17 foreground classes + background and instances. Class names on a third-party benchmark only.",
+      "formats": "Numpy feature files and panoramas",
+      "access_url": "https://github.com/RauchLukas/Rohbau3D",
+      "fit_for_stud_qa": "Best public shell set for walls, beams, columns. No wood-stud class confirmed.",
+      "status": "known; surveyed; not-downloaded; not-in-repo",
+      "also": [
+        "https://doi.org/10.1038/s41597-025-05827-7",
+        "https://open-data.unibw.de/dataset"
+      ]
+    },
+    {
+      "id": "D2",
+      "name": "BIMNet",
+      "stage": "Finished interiors from Matterport3D. 25 scans, 382 rooms.",
+      "density_labels": ">116.5 million points. 14 IFC classes including Beam and Column. Manual IFC models.",
+      "formats": "Point cloud plus IFC",
+      "access_url": "https://thucbims.github.io/bimnet.thucbims.github.io/",
+      "fit_for_stud_qa": "Finished structure, not bare studs. Needs Matterport approval.",
+      "status": "surveyed; not-downloaded",
+      "also": [
+        "https://github.com/LydJason/BIMNet"
+      ]
+    },
+    {
+      "id": "D3",
+      "name": "WFC-Dataset",
+      "stage": "Single 2x4 wood stud, controlled indoor, not a framed house. 288 samples. ZED 2i.",
+      "density_labels": "Manual 6D pose. 2208x1242 RGB-D. Not wall semantics.",
+      "formats": "RGB, depth, PLY. Raw zip 10.65 GB.",
+      "access_url": "https://github.com/yigediao/wfcdataset",
+      "fit_for_stud_qa": "Best public wood-stud points for a single member OBB.",
+      "status": "known; surveyed; not-downloaded; not-in-repo"
+    },
+    {
+      "id": "D4",
+      "name": "ScanNet++",
+      "stage": "Finished indoor scenes. Paper 460 scenes; site now 1006. FARO Focus Premium + iPhone 13 Pro.",
+      "density_labels": "Paper: 0.9 mm average point spacing. >1000 raw semantic labels. Not studs.",
+      "formats": "Mesh, DSLR, iPhone RGB-D. Default download ~1.5 TB.",
+      "access_url": "https://scannetpp.mlsg.cit.tum.de/scannetpp/",
+      "fit_for_stud_qa": "Caveat: finished interiors. Sensor comparison and pretraining only.",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "id": "D5",
+      "name": "buildingSMART Sample-Test-Files",
+      "stage": "Design IFC models, including a duplex. No scan.",
+      "density_labels": "No point cloud labels.",
+      "formats": "IFC",
+      "access_url": "https://github.com/buildingSMART/Sample-Test-Files",
+      "fit_for_stud_qa": "Schema examples only.",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "id": "D6",
+      "name": "FARO WebShare public demos",
+      "stage": "Mixed scanned projects, not a frame-house library.",
+      "density_labels": "Unknown labels.",
+      "formats": "WebShare stream. Raw LAS download not found.",
+      "access_url": "https://sphere-demo.websharecloud.com/",
+      "fit_for_stud_qa": "Viewer examples only.",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "id": "D7",
+      "name": "Leica RC SDK sample library",
+      "stage": "Boiler room, indoor office, church square. Not wood frame.",
+      "density_labels": "Office set has a classification. Class list not read. Tevas ~295 million points.",
+      "formats": "LGSx",
+      "access_url": "https://rcsdk.leica-geosystems.com/sample-data/latest/tevas",
+      "fit_for_stud_qa": "TLS I/O sample only.",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "id": "D8",
+      "name": "Polycam self-capture",
+      "stage": "Whatever we scan. No public frame set found.",
+      "density_labels": "Unlabeled. Phone LiDAR limits apply.",
+      "formats": "PLY, LAS, PTS, XYZ, DXF on Business/Enterprise",
+      "access_url": "https://poly.cam/",
+      "fit_for_stud_qa": "Only immediate source of our own framed walls. Not TLS-accurate.",
+      "status": "known; surveyed; not-downloaded"
+    },
+    {
+      "id": "D9",
+      "name": "IntCDC timber laser scans",
+      "stage": "Assembled timber buildings after alignment. Not light-frame 2x4.",
+      "density_labels": "Full clouds. Semantic stud labels not stated. Multi-GB LAS.",
+      "formats": "LAS. CC BY 4.0.",
+      "access_url": "https://darus.uni-stuttgart.de/dataset.xhtml?persistentId=doi:10.18419/DARUS-3304",
+      "fit_for_stud_qa": "Later timber straightness. Wrong system for this QA target.",
+      "status": "surveyed; not-downloaded"
+    }
+  ]
+}

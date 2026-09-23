@@ -1,0 +1,778 @@
+{
+  "generated": "2026-09-23",
+  "repo": "https://github.com/ozguvenc2/openwall-stud-frame",
+  "notes": "Numbers are cited in the markdown or marked unknown. No datasets were downloaded.",
+  "status_vocabulary": [
+    "known",
+    "surveyed",
+    "unverified",
+    "not-downloaded",
+    "not-in-repo",
+    "separate-track"
+  ],
+  "sensing": [
+    {
+      "id": "S1",
+      "modality": "Phone / tablet LiDAR (Apple dToF)",
+      "form_factor": "Handheld iPhone Pro/Pro Max from 12 Pro; iPad Pro from 2020",
+      "weight_power": "iPad Pro 11-inch (2020) cited at 471 g. iPhone mass and LiDAR power unknown.",
+      "range": "Apple 2020: up to 5 m. Polycam processing cap 5 m.",
+      "precision_vs_tls": "Not TLS. Apple publishes no mm accuracy. iPhone 12 Pro / 15 Pro RMSE vs primitives 2.05 cm and 2.06 cm (Remote Sensing Letters 2026). iPad Pro SiteScape vs TLS ICP RMS ~2 cm \u00b1 3 cm (ISPRS 2021).",
+      "stud_plumb_suitability": "Poor as sole sensor for ~0.12 deg / few-mm tip offset. Centimeter error exceeds derived 8 ft offset.",
+      "cost_availability": "Consumer Pro devices. ARKit depth; app smoothing unknown vs raw.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.apple.com/newsroom/2020/03/apple-unveils-new-ipad-pro-with-lidar-scanner-and-trackpad-support-in-ipados/",
+        "https://www.tandfonline.com/doi/full/10.1080/2150704X.2026.2720055",
+        "https://doi.org/10.5194/isprs-archives-xliii-b1-2021-63-2021",
+        "https://www.mdpi.com/2072-4292/13/16/3129"
+      ]
+    },
+    {
+      "id": "S2",
+      "modality": "Polycam on phone LiDAR",
+      "form_factor": "iOS app. Space Mode LiDAR vs non-LiDAR photogrammetry.",
+      "weight_power": "Phone. Cloud preset uses Polycam servers. Power unknown.",
+      "range": "5 m LiDAR cap per frame.",
+      "precision_vs_tls": "Help Center says up to 98% under optimal conditions. Not an RMSE. Do not convert to mm.",
+      "stud_plumb_suitability": "Same limit as S1. Named Photo/Detail hybrid mode not found.",
+      "cost_availability": "Point-cloud export (LAS, PLY, PTS, XYZ, DXF) is Business and Enterprise. Free is GLTF only.",
+      "status": "known; surveyed",
+      "sources": [
+        "https://learn.poly.cam/hc/en-us/articles/27756102599572-What-File-Types-Can-Polycam-Export",
+        "https://learn.poly.cam/hc/en-us/articles/27488763119892-How-Accurate-Are-Polycam-Captures",
+        "https://learn.poly.cam/hc/en-us/articles/36655587097620-How-to-Use-Space-Mode-with-LiDAR-enabled-devices"
+      ]
+    },
+    {
+      "id": "S3",
+      "modality": "High-end terrestrial laser scanner",
+      "form_factor": "Tripod TLS. Examples FARO Focus Premium, Leica RTC360, Leica BLK360 SE.",
+      "weight_power": "RTC360 5.2 kg without batteries; battery 340 g; typically up to 4 h. FARO and BLK360 SE mass unknown here.",
+      "range": "FARO Focus Premium white 90% 0.5-200 m (Max 0.5-400 m). RTC360 0.5-130 m. BLK360 SE 0.5-45 m.",
+      "precision_vs_tls": "Vendor claims. FARO 3D accuracy 2 mm @ 10 m, angular 19 arcsec. RTC360 1.9 mm @ 10 m, angular 18 arcsec. BLK360 SE 4 mm @ 10 m.",
+      "stud_plumb_suitability": "Only class with published specs at millimeter / sub-0.1 deg order. End-to-end stud angle on site unknown.",
+      "cost_availability": "Professional capital equipment. Street price unknown.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.faro.com/en/Products/Hardware/Focus-Laser-Scanners",
+        "https://media.faro.com/-/media/Project/FARO/FARO/FARO/Resources/1_BROCHURE/2024/FARO-Focus/AECO/CMO9773_Brochure_FocusPremiumMax_AECO_ENG_LT_Web_112024.pdf",
+        "https://shop.leica-geosystems.com/sites/default/files/2024-10/Leica-RTC360-LT-DS-897298-0422-en_0.pdf",
+        "https://globalsurvey.co.nz/wp-content/uploads/2025/05/Leica_BLK360-SE-SpecSheet-PinPoint-F360-V2.4.pdf"
+      ]
+    },
+    {
+      "id": "S4",
+      "modality": "Photogrammetry / SfM",
+      "form_factor": "Overlapping photos; Polycam non-LiDAR mode; Pix4D-class processing.",
+      "weight_power": "Varies. Power unknown.",
+      "range": "No single range. Set by baseline and GSD.",
+      "precision_vs_tls": "Pix4D: GCPs raise absolute accuracy; no universal mm RMSE published.",
+      "stud_plumb_suitability": "Unknown. Not assumed better than phone LiDAR without control.",
+      "cost_availability": "Phone photos cheap. Pix4D commercial. Polycam point export needs Business/Enterprise.",
+      "status": "surveyed",
+      "sources": [
+        "https://support.pix4d.com/hc/en-us/articles/202557489"
+      ]
+    },
+    {
+      "id": "S5",
+      "modality": "Stereo / VIO, XREAL Aura class",
+      "form_factor": "Optical see-through glasses plus compute puck. Two tracking cameras, one high-res camera, 6DoF.",
+      "weight_power": "Official page omits grams. Puck battery 4455 mAh, 34.84 Wh. Secondary review under 95 g / 270 g puck is unverified.",
+      "range": "Survey range unknown. Display FOV 70 deg.",
+      "precision_vs_tls": "No depth RMSE on the official page.",
+      "stud_plumb_suitability": "Display, not capture scanner. Unsuitable as the metrology sensor.",
+      "cost_availability": "Base model not more than US$1500 before tax. Fall 2026 launch.",
+      "status": "known; surveyed",
+      "sources": [
+        "https://www.xreal.com/us/aura"
+      ]
+    },
+    {
+      "id": "S6",
+      "modality": "Stereo depth camera (ZED 2i as used by WFC-Dataset)",
+      "form_factor": "USB stereo camera.",
+      "weight_power": "Unknown. Stereolabs spec sheet not opened.",
+      "range": "Unknown on the dataset page.",
+      "precision_vs_tls": "Unknown. Dataset does not state accuracy.",
+      "stud_plumb_suitability": "Controlled single-stud capture. Not evidence of 0.12 deg wall plumb.",
+      "cost_availability": "Commercial depth camera.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/yigediao/wfcdataset"
+      ]
+    },
+    {
+      "id": "S7",
+      "modality": "UWB radar (Qorvo / IEEE 802.15.4z class)",
+      "form_factor": "Small RF chipset, monostatic radar or two-device ranging.",
+      "weight_power": "Vendor: low-cost, low-power. Watts unknown.",
+      "range": "Construction max range unknown. Omnidirectional presence sensing described.",
+      "precision_vs_tls": "Vendor: fine ranging < 10 cm. White paper: ~30 cm spatial resolution at 500 MHz.",
+      "stud_plumb_suitability": "Not suitable. Resolution cell much larger than a stud face.",
+      "cost_availability": "Commercial chipsets and dev kits.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.qorvo.com/design-hub/technical-articles/ultra-wideband-uwb-radar-beyond-ranging-to-advanced-sensing",
+        "https://www.qorvo.com/design-hub/white-papers/ultra-wideband-radar-sensing-white-paper"
+      ]
+    },
+    {
+      "id": "S8",
+      "modality": "TI mmWave (IWR6843 class)",
+      "form_factor": "60 GHz FMCW module with onboard DSP.",
+      "weight_power": "TIDEP-01000 short-range config: 2 W. Mass unknown.",
+      "range": "Short-range people-counting config: 8.1 m; FOV 120 deg horizontal, 40 deg vertical.",
+      "precision_vs_tls": "Reference design: people localized to \u00b110 cm. Range resolution 8.4 cm. Static-clutter removal in area-scanner demo.",
+      "stud_plumb_suitability": "Not suitable for mm-class stud edges.",
+      "cost_availability": "Evaluation modules. Street price unknown.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.ti.com/design-development/embedded-development/mmwave-radar.html",
+        "https://www.ti.com/lit/ug/tidue71d/tidue71d.pdf",
+        "https://www.ti.com/lit/ug/tiduei1c/tiduei1c.pdf"
+      ]
+    },
+    {
+      "id": "S9",
+      "modality": "RF micro-Doppler human gait (Smart Health 2022)",
+      "form_factor": "Lab radar on walking people.",
+      "weight_power": "Unknown.",
+      "range": "Unknown. Publisher page blocked.",
+      "precision_vs_tls": "Not a dimensional survey.",
+      "stud_plumb_suitability": "Not relevant. Listed because the brief cited the PII.",
+      "cost_availability": "Academic article.",
+      "status": "surveyed via secondary citation; publisher page unverified",
+      "sources": [
+        "https://www.sciencedirect.com/science/article/pii/S235264832200068X",
+        "https://par.nsf.gov/servlets/purl/10424986"
+      ]
+    }
+  ],
+  "software": [
+    {
+      "id": "W1",
+      "tool": "Open3D",
+      "license": "MIT",
+      "where": "Python/C++",
+      "inputs": "xyz, xyzn, xyzrgb, pts, ply, pcd. No LAS/LAZ.",
+      "stud_obb": "Partial. PCA and minimal OBB; planar-patch OBBs. Not a stud segmenter.",
+      "angle_plumb": "No gravity API. User code can compare an axis to gravity. Sketch not in this repo.",
+      "ml_vs_classical": "Classical",
+      "notes": "Near-term path.",
+      "status": "known; surveyed; not-in-repo",
+      "sources": [
+        "https://www.open3d.org/docs/release/tutorial/geometry/file_io.html",
+        "https://www.open3d.org/docs/latest/python_api/open3d.geometry.PointCloud.html"
+      ]
+    },
+    {
+      "id": "W2",
+      "tool": "CloudCompare",
+      "license": "GPL per current GitHub README (GPL-3.0 link). Older manual: LGPL-2.0 CCLib, GPL-2.0 app. Confirm LICENSE.",
+      "where": "Desktop GUI; CloudComPy",
+      "inputs": "PLY, LAS/LAZ, E57, PTS, others",
+      "stud_obb": "No. Planes and primitives via RANSAC-SD.",
+      "angle_plumb": "Geological dip and dip direction on Fit Plane. Not a gravity QA report.",
+      "ml_vs_classical": "Classical",
+      "notes": "Interactive check. Cite Schnabel for RANSAC-SD.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/CloudCompare/CloudCompare/",
+        "https://www.cloudcompare.org/doc/wiki/index.php/Fit_Plane"
+      ]
+    },
+    {
+      "id": "W3",
+      "tool": "MeshLib",
+      "license": "Non-commercial free; commercial SDK license to ship.",
+      "where": "C++/Python/C#/C library",
+      "inputs": "Meshes, point clouds, volumes",
+      "stud_obb": "AABB only in PointCloud API read.",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical",
+      "notes": "Mesh-oriented. Poor fit for point-only ML isolation.",
+      "status": "surveyed",
+      "sources": [
+        "https://meshlib.io/license/",
+        "https://meshlib.io/documentation/Py/classmrmeshpy_1_1PointCloud.html"
+      ]
+    },
+    {
+      "id": "W4",
+      "tool": "PyTorch3D",
+      "license": "BSD",
+      "where": "Python GPU research",
+      "inputs": "Mesh and point tensors",
+      "stud_obb": "No stud head",
+      "angle_plumb": "No",
+      "ml_vs_classical": "ML",
+      "notes": "Differentiable 3D ops.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/facebookresearch/pytorch3d"
+      ]
+    },
+    {
+      "id": "W5",
+      "tool": "PointNet++",
+      "license": "MIT",
+      "where": "Python research",
+      "inputs": "Sampled points",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "ML",
+      "notes": "Baseline architecture.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/charlesq34/pointnet2"
+      ]
+    },
+    {
+      "id": "W6",
+      "tool": "Open3D-ML",
+      "license": "MIT",
+      "where": "Python, Open3D, PyTorch and TensorFlow",
+      "inputs": "SemanticKITTI, S3DIS, ScanNet, other model-zoo sets",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "ML (RandLA-Net, KPConv)",
+      "notes": "Benchmark mIoU is not a stud score.",
+      "status": "surveyed; not-downloaded",
+      "sources": [
+        "https://github.com/isl-org/Open3D-ML/blob/main/model_zoo.md"
+      ]
+    },
+    {
+      "id": "W7",
+      "tool": "Pointcept",
+      "license": "MIT code. Some pretrained weights carry dataset NC terms; confirm.",
+      "where": "Python CUDA research",
+      "inputs": "ScanNet, ScanNet++, S3DIS, Matterport, others. No official Rohbau config in README.",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "ML (PTv3, SpUNet, Sonata, Concerto)",
+      "notes": "Prior Origin survey target for shell labels.",
+      "status": "known; surveyed; not-in-repo",
+      "sources": [
+        "https://github.com/Pointcept/Pointcept",
+        "https://raw.githubusercontent.com/Pointcept/Pointcept/main/LICENSE"
+      ]
+    },
+    {
+      "id": "W8",
+      "tool": "PointNeXt",
+      "license": "MIT",
+      "where": "Python",
+      "inputs": "S3DIS/ScanNet-style benchmarks",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "ML",
+      "notes": "Scaled PointNet++.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/guochengqian/PointNeXt"
+      ]
+    },
+    {
+      "id": "W9",
+      "tool": "RandLA-Net",
+      "license": "CC BY-NC-SA 4.0 on official repo",
+      "where": "TensorFlow research; also Open3D-ML",
+      "inputs": "Large indoor/outdoor benchmarks",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "ML",
+      "notes": "Non-commercial official repo.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/QingyongHu/RandLA-Net"
+      ]
+    },
+    {
+      "id": "W10",
+      "tool": "Autodesk ReCap + Revit point clouds",
+      "license": "Commercial",
+      "where": "Desktop",
+      "inputs": "RCP/RCS",
+      "stud_obb": "Manual families only",
+      "angle_plumb": "No native plumb report found",
+      "ml_vs_classical": "Classical manual",
+      "notes": "Host for scan-to-BIM plugins.",
+      "status": "surveyed",
+      "sources": [
+        "https://knowledge.faro.com/Software/As-Built/As-Built_for_Autodesk_Revit/Getting_Started_with_As-Built_for_Autodesk_Revit"
+      ]
+    },
+    {
+      "id": "W11",
+      "tool": "FARO As-Built for Revit (ex PointSense)",
+      "license": "Commercial",
+      "where": "Revit plugin",
+      "inputs": "RCP",
+      "stud_obb": "BIM modeling aids. Wood-stud OBB not documented.",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical interactive",
+      "notes": "Successor to PointSense for Revit.",
+      "status": "surveyed",
+      "sources": [
+        "https://knowledge.faro.com/Software/As-Built/As-Built_for_Autodesk_Revit/Getting_Started_with_As-Built_for_Autodesk_Revit"
+      ]
+    },
+    {
+      "id": "W12",
+      "tool": "Leica CloudWorx for Revit and Navisworks",
+      "license": "Commercial",
+      "where": "Revit and Navisworks 2023-2026 (CloudWorx 2025.1)",
+      "inputs": "Cyclone, JetStream, LGSx, ReCap",
+      "stud_obb": "Steel, pipe, wall, door, window fitters. Not light-gauge studs.",
+      "angle_plumb": "No gravity number",
+      "ml_vs_classical": "Classical fitting",
+      "notes": "Navisworks plugin is review, not segmentation.",
+      "status": "surveyed",
+      "sources": [
+        "https://leica-geosystems.com/en-us/products/laser-scanners/software/leica-cloudworx/leica-cloudworx-revit",
+        "https://rcdocs.leica-geosystems.com/cloudworx/2025.1.0/release-notes-cloudworx-plugins"
+      ]
+    },
+    {
+      "id": "W13",
+      "tool": "ClearEdge3D EdgeWise",
+      "license": "Commercial",
+      "where": "Desktop; exports to Revit, Plant 3D, AVEVA",
+      "inputs": "Mobile and terrestrial clouds",
+      "stud_obb": "Structural steel, pipes, ducts, walls. Wood studs not named. SmartSheet RMSE.",
+      "angle_plumb": "No. RMSE is fit-to-cloud.",
+      "ml_vs_classical": "Vendor pattern matching",
+      "notes": "Closer to beams than 2x4 walls.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.clearedge3d.com/products/edgewise/"
+      ]
+    },
+    {
+      "id": "W14",
+      "tool": "ClearEdge3D Verity",
+      "license": "Commercial",
+      "where": "Navisworks and Revit",
+      "inputs": "As-built cloud plus design model",
+      "stud_obb": "Compares existing model elements. Not a segmenter.",
+      "angle_plumb": "Rotation vs model, not vs gravity unless the model is plumb. User tolerances. DPR case used 1 inch on steel.",
+      "ml_vs_classical": "Automated comparison",
+      "notes": "Needs a model first.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.clearedge3d.com/products/verity/",
+        "https://www.clearedge3d.com/dpr-case-study-page/"
+      ]
+    },
+    {
+      "id": "W15",
+      "tool": "PointCab Origins + 4Revit",
+      "license": "Commercial. Origins Core EUR 3000; Origins 3D EUR 4900 excl. VAT on shop pages.",
+      "where": "Desktop plus CAD plugins",
+      "inputs": "E57, LAS, LAZ, PLY, FARO, Leica, RCP, others",
+      "stud_obb": "User-picked columns and walls. Not automatic stud OBB.",
+      "angle_plumb": "No gravity command found",
+      "ml_vs_classical": "Classical user-guided",
+      "notes": "Scan-to-BIM click path.",
+      "status": "surveyed",
+      "sources": [
+        "https://pointcab-software.com/en/point-cloud-software/revit-point-cloud-plugin/",
+        "https://shop.pointcab-software.com/Origins-Core_1"
+      ]
+    },
+    {
+      "id": "W16",
+      "tool": "Autodesk Navisworks",
+      "license": "Commercial",
+      "where": "Desktop",
+      "inputs": "NWD/NWC, RCP; CloudWorx and Verity",
+      "stud_obb": "No",
+      "angle_plumb": "Clash and sections only",
+      "ml_vs_classical": "Classical",
+      "notes": "Coordination host.",
+      "status": "surveyed",
+      "sources": [
+        "https://leica-geosystems.com/en-us/products/laser-scanners/software/leica-cloudworx/leica-cloudworx-navisworks"
+      ]
+    },
+    {
+      "id": "W17",
+      "tool": "Unity Asset Transformer Toolkit (ex PiXYZ)",
+      "license": "Commercial Unity Industry",
+      "where": "Unity Editor",
+      "inputs": "E57, RCP, PTS, PTX, glTF point clouds",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical import and LOD",
+      "notes": "Display splats shader. Not metrology. Geometry shader limits on macOS, WebGL, visionOS.",
+      "status": "surveyed",
+      "sources": [
+        "https://docs.unity3d.com/Packages/com.unity.industry.toolkit@3.3/manual/import-point-clouds.html",
+        "https://unity.com/products/unity-asset-transformer"
+      ]
+    },
+    {
+      "id": "W18",
+      "tool": "Point Cloud Viewer and Tools 3",
+      "license": "Commercial Asset Store. v3.0.3 listed 2026-06-10.",
+      "where": "Unity runtime. VR. Limited WebGL/mobile.",
+      "inputs": "XYZ, ASC, PLY ASCII only, LAS, PTS",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical renderer",
+      "notes": "Gaussian splats explicitly not supported.",
+      "status": "surveyed",
+      "sources": [
+        "https://assetstore.unity.com/packages/tools/utilities/point-cloud-viewer-and-tools-3-310385"
+      ]
+    },
+    {
+      "id": "W19",
+      "tool": "FastPoints",
+      "license": "Not confirmed this pass",
+      "where": "Unity plus Potree Converter 2.0",
+      "inputs": "PLY, LAS, LAZ",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical out-of-core renderer",
+      "notes": "Potree-style Unity port. arXiv:2302.05002.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/eliasnd/FastPoints"
+      ]
+    },
+    {
+      "id": "W20",
+      "tool": "Unity Gaussian splat viewers",
+      "license": "Check each repo before shipping. aras-p project is a toy/education viz.",
+      "where": "Unity. aras-p: DX12/Vulkan, not DX11. UnitySplats: Unity 6.",
+      "inputs": "Gaussian PLY, SPZ, SOG, gaussian GLB",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Splat rendering",
+      "notes": "Do not measure studs on Gaussian means.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/aras-p/UnityGaussianSplatting",
+        "https://github.com/arloopa/UnitySplats"
+      ]
+    },
+    {
+      "id": "W21",
+      "tool": "Unity Robotics Hub",
+      "license": "Open-source Unity project",
+      "where": "Unity",
+      "inputs": "Robotics simulation assets, not survey clouds",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "N/A",
+      "notes": "Repo description is robotics simulation tools and tutorials, not point-cloud QA.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/Unity-Technologies/Unity-Robotics-Hub"
+      ]
+    },
+    {
+      "id": "W22",
+      "tool": "Blender point cloud and Geometry Nodes",
+      "license": "GPL (Blender)",
+      "where": "Desktop. 4.5 LTS manual.",
+      "inputs": "Point Cloud object; Import PLY node outputs a mesh; Mesh to Points converts to points.",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical DCC",
+      "notes": "Real point-cloud object type. Not a segmenter. API docstring says point cloud; 4.5 manual says mesh output.",
+      "status": "surveyed",
+      "sources": [
+        "https://docs.blender.org/manual/en/4.5/modeling/point_cloud/index.html",
+        "https://docs.blender.org/manual/en/4.5/modeling/geometry_nodes/input/import/ply.html"
+      ]
+    },
+    {
+      "id": "W23",
+      "tool": "Unreal LiDAR Point Cloud plugin",
+      "license": "Unreal / Epic",
+      "where": "UE editor and runtime",
+      "inputs": "Forum list: xyz, pts, txt, las, laz, e57. PLY not listed. 5.6 format handlers reported broken.",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical viz",
+      "notes": "Niagara companion plugin is also viz only.",
+      "status": "surveyed",
+      "sources": [
+        "https://dev.epicgames.com/documentation/en-us/unreal-engine/lidar-point-cloud-plugin-for-unreal-engine",
+        "https://forums.unrealengine.com/t/how-to-import-ply-point-cloud-in-ue5/1290363"
+      ]
+    },
+    {
+      "id": "W24",
+      "tool": "Cesium for Unreal Gaussian splats",
+      "license": "Cesium plugin; confirm Apache upstream",
+      "where": "Unreal",
+      "inputs": "3D Tiles / glTF gaussian, SPZ. Draft PR 1748.",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Splat rendering",
+      "notes": "Not officially supported while the PR is draft.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/CesiumGS/cesium-unreal/pull/1748"
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "id": "D1",
+      "name": "Rohbau3D",
+      "stage": "Shell construction, not light wood frame. 504 TLS scans, 14 sites, some residential apartments.",
+      "density_labels": "xyz, RGB, intensity, normals. 17 foreground classes + background and instances. Class names on a third-party benchmark only.",
+      "formats": "Numpy feature files and panoramas",
+      "access_url": "https://github.com/RauchLukas/Rohbau3D",
+      "fit_for_stud_qa": "Best public shell set for walls, beams, columns. No wood-stud class confirmed.",
+      "status": "known; surveyed; not-downloaded; not-in-repo",
+      "also": [
+        "https://doi.org/10.1038/s41597-025-05827-7",
+        "https://open-data.unibw.de/dataset"
+      ]
+    },
+    {
+      "id": "D2",
+      "name": "BIMNet",
+      "stage": "Finished interiors from Matterport3D. 25 scans, 382 rooms.",
+      "density_labels": ">116.5 million points. 14 IFC classes including Beam and Column. Manual IFC models.",
+      "formats": "Point cloud plus IFC",
+      "access_url": "https://thucbims.github.io/bimnet.thucbims.github.io/",
+      "fit_for_stud_qa": "Finished structure, not bare studs. Needs Matterport approval.",
+      "status": "surveyed; not-downloaded",
+      "also": [
+        "https://github.com/LydJason/BIMNet"
+      ]
+    },
+    {
+      "id": "D3",
+      "name": "WFC-Dataset",
+      "stage": "Single 2x4 wood stud, controlled indoor, not a framed house. 288 samples. ZED 2i.",
+      "density_labels": "Manual 6D pose. 2208x1242 RGB-D. Not wall semantics.",
+      "formats": "RGB, depth, PLY. Raw zip 10.65 GB.",
+      "access_url": "https://github.com/yigediao/wfcdataset",
+      "fit_for_stud_qa": "Best public wood-stud points for a single member OBB.",
+      "status": "known; surveyed; not-downloaded; not-in-repo"
+    },
+    {
+      "id": "D4",
+      "name": "ScanNet++",
+      "stage": "Finished indoor scenes. Paper 460 scenes; site now 1006. FARO Focus Premium + iPhone 13 Pro.",
+      "density_labels": "Paper: 0.9 mm average point spacing. >1000 raw semantic labels. Not studs.",
+      "formats": "Mesh, DSLR, iPhone RGB-D. Default download ~1.5 TB.",
+      "access_url": "https://scannetpp.mlsg.cit.tum.de/scannetpp/",
+      "fit_for_stud_qa": "Caveat: finished interiors. Sensor comparison and pretraining only.",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "id": "D5",
+      "name": "buildingSMART Sample-Test-Files",
+      "stage": "Design IFC models, including a duplex. No scan.",
+      "density_labels": "No point cloud labels.",
+      "formats": "IFC",
+      "access_url": "https://github.com/buildingSMART/Sample-Test-Files",
+      "fit_for_stud_qa": "Schema examples only.",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "id": "D6",
+      "name": "FARO WebShare public demos",
+      "stage": "Mixed scanned projects, not a frame-house library.",
+      "density_labels": "Unknown labels.",
+      "formats": "WebShare stream. Raw LAS download not found.",
+      "access_url": "https://sphere-demo.websharecloud.com/",
+      "fit_for_stud_qa": "Viewer examples only.",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "id": "D7",
+      "name": "Leica RC SDK sample library",
+      "stage": "Boiler room, indoor office, church square. Not wood frame.",
+      "density_labels": "Office set has a classification. Class list not read. Tevas ~295 million points.",
+      "formats": "LGSx",
+      "access_url": "https://rcsdk.leica-geosystems.com/sample-data/latest/tevas",
+      "fit_for_stud_qa": "TLS I/O sample only.",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "id": "D8",
+      "name": "Polycam self-capture",
+      "stage": "Whatever we scan. No public frame set found.",
+      "density_labels": "Unlabeled. Phone LiDAR limits apply.",
+      "formats": "PLY, LAS, PTS, XYZ, DXF on Business/Enterprise",
+      "access_url": "https://poly.cam/",
+      "fit_for_stud_qa": "Only immediate source of our own framed walls. Not TLS-accurate.",
+      "status": "known; surveyed; not-downloaded"
+    },
+    {
+      "id": "D9",
+      "name": "IntCDC timber laser scans",
+      "stage": "Assembled timber buildings after alignment. Not light-frame 2x4.",
+      "density_labels": "Full clouds. Semantic stud labels not stated. Multi-GB LAS.",
+      "formats": "LAS. CC BY 4.0.",
+      "access_url": "https://darus.uni-stuttgart.de/dataset.xhtml?persistentId=doi:10.18419/DARUS-3304",
+      "fit_for_stud_qa": "Later timber straightness. Wrong system for this QA target.",
+      "status": "surveyed; not-downloaded"
+    }
+  ],
+  "seed_funds": [
+    {
+      "id": "F1",
+      "program": "America's Seed Fund AR/VR/MR topic",
+      "agency": "NSF SBIR/STTR",
+      "topic_fit": "Closest named topic for an AR construction-QA product. Subtopics AV1-AV5 on the live page.",
+      "eligibility_sketch": "US small business <500 employees; >=50% US citizen/permanent-resident equity; not majority-owned by multiple VCs/PE/hedge funds; work in the US; PI >=20 h/week at the company.",
+      "url": "https://seedfund.nsf.gov/topics/augmented-virtual-reality/",
+      "notes": "Combined-topics PDF wording differs from the live page. Pitch required.",
+      "status": "surveyed"
+    },
+    {
+      "id": "F2",
+      "program": "NSF SBIR/STTR Phase I, II, Fast-Track (NSF 26-510)",
+      "agency": "NSF",
+      "topic_fit": "Funding vehicle for F1. No equity taken.",
+      "eligibility_sketch": "Project Pitch invitation. STTR needs a research-institution subaward (40% company / 30% institute). Phase II needs Phase I.",
+      "url": "https://www.nsf.gov/funding/opportunities/small-business-innovation-research-small-business-technology/nsf26-510/solicitation",
+      "notes": "Phase I up to $305,000; Phase II up to $1,250,000; Fast-Track up to $1,555,555. Subject to funds.",
+      "status": "surveyed"
+    },
+    {
+      "id": "F3",
+      "program": "NSF I-Corps inside SBIR",
+      "agency": "NSF",
+      "topic_fit": "Customer discovery, not scanner R&D.",
+      "eligibility_sketch": "Optional inside Phase I. Standalone I-Corps eligibility not re-read.",
+      "url": "https://www.nsf.gov/funding/initiatives/i-corps",
+      "notes": "Phase I cap includes I-Corps. Standalone rules unverified this pass.",
+      "status": "surveyed; standalone unverified"
+    },
+    {
+      "id": "F4",
+      "program": "NIST SBIR/STTR",
+      "agency": "NIST",
+      "topic_fit": "Metrology would fit conceptually. No open NOFO.",
+      "eligibility_sketch": "Topics only when a NOFO is open. Reauthorized through FY2031.",
+      "url": "https://www.nist.gov/tpo/small-business-innovation-research-program-sbir",
+      "notes": "Do not propose against a closed year.",
+      "status": "surveyed"
+    },
+    {
+      "id": "F5",
+      "program": "DOE SBIR/STTR",
+      "agency": "DOE",
+      "topic_fit": "Energy commercialization. Genesis Mission topics not confirmed to include construction QA.",
+      "eligibility_sketch": "SBA small business. Phase II is prior DOE awardees.",
+      "url": "https://www.energy.gov/technologycommercialization/doe-small-business-innovation-research-sbir-and-small-business",
+      "notes": "Secondary. Read the live topic list first.",
+      "status": "surveyed"
+    },
+    {
+      "id": "F6",
+      "program": "HUD robotics and AI for factory-built housing (PDR-2600-DC-029Q)",
+      "agency": "HUD",
+      "topic_fit": "Offsite housing robotics. Not XR stud plumb.",
+      "eligibility_sketch": "Announcement lists state, county, city, and tribal governments. Startup eligibility not stated.",
+      "url": "https://www.huduser.gov/Portal/elist/2026-June-1.html",
+      "notes": "Applications were due 13 Jul 2026. Closed as of 2026-09-23.",
+      "status": "surveyed; closed"
+    },
+    {
+      "id": "F7",
+      "program": "SBA SBIR/STTR policy",
+      "agency": "SBA",
+      "topic_fit": "Eligibility rules for the SBIR agencies, not a grant.",
+      "eligibility_sketch": "Ownership and size. 2026 reauthorization summarized on NIST/DOE pages.",
+      "url": "https://www.nist.gov/tpo/small-business-innovation-research-program-sbir",
+      "notes": "Policy directive not re-read line by line.",
+      "status": "surveyed"
+    }
+  ],
+  "misc": [
+    {
+      "id": "M1",
+      "item": "3D Gaussian Splatting",
+      "url": "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/",
+      "note": "View synthesis, not metrology.",
+      "status": "surveyed"
+    },
+    {
+      "id": "M3",
+      "item": "iTwin RealityData GS_3DT",
+      "url": "https://github.com/CesiumGS/cesium/pull/13208",
+      "note": "Splat tiles streaming. Not scan-to-CAD.",
+      "status": "surveyed"
+    },
+    {
+      "id": "M4",
+      "item": "BrepGaussian CVPR 2026",
+      "url": "https://openaccess.thecvf.com/content/CVPR2026/papers/Yu_BrepGaussian_CAD_reconstruction_from_Multi-View_Images_with_Gaussian_Splatting_CVPR_2026_paper.pdf",
+      "note": "Research path from images to CAD via splats.",
+      "status": "surveyed"
+    },
+    {
+      "id": "M5",
+      "item": "MIT VNAV 16.485",
+      "url": "https://vnav.mit.edu/",
+      "note": "Visual navigation course. Not stud QA.",
+      "status": "surveyed"
+    },
+    {
+      "id": "M6",
+      "item": "Aerial LiDAR Classifier",
+      "url": "https://github.com/akharroubi/AerialLidarClassifier",
+      "note": "Aerial ASPRS classes. Domain mismatch for studs.",
+      "status": "surveyed"
+    },
+    {
+      "id": "M7",
+      "item": "YouTube Sj3eCphnDX0",
+      "url": "https://youtu.be/Sj3eCphnDX0",
+      "note": "Page not retrieved. Brief says open-source PC segmentation with aerial bias.",
+      "status": "unverified"
+    },
+    {
+      "id": "M8",
+      "item": "Gemini shares",
+      "url": "https://share.gemini.google/0FEuisJUh7DE",
+      "note": "403. Companion share https://share.gemini.google/5MzElLQcDxFc also not read.",
+      "status": "unverified"
+    },
+    {
+      "id": "M9",
+      "item": "LinkedIn Javier Medel posts",
+      "url": "https://www.linkedin.com/posts/javier-medel_eccv2026-activity-7475720674817540096-o_qj",
+      "note": "Gaussian splat posts exist. DeepMind/MIT affiliation not verified.",
+      "status": "unverified affiliation"
+    }
+  ],
+  "already_known": [
+    {
+      "item": "Repo is a scaffold; no clouds downloaded; ply/las/laz gitignored",
+      "status": "known; surveyed"
+    },
+    {
+      "item": "Origin hooks for WFC and Rohbau and Open3D gravity sketch are not in this GitHub tree",
+      "status": "known; not-in-repo"
+    },
+    {
+      "item": "Prior phone RMSE band \u00b13-10 mm at 1.5-2 m",
+      "status": "known claim; unverified"
+    },
+    {
+      "item": "PSY is not a point-cloud format",
+      "status": "known"
+    },
+    {
+      "item": "openWall Unity track is separate",
+      "status": "known; separate-track",
+      "url": "https://github.com/ozguvenc2/openWall"
+    }
+  ]
+}
