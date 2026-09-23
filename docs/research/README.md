@@ -1,6 +1,6 @@
 # OpenWall stud-frame research
 
-Research date: **2026-09-23**. Scope: residential frame-stage QA — sample point clouds, semantic stud/beam segmentation, angle versus gravity, red/green against industry margins, with measurement-error tolerance. Near-term stack is Python + Open3D. Unity is optional later for visualization or XR. XREAL Aura is an AR display, not the capture scanner.
+Research date: **2026-09-23**. Scope: residential frame-stage QA — sample point clouds, semantic stud/beam segmentation, angle versus gravity, red/green against industry margins, with measurement-error tolerance. Near-term stack is Python + Open3D. Unity is optional later for visualization or XR. Which Blender and Unity tools can actually show or label a cloud is [07-blender-unity-pointcloud-viz-and-seg.md](07-blender-unity-pointcloud-viz-and-seg.md). XREAL Aura is an AR display, not the capture scanner.
 
 No multi-gigabyte datasets were downloaded into this repo. Large clouds stay behind the access URLs in [03-sample-datasets.md](03-sample-datasets.md). The frame-stage shortlist is [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md).
 
@@ -29,6 +29,7 @@ Numbers are copied from the cited page or marked **unknown**. Vendor brochure fi
 | [02-software-segmentation-angles.md](02-software-segmentation-angles.md) | Segmentation and viewers, plus a finalized gravity-up stack: scanner inclinometer or DAC, else ARKit or a static IMU, then Open3D angle paint. Floor-plane “level” tools are not the plumb reference. |
 | [03-sample-datasets.md](03-sample-datasets.md) | Frame/shell clouds and nearby samples: Rohbau3D, BIMNet, WFC-Dataset, ScanNet++, openBIM, FARO/Leica libs, Polycam self-capture, RefSite3D, ConSLAM. |
 | [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md) | Ranked five closest public clouds to a residential frame stage, with a still for each. No full light-frame house cloud was found. |
+| [07-blender-unity-pointcloud-viz-and-seg.md](07-blender-unity-pointcloud-viz-and-seg.md) | How to show a frame cloud, and how far you can label it, in Blender and Unity. Viewers and manual class edits only. Automatic stud labels stay in Python. |
 | [04-seed-funds.md](04-seed-funds.md) | NSF America’s Seed Fund AR/VR topic and nearby SBIR / construction awards. |
 | [05-misc-resources.md](05-misc-resources.md) | Gaussian splats versus clouds, MIT VNAV, the brief’s video and Gemini links, LinkedIn posts, aerial-LiDAR tools. |
 | [catalog.json](catalog.json) | Same rows in one JSON file for later tooling. Each table also has a sibling `.json`. |

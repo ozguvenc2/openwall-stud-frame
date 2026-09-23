@@ -1,7 +1,16 @@
 {
   "generated": "2026-09-23",
   "repo": "https://github.com/ozguvenc2/openwall-stud-frame",
-  "notes": "Numbers are cited in the markdown or marked unknown. Tables 1-2 refreshed 2026-09-23 for LiDAR classes and gravity-up. Top-5 frame-stage ranking added the same day. No datasets were downloaded.",
+  "notes": "Numbers are cited in the markdown or marked unknown. Tables 1-2 refreshed 2026-09-23 for LiDAR classes and gravity-up. Top-5 frame-stage ranking added the same day. Blender/Unity authoring note added the same day. No datasets were downloaded.",
+  "blender_unity_viz_seg": {
+    "doc": "docs/research/07-blender-unity-pointcloud-viz-and-seg.md",
+    "json": "docs/research/07-blender-unity-pointcloud-viz-and-seg.json",
+    "blender_viz": "Point Cloud Visualizer Standard, Blender 4.5 LTS",
+    "blender_seg": "No automatic segmenter. Review imported labels; Set Attribute or PCV set-scalar for small edits.",
+    "unity_viz": "Point Cloud Viewer and Tools 3",
+    "unity_seg": "No segmenter. Bake class or angle colors to RGB before import.",
+    "status": "surveyed"
+  },
   "top5_frame_pointclouds": {
     "doc": "docs/research/06-top5-frame-pointclouds.md",
     "json": "docs/research/06-top5-frame-pointclouds.json",
