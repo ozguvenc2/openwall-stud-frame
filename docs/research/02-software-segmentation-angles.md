@@ -4,10 +4,12 @@ Near-term target is **Python + Open3D**: classical plane/OBB fit, then optional 
 
 “Stud OBB?” means an oriented box on a stud or beam instance. “Angle/plumb?” means a reported angle to gravity or to vertical, not merely a plane normal you could convert yourself.
 
+Gravity-up is a separate job from painting the angle. A floor plane is not gravity: a slab can be out of level, and leveling to it would hide the very error this project wants to paint. The stack at the end of this file is the near-term recommendation.
+
 | ID | Tool | License | Where it runs | Inputs | Stud OBB? | Angle / plumb? | ML vs classical | Notes | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| W1 | Open3D | MIT (`isl-org/Open3D`) | Python and C++. Desktop / server. | Point clouds: `xyz`, `xyzn`, `xyzrgb`, `pts`, `ply`, `pcd`. **No LAS/LAZ** in the file I/O table. Convert LAS first. | **Partial.** `get_oriented_bounding_box` (PCA of the convex hull) and `get_minimal_oriented_bounding_box`. `detect_planar_patches` returns OBBs whose Z axis is the patch normal. Not a stud segmenter. | **No gravity tool.** Plane model from `segment_plane` (RANSAC) or an OBB axis can be compared with a gravity vector in user code. That comparison was sketched on Origin and is **not in this repo**. | Classical geometry. Open3D-ML is the separate learning layer (W6). | Best near-term fit. DBSCAN clustering is also in `PointCloud`. Robust flag on the OBB “introduces noise” in degenerate cases (docs). | `known` sketch; API `surveyed`; code `not-in-repo` |
-| W2 | CloudCompare | Current GitHub README: **GPL** (links GPL-3.0) and says the code cannot go into closed-source software. Older v2.6.1 manual: LGPL-2.0 for CCLib, GPL-2.0 for the app. Confirm `LICENSE` before linking. | Desktop GUI (Windows, Linux, macOS). CloudComPy embeds some plugins in Python. | Many survey formats including PLY, LAS/LAZ, E57, PTS (wiki file table). | **No stud OBB.** Primitive planes, cylinders, spheres via the RANSAC Shape Detection plugin (Schnabel Efficient RANSAC). Fit Plane builds one plane on the whole cloud. | **Dip and dip direction** on Fit Plane (geological), plus RMS and normal. Not a gravity-plumb QA report. You can still read the normal. | Classical. | Right interactive check on a cloud before any model. Cite Schnabel if you publish RANSAC-SD results. | `surveyed` |
+| W1 | Open3D | MIT (`isl-org/Open3D`) | Python and C++. Desktop / server. | Point clouds: `xyz`, `xyzn`, `xyzrgb`, `pts`, `ply`, `pcd`. **No LAS/LAZ** in the file I/O table. Convert LAS first. | **Partial.** `get_oriented_bounding_box` (PCA of the convex hull) and `get_minimal_oriented_bounding_box`. `detect_planar_patches` returns OBBs whose Z axis is the patch normal. Not a stud segmenter. | **Finalize path. No gravity sensor.** Compare an OBB long axis to a supplied up vector and paint against ~0.12°. ARKit gravity is Y-up; this project should store Z-up. Sketch is **not in this repo**. | Classical geometry. Open3D-ML is the separate learning layer (W6). | Best near-term fit. DBSCAN clustering is also in `PointCloud`. Robust flag on the OBB “introduces noise” in degenerate cases (docs). | `known` sketch; API `surveyed`; code `not-in-repo` |
+| W2 | CloudCompare | Current GitHub README: **GPL** (links GPL-3.0) and says the code cannot go into closed-source software. Older v2.6.1 manual: LGPL-2.0 for CCLib, GPL-2.0 for the app. Confirm `LICENSE` before linking. | Desktop GUI (Windows, Linux, macOS). CloudComPy embeds some plugins in Python. | Many survey formats including PLY, LAS/LAZ, E57, PTS (wiki file table). | **No stud OBB.** Primitive planes, cylinders, spheres via the RANSAC Shape Detection plugin (Schnabel Efficient RANSAC). Fit Plane builds one plane on the whole cloud. | **Manual level only.** Tools > Level picks three floor points and rotates that plane onto XY. Fit Plane prints dip and a matrix that makes the plane horizontal. Tools > Other > Compute geometric features has a **Verticality** scalar (formula not printed on the wiki page read here). None of these reads an IMU. A floor plane is not plumb. | Classical. | Right interactive check on a cloud before any model. Cite Schnabel if you publish RANSAC-SD results. | `surveyed` |
 | W3 | MeshLib (MeshInspector SDK) | Non-commercial / educational free license; commercial SDK license required to ship a product (vendor). | C++, Python, C#, C. Library, plus MeshInspector GUI trial. | Meshes, point clouds, volumes. Format list is on their docs (not fully enumerated here). | **AABB only** in the PointCloud API read (`computeBoundingBox` / `getBoundingBox`). No stud OBB method found. | **No.** | Classical mesh/point processing. Segmentation described as curvature-based on **meshes and voxels**, not a trained stud model. | Useful if the path becomes mesh booleans or healing. Wrong default for “keep points, don’t mesh” ML isolation. | `surveyed` |
 | W4 | PyTorch3D | BSD (Meta). | Python, GPU. Research library. | Batches of meshes and point clouds as tensors. | Has 3D transforms and differentiable ops. A stud OBB head: **not included**. | **No.** | ML / differentiable rendering. | Fits a learned model later. Not a scanner tool and not a plumb checker. | `surveyed` |
 | W5 | PointNet++ | MIT (`charlesq34/pointnet2`). | Python research code. | Sampled points (typically a few thousand per forward). | **No.** Per-point or per-shape labels. | **No.** | ML. Hierarchical point set network. | Baseline architecture. Too heavy to run naively on a full TLS room without sampling. PointNeXt (W8) is the maintained follow-on. | `surveyed` |
@@ -30,18 +32,52 @@ Near-term target is **Python + Open3D**: classical plane/OBB fit, then optional 
 | W22 | Blender point cloud and Geometry Nodes | GPL, same as Blender. | Desktop DCC. Blender **4.5 LTS** manual used here. | Point Cloud **object type** with attributes (position, color). Import PLY **node** outputs a **mesh** (4.5 manual). Python API 4.3/4.4 docstring says “Import a point cloud from a PLY file”; the node still builds a mesh (GSoC notes). Mesh to Points converts that mesh into a point-cloud geometry. | **No** stud OBB node. | **No** plumb node. | Classical DCC. No built-in PointNet. | Real point-cloud support exists (object type, edit mode, attributes). It is not a segmenter. Importing PLY as a mesh can triangulate a scan if you are not careful; convert to points if the cloud must stay a cloud. | `surveyed` |
 | W23 | Unreal Engine LiDAR Point Cloud plugin | Unreal license (Epic). | UE editor and runtime. 5.8 docs page describes import, viz, and edit. | Epic forum post lists `xyz` / `pts` / `txt`, `las` / `laz`, `e57`. **PLY is not in that list.** Forum reports: 5.6 broke LAS/LAZ/E57 handlers; XYZ still worked; a C++ re-register workaround was posted. Treat format support as **version-dependent**. | **No.** | **No.** | Classical viz. | Niagara LiDAR Point Cloud plugin (Fab / Wouter Weynants) renders `ULidarPointCloud` in Niagara. GPU emitter note on the forum: up to about 2 million points. Viz only. | `surveyed` |
 | W24 | Cesium for Unreal, Gaussian splats | Cesium open source (Apache-2.0 upstream; confirm the Unreal plugin). | Unreal. | 3D Tiles / glTF gaussian extension, SPZ. Draft PR 1748. Community reply: **not officially supported** while the PR is draft. | **No.** | **No.** | Splat rendering. | Relevant only if an XR scene streams a splat tile. Not a metrology path. | `surveyed` |
+| W25 | PDAL `filters.transformation` | BSD-family project ([PDAL/PDAL](https://github.com/PDAL/PDAL); confirm `LICENSE` before shipping). | CLI / pipeline. | LAS/LAZ and other PDAL readers. The filter applies a 4×4 matrix you already have. It ignores SRS. | **No.** | **None.** No IMU reader and no “set Z up” command. | Classical. | Preprocess only, and only after some other step computed the rotation. Open3D can apply the same matrix. | `surveyed` |
+| W26 | PCL | BSD ([PointCloudLibrary/pcl](https://github.com/PointCloudLibrary/pcl)). | C++ library. | Point clouds. Plane RANSAC and rigid transforms. | **No stud head.** A plane or a user transform only. | **None.** No gravity API found. | Classical. | Same job as Open3D, second codebase. Dead end for this repo. | `surveyed` |
+| W27 | LAStools `las2las` | Mixed. The README read here is the rapidlasso binary tool, not an MIT library. LASzip/LASlib are a separate open-source lineage; confirm before linking. | CLI. | LAS/LAZ. Reproject CRS, clip, thin. | **No.** | **None found.** The las2las README read this pass has EPSG/WKT/PROJ and offsets. No IMU, plumb, or “level cloud” flag. | Classical. | A projected CRS is not a gravity vector. Dead end for plumb. | `surveyed` |
+| W28 | Potree | Open source ([potree/potree](https://github.com/potree/potree); confirm `LICENSE`). | Browser viewer. | Converted octrees (LAS/LAZ via PotreeConverter). | **No.** | **None.** Viewer camera only. | Classical viz. | Drop for gravity and for the paint. | `surveyed` |
+| W29 | COLMAP `model_orientation_aligner` | Open source ([colmap/colmap](https://github.com/colmap/colmap)). | CLI on a sparse photo model. | Images. FAQ: Manhattan-world / upright-image gravity via vanishing points. | **No.** | **After the fact, photos only.** FAQ describes aligning axes to a gravity direction estimated from upright images. GitHub issue 2228: maintainers said an IMU gravity **constraint during bundle adjustment is not supported**. | Classical SfM. | Useless on a LiDAR cloud. Optional later for a photo model (S4). Not the stud paint. | `surveyed` |
+| W30 | ARKit `WorldAlignment.gravity` (and RoomPlan’s ARSession) | Apple proprietary, on device. | iOS. | Device motion. Y axis parallel to gravity. `(0,-1,0)` points down. Origin is the device pose when the session starts. | **No stud OBB.** RoomPlan finds walls and openings, not wood studs. | **Via phone IMU.** Native for an ARKit session. It does not ship inside a Polycam PLY by any page found here. Whether Polycam’s export is already in that frame: **unverified**. | Classical tracking. | Use this when the capture is ours and ARKit is in the loop. Convert Y-up to Z-up before the Open3D dot product. Phone IMU tilt error is **not quantified**. It does not make phone ranging meet 0.12°. | `surveyed` |
+| W31 | FAST-LIO2 and a gravity-align fork | **GPL-2.0** ([hku-mars/FAST_LIO](https://github.com/hku-mars/FAST_LIO)). The fork [FAST_LIO_gravity_align](https://github.com/SanghyunPark01/FAST_LIO_gravity_align) is also GPL-2.0. | ROS, C++. Livox Avia / Mid-70, Velodyne, Ouster, external IMU. | LiDAR packets plus IMU. | **No.** | **Via IMU, not in upstream by default.** Upstream estimates gravity in the state and initializes rotation as identity. The fork exists because that map is not gravity-aligned. Do not treat an upstream FAST-LIO cloud as Z-up. | Classical LIO. | Preprocess only, and only if the sensor is Mid-360 / Avia / OS1 with an IMU. GPL if we ship it. A few lines of “accelerometer at rest → rotation” in Python avoid the dependency for a static tripod. | `surveyed` |
+| W32 | FARO SCENE inclinometer | Commercial FARO. | Desktop, with Focus scans. | Focus scans. Inclinometer data is always stored. Use in registration can be switched on. FARO says keep inclination within **±5°**, and turn the inclinometer off if scanning upside down. | **No stud OBB.** | **Native, from the scanner inclinometer**, if that switch is on. It levels the registration. It is not a stud-angle report. | Classical registration. | **Preferred gravity-up when the sensor is a Focus.** Do not then level the cloud to the floor. | `surveyed` |
+| W33 | Leica Cyclone REGISTER 360, level from DAC | Commercial Leica. | Desktop. | RTC360, P-series, and C-series setups import with level enabled. Setting “Use Level from DAC when using Applied Control” keeps Z from tilting to fit control. | **No stud OBB.** | **Native DAC** on those scanners. BLK360 is **not** in that DAC list (see Table 1, S14). | Classical registration. | **Preferred gravity-up when the sensor is an RTC360.** Preprocess only. | `surveyed` |
+| W34 | Autodesk ReCap “Update Origin” | Commercial. | ReCap Pro. | RCP/RCS. Ctrl-click a plane to set Z perpendicular to it. Survey points with Z forced to 0 are a forum workaround for a tilted interior. | **No.** | **Manual plane.** Official help is a user coordinate system, not an IMU read. | Classical. | Same floor-plane trap as CloudCompare Level. Not the plumb reference. | `surveyed` |
+| W35 | FARO BuildIT Construction, wall plumb | Commercial FARO. | Desktop. | E57. Knowledge-base workflow: extract a wall, **constrain the plane perpendicular to Z**, then surface-deviation color with a user tolerance. Tech sheet names wall plumbness, floor flatness (ASTM E1155), and beam camber. | **Wall plane, not a stud OBB.** | **Uses the cloud’s Z.** It does not estimate gravity. Z is gravity only if SCENE or the scanner already leveled the scan. | Classical inspection. | Closest commercial **finalize** for a wall plane (pass/fail color). The KB example types 0.5 and ±0.25 as tutorial inputs, **not** a wood-stud spec. Not the Python path. | `surveyed` |
+| W36 | Trimble RealWorks, Bentley iTwin Capture / ContextCapture, PolyWorks | Commercial. | Desktop. | Point clouds / photos, depending on product. | **Not confirmed.** | **Unverified.** No official page opened this pass documents an align-to-gravity command or a stud-inclination report. | Unknown here. | **Drop** until a cited page says otherwise. Do not invent a workflow. | `unverified` |
 
-## What to use first
+## Final stack
 
-| Job | Tool | Why |
+Two jobs. Do not mix them.
+
+### 1. Gravity-up
+
+| Capture | What to use | What not to use |
 | --- | --- | --- |
-| Load PLY, segment planes, fit an OBB, compute angle to a gravity vector | Open3D (W1) | APIs exist. Gravity comparison is a few lines we still have to write in `src/`. |
-| Click around a cloud and see dip of a picked plane | CloudCompare (W2) | No code. GPL if we embed it. |
-| Learned labels on shell scans | Pointcept (W7) fine-tuned on Rohbau3D | Labels exist (Table 3). Domain is concrete/masonry shell more than wood studs. |
-| Learned labels on one wood stud | WFC-Dataset poses, not these segmenters | 6D pose of a single 2×4, not a whole wall. |
-| Show the cloud in Unity later | W17 or W18 for real clouds; W20 only for splats | Keep measurement in Python. |
-| Show the cloud in Blender | W22 point-cloud object | Do not mesh the scan if the next step is ML. |
-| Scan-versus-design QA | Verity (W14) | Needs a model. Out of scope until we have stud instances. |
+| FARO Focus, inclinometer on, scanner within ±5° | SCENE (W32). Keep that Z. | CloudCompare Level, ReCap Update Origin, or an Open3D floor RANSAC |
+| Leica RTC360 / P-series / C-series | Cyclone REGISTER 360, level from DAC (W33) | Re-leveling the bundle to control in a way that tilts Z, unless that is a deliberate choice |
+| Our own ARKit / RoomPlan session | `WorldAlignment.gravity` (W30), then rotate Y-up to Z-up in Open3D | Assuming a Polycam PLY is already gravity-aligned (**unverified**) |
+| Static Mid-360, Avia, or OS1 on a tripod | Accelerometer-at-rest rotation in Python, or the GPL gravity-align fork (W31) if the unit moved | Upstream FAST-LIO2’s default map, which is not Z-up |
+| Anything else | **No gravity vector.** Say so on the paint. | A floor plane |
+
+Phone IMU tilt error and Focus inclinometer residual are still **not quantified** beyond the BLK360 manual’s 8 arcmin (Table 1, S14) and the Focus/RTC360 angular specs (Table 1, S15).
+
+### 2. Angle-versus-gravity paint
+
+**Open3D (W1), in this repo, once Z is up.** Cluster or pick a stud, fit the OBB (`get_oriented_bounding_box` or the minimal box), take the long axis, compute the angle from +Z, compare with the derived **0.12°** in [../tolerances.md](../tolerances.md), color the points. That code is not written yet.
+
+Nothing else in this table finalizes that paint:
+
+| Tool | Role | Near-term |
+| --- | --- | --- |
+| CloudCompare verticality (W2) | Per-point scalar after Z is up. Interactive check. GPL if embedded. | Check only |
+| BuildIT wall plumb (W35) | Colors a wall plane against a tolerance you type, if Z is already gravity | Later, not Python |
+| EdgeWise, Verity, PointCab, CloudWorx (W11–W15) | Beams, pipes, or scan-versus-model. No gravity angle of a 2×4 | Drop until a model exists |
+| PDAL, PCL, LAStools, Potree (W25–W28) | Matrix, RANSAC, CRS, or a viewer | Drop for plumb |
+| COLMAP (W29) | Photo Manhattan axis. No IMU constraint in BA | Drop for LiDAR |
+| Unity, Blender, Unreal, Cesium (W17–W24) | Display | Drop for measurement |
+| Pointcept / Open3D-ML (W6, W7) | Labels, not angles | Later, for shell labels, not for the paint |
+
+Learned labels, if they come, still feed the same Open3D angle step. They do not replace it.
 
 ## Sources
 
@@ -86,3 +122,19 @@ Near-term target is **Python + Open3D**: classical plane/OBB fit, then optional 
 - UE 5.6 format breakage (forum): https://forums.unrealengine.com/t/5-6-broke-point-clouds-entirely/2547107
 - Niagara LiDAR plugin (forum): https://forums.unrealengine.com/t/niagara-lidar-point-cloud-plugin/2083692
 - Cesium for Unreal gaussian draft: https://github.com/CesiumGS/cesium-unreal/pull/1748 and https://community.cesium.com/t/does-the-current-version-of-cesium-for-unreal-support-loading-3d-tiles-that-utilize-the-3dgaussiansplatting-technology/43939
+- CloudCompare Level (three floor points, not an IMU): https://www.cloudcompare.org/doc/wiki/index.php/Level
+- CloudCompare geometric features, including Verticality: https://www.cloudcompare.org/doc/wiki/index.php/Compute_geometric_features
+- PDAL `filters.transformation`: https://pdal.io/en/latest/stages/filters.transformation.html
+- PCL: https://github.com/PointCloudLibrary/pcl
+- LAStools `las2las`: https://downloads.rapidlasso.de/html/las2las_README.html
+- Potree: https://github.com/potree/potree
+- COLMAP Manhattan / gravity axis: https://colmap.github.io/faq.html
+- COLMAP has no IMU gravity constraint in bundle adjustment: https://github.com/colmap/colmap/issues/2228
+- ARKit `WorldAlignment`: https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.enum
+- FAST-LIO2 (GPL-2.0): https://github.com/hku-mars/FAST_LIO
+- FAST-LIO gravity-align fork (GPL-2.0): https://github.com/SanghyunPark01/FAST_LIO_gravity_align
+- FARO Focus inclinometer and SCENE registration: https://knowledge.faro.com/Hardware/Focus/Focus/Laser_Scanner_Best_Practices
+- Cyclone REGISTER 360 level and DAC: https://rcdocs.leica-geosystems.com/cyclone-register-360/2025.0/level-condition-and-dac
+- ReCap Update Origin: https://help.autodesk.com/cloudhelp/ENU/Reality-Capture/files/View_and_Navigate/update_origin_location.html
+- BuildIT Construction wall plumb without CAD: https://knowledge.faro.com/Software/BuildIT/BuildIT_Construction/Wall_Plumb_-_Without_CAD_with_BuildIT_Construction
+- BuildIT tech sheet (wall plumbness named): https://media.faro.com/-/media/Project/FARO/FARO/FARO/Resources/2%5FTECH-SHEET/BuildIT-Construction/TechSheet%5FBuildIT%5FConstruction%5FENG.pdf?rev=dd9f6dd021b24391abc0d227b158bfea

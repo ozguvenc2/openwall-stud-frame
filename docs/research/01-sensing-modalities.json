@@ -138,6 +138,167 @@
         "https://www.sciencedirect.com/science/article/pii/S235264832200068X",
         "https://par.nsf.gov/servlets/purl/10424986"
       ]
+    },
+    {
+      "id": "S10",
+      "modality": "Consumer / phone LiDAR class (see S1-S2)",
+      "form_factor": "Handheld iPhone Pro / iPad Pro. No separate LiDAR SKU.",
+      "weight_power": "iPad Pro 11-inch (2020) cited at 471 g. iPhone mass and LiDAR power unknown.",
+      "range": "Apple 2020: up to 5 m.",
+      "precision_vs_tls": "Not TLS. Peer RMSE about 2.05-2.06 cm (Remote Sensing Letters 2026). See S1.",
+      "ranging_or_accuracy": "Apple publishes no mm spec. iPhone 12 Pro / 15 Pro RMSE vs primitives 2.05 cm and 2.06 cm.",
+      "angular_implication": "Derived single-point equivalent: 20 mm over 8 ft (2438.4 mm) is about 0.47 deg. Fitted-axis error cannot be derived.",
+      "stud_plumb_suitability": "No for a 0.12 deg call. ARKit can name gravity (W30); ranging error still dominates.",
+      "stud_edges_gravity": "No. Centimeter surface error exceeds the about 5 mm tip budget.",
+      "price_band_usd": "No separate sensor price. Phone street price not fetched. Unverified.",
+      "cost_availability": "Consumer Pro devices. Dollar band unverified this pass.",
+      "power_mount": "Handheld. Power unknown.",
+      "price_vs_accuracy": "Skip as the QA sensor. Useful for rough capture and demos.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.apple.com/newsroom/2020/03/apple-unveils-new-ipad-pro-with-lidar-scanner-and-trackpad-support-in-ipados/",
+        "https://www.tandfonline.com/doi/full/10.1080/2150704X.2026.2720055"
+      ]
+    },
+    {
+      "id": "S11",
+      "modality": "Livox mid-range hybrid solid-state (Mid-360, Mid-70, Avia)",
+      "form_factor": "Small hybrid solid-state modules for robots. Ethernet and external DC.",
+      "weight_power": "Mid-360: 265 g, 6.5 W average, self-heat peak 14 W, 9-27 V. Mid-70: 580 g, 8 W, 10-15 V. Avia: 498 g, 8-9 W, 10-15 V.",
+      "range": "Mid-360: 40 m at 10% reflectivity, 70 m at 80%. Mid-70: 90 m at 10%, 260 m at 80% (100 klx). Avia: 190 m at 10% and 320 m at 80% under 100 klx; 450 m at 80% and 0 klx.",
+      "precision_vs_tls": "Centimeter range precision, not TLS. Mid-360 angular precision < 0.15 deg. Avia < 0.05 deg. Mid-70 < 0.1 deg.",
+      "ranging_or_accuracy": "Mid-360 range precision (1 sigma) <= 2 cm at 10 m (80% reflectivity, 25 C) and <= 3 cm at 0.2 m. Mid-70 <= 2 cm at 20 m (30% reflectivity). Avia 2 cm at 20 m (80% reflectivity).",
+      "angular_implication": "Derived single-point equivalent of 2 cm over 8 ft is about 0.47 deg. Mid-360 < 0.15 deg ray spec is 6.4 mm of tip over 8 ft, coarser than 0.12 deg. Avia < 0.05 deg is 2.1 mm of tip, but the 2 cm range term still dominates as a bias. Fitted angle cannot be derived.",
+      "stud_plumb_suitability": "No for 0.12 deg. Partial only for seeing lumber if the sensor dwells.",
+      "stud_edges_gravity": "No plumb call. Mid-360 IMU ICM40609 and Avia IMU BMI088 can name an up vector. Mid-70 spec page lists no IMU. Not a survey compensator. Thin or low-reflectivity targets within 1 m are not guaranteed on Mid-360.",
+      "price_band_usd": "Mid-360 official trial sample USD 749 on 2023-01-10. Current Livox list not shown (DJI store region unavailable). Third-party street USD 899 on 2026-09-23 (AIFITLAB, Robotics Center), not a Livox list. Mid-70 DJI Store USD 1429 out of stock (fetched 2026-09-23). Avia DJI Store USD 2079 out of stock (same day).",
+      "cost_availability": "Hundreds to about two thousand USD. Mid-70 and Avia were out of stock on the DJI pages fetched.",
+      "power_mount": "Robot or tripod plus external DC. Not a leveled scan head. Mid-360 FOV 360 deg by -7 to +52 deg.",
+      "price_vs_accuracy": "Skip for the red/green call. Cheapest robotics class, published errors not inside the framing tolerance.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.livoxtech.com/mid-360/specs",
+        "https://www.livoxtech.com/news/mid360_launch",
+        "https://www.livoxtech.com/mid-70/specs",
+        "https://www.livoxtech.com/avia/specs",
+        "https://store.dji.com/product/livox-mid-70-lidar",
+        "https://store.dji.com/product/livox-avia",
+        "https://aifitlab.com/products/livox-mid-360-lidar"
+      ]
+    },
+    {
+      "id": "S12",
+      "modality": "Hesai PandarXT-32 spinning mid-range",
+      "form_factor": "32-channel mechanical spinning lidar.",
+      "weight_power": "800 g side connector or 900 g bottom connector. 10 W typical (room temperature, 12 V, 600 rpm). Supply should provide at least 30 W. DC 9-36 V.",
+      "range": "Instrumented 0.05-120 m. 80 m at 10% reflectivity on channels 9-24; 50 m at 10% on the other channels.",
+      "precision_vs_tls": "Better than Livox range precision, still not TLS. Vertical resolution 1 deg.",
+      "ranging_or_accuracy": "Ranging accuracy +/-1 cm typical, +/-2 cm standard. Precision 0.5 cm typical (1 sigma), 2 cm standard. Typical: channels 9-24, outdoors, 0.5-70 m, 30 C, 50% reflectivity. User manual X01, file date 2026-05-10.",
+      "angular_implication": "Derived single-point equivalent: 10 mm over 8 ft is about 0.235 deg. 5 mm precision is about 0.117 deg, the whole tolerance, and only if that 5 mm is the entire stud error. Ring spacing at 3 m from the stated 1 deg resolution is about 52 mm.",
+      "stud_plumb_suitability": "No for plumb. Partial for horizontal sampling versus a 16-beam puck.",
+      "stud_edges_gravity": "No. Spec table lists GNSS/PTP and no IMU. No dual-axis compensator found. 1 deg rings are coarse for a stud edge.",
+      "price_band_usd": "Not in the manual. Street price unverified.",
+      "cost_availability": "Commercial industrial lidar. Price unverified.",
+      "power_mount": "Ethernet. Vertical FOV 31 deg (-16 to +15), so one pose does not cover an 8 ft wall at a few meters.",
+      "price_vs_accuracy": "Skip until a wood-stud test and a price exist. A systematic 1 cm error is outside 0.12 deg.",
+      "status": "surveyed; price unverified",
+      "sources": [
+        "https://www.hesaitech.com/wp-content/uploads/2026/06/PandarXT_User_Manual_X01-en-260510.pdf"
+      ]
+    },
+    {
+      "id": "S13",
+      "modality": "Mapping-grade spinning lidar (Ouster OS1 Rev8, Velodyne VLP-16)",
+      "form_factor": "360 deg spinning imaging lidars for robotics and mapping.",
+      "weight_power": "OS1: 500 g without cap, 580 g with halo cap, 10-20 W (15 W nominal) at 1024x10 Hz, 9-58 V. VLP-16: about 830 g without cable or interface box, 8 W typical, 9-18 V with interface box.",
+      "range": "OS1: 90 m at 10% Lambertian, 170 m at 80%, 1024 at 10 Hz, >90% detection, 100 klx. Vertical FOV 44 deg. VLP-16: 100 m, vertical FOV 30 deg.",
+      "precision_vs_tls": "OS1 range accuracy is centimeter-class. Angular sampling accuracy +/-0.01 deg is much finer than 0.12 deg and is not the binding term. VLP-16 is +/-3 cm typical with 2.0 deg vertical resolution.",
+      "ranging_or_accuracy": "OS1 Rev8 datasheet (rev 08/03/2026): range precision min +/-0.25 cm, max +/-1.5 cm (1 sigma, typical, beyond 1 m, 1024 at 10 Hz). Range accuracy +/-1.25 cm Lambertian, +/-2.5 cm retroreflective. VLP-16 Rev-H (2018): range accuracy up to +/-3 cm typical.",
+      "angular_implication": "Derived: 12.5 mm over 8 ft is about 0.29 deg. OS1 +/-0.01 deg sampling is 0.43 mm of tip over 8 ft. Equal-beam illustration only: 128 channels over 44 deg is about 0.35 deg and about 18 mm at 3 m; the datasheet does not say beams are equal. VLP-16: 30 mm over 8 ft is about 0.70 deg; 2.0 deg ring spacing at 3 m is about 105 mm.",
+      "stud_plumb_suitability": "No for 0.12 deg plumb.",
+      "stud_edges_gravity": "VLP-16 no for stud edges (about 10 cm between rings at 3 m) and no IMU on the spec sheet. OS1 partial on edge sampling at 64 or 128 channels; synchronous IMU IAM-20685HP; no survey compensator found.",
+      "price_band_usd": "OS1 quote only (Ouster how-to-buy). Street unverified. VLP-16 introductory USD 7999 in 2014. Current price unverified.",
+      "cost_availability": "Commercial. OS1 not publicly listed. VLP-16 current street unverified.",
+      "power_mount": "Vehicle, robot, or tripod with external power and gigabit or 100 Mbps Ethernet. OS1 vertical FOV +/-22 deg.",
+      "price_vs_accuracy": "Skip. Mapping lidars are the wrong product for a few-millimeter plumb call.",
+      "status": "surveyed; current street price unverified",
+      "sources": [
+        "https://data.ouster.io/downloads/datasheets/datasheet-rev8-v4p0-os1.pdf",
+        "https://ouster.com/how-to-buy",
+        "https://www.mapix.com/wp-content/uploads/2018/07/63-9229_Rev-H_Puck-_Datasheet_Web.pdf",
+        "https://lidarmag.com/2014/09/03/velodyne-introduces-3d-real-time-lidar-puck-at-7999/"
+      ]
+    },
+    {
+      "id": "S14",
+      "modality": "Entry imaging TLS (Leica BLK360 G2)",
+      "form_factor": "One-button imaging scanner on a tripod or a surface. Internal battery.",
+      "weight_power": "0.75 kg without battery. GEB825 battery 0.1 kg. 10 W typical, 16 W max. Internal 7.4 V battery.",
+      "range": "0.5-45 m. Full dome 360 deg horizontal by 270 deg vertical. Up to 680,000 points/s.",
+      "precision_vs_tls": "3D point accuracy is a few millimeters, close to survey TLS, but the tilt spec is arcminutes not arcseconds.",
+      "ranging_or_accuracy": "User manual v1.4: 3D point accuracy 4 mm at 10 m and 8 mm at 20 m (1 sigma, 78% albedo). Range noise 1 mm at 10 m at 78% albedo. Tilt: IMU based, 8 arcmin in a working range; +/-5 deg for upright and upside-down.",
+      "angular_implication": "Derived: 4 mm over 8 ft is about 0.094 deg. The tilt spec is 8 arcmin = 0.133 deg, about 5.7 mm of tip over 8 ft, which is not inside 0.12 deg (7.2 arcmin). Tilt is the binding spec and is quoted, not derived.",
+      "stud_plumb_suitability": "Partial. Dense sampling can see a stud. The published tilt spec misses 0.12 deg.",
+      "stud_edges_gravity": "Partial. Dense+ is 6 mm spacing at 10 m. Gravity reference is the 8 arcmin IMU, not the Cyclone DAC list (RTC360, P-series, C-series). Wood is not the 78% albedo surface.",
+      "price_band_usd": "Leica US shop overview search extract on 2026-09-23 showed USD 26500. Direct fetch returned HTTP 403. Unverified against a live cart.",
+      "cost_availability": "Leica shop extract about USD 26500, live confirmation unverified.",
+      "power_mount": "Tripod or surface. VIS tracks motion between setups and does not work in complete darkness.",
+      "price_vs_accuracy": "Skip for the plumb call. Cheaper tripod scanner than survey TLS, but 8 arcmin tilt is outside 0.12 deg.",
+      "status": "surveyed; shop price unverified",
+      "sources": [
+        "https://shop.leica-geosystems.com/sites/default/files/2025-11/958351_Leica_BLK360_UM_v1.4.0_en.pdf",
+        "https://shop.leica-geosystems.com/leica-blk/blk360/overview",
+        "https://rcdocs.leica-geosystems.com/cyclone-register-360/2025.0/level-condition-and-dac"
+      ]
+    },
+    {
+      "id": "S15",
+      "modality": "Survey TLS class (FARO Focus Premium, Leica RTC360). Specs also in S3.",
+      "form_factor": "Tripod phase or time-of-flight scanner with inclinometer or dual-axis compensator.",
+      "weight_power": "RTC360: 5.2 kg nominal without batteries; battery 340 g; typically up to 4 h. Focus mass unknown on the pages read for S3.",
+      "range": "Focus Premium white 90% 0.5-200 m. RTC360 0.5-130 m. See S3.",
+      "precision_vs_tls": "This is the reference class. Focus 3D accuracy 2 mm at 10 m, angular accuracy 19 arcsec. RTC360 1.9 mm at 10 m, angular 18 arcsec.",
+      "ranging_or_accuracy": "Vendor claims, 1 sigma. Focus Premium: 3D accuracy 2 mm at 10 m, ranging error +/-1 mm, angular accuracy 19 arcsec. RTC360: 3D point accuracy 1.9 mm at 10 m, range accuracy 1.0 mm + 10 ppm, angular 18 arcsec.",
+      "angular_implication": "Derived single-point equivalent: 2 mm over 8 ft is about 0.047 deg; 1.9 mm is about 0.045 deg. 19 arcsec of tip over 8 ft is about 0.22 mm. Angle spec is far inside 0.12 deg. Fitted stud error on wood cannot be derived.",
+      "stud_plumb_suitability": "Yes on instrument specs. Registration, wood reflectance, occlusion, and box-fit error are not in the brochure.",
+      "stud_edges_gravity": "Yes for edges at indoor ranges relative to robotics lidars. FARO inclinometer can be used in SCENE if the scanner stays within +/-5 deg. Cyclone REGISTER 360 treats RTC360 and P/C-series as high-accuracy leveled / DAC scans.",
+      "price_band_usd": "Focus: public FARO quotation 02280272 dated 2023-04-24, expired 2023-09-30, listed Focus Premium at USD 41860 list and 39767 after discount. Not a 2026 list. RTC360 LT: Leica shop catalog extract on 2026-09-23 showed USD 68096. Live cart unverified.",
+      "cost_availability": "Professional capital equipment. Current Focus street price unverified. RTC360 LT shop extract USD 68096 unverified live.",
+      "power_mount": "Tripod. See S3 for RTC360 battery life. Not a robot puck.",
+      "price_vs_accuracy": "Viable class for OpenWall. Lowest class whose published ranging and angular specs both sit inside about 0.12 deg. Not the lowest dollar in the table.",
+      "status": "surveyed; current street price unverified",
+      "sources": [
+        "https://www.faro.com/en/Products/Hardware/Focus-Laser-Scanners",
+        "https://media.faro.com/-/media/Project/FARO/FARO/FARO/Resources/1_BROCHURE/2024/FARO-Focus/AECO/CMO9773_Brochure_FocusPremiumMax_AECO_ENG_LT_Web_112024.pdf",
+        "https://shop.leica-geosystems.com/sites/default/files/2024-10/Leica-RTC360-LT-DS-897298-0422-en_0.pdf",
+        "https://knowledge.faro.com/Hardware/Focus/Focus/Laser_Scanner_Best_Practices",
+        "https://rcdocs.leica-geosystems.com/cyclone-register-360/2025.0/level-condition-and-dac",
+        "https://opkansas.civicweb.net/document/85804/FARO-Quotation%20No.%202280272.pdf?handle=FE16BF33D48B40DF90CAC1413034D3F0",
+        "https://shop.leica-geosystems.com/shop-page"
+      ]
+    },
+    {
+      "id": "S16",
+      "modality": "Handheld / backpack SLAM (FARO Orbis Premium, GeoSLAM ZEB Horizon)",
+      "form_factor": "Walking SLAM scanner. Orbis: handheld, monopod, backpack, or car mount. Any orientation.",
+      "weight_power": "Orbis Premium tech sheet: scanner 2.10 kg, datalogger 0.95 kg, battery 0.55 kg, about 3 h. Horizon FARO sheet: scanner 1.45 kg.",
+      "range": "Orbis 120 m, 32 channels, FOV 360 by 290 deg, 640,000 points/s. Horizon 100 m, 16 sensors, 300,000 points/s, FOV 360 by 270 deg.",
+      "precision_vs_tls": "Vendor precision can look millimeter-class. It is relative or SLAM precision, not a TLS 3D-accuracy-plus-compensator spec.",
+      "ranging_or_accuracy": "Orbis Premium sheet revised 2025-06-10: mobile precision 5 mm (1 sigma), stationary Flash precision 2 mm (1 sigma). Horizon FARO sheet: relative accuracy up to 6 mm in GeoSLAM Connect V2. A 2024 paper quotes the Zeb Horizon manufacturer at 0.01-0.03 m relative. Those Horizon figures disagree. No stud-plumb test found.",
+      "angular_implication": "Derived single-point equivalents: 5 mm over 8 ft is about 0.117 deg, 2 mm is about 0.047 deg, 6 mm is about 0.141 deg. Not a proof the trajectory is plumb.",
+      "stud_plumb_suitability": "Partial. Flash 2 mm is in the survey-TLS order as a vendor precision. Mobile mode is the whole tip budget and is relative.",
+      "stud_edges_gravity": "Partial on edges in Flash mode (19M points, 13 mm at 10 m). Sheet does not say cloud Z is gravity. Any-orientation use is the opposite of a leveled tripod.",
+      "price_band_usd": "Not on the FARO sheets read here. Reseller prices were not used. Street price unverified.",
+      "cost_availability": "Commercial SLAM kits. Official street price unverified.",
+      "power_mount": "Handheld or backpack. Backpack mounting does not change the accuracy class.",
+      "price_vs_accuracy": "Skip for a purchase decision. No official price shows stationary Flash undercuts survey TLS, and mobile precision is not a gravity-plumb spec.",
+      "status": "surveyed; price unverified",
+      "sources": [
+        "https://media.faro.com/-/media/Project/FARO/FARO/FARO/Resources/2_TECH-SHEET/2024/Orbis-Premium/CMO12127_Techsheet_OrbisPremium_AECO_A4_ENG_Web.pdf?rev=de1e237797c44d07805500d18b4706f7",
+        "https://www.faro.com/Products/Hardware/FARO-Orbis-Mobile-Laser-Scanner",
+        "https://media.faro.com/-/media/Project/FARO/FARO/FARO/New-Product-Images/GeoSLAM/ZEB-Horizon/PDF/Horizon_Spec_Sheet_V4_RT_FARO.pdf",
+        "https://www.mdpi.com/2076-3417/14/12/5258"
+      ]
     }
   ]
 }
