@@ -1,0 +1,117 @@
+{
+  "generated": "2026-09-23",
+  "doc": "docs/research/07-blender-unity-pointcloud-viz-and-seg.md",
+  "scope": "Authoring, review, and XR for frame-stage clouds in Blender and Unity. Measurement stays in Open3D (doc 02). No editor was installed.",
+  "starting_this_week": {
+    "blender_viz": {
+      "pick": "Point Cloud Visualizer Standard on Blender 4.5 LTS",
+      "fit": "yes",
+      "url": "https://superhivemarket.com/products/pcv",
+      "price_usd": "85 standard, 150 pro",
+      "license": "GPL"
+    },
+    "blender_seg": {
+      "pick": "No segmenter. Review labels in PCV or Point Cloud I/O. Manual correction via set-scalar or Set Attribute.",
+      "fit": "maybe for review and small edits; no for automatic stud/plate/beam labels",
+      "url": "https://extensions.blender.org/add-ons/point-cloud-io/"
+    },
+    "unity_viz": {
+      "pick": "Point Cloud Viewer and Tools 3, with the external converter for binary PLY and LAZ",
+      "fit": "yes for XR review of a precolored cloud",
+      "url": "https://assetstore.unity.com/packages/tools/utilities/point-cloud-viewer-and-tools-3-310385",
+      "price_usd": "110 on the US listing fetched 2026-09-23; tax at checkout"
+    },
+    "unity_seg": {
+      "pick": "No segmenter. Bake class or angle colors to RGB before import.",
+      "fit": "no",
+      "url": "https://docs.unity3d.com/Packages/com.unity.industry.toolkit@3.3/manual/import-point-clouds.html",
+      "note": "Toolkit segmentation is spatial culling, not semantic classes."
+    }
+  },
+  "tools": [
+    {
+      "id": "B1",
+      "tool": "Point Cloud Visualizer",
+      "platform": "Blender",
+      "role": "visualize and manual class edit",
+      "license": "GPL",
+      "price_usd": "85 / 150",
+      "last_activity": "Docs titled 3.12 on 2026-09-23. Store lists Blender 4.2-5.2, 2400+ sales.",
+      "large_cloud": "Standard: hundreds of millions, RAM-bound. 8 GB GPU example ~300M points, default shader, scalars off. Pro tiles author demo 1.505e9 points.",
+      "status": "surveyed",
+      "url": "https://superhivemarket.com/products/pcv"
+    },
+    {
+      "id": "B2",
+      "tool": "Point Cloud I/O",
+      "platform": "Blender 5.1+",
+      "role": "import and export labeled native point clouds",
+      "license": "GPL-3.0-or-later",
+      "price_usd": "0",
+      "last_activity": "0.6.0 updated 2026-09-11. GitHub 6 stars.",
+      "large_cloud": "Author text says million-point datasets. No out-of-core mode. LAS export quantized to 1 mm.",
+      "status": "surveyed",
+      "url": "https://extensions.blender.org/add-ons/point-cloud-io/"
+    },
+    {
+      "id": "B3",
+      "tool": "Blender 4.5 LTS Point Cloud object",
+      "platform": "Blender",
+      "role": "native points, Set Attribute, separate",
+      "license": "GPL",
+      "price_usd": "0",
+      "last_activity": "4.5 LTS manual",
+      "large_cloud": "No published scan limit. Built-in PLY import is a mesh.",
+      "status": "surveyed",
+      "url": "https://docs.blender.org/manual/en/4.5/modeling/point_cloud/editing.html"
+    },
+    {
+      "id": "B4",
+      "tool": "Blender 5.3 Gaussian splat point cloud",
+      "platform": "Blender alpha",
+      "role": "splat viz only",
+      "license": "GPL",
+      "price_usd": "0",
+      "last_activity": "Expected release 2026-11-10. Alpha notes fetched 2026-09-23.",
+      "large_cloud": "Release notes: performance is not ideal. No export.",
+      "status": "surveyed",
+      "url": "https://developer.blender.org/docs/release_notes/5.3/rendering/"
+    },
+    {
+      "id": "U1",
+      "tool": "Point Cloud Viewer and Tools 3",
+      "platform": "Unity",
+      "role": "runtime and VR viz",
+      "license": "Asset Store EULA",
+      "price_usd": "110",
+      "last_activity": "Store listing 3.0.3 on 2026-06-10. Forum post describes v3.04.",
+      "large_cloud": "No official cap. Forum: 300M ASCII-path PLY failed in the editor converter.",
+      "status": "surveyed",
+      "url": "https://assetstore.unity.com/packages/tools/utilities/point-cloud-viewer-and-tools-3-310385"
+    },
+    {
+      "id": "U2",
+      "tool": "Asset Transformer Toolkit 3.3",
+      "platform": "Unity Industry",
+      "role": "E57 and PTS import, LOD, display",
+      "license": "Commercial. Included in Unity Industry. Product page also lists 1350 USD per seat per year.",
+      "price_usd": "Industry quote; 1350 listed for the toolkit",
+      "last_activity": "Package manual 3.3.0",
+      "large_cloud": "Over 100 million points: at least 32 GB RAM recommended.",
+      "status": "surveyed",
+      "url": "https://docs.unity3d.com/Packages/com.unity.industry.toolkit@3.3/manual/import-point-clouds.html"
+    },
+    {
+      "id": "U3",
+      "tool": "FastPoints",
+      "platform": "Unity",
+      "role": "out-of-core PLY/LAS/LAZ render",
+      "license": "GPL-3.0",
+      "price_usd": "0",
+      "last_activity": "GitHub push 2023-11-21. 41 stars.",
+      "large_cloud": "Potree octree. Count not published in the README section read.",
+      "status": "surveyed",
+      "url": "https://github.com/eliasnd/FastPoints"
+    }
+  ]
+}
