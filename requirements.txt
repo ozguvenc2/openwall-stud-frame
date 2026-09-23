@@ -1,0 +1,5 @@
+# Near-term segmentation and angle stack.
+# Python 3.10–3.14. Pin is the PyPI release open3d 0.20.0 (2026-09-16).
+# On Windows this installs the standard wheel. It does not install the
+# separate Windows CUDA preview wheel published on GitHub.
+open3d==0.20.0

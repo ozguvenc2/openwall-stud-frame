@@ -1,7 +1,13 @@
 {
   "generated": "2026-09-23",
   "repo": "https://github.com/ozguvenc2/openwall-stud-frame",
-  "notes": "Numbers are cited in the markdown or marked unknown. Tables 1-2 refreshed 2026-09-23 for LiDAR classes and gravity-up. No datasets were downloaded.",
+  "notes": "Numbers are cited in the markdown or marked unknown. Tables 1-2 refreshed 2026-09-23 for LiDAR classes and gravity-up. Top-5 frame-stage ranking added the same day. No datasets were downloaded.",
+  "top5_frame_pointclouds": {
+    "doc": "docs/research/06-top5-frame-pointclouds.md",
+    "json": "docs/research/06-top5-frame-pointclouds.json",
+    "ranked_ids": ["D9", "D3", "D10", "D1", "D11"],
+    "finding": "No public point cloud of a complete residential light-frame house was found. Ranks 3-5 are shells or mixed assemblies."
+  },
   "status_vocabulary": [
     "known",
     "surveyed",
@@ -321,8 +327,8 @@
       "stud_obb": "Partial. PCA and minimal OBB; planar-patch OBBs. Not a stud segmenter.",
       "angle_plumb": "Finalize path. No gravity sensor. Compare an OBB long axis to a supplied up vector and paint against about 0.12 deg. ARKit is Y-up; store Z-up. Sketch not in this repo.",
       "ml_vs_classical": "Classical",
-      "notes": "Near-term paint path once a gravity vector exists.",
-      "status": "known; surveyed; not-in-repo",
+      "notes": "Near-term paint path once a gravity vector exists. Version check is src/open3d_smoke.py. Angle paint is still not in this repo.",
+      "status": "known; surveyed; smoke-import in repo; angle paint not-in-repo",
       "sources": [
         "https://www.open3d.org/docs/release/tutorial/geometry/file_io.html",
         "https://www.open3d.org/docs/latest/python_api/open3d.geometry.PointCloud.html"
@@ -913,7 +919,7 @@
       "id": "D1",
       "name": "Rohbau3D",
       "stage": "Shell construction, not light wood frame. 504 TLS scans, 14 sites, some residential apartments.",
-      "density_labels": "xyz, RGB, intensity, normals. 17 foreground classes + background and instances. Class names on a third-party benchmark only.",
+      "density_labels": "FARO Focus M70. Paper: mean about 2.34e7 points per scan, mean surface density 31.7 points/cm^2. xyz, RGB, intensity, normals. 17 foreground classes + background and instances. Class names on a third-party benchmark only.",
       "formats": "Numpy feature files and panoramas",
       "access_url": "https://github.com/RauchLukas/Rohbau3D",
       "fit_for_stud_qa": "Best public shell set for walls, beams, columns. No wood-stud class confirmed.",
@@ -1003,8 +1009,35 @@
       "density_labels": "Full clouds. Semantic stud labels not stated. Multi-GB LAS.",
       "formats": "LAS. CC BY 4.0.",
       "access_url": "https://darus.uni-stuttgart.de/dataset.xhtml?persistentId=doi:10.18419/DARUS-3304",
-      "fit_for_stud_qa": "Later timber straightness. Wrong system for this QA target.",
+      "fit_for_stud_qa": "Closest public wood building frame (post-assembly). Not light-frame 2x4. Rank 1 in 06-top5-frame-pointclouds.md.",
       "status": "surveyed; not-downloaded"
+    },
+    {
+      "id": "D10",
+      "name": "RefSite3D",
+      "stage": "Modular multi-material demonstrator (concrete, timber, steel) on the Reference Construction Site Aachen. Not a residential wood-frame house. PM2 adds timber elements.",
+      "density_labels": "Point spacing not stated. Scene labels: environment, ground, target. Timber-component benchmark split exists. No stud class.",
+      "formats": "PLY, OBJ, JSON, TXT. Zip 2.2 GB. CC BY 4.0.",
+      "access_url": "https://doi.org/10.5281/zenodo.20285732",
+      "fit_for_stud_qa": "Real timber in an assembly, Open3D-readable PLY. Not a 2x4 house. Rank 3 in the top-5 note.",
+      "status": "surveyed; not-downloaded",
+      "also": [
+        "https://github.com/Individualized-Production/Construction3D-utils"
+      ]
+    },
+    {
+      "id": "D11",
+      "name": "ConSLAM",
+      "stage": "One floor of the Whiteley's London redevelopment (retail, leisure, and a residential scheme) scanned over about four months. Not wood frame.",
+      "density_labels": "No semantic stud labels. Ground truth is a survey PLY. Point spacing not stated.",
+      "formats": "PLY ground truth, ROS bags, RGB, NIR. Code licence is academic use only.",
+      "access_url": "https://github.com/mac137/ConSLAM",
+      "fit_for_stud_qa": "Construction-floor TLS for Open3D after download. Not studs. Rank 5 in the top-5 note.",
+      "status": "surveyed; not-downloaded",
+      "also": [
+        "https://doi.org/10.17863/CAM.87961",
+        "https://doi.org/10.1007/978-3-031-25082-8_21"
+      ]
     }
   ],
   "seed_funds": [

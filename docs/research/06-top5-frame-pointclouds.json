@@ -1,0 +1,157 @@
+{
+  "table": "06-top5-frame-pointclouds",
+  "generated": "2026-09-23",
+  "finding": "No public point cloud of a complete residential light-frame house (exposed 2x4 stud walls) was found. Fewer than five true wood-frame house clouds. Ranks 3-5 are closer shells or mixed assemblies and rank lower for that reason.",
+  "criteria": [
+    "Closest to a residential wood-frame stage",
+    "Usable for Open3D segmentation experiments",
+    "Open, accessible download",
+    "Documented quality and density",
+    "Labeled studs or beams when they exist"
+  ],
+  "ranked": [
+    {
+      "rank": 1,
+      "catalog_id": "D9",
+      "name": "IntCDC timber building scans",
+      "license": "CC BY 4.0",
+      "urls": [
+        "https://darus.uni-stuttgart.de/dataset.xhtml?persistentId=doi:10.18419/DARUS-3304",
+        "https://doi.org/10.18419/DARUS-3304",
+        "https://doi.org/10.18419/opus-12578"
+      ],
+      "why": "Timber structures of 23 building projects, scanned immediately after assembly and alignment. Closest public wood building frame. Not documented as light-frame houses.",
+      "sensor": "Leica ScanStation P20",
+      "formats": "LAS, plus GIF previews",
+      "approximate_size": "96 LAS files summing to about 223 GB on the DaRUS listing fetched 2026-09-23. Examples: 2020-KW23.las about 1.9 GB, 2020-KW27.las about 4.2 GB.",
+      "density": "Point spacing not stated on the dataset page.",
+      "labels": "Whole-cloud semantic stud labels not stated. One example evaluation (2022-KW15, beam axis 4).",
+      "gaps": "Heavy timber and some concrete columns, not 2x4 stud walls. Open3D does not read LAS. Occupancy not stated as single-family houses.",
+      "image": "docs/research/images/top5/01-intcdc-2020-kw27-additional-pointcloud.gif",
+      "image_note": "Official DaRUS point-cloud GIF for 2020-KW27_additonal (timber columns).",
+      "image_limited": false,
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "rank": 2,
+      "catalog_id": "D3",
+      "name": "WFC-Dataset",
+      "license": "Not stated. GitHub README License heading is empty (2026-09-23).",
+      "urls": [
+        "https://github.com/yigediao/wfcdataset",
+        "https://www.dropbox.com/scl/fo/sq9gz1vcgczdgz32mcfve/ALQKqFbNcodMnidMgmf6jEY?rlkey=4zgi8gigjuw58l20eh1qm69x8&dl=0",
+        "https://doi.org/10.1016/j.autcon.2026.106858"
+      ],
+      "why": "Only public real 2x4 wood-stud point clouds, with a manual 6D pose. Not a house.",
+      "sensor": "ZED 2i stereo camera",
+      "formats": "RGB, depth, PLY",
+      "approximate_size": "raw_rgbd_datasets.zip 10.65 GB; annotations.zip 461.77 MB. 288 samples.",
+      "density": "2208x1242. README: about 9x denser than 640x480 sets. Points per cloud unknown.",
+      "labels": "Manual 6D pose per sample. Not semantic wall labels.",
+      "gaps": "Single stud in controlled lighting. No wall, plates, or jobsite.",
+      "image": "docs/research/images/top5/02-wfc-stud-pointcloud-labeling.jpg",
+      "image_note": "README assets/labeling_gui.jpeg. Caption in the README: RGB-D point cloud, OBJ, and alignment GUI.",
+      "image_limited": false,
+      "status": "known; surveyed; not-downloaded; not-in-repo"
+    },
+    {
+      "rank": 3,
+      "catalog_id": "D10",
+      "name": "RefSite3D",
+      "license": "CC BY 4.0",
+      "urls": [
+        "https://doi.org/10.5281/zenodo.20285732",
+        "https://github.com/Individualized-Production/Construction3D-utils"
+      ],
+      "why": "Real assembly that includes timber (progress state PM2; timber-component benchmark split). PLY and per-point labels. Modular demonstrator, not a house.",
+      "sensor": "RIEGL VZ-400i and Leica RTC360 TLS; also iPhone X photogrammetry and Luma NeRF",
+      "formats": "PLY, OBJ, JSON, TXT labels",
+      "approximate_size": "RefSite3D_v1.0.0.zip 2.2 GB (2172793209 bytes on the Zenodo API).",
+      "density": "Point spacing not stated.",
+      "labels": "Scene classes: environment, ground, target. Object-verification JSON can reference an IfcBeam synthetic cloud. No stud class.",
+      "gaps": "Concrete, timber, and steel module, not a 2x4 house. Some scenes are not TLS. No point-cloud gallery on Zenodo.",
+      "image": "docs/research/images/top5/03-refsite3d-reStage-structure.jpg",
+      "image_note": "Limited. Crop of Figure 5 in public TARGET-X D5.3. Photograph of the ReStage structure, not a PLY render.",
+      "image_limited": true,
+      "image_source": "https://target-x.eu/wp-content/uploads/2025/12/TARGET-X_D5.3_REPORT-ON-LIVING-LABS-AND-TASK-ASSESSMENT.pdf",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "rank": 4,
+      "catalog_id": "D1",
+      "name": "Rohbau3D",
+      "license": "CC BY 4.0 (Open Data UniBw M record at the data DOI, checked 2026-09-23). Paper is also CC BY 4.0.",
+      "urls": [
+        "https://doi.org/10.60776/ZWJFI4",
+        "https://open-data.unibw.de/dataset",
+        "https://github.com/RauchLukas/Rohbau3D",
+        "https://doi.org/10.1038/s41597-025-05827-7"
+      ],
+      "why": "Best labeled residential shell: 504 TLS scans, 14 sites, six residential apartment blocks at shell or renovation. Not wood studs.",
+      "sensor": "FARO Focus M70",
+      "formats": "NumPy feature arrays and panoramas. Not a single PLY.",
+      "approximate_size": "Mean about 2.34e7 points per scan. Total archive bytes not stated in the paper. Subsample index caps a cloud at 15 million points.",
+      "density": "Mean surface density 31.7 points per cm^2 (std. dev. 15.4), 10 cm neighborhood, from the Scientific Data paper.",
+      "labels": "Point-wise semantic class (17 foreground + background) and instance ids. Class names below are third-party.",
+      "third_party_class_names": [
+        "None",
+        "Ceiling",
+        "Slanted Ceiling",
+        "Ceiling Cutout",
+        "Floor",
+        "Wall",
+        "Drywall",
+        "Wall Cutout",
+        "Parapet",
+        "Beam",
+        "Column",
+        "Staircase",
+        "Window Cutout",
+        "Window",
+        "Door Rough Opening",
+        "Facade Element",
+        "Elevator Doors",
+        "TGA"
+      ],
+      "third_party_class_source": "https://github.com/A-SHOJAEI/rohbau3d-benchmark",
+      "gaps": "Concrete, brick, and drywall, not 2x4. No stud class in the third-party list. Scans are not in one site frame. Open3D needs a PointCloud built from coord.npy.",
+      "image": "docs/research/images/top5/04-rohbau3d-shell-compendium.jpg",
+      "image_note": "img/compendium_example.jpg from the official Rohbau3D GitHub repository, resized.",
+      "image_limited": false,
+      "status": "known; surveyed; not-downloaded; not-in-repo"
+    },
+    {
+      "rank": 5,
+      "catalog_id": "D11",
+      "name": "ConSLAM",
+      "license": "GitHub LICENCE.txt: academic use only, University of Cambridge, 2023. A separate cloud-download license was not found on the README.",
+      "urls": [
+        "https://github.com/mac137/ConSLAM",
+        "https://ug.link/nas-polyform/filemgr/share-download/?id=0bac12bf9c6940b3b4a0dc0dd52c8a77",
+        "https://doi.org/10.1007/978-3-031-25082-8_21",
+        "https://doi.org/10.1061/JCCEE5.CPENG-5212",
+        "https://doi.org/10.17863/CAM.87961"
+      ],
+      "why": "Repeated scans of one construction floor in a London redevelopment that includes a residential scheme, with Leica RTC360 ground-truth PLY. Not wood frame, so it ranks last.",
+      "sensor": "Handheld Velodyne VLP-16, Alvium U-319c RGB, NIR, IMU. Ground truth: Leica RTC360.",
+      "formats": "groundtruth_scan.ply plus ROS bags, images, and poses",
+      "approximate_size": "Unknown. Four sequences. README: sequence 1 bag is faulty.",
+      "density": "Not stated in the sections read.",
+      "labels": "Poses for SLAM. No semantic stud or beam labels.",
+      "gaps": "Mixed-use concrete construction, not exposed studs. Share link may rot. Academic-use code terms.",
+      "image": "docs/research/images/top5/05-conslam-leica-still.jpg",
+      "image_note": "media/leica.jpg from the ConSLAM README hardware row. Not a separate export of groundtruth_scan.ply.",
+      "image_limited": true,
+      "status": "surveyed; not-downloaded"
+    }
+  ],
+  "not_ranked": [
+    "ResFa finished wood-frame facades; studs inferred",
+    "Fiskerkapellet finished historic log building",
+    "Nothing Stands Still office/education fit-out at 0.05 m voxels",
+    "Hilti-Oxford construction TLS, not a house, E57",
+    "ScanNet++ and BIMNet finished interiors",
+    "buildingSMART duplex IFC, no cloud",
+    "Polycam self-capture, not a public dataset"
+  ]
+}
