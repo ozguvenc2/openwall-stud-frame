@@ -1,0 +1,11 @@
+﻿data/raw/
+data/cache/
+*.ply
+*.pcd
+*.las
+*.laz
+__pycache__/
+.venv/
+.env
+*.pyc
+.DS_Store
