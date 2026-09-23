@@ -1,0 +1,376 @@
+{
+  "table": "02-software-segmentation-angles",
+  "rows": [
+    {
+      "id": "W1",
+      "tool": "Open3D",
+      "license": "MIT",
+      "where": "Python/C++",
+      "inputs": "xyz, xyzn, xyzrgb, pts, ply, pcd. No LAS/LAZ.",
+      "stud_obb": "Partial. PCA and minimal OBB; planar-patch OBBs. Not a stud segmenter.",
+      "angle_plumb": "No gravity API. User code can compare an axis to gravity. Sketch not in this repo.",
+      "ml_vs_classical": "Classical",
+      "notes": "Near-term path.",
+      "status": "known; surveyed; not-in-repo",
+      "sources": [
+        "https://www.open3d.org/docs/release/tutorial/geometry/file_io.html",
+        "https://www.open3d.org/docs/latest/python_api/open3d.geometry.PointCloud.html"
+      ]
+    },
+    {
+      "id": "W2",
+      "tool": "CloudCompare",
+      "license": "GPL per current GitHub README (GPL-3.0 link). Older manual: LGPL-2.0 CCLib, GPL-2.0 app. Confirm LICENSE.",
+      "where": "Desktop GUI; CloudComPy",
+      "inputs": "PLY, LAS/LAZ, E57, PTS, others",
+      "stud_obb": "No. Planes and primitives via RANSAC-SD.",
+      "angle_plumb": "Geological dip and dip direction on Fit Plane. Not a gravity QA report.",
+      "ml_vs_classical": "Classical",
+      "notes": "Interactive check. Cite Schnabel for RANSAC-SD.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/CloudCompare/CloudCompare/",
+        "https://www.cloudcompare.org/doc/wiki/index.php/Fit_Plane"
+      ]
+    },
+    {
+      "id": "W3",
+      "tool": "MeshLib",
+      "license": "Non-commercial free; commercial SDK license to ship.",
+      "where": "C++/Python/C#/C library",
+      "inputs": "Meshes, point clouds, volumes",
+      "stud_obb": "AABB only in PointCloud API read.",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical",
+      "notes": "Mesh-oriented. Poor fit for point-only ML isolation.",
+      "status": "surveyed",
+      "sources": [
+        "https://meshlib.io/license/",
+        "https://meshlib.io/documentation/Py/classmrmeshpy_1_1PointCloud.html"
+      ]
+    },
+    {
+      "id": "W4",
+      "tool": "PyTorch3D",
+      "license": "BSD",
+      "where": "Python GPU research",
+      "inputs": "Mesh and point tensors",
+      "stud_obb": "No stud head",
+      "angle_plumb": "No",
+      "ml_vs_classical": "ML",
+      "notes": "Differentiable 3D ops.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/facebookresearch/pytorch3d"
+      ]
+    },
+    {
+      "id": "W5",
+      "tool": "PointNet++",
+      "license": "MIT",
+      "where": "Python research",
+      "inputs": "Sampled points",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "ML",
+      "notes": "Baseline architecture.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/charlesq34/pointnet2"
+      ]
+    },
+    {
+      "id": "W6",
+      "tool": "Open3D-ML",
+      "license": "MIT",
+      "where": "Python, Open3D, PyTorch and TensorFlow",
+      "inputs": "SemanticKITTI, S3DIS, ScanNet, other model-zoo sets",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "ML (RandLA-Net, KPConv)",
+      "notes": "Benchmark mIoU is not a stud score.",
+      "status": "surveyed; not-downloaded",
+      "sources": [
+        "https://github.com/isl-org/Open3D-ML/blob/main/model_zoo.md"
+      ]
+    },
+    {
+      "id": "W7",
+      "tool": "Pointcept",
+      "license": "MIT code. Some pretrained weights carry dataset NC terms; confirm.",
+      "where": "Python CUDA research",
+      "inputs": "ScanNet, ScanNet++, S3DIS, Matterport, others. No official Rohbau config in README.",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "ML (PTv3, SpUNet, Sonata, Concerto)",
+      "notes": "Prior Origin survey target for shell labels.",
+      "status": "known; surveyed; not-in-repo",
+      "sources": [
+        "https://github.com/Pointcept/Pointcept",
+        "https://raw.githubusercontent.com/Pointcept/Pointcept/main/LICENSE"
+      ]
+    },
+    {
+      "id": "W8",
+      "tool": "PointNeXt",
+      "license": "MIT",
+      "where": "Python",
+      "inputs": "S3DIS/ScanNet-style benchmarks",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "ML",
+      "notes": "Scaled PointNet++.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/guochengqian/PointNeXt"
+      ]
+    },
+    {
+      "id": "W9",
+      "tool": "RandLA-Net",
+      "license": "CC BY-NC-SA 4.0 on official repo",
+      "where": "TensorFlow research; also Open3D-ML",
+      "inputs": "Large indoor/outdoor benchmarks",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "ML",
+      "notes": "Non-commercial official repo.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/QingyongHu/RandLA-Net"
+      ]
+    },
+    {
+      "id": "W10",
+      "tool": "Autodesk ReCap + Revit point clouds",
+      "license": "Commercial",
+      "where": "Desktop",
+      "inputs": "RCP/RCS",
+      "stud_obb": "Manual families only",
+      "angle_plumb": "No native plumb report found",
+      "ml_vs_classical": "Classical manual",
+      "notes": "Host for scan-to-BIM plugins.",
+      "status": "surveyed",
+      "sources": [
+        "https://knowledge.faro.com/Software/As-Built/As-Built_for_Autodesk_Revit/Getting_Started_with_As-Built_for_Autodesk_Revit"
+      ]
+    },
+    {
+      "id": "W11",
+      "tool": "FARO As-Built for Revit (ex PointSense)",
+      "license": "Commercial",
+      "where": "Revit plugin",
+      "inputs": "RCP",
+      "stud_obb": "BIM modeling aids. Wood-stud OBB not documented.",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical interactive",
+      "notes": "Successor to PointSense for Revit.",
+      "status": "surveyed",
+      "sources": [
+        "https://knowledge.faro.com/Software/As-Built/As-Built_for_Autodesk_Revit/Getting_Started_with_As-Built_for_Autodesk_Revit"
+      ]
+    },
+    {
+      "id": "W12",
+      "tool": "Leica CloudWorx for Revit and Navisworks",
+      "license": "Commercial",
+      "where": "Revit and Navisworks 2023-2026 (CloudWorx 2025.1)",
+      "inputs": "Cyclone, JetStream, LGSx, ReCap",
+      "stud_obb": "Steel, pipe, wall, door, window fitters. Not light-gauge studs.",
+      "angle_plumb": "No gravity number",
+      "ml_vs_classical": "Classical fitting",
+      "notes": "Navisworks plugin is review, not segmentation.",
+      "status": "surveyed",
+      "sources": [
+        "https://leica-geosystems.com/en-us/products/laser-scanners/software/leica-cloudworx/leica-cloudworx-revit",
+        "https://rcdocs.leica-geosystems.com/cloudworx/2025.1.0/release-notes-cloudworx-plugins"
+      ]
+    },
+    {
+      "id": "W13",
+      "tool": "ClearEdge3D EdgeWise",
+      "license": "Commercial",
+      "where": "Desktop; exports to Revit, Plant 3D, AVEVA",
+      "inputs": "Mobile and terrestrial clouds",
+      "stud_obb": "Structural steel, pipes, ducts, walls. Wood studs not named. SmartSheet RMSE.",
+      "angle_plumb": "No. RMSE is fit-to-cloud.",
+      "ml_vs_classical": "Vendor pattern matching",
+      "notes": "Closer to beams than 2x4 walls.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.clearedge3d.com/products/edgewise/"
+      ]
+    },
+    {
+      "id": "W14",
+      "tool": "ClearEdge3D Verity",
+      "license": "Commercial",
+      "where": "Navisworks and Revit",
+      "inputs": "As-built cloud plus design model",
+      "stud_obb": "Compares existing model elements. Not a segmenter.",
+      "angle_plumb": "Rotation vs model, not vs gravity unless the model is plumb. User tolerances. DPR case used 1 inch on steel.",
+      "ml_vs_classical": "Automated comparison",
+      "notes": "Needs a model first.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.clearedge3d.com/products/verity/",
+        "https://www.clearedge3d.com/dpr-case-study-page/"
+      ]
+    },
+    {
+      "id": "W15",
+      "tool": "PointCab Origins + 4Revit",
+      "license": "Commercial. Origins Core EUR 3000; Origins 3D EUR 4900 excl. VAT on shop pages.",
+      "where": "Desktop plus CAD plugins",
+      "inputs": "E57, LAS, LAZ, PLY, FARO, Leica, RCP, others",
+      "stud_obb": "User-picked columns and walls. Not automatic stud OBB.",
+      "angle_plumb": "No gravity command found",
+      "ml_vs_classical": "Classical user-guided",
+      "notes": "Scan-to-BIM click path.",
+      "status": "surveyed",
+      "sources": [
+        "https://pointcab-software.com/en/point-cloud-software/revit-point-cloud-plugin/",
+        "https://shop.pointcab-software.com/Origins-Core_1"
+      ]
+    },
+    {
+      "id": "W16",
+      "tool": "Autodesk Navisworks",
+      "license": "Commercial",
+      "where": "Desktop",
+      "inputs": "NWD/NWC, RCP; CloudWorx and Verity",
+      "stud_obb": "No",
+      "angle_plumb": "Clash and sections only",
+      "ml_vs_classical": "Classical",
+      "notes": "Coordination host.",
+      "status": "surveyed",
+      "sources": [
+        "https://leica-geosystems.com/en-us/products/laser-scanners/software/leica-cloudworx/leica-cloudworx-navisworks"
+      ]
+    },
+    {
+      "id": "W17",
+      "tool": "Unity Asset Transformer Toolkit (ex PiXYZ)",
+      "license": "Commercial Unity Industry",
+      "where": "Unity Editor",
+      "inputs": "E57, RCP, PTS, PTX, glTF point clouds",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical import and LOD",
+      "notes": "Display splats shader. Not metrology. Geometry shader limits on macOS, WebGL, visionOS.",
+      "status": "surveyed",
+      "sources": [
+        "https://docs.unity3d.com/Packages/com.unity.industry.toolkit@3.3/manual/import-point-clouds.html",
+        "https://unity.com/products/unity-asset-transformer"
+      ]
+    },
+    {
+      "id": "W18",
+      "tool": "Point Cloud Viewer and Tools 3",
+      "license": "Commercial Asset Store. v3.0.3 listed 2026-06-10.",
+      "where": "Unity runtime. VR. Limited WebGL/mobile.",
+      "inputs": "XYZ, ASC, PLY ASCII only, LAS, PTS",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical renderer",
+      "notes": "Gaussian splats explicitly not supported.",
+      "status": "surveyed",
+      "sources": [
+        "https://assetstore.unity.com/packages/tools/utilities/point-cloud-viewer-and-tools-3-310385"
+      ]
+    },
+    {
+      "id": "W19",
+      "tool": "FastPoints",
+      "license": "Not confirmed this pass",
+      "where": "Unity plus Potree Converter 2.0",
+      "inputs": "PLY, LAS, LAZ",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical out-of-core renderer",
+      "notes": "Potree-style Unity port. arXiv:2302.05002.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/eliasnd/FastPoints"
+      ]
+    },
+    {
+      "id": "W20",
+      "tool": "Unity Gaussian splat viewers",
+      "license": "Check each repo before shipping. aras-p project is a toy/education viz.",
+      "where": "Unity. aras-p: DX12/Vulkan, not DX11. UnitySplats: Unity 6.",
+      "inputs": "Gaussian PLY, SPZ, SOG, gaussian GLB",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Splat rendering",
+      "notes": "Do not measure studs on Gaussian means.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/aras-p/UnityGaussianSplatting",
+        "https://github.com/arloopa/UnitySplats"
+      ]
+    },
+    {
+      "id": "W21",
+      "tool": "Unity Robotics Hub",
+      "license": "Open-source Unity project",
+      "where": "Unity",
+      "inputs": "Robotics simulation assets, not survey clouds",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "N/A",
+      "notes": "Repo description is robotics simulation tools and tutorials, not point-cloud QA.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/Unity-Technologies/Unity-Robotics-Hub"
+      ]
+    },
+    {
+      "id": "W22",
+      "tool": "Blender point cloud and Geometry Nodes",
+      "license": "GPL (Blender)",
+      "where": "Desktop. 4.5 LTS manual.",
+      "inputs": "Point Cloud object; Import PLY node outputs a mesh; Mesh to Points converts to points.",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical DCC",
+      "notes": "Real point-cloud object type. Not a segmenter. API docstring says point cloud; 4.5 manual says mesh output.",
+      "status": "surveyed",
+      "sources": [
+        "https://docs.blender.org/manual/en/4.5/modeling/point_cloud/index.html",
+        "https://docs.blender.org/manual/en/4.5/modeling/geometry_nodes/input/import/ply.html"
+      ]
+    },
+    {
+      "id": "W23",
+      "tool": "Unreal LiDAR Point Cloud plugin",
+      "license": "Unreal / Epic",
+      "where": "UE editor and runtime",
+      "inputs": "Forum list: xyz, pts, txt, las, laz, e57. PLY not listed. 5.6 format handlers reported broken.",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Classical viz",
+      "notes": "Niagara companion plugin is also viz only.",
+      "status": "surveyed",
+      "sources": [
+        "https://dev.epicgames.com/documentation/en-us/unreal-engine/lidar-point-cloud-plugin-for-unreal-engine",
+        "https://forums.unrealengine.com/t/how-to-import-ply-point-cloud-in-ue5/1290363"
+      ]
+    },
+    {
+      "id": "W24",
+      "tool": "Cesium for Unreal Gaussian splats",
+      "license": "Cesium plugin; confirm Apache upstream",
+      "where": "Unreal",
+      "inputs": "3D Tiles / glTF gaussian, SPZ. Draft PR 1748.",
+      "stud_obb": "No",
+      "angle_plumb": "No",
+      "ml_vs_classical": "Splat rendering",
+      "notes": "Not officially supported while the PR is draft.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/CesiumGS/cesium-unreal/pull/1748"
+      ]
+    }
+  ]
+}

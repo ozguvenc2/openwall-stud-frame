@@ -1,0 +1,143 @@
+{
+  "table": "01-sensing-modalities",
+  "rows": [
+    {
+      "id": "S1",
+      "modality": "Phone / tablet LiDAR (Apple dToF)",
+      "form_factor": "Handheld iPhone Pro/Pro Max from 12 Pro; iPad Pro from 2020",
+      "weight_power": "iPad Pro 11-inch (2020) cited at 471 g. iPhone mass and LiDAR power unknown.",
+      "range": "Apple 2020: up to 5 m. Polycam processing cap 5 m.",
+      "precision_vs_tls": "Not TLS. Apple publishes no mm accuracy. iPhone 12 Pro / 15 Pro RMSE vs primitives 2.05 cm and 2.06 cm (Remote Sensing Letters 2026). iPad Pro SiteScape vs TLS ICP RMS ~2 cm \u00b1 3 cm (ISPRS 2021).",
+      "stud_plumb_suitability": "Poor as sole sensor for ~0.12 deg / few-mm tip offset. Centimeter error exceeds derived 8 ft offset.",
+      "cost_availability": "Consumer Pro devices. ARKit depth; app smoothing unknown vs raw.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.apple.com/newsroom/2020/03/apple-unveils-new-ipad-pro-with-lidar-scanner-and-trackpad-support-in-ipados/",
+        "https://www.tandfonline.com/doi/full/10.1080/2150704X.2026.2720055",
+        "https://doi.org/10.5194/isprs-archives-xliii-b1-2021-63-2021",
+        "https://www.mdpi.com/2072-4292/13/16/3129"
+      ]
+    },
+    {
+      "id": "S2",
+      "modality": "Polycam on phone LiDAR",
+      "form_factor": "iOS app. Space Mode LiDAR vs non-LiDAR photogrammetry.",
+      "weight_power": "Phone. Cloud preset uses Polycam servers. Power unknown.",
+      "range": "5 m LiDAR cap per frame.",
+      "precision_vs_tls": "Help Center says up to 98% under optimal conditions. Not an RMSE. Do not convert to mm.",
+      "stud_plumb_suitability": "Same limit as S1. Named Photo/Detail hybrid mode not found.",
+      "cost_availability": "Point-cloud export (LAS, PLY, PTS, XYZ, DXF) is Business and Enterprise. Free is GLTF only.",
+      "status": "known; surveyed",
+      "sources": [
+        "https://learn.poly.cam/hc/en-us/articles/27756102599572-What-File-Types-Can-Polycam-Export",
+        "https://learn.poly.cam/hc/en-us/articles/27488763119892-How-Accurate-Are-Polycam-Captures",
+        "https://learn.poly.cam/hc/en-us/articles/36655587097620-How-to-Use-Space-Mode-with-LiDAR-enabled-devices"
+      ]
+    },
+    {
+      "id": "S3",
+      "modality": "High-end terrestrial laser scanner",
+      "form_factor": "Tripod TLS. Examples FARO Focus Premium, Leica RTC360, Leica BLK360 SE.",
+      "weight_power": "RTC360 5.2 kg without batteries; battery 340 g; typically up to 4 h. FARO and BLK360 SE mass unknown here.",
+      "range": "FARO Focus Premium white 90% 0.5-200 m (Max 0.5-400 m). RTC360 0.5-130 m. BLK360 SE 0.5-45 m.",
+      "precision_vs_tls": "Vendor claims. FARO 3D accuracy 2 mm @ 10 m, angular 19 arcsec. RTC360 1.9 mm @ 10 m, angular 18 arcsec. BLK360 SE 4 mm @ 10 m.",
+      "stud_plumb_suitability": "Only class with published specs at millimeter / sub-0.1 deg order. End-to-end stud angle on site unknown.",
+      "cost_availability": "Professional capital equipment. Street price unknown.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.faro.com/en/Products/Hardware/Focus-Laser-Scanners",
+        "https://media.faro.com/-/media/Project/FARO/FARO/FARO/Resources/1_BROCHURE/2024/FARO-Focus/AECO/CMO9773_Brochure_FocusPremiumMax_AECO_ENG_LT_Web_112024.pdf",
+        "https://shop.leica-geosystems.com/sites/default/files/2024-10/Leica-RTC360-LT-DS-897298-0422-en_0.pdf",
+        "https://globalsurvey.co.nz/wp-content/uploads/2025/05/Leica_BLK360-SE-SpecSheet-PinPoint-F360-V2.4.pdf"
+      ]
+    },
+    {
+      "id": "S4",
+      "modality": "Photogrammetry / SfM",
+      "form_factor": "Overlapping photos; Polycam non-LiDAR mode; Pix4D-class processing.",
+      "weight_power": "Varies. Power unknown.",
+      "range": "No single range. Set by baseline and GSD.",
+      "precision_vs_tls": "Pix4D: GCPs raise absolute accuracy; no universal mm RMSE published.",
+      "stud_plumb_suitability": "Unknown. Not assumed better than phone LiDAR without control.",
+      "cost_availability": "Phone photos cheap. Pix4D commercial. Polycam point export needs Business/Enterprise.",
+      "status": "surveyed",
+      "sources": [
+        "https://support.pix4d.com/hc/en-us/articles/202557489"
+      ]
+    },
+    {
+      "id": "S5",
+      "modality": "Stereo / VIO, XREAL Aura class",
+      "form_factor": "Optical see-through glasses plus compute puck. Two tracking cameras, one high-res camera, 6DoF.",
+      "weight_power": "Official page omits grams. Puck battery 4455 mAh, 34.84 Wh. Secondary review under 95 g / 270 g puck is unverified.",
+      "range": "Survey range unknown. Display FOV 70 deg.",
+      "precision_vs_tls": "No depth RMSE on the official page.",
+      "stud_plumb_suitability": "Display, not capture scanner. Unsuitable as the metrology sensor.",
+      "cost_availability": "Base model not more than US$1500 before tax. Fall 2026 launch.",
+      "status": "known; surveyed",
+      "sources": [
+        "https://www.xreal.com/us/aura"
+      ]
+    },
+    {
+      "id": "S6",
+      "modality": "Stereo depth camera (ZED 2i as used by WFC-Dataset)",
+      "form_factor": "USB stereo camera.",
+      "weight_power": "Unknown. Stereolabs spec sheet not opened.",
+      "range": "Unknown on the dataset page.",
+      "precision_vs_tls": "Unknown. Dataset does not state accuracy.",
+      "stud_plumb_suitability": "Controlled single-stud capture. Not evidence of 0.12 deg wall plumb.",
+      "cost_availability": "Commercial depth camera.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/yigediao/wfcdataset"
+      ]
+    },
+    {
+      "id": "S7",
+      "modality": "UWB radar (Qorvo / IEEE 802.15.4z class)",
+      "form_factor": "Small RF chipset, monostatic radar or two-device ranging.",
+      "weight_power": "Vendor: low-cost, low-power. Watts unknown.",
+      "range": "Construction max range unknown. Omnidirectional presence sensing described.",
+      "precision_vs_tls": "Vendor: fine ranging < 10 cm. White paper: ~30 cm spatial resolution at 500 MHz.",
+      "stud_plumb_suitability": "Not suitable. Resolution cell much larger than a stud face.",
+      "cost_availability": "Commercial chipsets and dev kits.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.qorvo.com/design-hub/technical-articles/ultra-wideband-uwb-radar-beyond-ranging-to-advanced-sensing",
+        "https://www.qorvo.com/design-hub/white-papers/ultra-wideband-radar-sensing-white-paper"
+      ]
+    },
+    {
+      "id": "S8",
+      "modality": "TI mmWave (IWR6843 class)",
+      "form_factor": "60 GHz FMCW module with onboard DSP.",
+      "weight_power": "TIDEP-01000 short-range config: 2 W. Mass unknown.",
+      "range": "Short-range people-counting config: 8.1 m; FOV 120 deg horizontal, 40 deg vertical.",
+      "precision_vs_tls": "Reference design: people localized to \u00b110 cm. Range resolution 8.4 cm. Static-clutter removal in area-scanner demo.",
+      "stud_plumb_suitability": "Not suitable for mm-class stud edges.",
+      "cost_availability": "Evaluation modules. Street price unknown.",
+      "status": "surveyed",
+      "sources": [
+        "https://www.ti.com/design-development/embedded-development/mmwave-radar.html",
+        "https://www.ti.com/lit/ug/tidue71d/tidue71d.pdf",
+        "https://www.ti.com/lit/ug/tiduei1c/tiduei1c.pdf"
+      ]
+    },
+    {
+      "id": "S9",
+      "modality": "RF micro-Doppler human gait (Smart Health 2022)",
+      "form_factor": "Lab radar on walking people.",
+      "weight_power": "Unknown.",
+      "range": "Unknown. Publisher page blocked.",
+      "precision_vs_tls": "Not a dimensional survey.",
+      "stud_plumb_suitability": "Not relevant. Listed because the brief cited the PII.",
+      "cost_availability": "Academic article.",
+      "status": "surveyed via secondary citation; publisher page unverified",
+      "sources": [
+        "https://www.sciencedirect.com/science/article/pii/S235264832200068X",
+        "https://par.nsf.gov/servlets/purl/10424986"
+      ]
+    }
+  ]
+}
