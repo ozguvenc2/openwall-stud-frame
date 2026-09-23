@@ -32,8 +32,8 @@ Sourced plumb guidelines and the derived ~0.12° conversion are in [`docs/tolera
 Literature and vendor survey (2026-09-23). Numbers are cited or marked unknown. Large datasets are linked, not stored in git.
 
 - [Index and status-column legend](docs/research/README.md)
-- [Table 1 — Sensing modalities](docs/research/01-sensing-modalities.md) (phone LiDAR, TLS, photogrammetry, Aura-class VIO, UWB, mmWave)
-- [Table 2 — Segmentation and angles](docs/research/02-software-segmentation-angles.md) (Open3D, BIM tools, Unity point-cloud plugins, Blender)
+- [Table 1 — Sensing modalities](docs/research/01-sensing-modalities.md) (LiDAR classes vs ~0.12° plumb; survey TLS is the viable class)
+- [Table 2 — Segmentation and angles](docs/research/02-software-segmentation-angles.md) (gravity-up, then Open3D angle paint)
 - [Table 3 — Sample datasets](docs/research/03-sample-datasets.md)
 - [Table 4 — Seed / grant paths](docs/research/04-seed-funds.md)
 - [Misc resources](docs/research/05-misc-resources.md)

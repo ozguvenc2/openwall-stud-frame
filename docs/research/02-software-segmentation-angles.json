@@ -8,14 +8,17 @@
       "where": "Python/C++",
       "inputs": "xyz, xyzn, xyzrgb, pts, ply, pcd. No LAS/LAZ.",
       "stud_obb": "Partial. PCA and minimal OBB; planar-patch OBBs. Not a stud segmenter.",
-      "angle_plumb": "No gravity API. User code can compare an axis to gravity. Sketch not in this repo.",
+      "angle_plumb": "Finalize path. No gravity sensor. Compare an OBB long axis to a supplied up vector and paint against about 0.12 deg. ARKit is Y-up; store Z-up. Sketch not in this repo.",
       "ml_vs_classical": "Classical",
-      "notes": "Near-term path.",
+      "notes": "Near-term paint path once a gravity vector exists.",
       "status": "known; surveyed; not-in-repo",
       "sources": [
         "https://www.open3d.org/docs/release/tutorial/geometry/file_io.html",
         "https://www.open3d.org/docs/latest/python_api/open3d.geometry.PointCloud.html"
-      ]
+      ],
+      "gravity_up": "none",
+      "workflow_role": "finalize",
+      "openwall_recommendation": "Use for the angle-versus-gravity paint. Do not use it to invent gravity from a floor plane."
     },
     {
       "id": "W2",
@@ -24,14 +27,17 @@
       "where": "Desktop GUI; CloudComPy",
       "inputs": "PLY, LAS/LAZ, E57, PTS, others",
       "stud_obb": "No. Planes and primitives via RANSAC-SD.",
-      "angle_plumb": "Geological dip and dip direction on Fit Plane. Not a gravity QA report.",
+      "angle_plumb": "Manual floor level (Tools > Level, three points) and Fit Plane dip. Verticality is a per-point scalar. No IMU. A floor plane is not plumb.",
       "ml_vs_classical": "Classical",
-      "notes": "Interactive check. Cite Schnabel for RANSAC-SD.",
+      "notes": "Interactive check after Z is up. GPL if embedded. Not the plumb reference.",
       "status": "surveyed",
       "sources": [
         "https://github.com/CloudCompare/CloudCompare/",
         "https://www.cloudcompare.org/doc/wiki/index.php/Fit_Plane"
-      ]
+      ],
+      "gravity_up": "manual",
+      "workflow_role": "preprocess",
+      "openwall_recommendation": "Check only. Do not level to the floor for the red/green call."
     },
     {
       "id": "W3",
@@ -371,6 +377,224 @@
       "sources": [
         "https://github.com/CesiumGS/cesium-unreal/pull/1748"
       ]
+    },
+    {
+      "id": "W25",
+      "tool": "PDAL filters.transformation",
+      "license": "BSD-family project. Confirm LICENSE before shipping.",
+      "where": "CLI / pipeline",
+      "inputs": "LAS/LAZ and other PDAL readers. User-supplied 4x4 matrix. Ignores SRS.",
+      "stud_obb": "No",
+      "angle_plumb": "None. No IMU reader and no set-Z-up command.",
+      "ml_vs_classical": "Classical",
+      "notes": "Preprocess only after some other step computed the rotation.",
+      "gravity_up": "none",
+      "workflow_role": "preprocess",
+      "openwall_recommendation": "Drop. Open3D can apply the same matrix.",
+      "status": "surveyed",
+      "sources": [
+        "https://pdal.io/en/latest/stages/filters.transformation.html",
+        "https://github.com/PDAL/PDAL"
+      ]
+    },
+    {
+      "id": "W26",
+      "tool": "PCL",
+      "license": "BSD",
+      "where": "C++ library",
+      "inputs": "Point clouds",
+      "stud_obb": "No stud head. Plane RANSAC or a user transform.",
+      "angle_plumb": "None. No gravity API found.",
+      "ml_vs_classical": "Classical",
+      "notes": "Same job as Open3D, second codebase.",
+      "gravity_up": "none",
+      "workflow_role": "neither",
+      "openwall_recommendation": "Drop for this repo.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/PointCloudLibrary/pcl"
+      ]
+    },
+    {
+      "id": "W27",
+      "tool": "LAStools las2las",
+      "license": "Mixed. rapidlasso binary tool, not an MIT library. LASzip/LASlib are a separate open-source lineage. Confirm before linking.",
+      "where": "CLI",
+      "inputs": "LAS/LAZ. CRS reprojection, clip, thin.",
+      "stud_obb": "No",
+      "angle_plumb": "None found. No IMU, plumb, or level-cloud flag in the las2las README read this pass.",
+      "ml_vs_classical": "Classical",
+      "notes": "A projected CRS is not a gravity vector.",
+      "gravity_up": "none",
+      "workflow_role": "neither",
+      "openwall_recommendation": "Drop for plumb.",
+      "status": "surveyed",
+      "sources": [
+        "https://downloads.rapidlasso.de/html/las2las_README.html"
+      ]
+    },
+    {
+      "id": "W28",
+      "tool": "Potree",
+      "license": "Open source. Confirm LICENSE.",
+      "where": "Browser viewer",
+      "inputs": "PotreeConverter octrees from LAS/LAZ",
+      "stud_obb": "No",
+      "angle_plumb": "None. Viewer camera only.",
+      "ml_vs_classical": "Classical viz",
+      "notes": "Drop for gravity and for the paint.",
+      "gravity_up": "none",
+      "workflow_role": "neither",
+      "openwall_recommendation": "Drop.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/potree/potree"
+      ]
+    },
+    {
+      "id": "W29",
+      "tool": "COLMAP model_orientation_aligner",
+      "license": "Open source",
+      "where": "CLI on a sparse photo model",
+      "inputs": "Images. Manhattan-world or upright-image gravity via vanishing points.",
+      "stud_obb": "No",
+      "angle_plumb": "Native for upright photos via model_orientation_aligner (Manhattan / vanishing points). Not IMU. Issue 2228: no gravity constraint during bundle adjustment.",
+      "ml_vs_classical": "Classical SfM",
+      "notes": "Useless on a LiDAR cloud.",
+      "gravity_up": "native_photos_only",
+      "workflow_role": "preprocess",
+      "openwall_recommendation": "Drop for LiDAR. Optional later for a photo model.",
+      "status": "surveyed",
+      "sources": [
+        "https://colmap.github.io/faq.html",
+        "https://github.com/colmap/colmap/issues/2228"
+      ]
+    },
+    {
+      "id": "W30",
+      "tool": "ARKit WorldAlignment.gravity",
+      "license": "Apple proprietary, on device",
+      "where": "iOS",
+      "inputs": "Device motion. Y axis parallel to gravity. (0,-1,0) points down.",
+      "stud_obb": "No. RoomPlan finds walls and openings, not wood studs.",
+      "angle_plumb": "Via phone IMU for an ARKit session. Not shown to be inside a Polycam PLY. Polycam frame unverified.",
+      "ml_vs_classical": "Classical tracking",
+      "notes": "Convert Y-up to Z-up before the Open3D dot product. Phone IMU tilt error is not quantified.",
+      "gravity_up": "via_imu",
+      "workflow_role": "preprocess",
+      "openwall_recommendation": "Use when the capture is our own ARKit session. Does not make phone ranging meet 0.12 deg.",
+      "status": "surveyed",
+      "sources": [
+        "https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.enum"
+      ]
+    },
+    {
+      "id": "W31",
+      "tool": "FAST-LIO2 and gravity-align fork",
+      "license": "GPL-2.0 (hku-mars/FAST_LIO and SanghyunPark01/FAST_LIO_gravity_align)",
+      "where": "ROS, C++. Livox Avia/Mid-70, Velodyne, Ouster, external IMU.",
+      "inputs": "LiDAR packets plus IMU",
+      "stud_obb": "No",
+      "angle_plumb": "Via IMU, not Z-up in upstream by default. The fork adds gravity-aligned mapping.",
+      "ml_vs_classical": "Classical LIO",
+      "notes": "Preprocess only. For a static tripod, an accelerometer-at-rest rotation in Python avoids the GPL dependency.",
+      "gravity_up": "via_imu",
+      "workflow_role": "preprocess",
+      "openwall_recommendation": "Use the idea, not upstream FAST-LIO output, if the sensor moved. Do not treat the default map as Z-up.",
+      "status": "surveyed",
+      "sources": [
+        "https://github.com/hku-mars/FAST_LIO",
+        "https://github.com/SanghyunPark01/FAST_LIO_gravity_align"
+      ]
+    },
+    {
+      "id": "W32",
+      "tool": "FARO SCENE inclinometer",
+      "license": "Commercial",
+      "where": "Desktop, with Focus scans",
+      "inputs": "Focus scans. Inclinometer data is always stored. Registration use can be switched on. Keep inclination within +/-5 deg.",
+      "stud_obb": "No",
+      "angle_plumb": "Native from the scanner inclinometer when the switch is on. Levels registration. Not a stud-angle report.",
+      "ml_vs_classical": "Classical registration",
+      "notes": "Turn the inclinometer off if scanning upside down.",
+      "gravity_up": "native",
+      "workflow_role": "preprocess",
+      "openwall_recommendation": "Preferred gravity-up when the sensor is a Focus. Do not then level to the floor.",
+      "status": "surveyed",
+      "sources": [
+        "https://knowledge.faro.com/Hardware/Focus/Focus/Laser_Scanner_Best_Practices"
+      ]
+    },
+    {
+      "id": "W33",
+      "tool": "Leica Cyclone REGISTER 360 level from DAC",
+      "license": "Commercial",
+      "where": "Desktop",
+      "inputs": "RTC360, P-series, and C-series setups import with level enabled.",
+      "stud_obb": "No",
+      "angle_plumb": "Native DAC. Use Level from DAC when using Applied Control keeps Z from tilting to fit control. BLK360 is not in that list.",
+      "ml_vs_classical": "Classical registration",
+      "notes": "Preprocess only.",
+      "gravity_up": "native",
+      "workflow_role": "preprocess",
+      "openwall_recommendation": "Preferred gravity-up when the sensor is an RTC360.",
+      "status": "surveyed",
+      "sources": [
+        "https://rcdocs.leica-geosystems.com/cyclone-register-360/2025.0/level-condition-and-dac"
+      ]
+    },
+    {
+      "id": "W34",
+      "tool": "Autodesk ReCap Update Origin",
+      "license": "Commercial",
+      "where": "ReCap Pro",
+      "inputs": "RCP/RCS. Ctrl-click a plane to set Z perpendicular to it.",
+      "stud_obb": "No",
+      "angle_plumb": "Manual plane. Official help is a user coordinate system, not an IMU read.",
+      "ml_vs_classical": "Classical",
+      "notes": "Same floor-plane trap as CloudCompare Level.",
+      "gravity_up": "manual",
+      "workflow_role": "preprocess",
+      "openwall_recommendation": "Do not use as the plumb reference.",
+      "status": "surveyed",
+      "sources": [
+        "https://help.autodesk.com/cloudhelp/ENU/Reality-Capture/files/View_and_Navigate/update_origin_location.html"
+      ]
+    },
+    {
+      "id": "W35",
+      "tool": "FARO BuildIT Construction wall plumb",
+      "license": "Commercial",
+      "where": "Desktop",
+      "inputs": "E57. Extract a wall, constrain the plane perpendicular to Z, color surface deviation with a user tolerance.",
+      "stud_obb": "Wall plane, not a stud OBB.",
+      "angle_plumb": "Uses the cloud Z. Does not estimate gravity. Z is gravity only if the scan was already leveled.",
+      "ml_vs_classical": "Classical inspection",
+      "notes": "KB tutorial tolerances are not a wood-stud spec. Tech sheet names wall plumbness.",
+      "gravity_up": "none",
+      "workflow_role": "finalize",
+      "openwall_recommendation": "Closest commercial finalize for a wall plane. Not the Python path.",
+      "status": "surveyed",
+      "sources": [
+        "https://knowledge.faro.com/Software/BuildIT/BuildIT_Construction/Wall_Plumb_-_Without_CAD_with_BuildIT_Construction",
+        "https://media.faro.com/-/media/Project/FARO/FARO/FARO/Resources/2%5FTECH-SHEET/BuildIT-Construction/TechSheet%5FBuildIT%5FConstruction%5FENG.pdf?rev=dd9f6dd021b24391abc0d227b158bfea"
+      ]
+    },
+    {
+      "id": "W36",
+      "tool": "Trimble RealWorks, Bentley iTwin Capture / ContextCapture, PolyWorks",
+      "license": "Commercial",
+      "where": "Desktop",
+      "inputs": "Point clouds or photos, depending on product.",
+      "stud_obb": "Not confirmed.",
+      "angle_plumb": "Unverified. No official page opened this pass documents align-to-gravity or a stud-inclination report.",
+      "ml_vs_classical": "Unknown",
+      "notes": "Drop until a cited page says otherwise.",
+      "gravity_up": "unverified",
+      "workflow_role": "neither",
+      "openwall_recommendation": "Drop. Do not invent a workflow.",
+      "status": "unverified",
+      "sources": []
     }
   ]
 }

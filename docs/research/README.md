@@ -25,8 +25,8 @@ Numbers are copied from the cited page or marked **unknown**. Vendor brochure fi
 
 | Doc | What it answers |
 | --- | --- |
-| [01-sensing-modalities.md](01-sensing-modalities.md) | Phone LiDAR, TLS, photogrammetry, stereo/VIO (Aura-class), UWB, TI mmWave, and related sensors versus ~0.1–0.12° stud plumb. |
-| [02-software-segmentation-angles.md](02-software-segmentation-angles.md) | Tools that segment structure, fit oriented boxes, or report angles. Includes Open3D, Unity point-cloud plugins, and Blender point-cloud support. |
+| [01-sensing-modalities.md](01-sensing-modalities.md) | LiDAR classes versus ~0.12° stud plumb and price. Survey TLS (Focus / RTC360) is the class whose published specs sit inside that angle. Phone, Livox, mapping lidars, BLK360 tilt, and handheld SLAM do not. Also phone, photo, Aura, UWB, and mmWave. |
+| [02-software-segmentation-angles.md](02-software-segmentation-angles.md) | Segmentation and viewers, plus a finalized gravity-up stack: scanner inclinometer or DAC, else ARKit or a static IMU, then Open3D angle paint. Floor-plane “level” tools are not the plumb reference. |
 | [03-sample-datasets.md](03-sample-datasets.md) | Frame/shell clouds and nearby samples: Rohbau3D, BIMNet, WFC-Dataset, ScanNet++, openBIM, FARO/Leica libs, Polycam self-capture. |
 | [04-seed-funds.md](04-seed-funds.md) | NSF America’s Seed Fund AR/VR topic and nearby SBIR / construction awards. |
 | [05-misc-resources.md](05-misc-resources.md) | Gaussian splats versus clouds, MIT VNAV, the brief’s video and Gemini links, LinkedIn posts, aerial-LiDAR tools. |
@@ -44,6 +44,8 @@ Industry margin sources and the derived degree conversion are summarized in [../
 | Earlier note: prefer a Polycam Photo/Detail hybrid for edges. Polycam’s current help distinguishes Space Mode (LiDAR) from non-LiDAR photogrammetry, plus Default / Custom / Cloud processing. A mode literally named “Photo/Detail hybrid” was not found. | `known; unverified` as a product name |
 | Earlier note: iPhone alone is not enough for reliable 0.1° on an 8 ft stud, because a ~4.25 mm tip offset is smaller than a ±3–10 mm RMSE at 1.5–2 m. The millimeter offset is **derived** (see tolerances). The ±3–10 mm RMSE figure was **not** found on a primary page in this pass. Peer-reviewed phone-LiDAR errors located here are centimeter-class. Direction (phone LiDAR is coarser than the angle budget) stands; the specific RMSE band does not. | `known` claim; RMSE `unverified` |
 | PLY is the practical Open3D input. LAS/LAZ is the interchange/CAD/BIM path. Open3D’s file I/O table does not list LAS/LAZ. Meshes are a different representation; this project wants points for ML isolation. “PSY” is not a Polycam or point-cloud format. | `known; surveyed` |
+| LiDAR class for a ~0.12° plumb call is survey TLS (Focus / RTC360). Phone, Livox, mapping spinning lidars, BLK360 G2 tilt (8 arcmin), and handheld SLAM do not clear that spec on the pages read. Current street prices for Focus are unverified. | `surveyed` |
+| Gravity-up is the scanner inclinometer or DAC, an ARKit gravity session, or a static IMU. A floor-plane “level” is not the plumb reference. Angle paint is Open3D once Z is up. | `surveyed` |
 | Point cloud for measurement and ML; Gaussian splat for view synthesis; mesh for game/CAD engines. Do not treat a splat as a stud metrology cloud. | `known; surveyed` |
 | MultiSet / openWall Unity work is a separate track: [openWall](https://github.com/ozguvenc2/openWall). | `known; separate-track` |
 
