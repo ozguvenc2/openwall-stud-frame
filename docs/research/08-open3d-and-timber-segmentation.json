@@ -1,0 +1,136 @@
+{
+  "generated": "2026-09-23",
+  "doc": "docs/research/08-open3d-and-timber-segmentation.md",
+  "scope": "Open3D 0.20.0 and Open3D-ML segmentation APIs, public timber and Scan-to-BIM labeling, and whether a 3D LLM can segment construction wood. No library, weight, or LAS was downloaded.",
+  "finding": "No suitable public stud checkpoint. S3DIS beam/column and BIMStruct3D column are the nearest vocabulary. They are not a residential frame model.",
+  "near_term": {
+    "pick": "Classical Open3D on one IntCDC LAS preview after LAS to PLY conversion: voxel downsample, statistical outlier removal, estimate_normals, detect_planar_patches or repeated segment_plane, cluster_dbscan, get_oriented_bounding_box.",
+    "dataset": "DaRUS 10.18419/DARUS-3304, example preview 2020-KW27_additonal",
+    "url": "https://doi.org/10.18419/DARUS-3304",
+    "limits": "Cluster ids are geometry, not stud/plate/beam. DaRUS has no class map and does not state that scan Z is gravity."
+  },
+  "mid_term": {
+    "pick": "Self-label stud, plate, beam, column, other, then fine-tune Pointcept Point Transformer V3. Keep the Open3D box-and-angle step after the network.",
+    "url": "https://github.com/Pointcept/Pointcept",
+    "do_not_ship": "BIMStruct3D weights are CC BY-NC-SA 4.0 and have no timber class. S3DIS and ScanNet weights are not a stud model."
+  },
+  "open3d_classical": [
+    {
+      "api": "segment_plane",
+      "returns": "One RANSAC plane (a, b, c, d) and inlier indices",
+      "when": "Peel the largest surface and repeat on the leftover",
+      "fails": "Parallel faces of many members fall in one plane"
+    },
+    {
+      "api": "detect_planar_patches",
+      "returns": "Oriented boxes; box Z is the patch normal",
+      "when": "Many faces at once",
+      "fails": "A box per face, not per member"
+    },
+    {
+      "api": "cluster_dbscan",
+      "returns": "Integer label per point; -1 is noise",
+      "when": "Separate members that do not touch, after large planes are gone",
+      "fails": "eps merges neighboring studs or shatters one stud; a joint merges beam and post"
+    },
+    {
+      "api": "get_oriented_bounding_box",
+      "returns": "One box from PCA of the convex hull",
+      "when": "After a cluster is a single member, for the angle paint in doc 02",
+      "fails": "Two touching members produce one diagonal box"
+    }
+  ],
+  "absent_from_open3d_pointcloud": [
+    "region growing",
+    "PCL-style Euclidean clustering as a separate call",
+    "class labels",
+    "LAS/LAZ file I/O"
+  ],
+  "open3d_ml": {
+    "repo": "https://github.com/isl-org/Open3D-ML",
+    "license_file": "MIT",
+    "tag": "v0.20.0 published 2026-09-16",
+    "stars_on_2026_09_23": 2350,
+    "import_on_0_20_wheel": "untested in this repo",
+    "model_zoo": "https://github.com/isl-org/Open3D-ML/blob/main/model_zoo.md",
+    "weights_dated": "2020 and 2021 URLs; no 2025 or 2026 weight in that table",
+    "semantic_models": ["RandLA-Net", "KPConv", "SparseConvUnet", "PointTransformer"],
+    "timber_class": false
+  },
+  "datasets": [
+    {
+      "id": "D9",
+      "name": "IntCDC timber scans",
+      "url": "https://doi.org/10.18419/DARUS-3304",
+      "wood": true,
+      "trainable_labels": false,
+      "note": "23 projects, Leica ScanStation P20, CC BY 4.0. Oz confirmed the preview is usable for geometry."
+    },
+    {
+      "id": "D3",
+      "name": "WFC-Dataset",
+      "url": "https://github.com/yigediao/wfcdataset",
+      "wood": true,
+      "trainable_labels": "6D pose of one 2x4, not wall classes"
+    },
+    {
+      "id": "D10",
+      "name": "RefSite3D",
+      "url": "https://doi.org/10.5281/zenodo.20285732",
+      "wood": "partial, 01_timber_components split",
+      "trainable_labels": "environment, ground, target"
+    },
+    {
+      "id": "D1",
+      "name": "Rohbau3D",
+      "url": "https://doi.org/10.1038/s41597-025-05827-7",
+      "wood": false,
+      "trainable_labels": "shell masonry, concrete, drywall; third-party list names Beam and Column"
+    }
+  ],
+  "closest_checkpoints": [
+    {
+      "name": "Open3D-ML PointTransformer on S3DIS",
+      "miou": 69.2,
+      "vocabulary": "includes beam and column",
+      "stud_model": false,
+      "url": "https://github.com/isl-org/Open3D-ML/blob/main/model_zoo.md"
+    },
+    {
+      "name": "BIMStruct3D PTv3",
+      "classes": ["clutter", "floor", "ceiling", "wall", "column", "door", "window", "stairs", "railing", "lights"],
+      "license_weights": "CC BY-NC-SA 4.0",
+      "license_code": "MIT",
+      "stud_model": false,
+      "url": "https://huggingface.co/dfki-av/BIMStruct3D-segmentation"
+    }
+  ],
+  "llm_usable_for_stud_segmentation_today": false,
+  "llm": [
+    {
+      "name": "PointLLM",
+      "url": "https://github.com/InternRobotics/PointLLM",
+      "task": "object classification and captioning",
+      "usable_for_studs": false
+    },
+    {
+      "name": "3D-LLM",
+      "url": "https://github.com/UMass-Embodied-AGI/3D-LLM",
+      "task": "captioning, QA, grounding, dialogue, navigation",
+      "usable_for_studs": false
+    },
+    {
+      "name": "GPT4Point",
+      "url": "https://github.com/Pointcept/GPT4Point",
+      "task": "object point-text alignment, captioning, generation",
+      "usable_for_studs": false
+    },
+    {
+      "name": "SegPoint",
+      "url": "https://github.com/heshuting555/SegPoint",
+      "task": "instruction and open-vocabulary point masks on ScanNet and S3DIS",
+      "usable_for_studs": false,
+      "maturity": "research only"
+    }
+  ]
+}
