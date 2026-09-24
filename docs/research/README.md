@@ -2,7 +2,7 @@
 
 Research date: **2026-09-23**. Scope: residential frame-stage QA — sample point clouds, semantic stud/beam segmentation, angle versus gravity, red/green against industry margins, with measurement-error tolerance. Near-term stack is Python + Open3D. Unity is optional later for visualization or XR. XREAL Aura is an AR display, not the capture scanner.
 
-No multi-gigabyte datasets were downloaded into this repo. Large clouds stay behind the access URLs in [03-sample-datasets.md](03-sample-datasets.md). The frame-stage shortlist is [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md).
+No multi-gigabyte datasets were downloaded into this repo. Large clouds stay behind the access URLs in [03-sample-datasets.md](03-sample-datasets.md). The frame-stage shortlist is [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md). The stud-segmentation ranking is [11-stud-segmentation-algorithm-ranking.md](11-stud-segmentation-algorithm-ranking.md).
 
 ## How to read these docs
 
@@ -29,6 +29,7 @@ Numbers are copied from the cited page or marked **unknown**. Vendor brochure fi
 | [02-software-segmentation-angles.md](02-software-segmentation-angles.md) | Segmentation and viewers, plus a finalized gravity-up stack: scanner inclinometer or DAC, else ARKit or a static IMU, then Open3D angle paint. Floor-plane “level” tools are not the plumb reference. |
 | [03-sample-datasets.md](03-sample-datasets.md) | Frame/shell clouds and nearby samples: Rohbau3D, BIMNet, WFC-Dataset, ScanNet++, openBIM, FARO/Leica libs, Polycam self-capture, RefSite3D, ConSLAM. |
 | [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md) | Ranked five closest public clouds to a residential frame stage, with a still for each. No full light-frame house cloud was found. |
+| [11-stud-segmentation-algorithm-ranking.md](11-stud-segmentation-algorithm-ranking.md) | Best-to-worst segmenters for vertical studs on a bare frame: tight boxes, angle versus the floor, then green/yellow/red once a device error band exists. Floor is not gravity. |
 | [04-seed-funds.md](04-seed-funds.md) | NSF America’s Seed Fund AR/VR topic and nearby SBIR / construction awards. |
 | [05-misc-resources.md](05-misc-resources.md) | Gaussian splats versus clouds, MIT VNAV, the brief’s video and Gemini links, LinkedIn posts, aerial-LiDAR tools. |
 | [catalog.json](catalog.json) | Same rows in one JSON file for later tooling. Each table also has a sibling `.json`. |
@@ -47,6 +48,7 @@ Industry margin sources and the derived degree conversion are summarized in [../
 | PLY is the practical Open3D input. LAS/LAZ is the interchange/CAD/BIM path. Open3D’s file I/O table does not list LAS/LAZ. Meshes are a different representation; this project wants points for ML isolation. “PSY” is not a Polycam or point-cloud format. | `known; surveyed` |
 | LiDAR class for a ~0.12° plumb call is survey TLS (Focus / RTC360). Phone, Livox, mapping spinning lidars, BLK360 G2 tilt (8 arcmin), and handheld SLAM do not clear that spec on the pages read. Current street prices for Focus are unverified. | `surveyed` |
 | Gravity-up is the scanner inclinometer or DAC, an ARKit gravity session, or a static IMU. A floor-plane “level” is not the plumb reference. Angle paint is Open3D once Z is up. | `surveyed` |
+| 2026-09-24 ranking for the current product phase: segment vertical studs, box them, measure the long axis against the **floor normal**, and paint yellow until a device error band exists. That floor angle is temporary. The IMU swap does not change the segmenter. Top five to run are refined Open3D, PCL timber cuboids, CloudCompare RANSAC-SD, Pointcept (after labels), and one S3DIS Open3D-ML control. | `surveyed` |
 | Point cloud for measurement and ML; Gaussian splat for view synthesis; mesh for game/CAD engines. Do not treat a splat as a stud metrology cloud. | `known; surveyed` |
 | MultiSet / openWall Unity work is a separate track: [openWall](https://github.com/ozguvenc2/openWall). | `known; separate-track` |
 
