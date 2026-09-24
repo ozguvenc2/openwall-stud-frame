@@ -4,11 +4,20 @@ Residential framing point-cloud work for OpenWall: sample frame-stage homes → 
 
 Temporary GitHub name: `openwall-stud-public-try` (rename later once private-repo + token access is fixed).
 
+## Start here (2026-09-24)
+
+Four notes for the sheathing-stage house in the site photos, and for the “colors and boxes” editor:
+
+1. **Editor.** Open3D `draw_geometries` is the interactive view (colored points + oriented wire boxes). CloudCompare is the LAS/E57 browser. Unity is later, for a baked-color review, and no Asset Store package found draws per-member boxes. [13](docs/research/13-open3d-interactive-obb-viewer.md) · [12](docs/research/12-unity-pointcloud-viz-summary.md)
+2. **Drone + wood segmentation.** No LinkedIn post found that is both aerial photogrammetry and residential stud segmentation. Named stacks are Metashape → CloudCompare / PointNet++ / PyVista, DroneDeploy’s closed trade tag, and forestry models that segment trees. [10](docs/research/10-drone-wood-photogrammetry-seg.md)
+3. **Residential frame scans.** A public cloud of a US light-frame house at sheathing stage (OSB, open studs, porch trusses) was not found. New near-misses: a 1:6-scale NHERI light-frame lidar set, synthetic Rosenheim wall clouds, and carpentry mock-ups. IntCDC remains the closest real timber building scan, and it is not this house. [11](docs/research/11-residential-light-frame-scans.md)
+4. **Unity summary.** PR #4 (branch `cursor/blender-unity-pointcloud-1ad9`, not merged) already picked Point Cloud Viewer and Tools 3 for viewing and found no Unity segmenter. [12](docs/research/12-unity-pointcloud-viz-summary.md)
+
 ## Roadmap status (2026-09-23)
 
 | Step | Goal | Where we are |
 |------|------|----------------|
-| 1 | Sample point clouds of residential homes in **frame stage** | Dataset survey is in [`docs/research/03-sample-datasets.md`](docs/research/03-sample-datasets.md). Ranked shortlist: [`docs/research/06-top5-frame-pointclouds.md`](docs/research/06-top5-frame-pointclouds.md). No full light-frame house cloud was found. Clouds are linked only. Download scripts are not in this tree. `data/` is empty. |
+| 1 | Sample point clouds of residential homes in **frame stage** | Dataset survey is in [`docs/research/03-sample-datasets.md`](docs/research/03-sample-datasets.md). Ranked shortlist: [`docs/research/06-top5-frame-pointclouds.md`](docs/research/06-top5-frame-pointclouds.md). A 2026-09-24 hunt for a US sheathing-stage house is in [`docs/research/11-residential-light-frame-scans.md`](docs/research/11-residential-light-frame-scans.md). No full light-frame house cloud was found. Clouds are linked only. Download scripts are not in this tree. `data/` is empty. |
 | 2 | Apps that **semantically segment** studs and frame members | Tool survey is in [`docs/research/02-software-segmentation-angles.md`](docs/research/02-software-segmentation-angles.md). No segmenter shipped here. Prior Pointcept notes lived on Origin. |
 | 3 | **Angle estimation** + red/green vs industry margins + **error tolerance** | Open3D can fit an OBB; gravity comparison is not coded yet. Plumb guidelines are in [`docs/tolerances.md`](docs/tolerances.md). No pass/fail paint yet. |
 
@@ -56,6 +65,10 @@ Literature and vendor survey (2026-09-23). Numbers are cited or marked unknown. 
 - [Top 5 frame-stage point clouds](docs/research/06-top5-frame-pointclouds.md)
 - [Table 4 — Seed / grant paths](docs/research/04-seed-funds.md)
 - [Misc resources](docs/research/05-misc-resources.md)
+- [Drone photogrammetry and wood segmentation](docs/research/10-drone-wood-photogrammetry-seg.md)
+- [Residential light-frame scans](docs/research/11-residential-light-frame-scans.md)
+- [Unity point-cloud viz summary](docs/research/12-unity-pointcloud-viz-summary.md)
+- [Open3D interactive boxes](docs/research/13-open3d-interactive-obb-viewer.md)
 - [catalog.json](docs/research/catalog.json)
 
 ## Related
