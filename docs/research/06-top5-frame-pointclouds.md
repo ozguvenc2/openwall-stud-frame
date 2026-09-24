@@ -2,6 +2,8 @@
 
 Research date: **2026-09-23**. This note ranks clouds for the OpenWall stud-frame path: a residential structure at **frame stage** (wood studs, unfinished shell, exposed framing). It improves on [03-sample-datasets.md](03-sample-datasets.md). Nothing below was downloaded into this repo.
 
+**LOT-62 update, 2026-09-24.** The house-alike ranking is [15-house-alike-frame-clouds.md](15-house-alike-frame-clouds.md). This file stays the “closest obtainable wood or shell” list. Rank 1 here (IntCDC) is heavy timber after assembly, not US 2×4 / 2×6 light-frame studs. Do not use it as a stand-in for the LOT 62 photos.
+
 ## Honest result
 
 A public point cloud of a complete **residential light-frame house** — platform frame, exposed 2×4 stud walls, plates, and openings — was **not found**. Fewer than five true wood-frame house clouds are in the public record checked here. The five slots below are the closest obtainable sets. Ranks 3–5 are shells or mixed assemblies, not 2×4 houses, and they rank lower for that reason.

@@ -28,7 +28,8 @@ Numbers are copied from the cited page or marked **unknown**. Vendor brochure fi
 | [01-sensing-modalities.md](01-sensing-modalities.md) | LiDAR classes versus ~0.12° stud plumb and price. Survey TLS (Focus / RTC360) is the class whose published specs sit inside that angle. Phone, Livox, mapping lidars, BLK360 tilt, and handheld SLAM do not. Also phone, photo, Aura, UWB, and mmWave. |
 | [02-software-segmentation-angles.md](02-software-segmentation-angles.md) | Segmentation and viewers, plus a finalized gravity-up stack: scanner inclinometer or DAC, else ARKit or a static IMU, then Open3D angle paint. Floor-plane “level” tools are not the plumb reference. |
 | [03-sample-datasets.md](03-sample-datasets.md) | Frame/shell clouds and nearby samples: Rohbau3D, BIMNet, WFC-Dataset, ScanNet++, openBIM, FARO/Leica libs, Polycam self-capture, RefSite3D, ConSLAM. |
-| [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md) | Ranked five closest public clouds to a residential frame stage, with a still for each. No full light-frame house cloud was found. |
+| [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md) | Ranked five closest public clouds to a residential frame stage, with a still for each. No full light-frame house cloud was found. IntCDC in that list is heavy timber, not US studs. |
+| [15-house-alike-frame-clouds.md](15-house-alike-frame-clouds.md) | LOT-62 house-alike hunt, completed 2026-09-24. Five contenders, a preview PNG for each, and the wait-for-our-own-scan conclusion. |
 | [04-seed-funds.md](04-seed-funds.md) | NSF America’s Seed Fund AR/VR topic and nearby SBIR / construction awards. |
 | [05-misc-resources.md](05-misc-resources.md) | Gaussian splats versus clouds, MIT VNAV, the brief’s video and Gemini links, LinkedIn posts, aerial-LiDAR tools. |
 | [catalog.json](catalog.json) | Same rows in one JSON file for later tooling. Each table also has a sibling `.json`. |
@@ -49,6 +50,7 @@ Industry margin sources and the derived degree conversion are summarized in [../
 | Gravity-up is the scanner inclinometer or DAC, an ARKit gravity session, or a static IMU. A floor-plane “level” is not the plumb reference. Angle paint is Open3D once Z is up. | `surveyed` |
 | Point cloud for measurement and ML; Gaussian splat for view synthesis; mesh for game/CAD engines. Do not treat a splat as a stud metrology cloud. | `known; surveyed` |
 | MultiSet / openWall Unity work is a separate track: [openWall](https://github.com/ozguvenc2/openWall). | `known; separate-track` |
+| A public point cloud that looks like the LOT 62 sheathing-stage house, and that could bake off Mid-360 or iPhone pipelines, was not found on 2026-09-24. Closest contenders and the wait decision are in [15-house-alike-frame-clouds.md](15-house-alike-frame-clouds.md). | `surveyed` |
 
 ## Source rule
 

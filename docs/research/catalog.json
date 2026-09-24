@@ -6,7 +6,16 @@
     "doc": "docs/research/06-top5-frame-pointclouds.md",
     "json": "docs/research/06-top5-frame-pointclouds.json",
     "ranked_ids": ["D9", "D3", "D10", "D1", "D11"],
-    "finding": "No public point cloud of a complete residential light-frame house was found. Ranks 3-5 are shells or mixed assemblies."
+    "finding": "No public point cloud of a complete residential light-frame house was found. Ranks 3-5 are shells or mixed assemblies. IntCDC (D9) is heavy timber, not US light-frame studs."
+  },
+  "house_alike_top5": {
+    "doc": "docs/research/15-house-alike-frame-clouds.md",
+    "json": "docs/research/15-house-alike-frame-clouds.json",
+    "images": "docs/research/images/house-alike-clouds/INDEX.md",
+    "generated": "2026-09-24",
+    "ranked_ids": ["D12", "D3", "D13", "D14", "D15"],
+    "finding": "No public LOT-62-like US 2x4/2x6 sheathing-stage cloud. Wait for an own scan before a Mid-360 or iPhone bake-off. D9 IntCDC is not in this ranking.",
+    "conclusion": "wait-for-own-scan"
   },
   "status_vocabulary": [
     "known",
@@ -1038,6 +1047,62 @@
         "https://doi.org/10.17863/CAM.87961",
         "https://doi.org/10.1007/978-3-031-25082-8_21"
       ]
+    },
+    {
+      "id": "D12",
+      "name": "E-Defense 2019 wood dwellings, construction-day lidar (PRJ-2180)",
+      "stage": "Full-scale Japanese wood dwellings on the E-Defense shake table. Folder 01_20190106_Construction is during construction, before the 31 Jan 2019 tests. A-building is post-and-beam; B-building is two-by-four shear wall. Not a US OSB lot house.",
+      "density_labels": "Construction day: 59 Leica BLK360 E57 setups, Cyclone bundle error 0.004 m, plus Pix4D LAS (FC6310, GSD 0.74 cm, 10 GCPs, mean RMS 0.003 m). No stud labels.",
+      "formats": "E57 and LAS. Open Data Commons Attribution.",
+      "access_url": "https://doi.org/10.17603/ds2-4rf2-bj36",
+      "fit_for_stud_qa": "Closest public whole-building wood cloud. Stage X regressor only. Not a Mid-360/iPhone bake-off. Rank 1 in 15-house-alike-frame-clouds.md.",
+      "status": "surveyed; not-downloaded",
+      "also": [
+        "https://www.designsafe-ci.org/data/browser/public/designsafe.storage.published/PRJ-2180"
+      ]
+    },
+    {
+      "id": "D13",
+      "name": "NHERI PRJ-2513 1:6 light-frame wave-basin specimens",
+      "stage": "1:6-scale light-frame wood specimens, on-slab and elevated, damaged by waves. Not LOT-62.",
+      "density_labels": "Abstract describes terrestrial LiDAR and Cyclone wall fits. Public listing on 2026-09-24 has no point-cloud file.",
+      "formats": "Three PDFs, 6.6 MB. Creative Commons Attribution.",
+      "access_url": "https://doi.org/10.17603/ds2-0rky-9w25",
+      "fit_for_stud_qa": "Right structural phrase, no downloadable cloud in the listing. Viewer of the poster. Rank 3 in the house-alike note.",
+      "status": "surveyed; cloud not in public listing"
+    },
+    {
+      "id": "D14",
+      "name": "Rosenheim synthetic timber wall point clouds",
+      "stage": "10,000 synthetic timber walls for prefab sheathing and machining features. Not a scanned house.",
+      "density_labels": "Per-point labels on Blender models. Not site studs.",
+      "formats": "PLY and STL. Zip 1066.1 MB. CC BY-NC-SA 4.0. Generator code GPL-3.0.",
+      "access_url": "https://doi.org/10.5281/zenodo.16756219",
+      "fit_for_stud_qa": "Non-commercial synthetic wall sandbox. Not a sensor bake-off. Rank 4 in the house-alike note.",
+      "status": "surveyed; not-downloaded",
+      "also": [
+        "https://github.com/SchulzDaniel/wall-point-cloud-generator"
+      ]
+    },
+    {
+      "id": "D15",
+      "name": "Augmented Carpentry timber mock-up scans",
+      "stage": "Lab timber beams and assemblies with joints. Not a residential platform frame.",
+      "density_labels": "Real scans. No stud-wall class.",
+      "formats": "PLY, E57, 3dm. raw_data.zip 10012.5 MB. CC BY 4.0.",
+      "access_url": "https://doi.org/10.5281/zenodo.14610164",
+      "fit_for_stud_qa": "Real timber points for a viewer or joint regressor. Rank 5 in the house-alike note.",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "id": "D16",
+      "name": "DesignSafe PRJ-5940 1:2 light-frame timber building",
+      "stage": "Shake-table specimen titled as a 1:2-scale three-story light-frame timber building.",
+      "density_labels": "No point cloud in the 2026-09-24 public listing.",
+      "formats": "16 xlsx (472.5 MB), one PDF, one DWG, one txt. Creative Commons Attribution.",
+      "access_url": "https://www.designsafe-ci.org/data/browser/public/designsafe.storage.published/PRJ-5940",
+      "fit_for_stud_qa": "Title matches light-frame. Published files are not a cloud. Not ranked.",
+      "status": "surveyed; not a point cloud"
     }
   ],
   "seed_funds": [

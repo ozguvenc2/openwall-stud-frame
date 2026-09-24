@@ -2,7 +2,9 @@
 
 Frame-stage residential clouds are rare. The closest public sets are **shell construction** (Rohbau3D: concrete, masonry, drywall, beams, columns — not a 2×4 wall) and a **single-stud robotics** set (WFC-Dataset). Finished interiors (ScanNet++, BIMNet/Matterport) are negative examples for “bare studs” and still useful for sensor realism or pretraining.
 
-A ranked shortlist for “house in frame stage” is in [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md). That pass did **not** find a public cloud of a complete light-frame house. The five slots are IntCDC timber scans, WFC, RefSite3D, Rohbau3D, and ConSLAM. D10 and D11 below were added from that pass.
+A ranked shortlist for “closest obtainable wood or shell” is in [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md). That pass did **not** find a public cloud of a complete light-frame house. The five slots are IntCDC timber scans, WFC, RefSite3D, Rohbau3D, and ConSLAM. D10 and D11 below were added from that pass. IntCDC is heavy timber, not US stud framing.
+
+The LOT-62 house-alike ranking (2026-09-24) is [15-house-alike-frame-clouds.md](15-house-alike-frame-clouds.md). It does not replace the table below. It adds D12–D16 and concludes that a Mid-360 or iPhone bake-off has to wait for our own residential scan.
 
 **Nothing below was downloaded.** `.gitignore` already ignores `*.ply`, `*.las`, `*.laz`. Several archives are multi-gigabyte to terabyte.
 
@@ -22,7 +24,7 @@ A ranked shortlist for “house in frame stage” is in [06-top5-frame-pointclou
 
 ## Priority if we download later (still not in git)
 
-The [top-5 ranking](06-top5-frame-pointclouds.md) orders sets by closeness to a residential wood frame. The list here is the narrower “what to open first in Open3D” order for a stud box, which is not the same sort.
+The [top-5 ranking](06-top5-frame-pointclouds.md) orders sets by closeness to a residential wood frame in the 2026-09-23 sense (obtainable timber or shell). For a LOT-62-like house, open [15-house-alike-frame-clouds.md](15-house-alike-frame-clouds.md) instead: D12 (E-Defense construction-day BLK360 and Pix4D) is the whole-building wood cloud, and it is still not US sheathing-stage studs. The list here is the narrower “what to open first in Open3D” order for a stud box, which is not the same sort.
 
 1. **D3 WFC** — only public 2×4 points with manual poses. Smallest semantic gap for a single stud OBB. Not a house.
 2. **D9 IntCDC** — exposed timber of real buildings, right after assembly. Convert LAS first. Not 2×4 walls.
