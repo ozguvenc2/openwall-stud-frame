@@ -31,6 +31,7 @@ Numbers are copied from the cited page or marked **unknown**. Vendor brochure fi
 | [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md) | Ranked five closest public clouds to a residential frame stage, with a still for each. No full light-frame house cloud was found. |
 | [04-seed-funds.md](04-seed-funds.md) | NSF America’s Seed Fund AR/VR topic and nearby SBIR / construction awards. |
 | [05-misc-resources.md](05-misc-resources.md) | Gaussian splats versus clouds, MIT VNAV, the brief’s video and Gemini links, LinkedIn posts, aerial-LiDAR tools. |
+| [09-classical-seg-runbook.md](09-classical-seg-runbook.md) | How to run the classical Open3D box script on a local PLY, including the Windows venv command. Labels are heuristics. |
 | [catalog.json](catalog.json) | Same rows in one JSON file for later tooling. Each table also has a sibling `.json`. |
 
 Industry margin sources and the derived degree conversion are summarized in [../tolerances.md](../tolerances.md).
@@ -39,7 +40,7 @@ Industry margin sources and the derived degree conversion are summarized in [../
 
 | Item | Status |
 | --- | --- |
-| This GitHub repo is a scaffold. `src/open3d_smoke.py` only prints the Open3D version. There is no segmenter and no angle paint yet. `scripts/` has no download helper. `data/` has no clouds. `.gitignore` ignores `*.ply`, `*.las`, `*.laz`. | `known; surveyed` |
+| `src/open3d_smoke.py` only prints the Open3D version. `scripts/classical_segment_obb.py` writes heuristic oriented boxes (doc 09). There is no learned segmenter and no angle paint. `scripts/` has no download helper. `data/` has no clouds in git. `.gitignore` ignores `data/raw/`, `*.ply`, `*.las`, `*.laz`. | `known; surveyed` |
 | Prior Origin work sketched WFC-Dataset and Rohbau3D download hooks (incomplete), a Pointcept/Rohbau segmentation survey, and an Open3D stud-versus-gravity sketch. Agents named in the root README: `bc-d567e2f1`, `bc-c355a90c` (finished on Origin); `bc-63a01dad` (Origin auth error). Those transcripts were not re-fetched here. | `known; not-in-repo` |
 | Capture path of interest: Polycam on iPhone 12 Pro or later Pro/Pro Max LiDAR, export PLY or LAS. Official help (this pass) puts point-cloud export on **Business and Enterprise**, not on the Pro/Basic tiers the earlier note called “Pro tier”. | `known; surveyed` (tier corrected) |
 | Earlier note: prefer a Polycam Photo/Detail hybrid for edges. Polycam’s current help distinguishes Space Mode (LiDAR) from non-LiDAR photogrammetry, plus Default / Custom / Cloud processing. A mode literally named “Photo/Detail hybrid” was not found. | `known; unverified` as a product name |

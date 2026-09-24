@@ -9,7 +9,7 @@ Temporary GitHub name: `openwall-stud-public-try` (rename later once private-rep
 | Step | Goal | Where we are |
 |------|------|----------------|
 | 1 | Sample point clouds of residential homes in **frame stage** | Dataset survey is in [`docs/research/03-sample-datasets.md`](docs/research/03-sample-datasets.md). Ranked shortlist: [`docs/research/06-top5-frame-pointclouds.md`](docs/research/06-top5-frame-pointclouds.md). No full light-frame house cloud was found. Clouds are linked only. Download scripts are not in this tree. `data/` is empty. |
-| 2 | Apps that **semantically segment** studs and frame members | Tool survey is in [`docs/research/02-software-segmentation-angles.md`](docs/research/02-software-segmentation-angles.md). No segmenter shipped here. Prior Pointcept notes lived on Origin. |
+| 2 | Apps that **semantically segment** studs and frame members | Tool survey is in [`docs/research/02-software-segmentation-angles.md`](docs/research/02-software-segmentation-angles.md). A classical Open3D box pipeline (heuristic labels, not a trained model) is [`scripts/classical_segment_obb.py`](scripts/classical_segment_obb.py). Runbook: [`docs/research/09-classical-seg-runbook.md`](docs/research/09-classical-seg-runbook.md). |
 | 3 | **Angle estimation** + red/green vs industry margins + **error tolerance** | Open3D can fit an OBB; gravity comparison is not coded yet. Plumb guidelines are in [`docs/tolerances.md`](docs/tolerances.md). No pass/fail paint yet. |
 
 Prior Cursor agents (finished, Origin-backed): `bc-d567e2f1`, `bc-c355a90c`. `bc-63a01dad` errored on Origin auth. This repo is the GitHub home going forward.
@@ -30,7 +30,17 @@ python src\open3d_smoke.py
 
 The smoke script imports Open3D and prints the version. It does not download a point cloud. `.venv/` is gitignored.
 
-`pyproject.toml` lists the same pin. The documented install on Windows is `pip install -r requirements.txt`.
+`pyproject.toml` lists the same Open3D pin, plus `matplotlib` for the segmentation PNGs. The documented install on Windows is `pip install -r requirements.txt`.
+
+## Classical segmentation on a local PLY
+
+Heuristic boxes only (voxel downsample, outlier removal, large-plane RANSAC, DBSCAN, oriented box). Not a trained stud model, and not a plumb check. The DaRUS preview is gitignored. When `data\raw\darus-intcdc\preview.ply` is on this machine, from the repo root after the venv above:
+
+```bat
+python scripts\classical_segment_obb.py --input data\raw\darus-intcdc\preview.ply --out-dir data\raw\darus-intcdc\seg_out
+```
+
+Details, defaults, and the gravity caveat are in [`docs/research/09-classical-seg-runbook.md`](docs/research/09-classical-seg-runbook.md). Output stays under `data/raw/`, which is gitignored.
 
 ## Layout (planned)
 
@@ -56,6 +66,7 @@ Literature and vendor survey (2026-09-23). Numbers are cited or marked unknown. 
 - [Top 5 frame-stage point clouds](docs/research/06-top5-frame-pointclouds.md)
 - [Table 4 — Seed / grant paths](docs/research/04-seed-funds.md)
 - [Misc resources](docs/research/05-misc-resources.md)
+- [Classical segmentation runbook](docs/research/09-classical-seg-runbook.md)
 - [catalog.json](docs/research/catalog.json)
 
 ## Related
