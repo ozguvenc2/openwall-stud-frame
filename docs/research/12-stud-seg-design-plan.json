@@ -4,6 +4,12 @@
   "doc": "docs/research/12-stud-seg-design-plan.md",
   "ranking_doc": "docs/research/11-stud-segmentation-algorithm-ranking.md",
   "figures": "docs/research/images/algo-contenders/INDEX.md",
+  "results_by_day": {
+    "doc": "docs/research/13-stud-seg-results-by-day.md",
+    "csv": "artifacts/scorecards/results_by_day.csv",
+    "json": "artifacts/scorecards/results_by_day.json",
+    "timezone": "America/Los_Angeles"
+  },
   "tolerance_deg": 0.11937,
   "epsilon_locked": false,
   "placeholder_epsilon_deg": 0.05,

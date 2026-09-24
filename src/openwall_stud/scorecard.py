@@ -80,12 +80,24 @@ def validate_scorecard(card: dict[str, Any]) -> None:
 
 
 def write_scorecard(path: str | Path, card: dict[str, Any]) -> Path:
-    """Validate and write one scorecard. Returns the path written."""
+    """Validate and write one scorecard. Returns the path written.
+
+    Day-table rows are a separate append. Call ``append_day_row`` after this
+    so a finished run is recorded without inventing numbers the card does not
+    contain.
+    """
     validate_scorecard(card)
     dest = Path(path)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(card, indent=2, sort_keys=False) + "\n", encoding="utf-8")
     return dest
+
+
+def append_day_row(**kwargs: Any) -> dict[str, Any]:
+    """Append or update one results-by-day row from a finished scorecard."""
+    from openwall_stud.results_by_day import append_day_row as _append
+
+    return _append(**kwargs)
 
 
 def read_scorecard(path: str | Path) -> dict[str, Any]:

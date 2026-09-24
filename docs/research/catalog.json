@@ -33,6 +33,14 @@
       "5": "stub"
     }
   },
+  "stud_segmentation_results_by_day": {
+    "doc": "docs/research/13-stud-seg-results-by-day.md",
+    "csv": "artifacts/scorecards/results_by_day.csv",
+    "json": "artifacts/scorecards/results_by_day.json",
+    "timezone": "America/Los_Angeles",
+    "seeded": "2026-09-24",
+    "note": "Synthetic Open3D rows are generator comparisons. Other algorithms on that date are not_run with null metrics."
+  },
   "top5_frame_pointclouds": {
     "doc": "docs/research/06-top5-frame-pointclouds.md",
     "json": "docs/research/06-top5-frame-pointclouds.json",

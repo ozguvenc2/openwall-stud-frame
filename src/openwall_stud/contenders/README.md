@@ -21,3 +21,7 @@ Shared rule for every rank, once it actually segments: stud points, tight OBB,
 angle versus the stored reference, then the paint in `openwall_stud.paint`.
 Epsilon stays unlocked until a measured device band exists, and the production
 color stays yellow.
+
+`scripts/run_stage0_baseline.py` records a `not_run` row for each of these
+four stacks on every synthetic scene it scores, with null metrics, in
+`artifacts/scorecards/results_by_day.csv`.

@@ -28,6 +28,8 @@ Every stage, every algorithm, one JSON object with these sections. The writer is
 
 Trial budget: about **five** Wrong / Expected / Change loops per algorithm family. Loop 0 for Open3D is the IntCDC log in doc 11. Loop 1 is the synthetic bring-up below. Loops 2–5 are unused. PCL, CloudCompare, Pointcept, and Open3D-ML have not spent a loop.
 
+The living bake-off log is [13-stud-seg-results-by-day.md](13-stud-seg-results-by-day.md). Each row is one algorithm against one scene’s ground truth on one America/Los_Angeles date. The CSV (`artifacts/scorecards/results_by_day.csv`) is the copy to append. `scripts/run_stage0_baseline.py` upserts a row when a run finishes. Stub stacks are recorded as `not_run` with null metrics. While device ε is empty, `paint_correct_pct` only checks that the production color is yellow.
+
 ## Ranked contenders — what we do with each
 
 Order is doc 11. Status is this repo today.
@@ -157,7 +159,9 @@ Loops 2–5 are open. The IntCDC counts in doc 11 (449 components, 6 / 3 / 90 un
 | `src/openwall_stud/synthetic.py` | Stages 0, 2, and 3. |
 | `src/openwall_stud/open3d_baseline.py` | Rank 1 pipeline and the synthetic scorer. |
 | `src/openwall_stud/paint.py` | Green / yellow / red. Unlocked ε is yellow. |
-| `src/openwall_stud/scorecard.py` | JSON writer. Detection, geometry, angle, paint, cost. |
+| `src/openwall_stud/scorecard.py` | JSON writer. Detection, geometry, angle, paint, cost. `append_day_row` updates the day table. |
+| `src/openwall_stud/results_by_day.py` | CSV, JSON, and markdown for the day-by-day results. |
+| `docs/research/13-stud-seg-results-by-day.md` | Human-readable day table. Regenerated from the CSV. |
 | `src/openwall_stud/contenders/` | Stubs and install notes for ranks 2–5. |
 | `scripts/run_stage0_baseline.py` | Runs the bars and writes scorecards. |
 | `scripts/render_algo_figures.py` | Writes the PNGs in `docs/research/images/algo-contenders/`. |

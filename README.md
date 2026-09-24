@@ -56,6 +56,7 @@ Literature and vendor survey (2026-09-23). Numbers are cited or marked unknown. 
 - [Top 5 frame-stage point clouds](docs/research/06-top5-frame-pointclouds.md)
 - [Stud segmentation algorithm ranking](docs/research/11-stud-segmentation-algorithm-ranking.md) (vertical studs, floor-relative angle, green/yellow/red)
 - [Stud segmentation design plan](docs/research/12-stud-seg-design-plan.md) (stages 0–7, scorecard, synthetic Open3D path, contender figures)
+- [Results by day](docs/research/13-stud-seg-results-by-day.md) (algorithm versus ground truth; CSV in `artifacts/scorecards/results_by_day.csv`)
 - [Table 4 — Seed / grant paths](docs/research/04-seed-funds.md)
 - [Misc resources](docs/research/05-misc-resources.md)
 - [catalog.json](docs/research/catalog.json)

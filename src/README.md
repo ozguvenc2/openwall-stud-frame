@@ -7,7 +7,8 @@
 - `synthetic.py` — stage 0 single stud, stage 2 stud plus floor, stage 3 mini wall. Generator up axis is +Z.
 - `open3d_baseline.py` — rank 1 pipeline: peel horizontal slabs, DBSCAN, minimal OBB, lean, yellow paint while ε is unlocked.
 - `paint.py` — green / yellow / red. Unlocked ε is yellow.
-- `scorecard.py` — shared JSON writer (detection, geometry, angle, paint, cost).
+- `scorecard.py` — shared JSON writer (detection, geometry, angle, paint, cost) and `append_day_row`.
+- `results_by_day.py` — day table CSV, JSON, and markdown. Dates are America/Los_Angeles.
 - `contenders/` — stubs for PCL, CloudCompare / CloudComPy, Pointcept, and Open3D-ML. See `contenders/README.md`.
 
 Run from the repo root:
