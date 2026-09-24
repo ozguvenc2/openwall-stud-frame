@@ -1,0 +1,25 @@
+{
+  "schema": "openwall.classical_seg.components.v1",
+  "note": "Shape example for components.json. Not a scan, not a measurement, and not an accuracy result. n_points is 0 on purpose.",
+  "extent_unit": "file_units",
+  "units_note": "extents_units[i] is the side length along column i of R, in whatever units the PLY used.",
+  "up": [0.0, 0.0, 1.0],
+  "components": [
+    {
+      "id": 0,
+      "label": "upright",
+      "source": "dbscan",
+      "n_points": 0,
+      "extents_units": [2.4, 0.15, 0.09],
+      "volume": 0.0,
+      "center": [0.0, 0.0, 0.0],
+      "R": [
+        [0.0, 1.0, 0.0],
+        [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0]
+      ],
+      "bbox_kind": "obb",
+      "long_axis_abs_cos_up": 1.0
+    }
+  ]
+}
