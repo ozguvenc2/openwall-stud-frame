@@ -1,0 +1,56 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A2",
+  "algorithm": "PCL region-grow + cuboid (Ozkan/Pochtrager, no Bassier merge)",
+  "rank": 2,
+  "stage": null,
+  "status": "stub_not_run",
+  "epsilon_locked": false,
+  "metrics_are_measurements": false,
+  "detection": {
+    "n_true": null,
+    "n_pred": null,
+    "true_positives": null,
+    "false_positives": null,
+    "false_negatives": null,
+    "precision": null,
+    "recall": null,
+    "note": "Stub only. PCL was not executed. Detection, geometry, and angle are null."
+  },
+  "geometry": {
+    "max_section_error_mm": null,
+    "max_length_error_mm": null,
+    "per_stud": [],
+    "note": "Stub only. PCL was not executed. Detection, geometry, and angle are null."
+  },
+  "angle": {
+    "mae_deg": null,
+    "pct_in_band": null,
+    "band_deg": null,
+    "per_stud": [],
+    "note": "Stub only. PCL was not executed. Detection, geometry, and angle are null."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "production_colors": [],
+    "hypothetical_placeholder_epsilon_deg": null,
+    "hypothetical_colors": [],
+    "note": "Stub only. PCL was not executed. Detection, geometry, and angle are null."
+  },
+  "cost": {
+    "runtime_s": null,
+    "license": "BSD",
+    "hardware": "CPU",
+    "failure_modes": [
+      "PCL is not installed in this environment, so no cloud was segmented.",
+      "Remote coplanar merge (Bassier) would glue studs in one wall plane.",
+      "Forcing the cuboid axis to Z would hide lean.",
+      "A region-grow smoothness threshold that is too loose merges a stud into a plate."
+    ],
+    "note": "Stub only. PCL was not executed. Detection, geometry, and angle are null."
+  },
+  "notes": [
+    "Stub only. PCL was not executed. Detection, geometry, and angle are null."
+  ]
+}

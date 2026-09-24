@@ -1,7 +1,38 @@
 {
   "generated": "2026-09-23",
   "repo": "https://github.com/ozguvenc2/openwall-stud-frame",
-  "notes": "Numbers are cited in the markdown or marked unknown. Tables 1-2 refreshed 2026-09-23 for LiDAR classes and gravity-up. Top-5 frame-stage ranking added the same day. No datasets were downloaded.",
+  "notes": "Numbers are cited in the markdown or marked unknown. Tables 1-2 refreshed 2026-09-23 for LiDAR classes and gravity-up. Top-5 frame-stage ranking added the same day. Stud-segmentation algorithm ranking and the stage-ladder design plan added 2026-09-24. Synthetic Open3D scorecards are measurements of the generator, not a field accuracy. No datasets were downloaded.",
+  "stud_segmentation_ranking": {
+    "doc": "docs/research/11-stud-segmentation-algorithm-ranking.md",
+    "json": "docs/research/11-stud-segmentation-algorithm-ranking.json",
+    "generated": "2026-09-24",
+    "top5_ids": ["A1", "A2", "A3", "A4", "A5"],
+    "top5_names": [
+      "Refined Open3D stud prior",
+      "PCL region-grow cuboid (Ozkan/Pochtrager, no remote coplanar merge)",
+      "CloudCompare RANSAC-SD via CloudComPy",
+      "Pointcept PTv3/PointGroup; BIMStruct3D zero-shot as control only",
+      "Open3D-ML RandLA-Net or KPConv, S3DIS weights"
+    ],
+    "finding": "Head-to-head the five stacks above on the same bare-frame clouds. Floor normal is the temporary angle reference and is not gravity. Device error is unknown, so the honest paint is yellow until Oz supplies it. No public wood-stud checkpoint. The IntCDC classical trial is a negative log, not an accuracy.",
+    "reference_now": "floor_normal",
+    "reference_later": "imu_or_inclinometer_gravity"
+  },
+  "stud_segmentation_design_plan": {
+    "doc": "docs/research/12-stud-seg-design-plan.md",
+    "json": "docs/research/12-stud-seg-design-plan.json",
+    "generated": "2026-09-24",
+    "figures_index": "docs/research/images/algo-contenders/INDEX.md",
+    "stages": [0, 1, 2, 3, 4, 5, 6, 7],
+    "runnable_now": ["A1 synthetic stages 0, 2, 3"],
+    "status_by_rank": {
+      "1": "ready",
+      "2": "stub",
+      "3": "stub",
+      "4": "stub",
+      "5": "stub"
+    }
+  },
   "top5_frame_pointclouds": {
     "doc": "docs/research/06-top5-frame-pointclouds.md",
     "json": "docs/research/06-top5-frame-pointclouds.json",
@@ -1195,6 +1226,11 @@
     {
       "item": "Survey TLS (Focus / RTC360) is the LiDAR class whose published ranging and angular specs sit inside about 0.12 deg. Phone, Livox, mapping spinning lidars, BLK360 G2 tilt (8 arcmin), and handheld SLAM do not. Gravity-up is inclinometer/DAC, ARKit, or a static IMU, then Open3D paint. Floor-plane level is not plumb.",
       "status": "surveyed"
+    },
+    {
+      "item": "2026-09-24 design plan: stages 0-7, scorecard, and a runnable Open3D baseline on synthetic stages 0, 2, and 3. Production paint is yellow until epsilon is locked. PCL, CloudCompare, Pointcept, and Open3D-ML are stubs. Synthetic metrics are not a field accuracy.",
+      "status": "known",
+      "doc": "docs/research/12-stud-seg-design-plan.md"
     }
   ]
 }
