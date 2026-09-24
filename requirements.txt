@@ -3,3 +3,5 @@
 # On Windows this installs the standard wheel. It does not install the
 # separate Windows CUDA preview wheel published on GitHub.
 open3d==0.20.0
+# PNG views use matplotlib's Agg backend (no OpenGL window).
+matplotlib>=3.8
