@@ -1,0 +1,33 @@
+{
+  "goal_a": {
+    "datasets_found": [
+      {
+        "name": "Rohbau3D Dataset",
+        "url": "https://github.com/RauchLukas/rohbau3d",
+        "license": "CC BY 4.0",
+        "format": "XYZ/PCD"
+      },
+      {
+        "name": "E-Defense / NHERI Wood-Frame Tests",
+        "url": "https://www.designsafe-ci.org/data/browser/public/designsafe.storage.published/PRJ-5940",
+        "license": "ODC-By",
+        "format": "Point Cloud (sub-cm)"
+      },
+      {
+        "name": "NHERI 2019 Storm Surge Damage",
+        "url": "https://doi.org/10.17603/ds2-0rky-9w25",
+        "license": "ODC-By",
+        "format": "Undefined"
+      }
+    ]
+  },
+  "goal_b": {
+    "pcl_modules": [
+      "filters",
+      "features",
+      "sample_consensus",
+      "segmentation"
+    ],
+    "one_click_tool": false
+  }
+}

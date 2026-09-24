@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-23",
+  "generated": "2026-09-24",
   "repo": "https://github.com/ozguvenc2/openwall-stud-frame",
-  "notes": "Numbers are cited in the markdown or marked unknown. Tables 1-2 refreshed 2026-09-23 for LiDAR classes and gravity-up. Top-5 frame-stage ranking added the same day. No datasets were downloaded.",
+  "notes": "Numbers are cited in the markdown or marked unknown. Tables 1-2 refreshed 2026-09-23 for LiDAR classes and gravity-up. Top-5 frame-stage ranking added the same day. 2026-09-24 adds drone-wood pipelines, a light-frame scan hunt, the Unity viz summary, and the Open3D box-viewer spec. No datasets were downloaded.",
   "top5_frame_pointclouds": {
     "doc": "docs/research/06-top5-frame-pointclouds.md",
     "json": "docs/research/06-top5-frame-pointclouds.json",
@@ -1196,5 +1196,123 @@
       "item": "Survey TLS (Focus / RTC360) is the LiDAR class whose published ranging and angular specs sit inside about 0.12 deg. Phone, Livox, mapping spinning lidars, BLK360 G2 tilt (8 arcmin), and handheld SLAM do not. Gravity-up is inclinometer/DAC, ARKit, or a static IMU, then Open3D paint. Floor-plane level is not plumb.",
       "status": "surveyed"
     }
-  ]
+  ],
+  "drone_wood_photogrammetry": {
+    "doc": "docs/research/10-drone-wood-photogrammetry-seg.md",
+    "date": "2026-09-24",
+    "finding": "No LinkedIn post found that is both aerial photogrammetry and residential stud segmentation. Named 3D wood pipelines are Metashape plus CloudCompare, PyVista, or PointNet++. Forestry stacks segment trees.",
+    "entries": [
+      {
+        "id": "A1",
+        "name": "UAV SfM on one glulam strip",
+        "pipeline": "DJI Phantom 4 Pro / Mavic Mini / Canon, flight-like, 1.5 m. Agisoft Metashape 1.7.6. PLY. Python 3.9 + PyVista 0.34.1 centroid and rotation.",
+        "open": "PyVista is open. Metashape is commercial. Script repo not in the article text read.",
+        "fit": "Lab strip. Not a house.",
+        "status": "surveyed",
+        "url": "https://doi.org/10.1007/s00107-025-02245-9"
+      },
+      {
+        "id": "A2",
+        "name": "Purdue UAV railroad, wood crossties",
+        "pipeline": "DJI Mavic 3 Thermal. Agisoft Metashape Pro. Manual labels in CloudCompare. PointNet++ plus BIM synthetic clouds.",
+        "open": "PointNet++ code MIT. Metashape commercial. Weights and dataset DOI not in the PDF sections read.",
+        "fit": "Crossties from above. Not studs.",
+        "status": "surveyed",
+        "url": "https://arxiv.org/abs/2510.17609"
+      },
+      {
+        "id": "A3",
+        "name": "DroneDeploy Progress AI",
+        "pipeline": "Drone or 360 photos. Proprietary visual intelligence. Blog: framing vs drywall. 80+ trades. No point-cloud member boxes.",
+        "open": "Closed. No public weights.",
+        "fit": "Trade tag only.",
+        "status": "surveyed",
+        "url": "https://www.dronedeploy.com/product/progress-ai"
+      },
+      {
+        "id": "L1",
+        "name": "Ultralytics YOLO11 wood stacks",
+        "pipeline": "LinkedIn 2025-12-25. 2D instance segmentation. bit.ly redirects to the generic segment docs.",
+        "open": "ultralytics/ultralytics AGPL-3.0. No wood-stack checkpoint on that docs page.",
+        "fit": "Lumber pile pixels. Not a drone cloud of a house.",
+        "status": "surveyed",
+        "url": "https://www.linkedin.com/posts/ultralytics_segment-wood-stacks-with-ultralytics-yolo11-activity-7409992609579945984-RfVd"
+      },
+      {
+        "id": "F1",
+        "name": "FOR-instance and ForestFormer3D",
+        "pipeline": "UAV lidar semantic and instance segmentation of trees.",
+        "open": "FOR-instance CC BY 4.0, 1.6 GB zip. FOR-instanceV2 record GPL-3.0-or-later.",
+        "fit": "Trees, not studs.",
+        "status": "surveyed",
+        "url": "https://doi.org/10.5281/zenodo.8287792"
+      }
+    ]
+  },
+  "residential_light_frame_hunt": {
+    "doc": "docs/research/11-residential-light-frame-scans.md",
+    "date": "2026-09-24",
+    "finding": "No public point cloud of a US light-frame house at sheathing stage was found. Existing top-5 ranks are unchanged.",
+    "entries": [
+      {
+        "id": "R1",
+        "name": "NHERI PRJ-2513 wave-basin light-frame lidar",
+        "license": "DesignSafe public record. File terms not read.",
+        "size": "unknown",
+        "access_url": "https://doi.org/10.17603/ds2-0rky-9w25",
+        "fit_for_stud_qa": "1:6-scale light-frame wood specimens. Not the OSB house.",
+        "status": "surveyed abstract; not-downloaded; size unverified"
+      },
+      {
+        "id": "R2",
+        "name": "Rosenheim synthetic timber wall clouds",
+        "license": "CC BY-NC-SA 4.0. Generator code license not stated.",
+        "size": "1.1 GB",
+        "access_url": "https://doi.org/10.5281/zenodo.16756219",
+        "fit_for_stud_qa": "10,000 synthetic wall PLY/STL models. Not a scanned house.",
+        "status": "surveyed; not-downloaded"
+      },
+      {
+        "id": "R3",
+        "name": "Augmented Carpentry mock-up scans",
+        "license": "CC BY 4.0",
+        "size": "raw_data.zip 10012523182 bytes",
+        "access_url": "https://doi.org/10.5281/zenodo.14610164",
+        "fit_for_stud_qa": "Timber mock-ups in PLY/E57. Not a house.",
+        "status": "surveyed; not-downloaded"
+      },
+      {
+        "id": "R6",
+        "name": "Schependomlaan drone SfM",
+        "license": "Academic use with owner permission. Not SPDX.",
+        "size": "unknown; release zip HTTP 404 on 2026-09-24",
+        "access_url": "https://github.com/jakob-beetz/DataSetSchependomlaan",
+        "fit_for_stud_qa": "Dutch housing site. Not US stick frame.",
+        "status": "surveyed readme; download unverified"
+      }
+    ]
+  },
+  "unity_viz_summary": {
+    "doc": "docs/research/12-unity-pointcloud-viz-summary.md",
+    "source_pr": 4,
+    "source_branch": "cursor/blender-unity-pointcloud-1ad9",
+    "source_doc_on_that_branch": "docs/research/07-blender-unity-pointcloud-viz-and-seg.md",
+    "merged_to_main": false,
+    "recommendation": "Open3D draw_geometries for colored clusters and oriented boxes. CloudCompare for LAS/E57 inspection. Unity Point Cloud Viewer and Tools 3 later, for baked RGB, without per-member boxes.",
+    "status": "surveyed"
+  },
+  "open3d_obb_viewer": {
+    "doc": "docs/research/13-open3d-interactive-obb-viewer.md",
+    "open3d": "0.20.0",
+    "api": [
+      "open3d.geometry.OrientedBoundingBox(center, R, extent)",
+      "open3d.geometry.LineSet.create_from_oriented_bounding_box",
+      "open3d.visualization.draw_geometries"
+    ],
+    "json_schema": "openwall.classical_seg.components.v1",
+    "json_writer_branch": "cursor/classical-seg-obb-1a3e",
+    "json_writer_merged_to_main": false,
+    "sketch_executed": false,
+    "status": "surveyed API; sketch not-in-repo"
+  }
 }
