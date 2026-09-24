@@ -85,3 +85,59 @@ Applied in this order to each kept box:
 5. `clutter` — the rest, including diagonal sticks.
 
 A cluster box is `get_oriented_bounding_box` (PCA). If Qhull rejects a flat cluster, the script retries with `robust=True`, then an axis-aligned box. A peeled plane is stored as `plane_obb`: the RANSAC normal plus the minimum-area rectangle of the inliers. Open3D's robust hull stretches a flat patch (a square becomes a diamond), so that box is not the one written for planes. `bbox_kind` is `obb`, `obb_robust`, `plane_obb`, or `aabb`.
+
+---
+
+## Step 2 — gravity-deviation paint pass
+
+After running `classical_segment_obb.py`, run `paint_gravity_deviation.py` to
+colour each `upright` and `beam_like` box by its deviation from plumb or level.
+
+```bat
+python scripts\paint_gravity_deviation.py ^
+    --components data\raw\darus-intcdc\seg_out\components.json ^
+    --input-ply  data\raw\darus-intcdc\preview.ply ^
+    --out-dir    data\raw\darus-intcdc\dev_out
+```
+
+### How deviation is computed
+
+Each component record in `components.json` already stores `long_axis_abs_cos_up`
+= |dot(long axis, up)|.
+
+| Label | Formula | 0° means |
+| --- | --- | --- |
+| `upright` | `arccos(abs_cos_up)` | perfectly plumb |
+| `beam_like` | `arcsin(abs_cos_up)` | perfectly level |
+
+### Default tolerance
+
+`--tolerance-deg 0.12` comes from the Handbook of Construction Tolerances
+1/4 in per 10 ft figure: `atan(0.25/120) ≈ 0.1194°`.
+See `docs/tolerances.md` for derivation and alternatives.
+
+### Status colours
+
+| Status | Condition | Box colour |
+| --- | --- | --- |
+| pass | deviation ≤ 0.12° | green |
+| warn | 0.12° < deviation ≤ 0.24° | amber |
+| fail | deviation > 0.24° | red |
+| skip | not upright / beam_like | grey |
+
+### IntCDC run metrics (2026-09-24)
+
+Segmentation source: `classical_segment_obb.py` defaults on `preview.ply`.
+
+| | n |
+| --- | ---: |
+| Total components | 449 |
+| Checked (upright + beam_like) | 99 |
+| pass | 6 |
+| warn | 3 |
+| fail | 90 |
+| skip (planar / blob / clutter) | 350 |
+
+**These numbers have no accuracy claim.** The IntCDC scan is a timber building,
+not a 2×4 house; Z is not documented as gravity; the segmentation merges touching
+members. See `deviation_report.md` ("What still fails vs LOT-62 target").
