@@ -1,0 +1,73 @@
+{
+  "generated": "2026-09-24",
+  "doc": "docs/research/15-house-alike-frame-clouds.md",
+  "images": "docs/research/images/house-alike-clouds/INDEX.md",
+  "conclusion": "Wait for an own residential 2x4/2x6 scan. No public LOT-62-like cloud is available to bake off Mid-360 or iPhone pipelines.",
+  "ranked": [
+    {
+      "rank": 1,
+      "id": "H1",
+      "name": "E-Defense 2019 full-scale wood dwellings, construction-day scans",
+      "url": "https://doi.org/10.17603/ds2-4rf2-bj36",
+      "license": "Open Data Commons Attribution",
+      "modality": "Leica BLK360 E57 and Pix4D/FC6310 LAS",
+      "lot62": "Full-scale wood houses, including a 2019-01-06 construction folder. Japanese two-by-four plus post-and-beam on a shake table, not a US OSB lot house.",
+      "download_size": "Project about 266.5 GB. Construction-day point clouds: 59 E57 files, 13.5 GB, plus 20190106_sfm.las at 393.5 MB.",
+      "recommended_use": "Stage X regressor for a whole wood building. Not a Mid-360/iPhone bake-off.",
+      "image": "docs/research/images/house-alike-clouds/01-edefense-prj2180-construction-pix4d.png",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "rank": 2,
+      "id": "H2",
+      "name": "WFC-Dataset",
+      "url": "https://github.com/yigediao/wfcdataset",
+      "license": "Not stated (README TODO)",
+      "modality": "ZED 2i RGB-D PLY",
+      "lot62": "Real 2x4 stud points. Not a house.",
+      "download_size": "Raw zip 10.65 GB; annotations 461.77 MB",
+      "recommended_use": "Stage X regressor for a single stud OBB.",
+      "image": "docs/research/images/house-alike-clouds/02-wfc-dataset-github-page.png",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "rank": 3,
+      "id": "H3",
+      "name": "NHERI PRJ-2513 1:6 light-frame specimens",
+      "url": "https://doi.org/10.17603/ds2-0rky-9w25",
+      "license": "Creative Commons Attribution",
+      "modality": "Terrestrial LiDAR described; published bytes are PDFs",
+      "lot62": "Light-frame wood at 1:6 in a wave basin. No cloud file in the public listing.",
+      "download_size": "Three PDFs, 6.6 MB. No LAS/E57/PLY.",
+      "recommended_use": "Viewer of the poster only.",
+      "image": "docs/research/images/house-alike-clouds/03-nheri-prj2513-light-frame-poster.png",
+      "status": "surveyed; cloud not in public listing"
+    },
+    {
+      "rank": 4,
+      "id": "H4",
+      "name": "Rosenheim wall point clouds",
+      "url": "https://doi.org/10.5281/zenodo.16756219",
+      "license": "CC BY-NC-SA 4.0 (data); GPL-3.0 (generator code)",
+      "modality": "Synthetic Blender PLY/STL",
+      "lot62": "Labeled timber walls. Not a scanned US platform frame.",
+      "download_size": "1066.1 MB",
+      "recommended_use": "Non-commercial synthetic wall sandbox. Not a sensor bake-off.",
+      "image": "docs/research/images/house-alike-clouds/04-rosenheim-synthetic-walls-zenodo.png",
+      "status": "surveyed; not-downloaded"
+    },
+    {
+      "rank": 5,
+      "id": "H5",
+      "name": "Augmented Carpentry mock-up scans",
+      "url": "https://doi.org/10.5281/zenodo.14610164",
+      "license": "CC BY 4.0",
+      "modality": "Real timber mock-up scans, PLY/E57/3dm",
+      "lot62": "Real timber joints. Not a residential house frame.",
+      "download_size": "raw_data.zip 10012.5 MB; results.zip 173.4 MB",
+      "recommended_use": "Stage X regressor for scanned timber members.",
+      "image": "docs/research/images/house-alike-clouds/05-augmented-carpentry-zenodo.png",
+      "status": "surveyed; not-downloaded"
+    }
+  ]
+}

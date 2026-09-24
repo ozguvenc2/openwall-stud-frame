@@ -8,7 +8,7 @@ Temporary GitHub name: `openwall-stud-public-try` (rename later once private-rep
 
 | Step | Goal | Where we are |
 |------|------|----------------|
-| 1 | Sample point clouds of residential homes in **frame stage** | Dataset survey is in [`docs/research/03-sample-datasets.md`](docs/research/03-sample-datasets.md). Ranked shortlist: [`docs/research/06-top5-frame-pointclouds.md`](docs/research/06-top5-frame-pointclouds.md). No full light-frame house cloud was found. Clouds are linked only. Download scripts are not in this tree. `data/` is empty. |
+| 1 | Sample point clouds of residential homes in **frame stage** | Dataset survey is in [`docs/research/03-sample-datasets.md`](docs/research/03-sample-datasets.md). Closest obtainable wood or shell files: [`docs/research/06-top5-frame-pointclouds.md`](docs/research/06-top5-frame-pointclouds.md). LOT-62 house-alike hunt: [`docs/research/15-house-alike-frame-clouds.md`](docs/research/15-house-alike-frame-clouds.md). No public US 2×4/2×6 sheathing-stage house cloud was found. A Mid-360 or iPhone bake-off waits on our own scan. Clouds are linked only. `data/` is empty. |
 | 2 | Apps that **semantically segment** studs and frame members | Tool survey is in [`docs/research/02-software-segmentation-angles.md`](docs/research/02-software-segmentation-angles.md). No segmenter shipped here. Prior Pointcept notes lived on Origin. |
 | 3 | **Angle estimation** + red/green vs industry margins + **error tolerance** | Open3D can fit an OBB; gravity comparison is not coded yet. Plumb guidelines are in [`docs/tolerances.md`](docs/tolerances.md). No pass/fail paint yet. |
 
