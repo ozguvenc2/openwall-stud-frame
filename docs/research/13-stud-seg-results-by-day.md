@@ -1,0 +1,47 @@
+# Stud segmentation results by day
+
+Dates are **America/Los_Angeles**. This page is regenerated from [`../../artifacts/scorecards/results_by_day.csv`](../../artifacts/scorecards/results_by_day.csv). The JSON mirror is [`../../artifacts/scorecards/results_by_day.json`](../../artifacts/scorecards/results_by_day.json).
+
+One row is one algorithm on one scene that day, compared with that scene’s ground truth. `python scripts/run_stage0_baseline.py` upserts rows when a run finishes: the same date, stage, scene, and algorithm is updated; a later date is appended. Hand-added CSV rows are kept. Refresh this page with `python -m openwall_stud.results_by_day` from the repo root (`PYTHONPATH=src`).
+
+`paint_correct_pct` is the share of studs whose production color matches the paint rule. While `device_eps_deg` is empty, the rule is yellow on every stud, so the percentage is that check only. It is not a green/red score against a level. `pass_fail` is `not_run` when the stack did not execute. Empty cells were not measured.
+
+Ground-truth sources intended for later rows: `synthetic`, `skil`, `total_station`, `hand_label`. Do not type a field number that was not measured.
+
+| date | stage | scene | algorithm | ground_truth_source | detection_precision | detection_recall | detection_tp | detection_fp | detection_fn | geometry_section_err_mm | geometry_length_err_mm | angle_mae_deg | angle_pct_in_band | paint_correct_pct | device_eps_deg | runtime_s | notes | pass_fail |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-09-24 | 0 | stage0_2x4_lean0.000 | open3d | synthetic | 1 | 1 | 1 | 0 | 0 | 7.86 | 6.24 | 0.03084 | 100 | 100 | — | 0.089 | Synthetic generator. device ε unlocked, so paint_correct_pct counts yellow production colors only. Scorecard: open3d_stage0_stage0_2x4_lean0.000.json. | pass |
+| 2026-09-24 | 0 | stage0_2x4_lean0.000 | pcl | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. PCL was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean0.000 | cloudcompare | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. CloudCompare / CloudComPy was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean0.000 | pointcept | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Pointcept was not trained or run. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean0.000 | open3d_ml | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Open3D-ML was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean0.050 | open3d | synthetic | 1 | 1 | 1 | 0 | 0 | 7.7 | 5.57 | 0.00345 | 100 | 100 | — | 0.0795 | Synthetic generator. device ε unlocked, so paint_correct_pct counts yellow production colors only. Scorecard: open3d_stage0_stage0_2x4_lean0.050.json. | pass |
+| 2026-09-24 | 0 | stage0_2x4_lean0.050 | pcl | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. PCL was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean0.050 | cloudcompare | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. CloudCompare / CloudComPy was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean0.050 | pointcept | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Pointcept was not trained or run. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean0.050 | open3d_ml | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Open3D-ML was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean0.120 | open3d | synthetic | 1 | 1 | 1 | 0 | 0 | 7.39 | 4.85 | 0.01358 | 100 | 100 | — | 0.0727 | Synthetic generator. device ε unlocked, so paint_correct_pct counts yellow production colors only. Scorecard: open3d_stage0_stage0_2x4_lean0.120.json. | pass |
+| 2026-09-24 | 0 | stage0_2x4_lean0.120 | pcl | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. PCL was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean0.120 | cloudcompare | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. CloudCompare / CloudComPy was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean0.120 | pointcept | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Pointcept was not trained or run. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean0.120 | open3d_ml | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Open3D-ML was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean4.000 | open3d | synthetic | 1 | 1 | 1 | 0 | 0 | 7.86 | 4.99 | 0.02471 | 100 | 100 | — | 0.0747 | Synthetic generator. device ε unlocked, so paint_correct_pct counts yellow production colors only. Scorecard: open3d_stage0_stage0_2x4_lean4.000.json. | pass |
+| 2026-09-24 | 0 | stage0_2x4_lean4.000 | pcl | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. PCL was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean4.000 | cloudcompare | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. CloudCompare / CloudComPy was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean4.000 | pointcept | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Pointcept was not trained or run. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x4_lean4.000 | open3d_ml | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Open3D-ML was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x6_lean0.300 | open3d | synthetic | 1 | 1 | 1 | 0 | 0 | 7.57 | 6.02 | 0.00582 | 100 | 100 | — | 0.0963 | Synthetic generator. device ε unlocked, so paint_correct_pct counts yellow production colors only. Scorecard: open3d_stage0_stage0_2x6_lean0.300.json. | pass |
+| 2026-09-24 | 0 | stage0_2x6_lean0.300 | pcl | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. PCL was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x6_lean0.300 | cloudcompare | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. CloudCompare / CloudComPy was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x6_lean0.300 | pointcept | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Pointcept was not trained or run. Metrics left null. | not_run |
+| 2026-09-24 | 0 | stage0_2x6_lean0.300 | open3d_ml | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Open3D-ML was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 2 | stage2_2x4_lean0.200 | open3d | synthetic | 1 | 1 | 1 | 0 | 0 | 7.84 | 8.16 | 0.01721 | 100 | 100 | — | 0.0864 | Synthetic generator. device ε unlocked, so paint_correct_pct counts yellow production colors only. Scorecard: open3d_stage2_stage2_2x4_lean0.200.json. | pass |
+| 2026-09-24 | 2 | stage2_2x4_lean0.200 | pcl | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. PCL was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 2 | stage2_2x4_lean0.200 | cloudcompare | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. CloudCompare / CloudComPy was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 2 | stage2_2x4_lean0.200 | pointcept | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Pointcept was not trained or run. Metrics left null. | not_run |
+| 2026-09-24 | 2 | stage2_2x4_lean0.200 | open3d_ml | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Open3D-ML was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 3 | stage3_mini_wall_4 | open3d | synthetic | 1 | 1 | 4 | 0 | 0 | 7.76 | 22.19 | 0.00426 | 100 | 100 | — | 0.3512 | Synthetic generator. device ε unlocked, so paint_correct_pct counts yellow production colors only. Scorecard: open3d_stage3_stage3_mini_wall_4.json. | pass |
+| 2026-09-24 | 3 | stage3_mini_wall_4 | pcl | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. PCL was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 3 | stage3_mini_wall_4 | cloudcompare | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. CloudCompare / CloudComPy was not executed. Metrics left null. | not_run |
+| 2026-09-24 | 3 | stage3_mini_wall_4 | pointcept | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Pointcept was not trained or run. Metrics left null. | not_run |
+| 2026-09-24 | 3 | stage3_mini_wall_4 | open3d_ml | synthetic | — | — | — | — | — | — | — | — | — | — | — | — | Stub. Open3D-ML was not executed. Metrics left null. | not_run |

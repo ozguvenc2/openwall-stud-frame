@@ -2,7 +2,7 @@
 
 Research date: **2026-09-23**. Scope: residential frame-stage QA — sample point clouds, semantic stud/beam segmentation, angle versus gravity, red/green against industry margins, with measurement-error tolerance. Near-term stack is Python + Open3D. Unity is optional later for visualization or XR. XREAL Aura is an AR display, not the capture scanner.
 
-No multi-gigabyte datasets were downloaded into this repo. Large clouds stay behind the access URLs in [03-sample-datasets.md](03-sample-datasets.md). The frame-stage shortlist is [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md).
+No multi-gigabyte datasets were downloaded into this repo. Large clouds stay behind the access URLs in [03-sample-datasets.md](03-sample-datasets.md). The frame-stage shortlist is [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md). The stud-segmentation ranking is [11-stud-segmentation-algorithm-ranking.md](11-stud-segmentation-algorithm-ranking.md). The stage ladder and the synthetic Open3D path are [12-stud-seg-design-plan.md](12-stud-seg-design-plan.md).
 
 ## How to read these docs
 
@@ -29,6 +29,9 @@ Numbers are copied from the cited page or marked **unknown**. Vendor brochure fi
 | [02-software-segmentation-angles.md](02-software-segmentation-angles.md) | Segmentation and viewers, plus a finalized gravity-up stack: scanner inclinometer or DAC, else ARKit or a static IMU, then Open3D angle paint. Floor-plane “level” tools are not the plumb reference. |
 | [03-sample-datasets.md](03-sample-datasets.md) | Frame/shell clouds and nearby samples: Rohbau3D, BIMNet, WFC-Dataset, ScanNet++, openBIM, FARO/Leica libs, Polycam self-capture, RefSite3D, ConSLAM. |
 | [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md) | Ranked five closest public clouds to a residential frame stage, with a still for each. No full light-frame house cloud was found. |
+| [11-stud-segmentation-algorithm-ranking.md](11-stud-segmentation-algorithm-ranking.md) | Best-to-worst segmenters for vertical studs on a bare frame: tight boxes, angle versus the floor, then green/yellow/red once a device error band exists. Floor is not gravity. |
+| [12-stud-seg-design-plan.md](12-stud-seg-design-plan.md) | Curriculum stages 0–7, scorecard, pass bars, capture protocol (iPhone, Mid-360, SKIL BOT/MID/TOP), and what this repo runs. Figures: [images/algo-contenders/INDEX.md](images/algo-contenders/INDEX.md). |
+| [13-stud-seg-results-by-day.md](13-stud-seg-results-by-day.md) | Day-by-day algorithm outcome versus ground truth. Seeded with the 2026-09-24 synthetic Open3D runs. Stubs are `not_run`. |
 | [04-seed-funds.md](04-seed-funds.md) | NSF America’s Seed Fund AR/VR topic and nearby SBIR / construction awards. |
 | [05-misc-resources.md](05-misc-resources.md) | Gaussian splats versus clouds, MIT VNAV, the brief’s video and Gemini links, LinkedIn posts, aerial-LiDAR tools. |
 | [catalog.json](catalog.json) | Same rows in one JSON file for later tooling. Each table also has a sibling `.json`. |
@@ -39,7 +42,8 @@ Industry margin sources and the derived degree conversion are summarized in [../
 
 | Item | Status |
 | --- | --- |
-| This GitHub repo is a scaffold. `src/open3d_smoke.py` only prints the Open3D version. There is no segmenter and no angle paint yet. `scripts/` has no download helper. `data/` has no clouds. `.gitignore` ignores `*.ply`, `*.las`, `*.laz`. | `known; surveyed` |
+| This GitHub repo started as a scaffold. `src/open3d_smoke.py` only prints the Open3D version. `scripts/` has no dataset download helper. `data/` has no clouds. `.gitignore` ignores `*.ply`, `*.las`, `*.laz`. | `known; surveyed` |
+| 2026-09-24: `src/openwall_stud/` runs the Open3D baseline on synthetic stages 0, 2, and 3, writes a scorecard, and paints yellow while device ε is unlocked. PCL, CloudCompare, Pointcept, and Open3D-ML are stubs. Figures are in `docs/research/images/algo-contenders/`. This is not a field segmenter. | `known` |
 | Prior Origin work sketched WFC-Dataset and Rohbau3D download hooks (incomplete), a Pointcept/Rohbau segmentation survey, and an Open3D stud-versus-gravity sketch. Agents named in the root README: `bc-d567e2f1`, `bc-c355a90c` (finished on Origin); `bc-63a01dad` (Origin auth error). Those transcripts were not re-fetched here. | `known; not-in-repo` |
 | Capture path of interest: Polycam on iPhone 12 Pro or later Pro/Pro Max LiDAR, export PLY or LAS. Official help (this pass) puts point-cloud export on **Business and Enterprise**, not on the Pro/Basic tiers the earlier note called “Pro tier”. | `known; surveyed` (tier corrected) |
 | Earlier note: prefer a Polycam Photo/Detail hybrid for edges. Polycam’s current help distinguishes Space Mode (LiDAR) from non-LiDAR photogrammetry, plus Default / Custom / Cloud processing. A mode literally named “Photo/Detail hybrid” was not found. | `known; unverified` as a product name |

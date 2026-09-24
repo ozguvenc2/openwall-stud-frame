@@ -3,3 +3,5 @@
 # On Windows this installs the standard wheel. It does not install the
 # separate Windows CUDA preview wheel published on GitHub.
 open3d==0.20.0
+numpy>=1.26
+matplotlib>=3.8

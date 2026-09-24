@@ -1,0 +1,55 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A3",
+  "algorithm": "CloudCompare RANSAC-SD / CloudComPy",
+  "rank": 3,
+  "stage": null,
+  "status": "stub_not_run",
+  "epsilon_locked": false,
+  "metrics_are_measurements": false,
+  "detection": {
+    "n_true": null,
+    "n_pred": null,
+    "true_positives": null,
+    "false_positives": null,
+    "false_negatives": null,
+    "precision": null,
+    "recall": null,
+    "note": "Stub only. RANSAC Shape Detection was not executed. Detection, geometry, and angle are null."
+  },
+  "geometry": {
+    "max_section_error_mm": null,
+    "max_length_error_mm": null,
+    "per_stud": [],
+    "note": "Stub only. RANSAC Shape Detection was not executed. Detection, geometry, and angle are null."
+  },
+  "angle": {
+    "mae_deg": null,
+    "pct_in_band": null,
+    "band_deg": null,
+    "per_stud": [],
+    "note": "Stub only. RANSAC Shape Detection was not executed. Detection, geometry, and angle are null."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "production_colors": [],
+    "hypothetical_placeholder_epsilon_deg": null,
+    "hypothetical_colors": [],
+    "note": "Stub only. RANSAC Shape Detection was not executed. Detection, geometry, and angle are null."
+  },
+  "cost": {
+    "runtime_s": null,
+    "license": "GPL-3.0",
+    "hardware": "CPU desktop",
+    "failure_modes": [
+      "CloudCompare and CloudComPy are not installed here, so no primitive was fit.",
+      "A 2x4 is not a cylinder. A wall of studs is not one plane.",
+      "GPL-3.0 if the library is linked into a shipped app."
+    ],
+    "note": "Stub only. RANSAC Shape Detection was not executed. Detection, geometry, and angle are null."
+  },
+  "notes": [
+    "Stub only. RANSAC Shape Detection was not executed. Detection, geometry, and angle are null."
+  ]
+}
