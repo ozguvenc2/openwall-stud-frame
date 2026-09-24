@@ -31,6 +31,10 @@ Numbers are copied from the cited page or marked **unknown**. Vendor brochure fi
 | [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md) | Ranked five closest public clouds to a residential frame stage, with a still for each. No full light-frame house cloud was found. |
 | [04-seed-funds.md](04-seed-funds.md) | NSF America’s Seed Fund AR/VR topic and nearby SBIR / construction awards. |
 | [05-misc-resources.md](05-misc-resources.md) | Gaussian splats versus clouds, MIT VNAV, the brief’s video and Gemini links, LinkedIn posts, aerial-LiDAR tools. |
+| [10-drone-wood-photogrammetry-seg.md](10-drone-wood-photogrammetry-seg.md) | 2023–2026 drone and timber pipelines (Metashape, DroneDeploy, YOLO11 wood stacks, forestry lidar). No public residential-stud stack. |
+| [11-residential-light-frame-scans.md](11-residential-light-frame-scans.md) | Hunt for a sheathing-stage US house cloud like the site photos. None found. Near-misses and licenses. |
+| [12-unity-pointcloud-viz-summary.md](12-unity-pointcloud-viz-summary.md) | What PR #4 already concluded, plus which editor shows colored clusters and boxes. |
+| [13-open3d-interactive-obb-viewer.md](13-open3d-interactive-obb-viewer.md) | `draw_geometries` spec: label colors and OBB line sets from `components.json`. |
 | [catalog.json](catalog.json) | Same rows in one JSON file for later tooling. Each table also has a sibling `.json`. |
 
 Industry margin sources and the derived degree conversion are summarized in [../tolerances.md](../tolerances.md).
@@ -49,6 +53,7 @@ Industry margin sources and the derived degree conversion are summarized in [../
 | Gravity-up is the scanner inclinometer or DAC, an ARKit gravity session, or a static IMU. A floor-plane “level” is not the plumb reference. Angle paint is Open3D once Z is up. | `surveyed` |
 | Point cloud for measurement and ML; Gaussian splat for view synthesis; mesh for game/CAD engines. Do not treat a splat as a stud metrology cloud. | `known; surveyed` |
 | MultiSet / openWall Unity work is a separate track: [openWall](https://github.com/ozguvenc2/openWall). | `known; separate-track` |
+| A public point cloud of a US light-frame house at sheathing stage was not found on 2026-09-24. Drone “wood segmentation” posts that were opened are 2D lumber piles, trade-level progress, heritage timber, or trees. | `surveyed` |
 
 ## Source rule
 
