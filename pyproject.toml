@@ -8,6 +8,7 @@ dependencies = [
   "open3d==0.20.0",
   "numpy>=1.26",
   "matplotlib>=3.8",
+  "pyransac3d==0.7.0",
 ]
 
 [build-system]

@@ -90,7 +90,9 @@ Run these five. Same clouds, same floor normal, same τ, same ε once it exists,
 | 4 | Pointcept PTv3 / PointGroup | The fine-tune path after we label studs on these clouds. The only public construction checkpoint found (BIMStruct3D) has no stud class; run it once as a negative control, not as the model. |
 | 5 | Open3D-ML RandLA-Net or KPConv, S3DIS weights | Office “beam” and “column” vocabulary. Run once so the S3DIS mIoU is not mistaken for stud accuracy. Not a production segmenter for this frame. |
 
-Ranks 6–12 below are not in the bake-off.
+Ranks 6–12 in the master table below are not in the original five-stack bake-off.
+
+Bake-off **rank 6** is a later add, not that master-table row. Doc 17 (`17-methods-that-beat-shortlist`, the methods brief on PR #14) names pyRANSAC-3D v0.7.0 sequential cuboid, after rank 1’s plate peel, as an add. Oz approved it. The one-stud run is in [16-one-stud-five-finder-run.md](16-one-stud-five-finder-run.md). The Chen, Jiang, and Xiong 2025 row numbered 6 in the table stays out of the bake-off.
 
 ## Master table
 

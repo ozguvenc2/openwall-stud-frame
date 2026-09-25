@@ -1,6 +1,6 @@
 # One-stud figures
 
-These PNGs are the 2026-09-25 run in [../../16-one-stud-five-finder-run.md](../../16-one-stud-five-finder-run.md). The cloud is one synthetic 2×4 at 0.05° lean, seed 2. A dark box is a minimal OBB that finder actually fit. A red banner means the stack did not fit a box.
+These PNGs are the 2026-09-25 run in [../../16-one-stud-five-finder-run.md](../../16-one-stud-five-finder-run.md). The cloud is one synthetic 2×4 at 0.05° lean, seed 2. A dark box is a minimal OBB that finder actually fit. A red banner means the stack did not fit a box. Rank 6 is the pyRANSAC-3D add from doc 17.
 
 | File | Finder |
 | --- | --- |
@@ -9,3 +9,4 @@ These PNGs are the 2026-09-25 run in [../../16-one-stud-five-finder-run.md](../.
 | `03-cloudcompare.png` | CloudCompare RANSAC-SD, ran, several primitives |
 | `04-pointcept.png` | Pointcept, blocked install |
 | `05-open3d-ml.png` | Open3D-ML S3DIS control, blocked install |
+| `06-pyransac3d.png` | pyRANSAC-3D sequential cuboid, rank 6 |
