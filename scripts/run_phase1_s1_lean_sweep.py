@@ -10,10 +10,12 @@ metrics stay null when the vocabulary has no stud class.
     .venv\\Scripts\\python.exe scripts/run_phase1_s1_lean_sweep.py
     .venv\\Scripts\\python.exe scripts/run_phase1_s1_lean_sweep.py --check-only
     .venv\\Scripts\\python.exe scripts/run_phase1_s1_lean_sweep.py --report-only
+    .venv\\Scripts\\python.exe scripts/run_phase1_s1_lean_sweep.py --finder cloudcompare
 
 ``--finder classical`` uses this interpreter. ``--finder pointcept`` expects
 the BIMStruct3D ``.venv``. ``--finder open3d_ml`` expects ``.venv-o3dml``.
-The default command runs those three and then writes the research note.
+``--finder cloudcompare`` re-runs rank 3 only. The default command runs the
+three groups and then writes the research note.
 """
 
 from __future__ import annotations
@@ -284,7 +286,9 @@ def run_group(group: str, *, resume: bool) -> int:
         selected = [item for item in FINDERS if item["key"] == group]
     if not selected:
         raise SystemExit(f"unknown group {group}")
-    _write_meta(group)
+    # A single-finder rerun must not replace the group meta from the full sweep.
+    if group in {"classical", "pointcept", "open3d_ml"}:
+        _write_meta(group)
     for spec in specs:
         scene = make_s1_scene(spec["lean_deg"], spec["axis"])
         for finder in selected:
@@ -545,6 +549,69 @@ def _span_table(span: list[dict[str, Any]] | None) -> str:
     return "\n".join(lines) + "\n"
 
 
+def _rank3_paragraph(specs: list[dict[str, Any]]) -> str:
+    """Summarize rank 3 from the scorecards already on disk."""
+    finder = next(item for item in FINDERS if item["key"] == "cloudcompare")
+    cards = [
+        _load_json(_scorecard_path(finder["rank"], finder["key"], spec["name"]))
+        for spec in specs
+    ]
+    present = [card for card in cards if card]
+    bars: dict[str, int] = {}
+    binaries: list[str] = []
+    sources: list[str] = []
+    shorts: list[str] = []
+    blockers: list[str] = []
+    n_ran = 0
+    for card in present:
+        if card.get("status") == "ran":
+            n_ran += 1
+        key = str(card.get("stage0_pass_fail") or "missing")
+        bars[key] = bars.get(key, 0) + 1
+        impl = card.get("implementation") or {}
+        attempt = impl.get("attempt") or card.get("attempt") or {}
+        binary = attempt.get("binary")
+        source = attempt.get("binary_source")
+        if binary and str(binary) not in binaries:
+            binaries.append(str(binary))
+        if source and str(source) not in sources:
+            sources.append(str(source))
+        short = card.get("implementation_short")
+        if short and str(short) not in shorts:
+            shorts.append(str(short))
+        blocker = card.get("blocker_short")
+        if blocker and str(blocker) not in blockers:
+            blockers.append(str(blocker))
+    sentences = [
+        (
+            f"Rank 3 returned primitive boxes on {n_ran} of {len(present)} scorecards. "
+            f"Stage 0 bars: pass {bars.get('pass', 0)}, fail {bars.get('fail', 0)}, "
+            f"blocked_install {bars.get('blocked_install', 0)}."
+        )
+    ]
+    if shorts:
+        sentences.append(" ".join(shorts))
+    if binaries:
+        source_note = f" Discovery source: {', '.join(sources)}." if sources else ""
+        sentences.append("Binary: " + "; ".join(f"`{item}`" for item in binaries) + "." + source_note)
+    sentences.append(
+        "Discovery order is the `CLOUDCOMPARE_EXE` environment variable, then "
+        r"`C:\Program Files\CloudCompare\CloudCompare.exe` when that file exists, then PATH."
+    )
+    if blockers and n_ran < len(present):
+        sentences.append("Blocker: " + " ".join(blockers))
+    smoke = _load_json(SCORE_DIR.parent / "cloudcompare_smoke.json")
+    if smoke:
+        state = "succeeded" if smoke.get("ok") else "failed"
+        sentences.append(
+            f"Smoke test (`CloudCompare -SILENT -NO_TIMESTAMP`) {state}. "
+            f"Version: {smoke.get('version') or 'unknown'}. "
+            f"Return code: {smoke.get('returncode')}. "
+            "Record: `artifacts/scorecards/cloudcompare_smoke.json`."
+        )
+    return " ".join(sentences)
+
+
 def _same_text(finder: dict[str, Any], specs: list[dict[str, Any]], field: str) -> list[str]:
     values: list[str] = []
     for spec in specs:
@@ -646,6 +713,7 @@ def write_report() -> None:
             ".venv\\Scripts\\python.exe scripts/run_phase1_s1_lean_sweep.py --finder classical",
             ".venv\\Scripts\\python.exe scripts/run_phase1_s1_lean_sweep.py --finder pointcept",
             ".venv-o3dml\\Scripts\\python.exe scripts/run_phase1_s1_lean_sweep.py --finder open3d_ml",
+            ".venv\\Scripts\\python.exe scripts/run_phase1_s1_lean_sweep.py --finder cloudcompare",
             ".venv\\Scripts\\python.exe scripts/run_phase1_s1_lean_sweep.py --report-only",
         ],
     }
@@ -724,9 +792,7 @@ def write_report() -> None:
                 + ". "
                 + " ".join(shorts)
             )
-        if finder["key"] == "cloudcompare":
-            shorts = _same_text(finder, specs, "blocker_short")
-            finder_notes.append("Rank 3 blocker: " + " ".join(shorts))
+    rank3_note = _rank3_paragraph(specs)
     text = f"""# Phase 1 S1 lean sweep
 
 Date (America/Los_Angeles): **{date}**. Machine: **Oz_PC**. This note is one rigid lean on one synthetic dressed 2×4. It is the stage 0 style bring-up (S1). It is not a multi-stud wall, not a plate-fixed bow (S1b), and not a field, phone, or SKIL measurement.
@@ -787,9 +853,11 @@ Pointcept is rank 4 and uses `.venv` (the BIMStruct3D CUDA torch pin). Open3D-ML
 
 ## What the scorecards say about ranks 2 and 3
 
-{"\n\n".join(finder_notes) if finder_notes else "No rank 2 or rank 3 note was on the scorecards."}
+{"\n\n".join(finder_notes) if finder_notes else "No rank 2 note was on the scorecards."}
 
-Rank 2 metrics are the run that the scorecard names. They are not a libpcl measurement when `native_pcl_region_growing` is false. Rank 3 stud cells stay empty when the binary was not on PATH.
+Rank 2 metrics are the run that the scorecard names. They are not a libpcl measurement when `native_pcl_region_growing` is false.
+
+{rank3_note}
 
 ## Controls
 
@@ -830,9 +898,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--report-only", action="store_true", help="Rewrite doc 19 from scorecards.")
     parser.add_argument(
         "--finder",
-        choices=("classical", "pointcept", "open3d_ml"),
+        choices=("classical", "pointcept", "open3d_ml", "cloudcompare"),
         default=None,
-        help="Run one group in this interpreter. Default runs all three, then the report.",
+        help="Run one group, or only rank 3 (cloudcompare). Default runs all three groups, then the report.",
     )
     parser.add_argument("--resume", action="store_true", help="Keep an existing scorecard and only upsert its day row.")
     args = parser.parse_args(argv)
