@@ -1,0 +1,720 @@
+{
+  "winner": "untuned_plane_only",
+  "rows": [
+    {
+      "name": "untuned_plane_only",
+      "params": {
+        "epsilon_absolute_m": 0.008,
+        "bitmap_epsilon_absolute_m": 0.02,
+        "support_points": 400,
+        "max_normal_dev_deg": 25.0,
+        "probability": 0.01,
+        "primitives": [
+          "PLANE"
+        ]
+      },
+      "primitives": [
+        "PLANE"
+      ],
+      "n_pass": 3,
+      "n_one_box": 3,
+      "mean_section_mm": 7.75,
+      "mean_angle_deg": 0.00546,
+      "scenes": [
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 0.12,
+          "angle_deg": 0.00561,
+          "n_primitive_clouds": 8,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.1484,
+          "scene": "s1_2x4_lean0.000_axnone",
+          "lean_deg": 0.0,
+          "axis": "none"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 0.12,
+          "angle_deg": 0.00434,
+          "n_primitive_clouds": 6,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0443,
+          "scene": "s1_2x4_lean0.150_ax+X",
+          "lean_deg": 0.15,
+          "axis": "+X"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.77,
+          "length_mm": 0.51,
+          "angle_deg": 0.00643,
+          "n_primitive_clouds": 8,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0543,
+          "scene": "s1_2x4_lean4.000_ax+Y",
+          "lean_deg": 4.0,
+          "axis": "+Y"
+        }
+      ]
+    },
+    {
+      "name": "eps6_sup800_n25_bmp12",
+      "params": {
+        "epsilon_absolute_m": 0.006,
+        "bitmap_epsilon_absolute_m": 0.012,
+        "support_points": 800,
+        "max_normal_dev_deg": 25.0,
+        "probability": 0.01,
+        "primitives": [
+          "PLANE"
+        ]
+      },
+      "primitives": [
+        "PLANE"
+      ],
+      "n_pass": 3,
+      "n_one_box": 3,
+      "mean_section_mm": 7.75,
+      "mean_angle_deg": 0.00546,
+      "scenes": [
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 0.12,
+          "angle_deg": 0.00561,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0371,
+          "scene": "s1_2x4_lean0.000_axnone",
+          "lean_deg": 0.0,
+          "axis": "none"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 0.12,
+          "angle_deg": 0.00434,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.036,
+          "scene": "s1_2x4_lean0.150_ax+X",
+          "lean_deg": 0.15,
+          "axis": "+X"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.77,
+          "length_mm": 0.51,
+          "angle_deg": 0.00643,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0628,
+          "scene": "s1_2x4_lean4.000_ax+Y",
+          "lean_deg": 4.0,
+          "axis": "+Y"
+        }
+      ]
+    },
+    {
+      "name": "eps10_sup800_n25",
+      "params": {
+        "epsilon_absolute_m": 0.01,
+        "bitmap_epsilon_absolute_m": 0.02,
+        "support_points": 800,
+        "max_normal_dev_deg": 25.0,
+        "probability": 0.01,
+        "primitives": [
+          "PLANE"
+        ]
+      },
+      "primitives": [
+        "PLANE"
+      ],
+      "n_pass": 3,
+      "n_one_box": 3,
+      "mean_section_mm": 7.75,
+      "mean_angle_deg": 0.00546,
+      "scenes": [
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 0.12,
+          "angle_deg": 0.00561,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.031,
+          "scene": "s1_2x4_lean0.000_axnone",
+          "lean_deg": 0.0,
+          "axis": "none"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 0.12,
+          "angle_deg": 0.00434,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0718,
+          "scene": "s1_2x4_lean0.150_ax+X",
+          "lean_deg": 0.15,
+          "axis": "+X"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.77,
+          "length_mm": 0.51,
+          "angle_deg": 0.00643,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.1429,
+          "scene": "s1_2x4_lean4.000_ax+Y",
+          "lean_deg": 4.0,
+          "axis": "+Y"
+        }
+      ]
+    },
+    {
+      "name": "eps5_sup800_n15",
+      "params": {
+        "epsilon_absolute_m": 0.005,
+        "bitmap_epsilon_absolute_m": 0.02,
+        "support_points": 800,
+        "max_normal_dev_deg": 15.0,
+        "probability": 0.01,
+        "primitives": [
+          "PLANE"
+        ]
+      },
+      "primitives": [
+        "PLANE"
+      ],
+      "n_pass": 3,
+      "n_one_box": 3,
+      "mean_section_mm": 7.75,
+      "mean_angle_deg": 0.00705,
+      "scenes": [
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 4.81,
+          "angle_deg": 0.00765,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0466,
+          "scene": "s1_2x4_lean0.000_axnone",
+          "lean_deg": 0.0,
+          "axis": "none"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 4.82,
+          "angle_deg": 0.00705,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0555,
+          "scene": "s1_2x4_lean0.150_ax+X",
+          "lean_deg": 0.15,
+          "axis": "+X"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.77,
+          "length_mm": 4.63,
+          "angle_deg": 0.00644,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0553,
+          "scene": "s1_2x4_lean4.000_ax+Y",
+          "lean_deg": 4.0,
+          "axis": "+Y"
+        }
+      ]
+    },
+    {
+      "name": "eps6_sup800_n15",
+      "params": {
+        "epsilon_absolute_m": 0.006,
+        "bitmap_epsilon_absolute_m": 0.02,
+        "support_points": 800,
+        "max_normal_dev_deg": 15.0,
+        "probability": 0.01,
+        "primitives": [
+          "PLANE"
+        ]
+      },
+      "primitives": [
+        "PLANE"
+      ],
+      "n_pass": 3,
+      "n_one_box": 3,
+      "mean_section_mm": 7.75,
+      "mean_angle_deg": 0.00705,
+      "scenes": [
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 4.81,
+          "angle_deg": 0.00765,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0584,
+          "scene": "s1_2x4_lean0.000_axnone",
+          "lean_deg": 0.0,
+          "axis": "none"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 4.82,
+          "angle_deg": 0.00705,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0573,
+          "scene": "s1_2x4_lean0.150_ax+X",
+          "lean_deg": 0.15,
+          "axis": "+X"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.77,
+          "length_mm": 4.63,
+          "angle_deg": 0.00644,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0551,
+          "scene": "s1_2x4_lean4.000_ax+Y",
+          "lean_deg": 4.0,
+          "axis": "+Y"
+        }
+      ]
+    },
+    {
+      "name": "eps8_sup800_n15",
+      "params": {
+        "epsilon_absolute_m": 0.008,
+        "bitmap_epsilon_absolute_m": 0.02,
+        "support_points": 800,
+        "max_normal_dev_deg": 15.0,
+        "probability": 0.01,
+        "primitives": [
+          "PLANE"
+        ]
+      },
+      "primitives": [
+        "PLANE"
+      ],
+      "n_pass": 3,
+      "n_one_box": 3,
+      "mean_section_mm": 7.75,
+      "mean_angle_deg": 0.00705,
+      "scenes": [
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 4.81,
+          "angle_deg": 0.00765,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0465,
+          "scene": "s1_2x4_lean0.000_axnone",
+          "lean_deg": 0.0,
+          "axis": "none"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 4.82,
+          "angle_deg": 0.00705,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0395,
+          "scene": "s1_2x4_lean0.150_ax+X",
+          "lean_deg": 0.15,
+          "axis": "+X"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.77,
+          "length_mm": 4.63,
+          "angle_deg": 0.00644,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0556,
+          "scene": "s1_2x4_lean4.000_ax+Y",
+          "lean_deg": 4.0,
+          "axis": "+Y"
+        }
+      ]
+    },
+    {
+      "name": "eps6_sup1500_n15",
+      "params": {
+        "epsilon_absolute_m": 0.006,
+        "bitmap_epsilon_absolute_m": 0.02,
+        "support_points": 1500,
+        "max_normal_dev_deg": 15.0,
+        "probability": 0.01,
+        "primitives": [
+          "PLANE"
+        ]
+      },
+      "primitives": [
+        "PLANE"
+      ],
+      "n_pass": 3,
+      "n_one_box": 3,
+      "mean_section_mm": 7.75,
+      "mean_angle_deg": 0.00705,
+      "scenes": [
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 4.81,
+          "angle_deg": 0.00765,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0516,
+          "scene": "s1_2x4_lean0.000_axnone",
+          "lean_deg": 0.0,
+          "axis": "none"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 4.82,
+          "angle_deg": 0.00705,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0643,
+          "scene": "s1_2x4_lean0.150_ax+X",
+          "lean_deg": 0.15,
+          "axis": "+X"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.77,
+          "length_mm": 4.63,
+          "angle_deg": 0.00644,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0549,
+          "scene": "s1_2x4_lean4.000_ax+Y",
+          "lean_deg": 4.0,
+          "axis": "+Y"
+        }
+      ]
+    },
+    {
+      "name": "eps6_sup2000_n15",
+      "params": {
+        "epsilon_absolute_m": 0.006,
+        "bitmap_epsilon_absolute_m": 0.02,
+        "support_points": 2000,
+        "max_normal_dev_deg": 15.0,
+        "probability": 0.01,
+        "primitives": [
+          "PLANE"
+        ]
+      },
+      "primitives": [
+        "PLANE"
+      ],
+      "n_pass": 3,
+      "n_one_box": 3,
+      "mean_section_mm": 7.75,
+      "mean_angle_deg": 0.00705,
+      "scenes": [
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 4.81,
+          "angle_deg": 0.00765,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0393,
+          "scene": "s1_2x4_lean0.000_axnone",
+          "lean_deg": 0.0,
+          "axis": "none"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 4.82,
+          "angle_deg": 0.00705,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.0571,
+          "scene": "s1_2x4_lean0.150_ax+X",
+          "lean_deg": 0.15,
+          "axis": "+X"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.77,
+          "length_mm": 4.63,
+          "angle_deg": 0.00644,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.1646,
+          "scene": "s1_2x4_lean4.000_ax+Y",
+          "lean_deg": 4.0,
+          "axis": "+Y"
+        }
+      ]
+    },
+    {
+      "name": "untuned_plane_cylinder",
+      "params": {
+        "epsilon_absolute_m": 0.008,
+        "bitmap_epsilon_absolute_m": 0.02,
+        "support_points": 400,
+        "max_normal_dev_deg": 25.0,
+        "probability": 0.01,
+        "primitives": [
+          "PLANE",
+          "CYLINDER"
+        ]
+      },
+      "primitives": [
+        "PLANE",
+        "CYLINDER"
+      ],
+      "n_pass": 2,
+      "n_one_box": 3,
+      "mean_section_mm": 7.75,
+      "mean_angle_deg": 0.02768,
+      "scenes": [
+        {
+          "status": "ran",
+          "stage0_pass_fail": "fail",
+          "bar_failures": [
+            "angle error 0.06806 deg > 0.05"
+          ],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 0.11,
+          "angle_deg": 0.06806,
+          "n_primitive_clouds": 4,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 2,
+          "n_groups": 1,
+          "runtime_s": 1.0712,
+          "scene": "s1_2x4_lean0.000_axnone",
+          "lean_deg": 0.0,
+          "axis": "none"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.74,
+          "length_mm": 0.12,
+          "angle_deg": 0.00855,
+          "n_primitive_clouds": 8,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 3,
+          "n_groups": 1,
+          "runtime_s": 1.0459,
+          "scene": "s1_2x4_lean0.150_ax+X",
+          "lean_deg": 0.15,
+          "axis": "+X"
+        },
+        {
+          "status": "ran",
+          "stage0_pass_fail": "pass",
+          "bar_failures": [],
+          "n_pred": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "section_mm": 7.77,
+          "length_mm": 0.51,
+          "angle_deg": 0.00643,
+          "n_primitive_clouds": 7,
+          "merge_chosen": "stud_face_group",
+          "n_long_faces": 4,
+          "n_groups": 1,
+          "runtime_s": 1.1508,
+          "scene": "s1_2x4_lean4.000_ax+Y",
+          "lean_deg": 4.0,
+          "axis": "+Y"
+        }
+      ]
+    }
+  ]
+}
