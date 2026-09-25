@@ -27,16 +27,18 @@ def render_finder_figure(
     title: str,
     lines: list[str],
     banner: str | None,
+    point_colors: np.ndarray | None = None,
 ) -> Path:
     """Draw the stud. A banner is the blocked scaffold. No box is invented."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    shown = _subsample(points, 12000, seed=0)
+    shown, shown_colors = _subsample(points, 12000, seed=0, colors=point_colors)
+    color = WOOD if shown_colors is None else shown_colors
     fig = plt.figure(figsize=(11.2, 6.4), dpi=130, facecolor=BG)
     ax3 = fig.add_subplot(1, 2, 1, projection="3d")
     ax2 = fig.add_subplot(1, 2, 2)
     fig.subplots_adjust(left=0.04, right=0.98, top=0.84, bottom=0.22, wspace=0.22)
 
-    ax3.scatter(shown[:, 0], shown[:, 1], shown[:, 2], s=0.6, c=WOOD, alpha=0.45, linewidths=0)
+    ax3.scatter(shown[:, 0], shown[:, 1], shown[:, 2], s=0.6, c=color, alpha=0.85, linewidths=0)
     for segment in segments:
         _draw_segments(ax3, segment, BOX, 2.0)
     _style_3d(ax3)
@@ -47,7 +49,7 @@ def render_finder_figure(
     ax3.set_zlabel("Z (m)")
     ax3.set_title("Points and minimal OBB" if segments else "Input cloud, no OBB", color=INK, fontsize=11)
 
-    ax2.scatter(shown[:, 0], shown[:, 1], s=2.0, c=WOOD, alpha=0.35, linewidths=0)
+    ax2.scatter(shown[:, 0], shown[:, 1], s=2.0, c=color, alpha=0.8, linewidths=0)
     for segment in segments:
         for edge in segment:
             ax2.plot(edge[:, 0], edge[:, 1], color=BOX, lw=1.8)
@@ -93,11 +95,18 @@ def render_finder_figure(
     return path
 
 
-def _subsample(points: np.ndarray, count: int, seed: int) -> np.ndarray:
+def _subsample(
+    points: np.ndarray,
+    count: int,
+    seed: int,
+    colors: np.ndarray | None = None,
+) -> tuple[np.ndarray, np.ndarray | None]:
     if len(points) <= count:
-        return points
+        return points, colors
     rng = np.random.default_rng(seed)
-    return points[rng.choice(len(points), count, replace=False)]
+    index = rng.choice(len(points), count, replace=False)
+    picked_colors = None if colors is None else colors[index]
+    return points[index], picked_colors
 
 
 def _draw_segments(ax, segments: np.ndarray, color: str, width: float) -> None:
