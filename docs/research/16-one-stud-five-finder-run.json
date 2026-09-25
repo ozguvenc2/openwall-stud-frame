@@ -1,0 +1,324 @@
+{
+  "doc": "docs/research/16-one-stud-five-finder-run.md",
+  "date_america_los_angeles": "2026-09-25",
+  "stopped_after": "one synthetic stud, ranks 1-5 from the five-finder run, then pyRANSAC-3D rank 6 appended without re-rolling CloudCompare",
+  "not_field_accuracy": true,
+  "epsilon_locked": false,
+  "scene": {
+    "name": "stage0_2x4_lean0.050",
+    "stage": 0,
+    "nominal": "2x4",
+    "lean_deg": 0.05,
+    "seed": 2,
+    "spacing_m": 0.005,
+    "noise_std_m": 0.001,
+    "n_points": 25666,
+    "length_m": 2.4383999999999997,
+    "section_m": [
+      0.038099999999999995,
+      0.08889999999999999
+    ],
+    "reference": "gravity_z_no_floor_plane",
+    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "description": "Synthetic single stud. Generator gravity is +Z."
+  },
+  "stage0_bars": {
+    "detection": "precision = 1 and recall = 1",
+    "section_mm_max": 10.0,
+    "length_mm_max": 25.0,
+    "angle_deg_max_abs": 0.05,
+    "paint": "yellow"
+  },
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "open3d": "0.20.0",
+    "numpy": "2.4.4",
+    "matplotlib": "3.11.2",
+    "cloudcompare": "2.11.3-7.1build3",
+    "libpcl_segmentation": "1.14.0+dfsg-1",
+    "g++": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "nvidia_smi": "absent",
+    "pyransac3d": "0.7.0"
+  },
+  "commands": [
+    "python scripts/run_one_stud_five_finders.py",
+    "python -m openwall_stud.contenders.pcl_region_grow",
+    "python -m openwall_stud.contenders.cloudcompare_ransac",
+    "python -m openwall_stud.contenders.pointcept_ptv3",
+    "python -m openwall_stud.contenders.open3d_ml_s3dis",
+    "python -m openwall_stud.contenders.pyransac3d_cuboid"
+  ],
+  "stacks": [
+    {
+      "rank": 1,
+      "algorithm": "Refined Open3D stud prior",
+      "scorecard": "artifacts/scorecards/one_stud_open3d.json",
+      "figure": "docs/research/images/one-stud-five-finders/01-open3d.png",
+      "metrics": {
+        "status": "ran",
+        "pass_fail": "pass",
+        "bar_failures": [],
+        "detection_precision": 1.0,
+        "detection_recall": 1.0,
+        "n_pred": 1,
+        "section_err_mm": 7.7,
+        "length_err_mm": 5.57,
+        "angle_mae_deg": 0.00345,
+        "angle_max_abs_deg": 0.00345,
+        "paint": [
+          "yellow"
+        ],
+        "runtime_s": 0.0789,
+        "implementation_short": "Refined Open3D DBSCAN and minimal OBB. Stage 0 reference is +Z."
+      },
+      "blocker": null,
+      "implementation": {
+        "module": "openwall_stud.open3d_baseline",
+        "reference": "gravity_z_no_floor_plane",
+        "floor_found": false,
+        "dbscan_eps_m": 0.025,
+        "dbscan_min_points": 20,
+        "bbox_kind": "minimal_oriented"
+      }
+    },
+    {
+      "rank": 2,
+      "algorithm": "PCL region-grow + cuboid (Ozkan/Pochtrager, no Bassier merge)",
+      "scorecard": "artifacts/scorecards/one_stud_pcl.json",
+      "figure": "docs/research/images/one-stud-five-finders/02-pcl.png",
+      "metrics": {
+        "status": "ran",
+        "pass_fail": "pass",
+        "bar_failures": [],
+        "detection_precision": 1.0,
+        "detection_recall": 1.0,
+        "n_pred": 1,
+        "section_err_mm": 7.7,
+        "length_err_mm": 5.57,
+        "angle_mae_deg": 0.00345,
+        "angle_max_abs_deg": 0.00345,
+        "paint": [
+          "yellow"
+        ],
+        "runtime_s": 0.1816,
+        "implementation_short": "PCL 1.14 RegionGrowing returned 1 cluster and left 133 points unassigned. No face-union step ran. Minimal OBB, axis not forced to Z."
+      },
+      "blocker": null,
+      "implementation": {
+        "native_pcl_region_growing": true,
+        "region_grow": {
+          "implementation": "pcl::RegionGrowing",
+          "native_pcl_region_growing": true,
+          "smoothness_deg": 10.0,
+          "curvature_threshold": 1.0,
+          "neighbours": 30,
+          "min_cluster": 50,
+          "viewpoint": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "viewpoint_note": "Origin is inside this stud, so normals point inward and stay consistent on a face.",
+          "binary": "/workspace/artifacts/bin/pcl_region_grow",
+          "returncode": 0,
+          "stderr": "pcl_region_growing points=25666 clusters=1 smoothness_deg=10 curvature=1 k=30 min_cluster=50\n",
+          "library": "libpcl_segmentation.so.1.14"
+        },
+        "cuboid_assembly": {
+          "n_face_clusters": 1,
+          "n_unassigned": 133,
+          "adjacency_merges": 0,
+          "adjacency_gap_m": 0.02,
+          "voxel_m": 0.008,
+          "min_member_points": 100,
+          "n_members": 1,
+          "n_dropped_small_members": 0,
+          "remote_coplanar_merge": false,
+          "axis_forced_to_z": false
+        }
+      }
+    },
+    {
+      "rank": 3,
+      "algorithm": "CloudCompare RANSAC-SD / CloudComPy",
+      "scorecard": "artifacts/scorecards/one_stud_cloudcompare.json",
+      "figure": "docs/research/images/one-stud-five-finders/03-cloudcompare.png",
+      "metrics": {
+        "status": "ran",
+        "pass_fail": "fail",
+        "bar_failures": [
+          "detection P=0.125 R=1.0",
+          "section error 30.46 mm > 10.0",
+          "angle error 0.08836 deg > 0.05"
+        ],
+        "detection_precision": 0.125,
+        "detection_recall": 1.0,
+        "n_pred": 8,
+        "section_err_mm": 30.46,
+        "length_err_mm": 2.07,
+        "angle_mae_deg": 0.08836,
+        "angle_max_abs_deg": 0.08836,
+        "paint": [
+          "yellow",
+          "yellow",
+          "yellow",
+          "yellow",
+          "yellow",
+          "yellow",
+          "yellow",
+          "yellow"
+        ],
+        "runtime_s": 0.7853,
+        "implementation_short": "CloudCompare 2.11.3-7.1build3 RANSAC-SD, one OBB per plane or cylinder primitive, primitives not merged."
+      },
+      "blocker": null,
+      "implementation": {
+        "tool": "CloudCompare RANSAC Shape Detection",
+        "package": "2.11.3-7.1build3",
+        "plugin": "libQRANSAC_SD_PLUGIN.so",
+        "primitives": [
+          "PLANE",
+          "CYLINDER"
+        ],
+        "merged_primitives_into_stud": false,
+        "attempt": {
+          "cloud_loaded": true,
+          "n_points": 25666,
+          "binary": "/usr/bin/CloudCompare",
+          "command": [
+            "/usr/bin/CloudCompare",
+            "-SILENT",
+            "-NO_TIMESTAMP",
+            "-AUTO_SAVE",
+            "OFF",
+            "-C_EXPORT_FMT",
+            "PLY",
+            "-PLY_EXPORT_FMT",
+            "ASCII",
+            "-O",
+            "/workspace/artifacts/one_stud/cloudcompare/stud.ply",
+            "-RANSAC",
+            "EPSILON_ABSOLUTE",
+            "0.008",
+            "BITMAP_EPSILON_ABSOLUTE",
+            "0.020",
+            "SUPPORT_POINTS",
+            "400",
+            "MAX_NORMAL_DEV",
+            "25",
+            "PROBABILITY",
+            "0.01",
+            "ENABLE_PRIMITIVE",
+            "PLANE",
+            "CYLINDER",
+            "OUTPUT_INDIVIDUAL_SUBCLOUDS",
+            "OUT_CLOUD_DIR",
+            "/workspace/artifacts/one_stud/cloudcompare/primitives"
+          ],
+          "returncode": 0,
+          "n_primitive_clouds": 8,
+          "output_files": [
+            "stud_stud - Cloud_PLANE_0001_cloud.ply",
+            "stud_stud - Cloud_PLANE_0002_cloud.ply",
+            "stud_stud - Cloud_PLANE_0003_cloud.ply",
+            "stud_stud - Cloud_PLANE_0004_cloud.ply",
+            "stud_stud - Cloud_PLANE_0005_cloud.ply",
+            "stud_stud - Cloud_PLANE_0006_cloud.ply",
+            "stud_stud - Cloud_PLANE_0007_cloud.ply",
+            "stud_stud - Cloud_PLANE_0008_cloud.ply"
+          ],
+          "gpl": "Separate process. GPL sources were not copied into this repository."
+        },
+        "log_tail": "[Global Shift] Max abs. coord = 1e+04 / max abs. diag = 1e+06\n[ccColorScalesManager] Found 0 custom scale(s) in persistent settings\n[Plugin] Searching: /usr/lib/x86_64-linux-gnu/cloudcompare/plugins\n\tPlugin found: Animation (libQANIMATION_PLUGIN.so)\n\tPlugin found: Compass (libQCOMPASS_PLUGIN.so)\n\tPlugin found: Core I/O (libQCORE_IO_PLUGIN.so)\n\tPlugin found: EDL Shader (libQEDL_GL_PLUGIN.so)\n\tPlugin found: Hough Normals Computation (libQHOUGH_NORMALS_PLUGIN.so)\n\tPlugin found: PCV / ShadeVis (libQPCV_PLUGIN.so)\n\tPlugin found: Photoscan I/O (libQPHOTOSCAN_IO_PLUGIN.so)\n\tPlugin found: RANSAC Shape Detection (libQRANSAC_SD_PLUGIN.so)\n\tPlugin found: Surface of Revolution Analysis (libQSRA_PLUGIN.so)\n[Plugin] Searching: /home/ubuntu/.local/share/CCCorp/CloudCompare/plugins\n[Plugin] Searching: /usr/local/share/CCCorp/CloudCompare/plugins\n[Plugin] Searching: /usr/share/CCCorp/CloudCompare/plugins\n[Plugin][Core I/O] New file extensions registered:  GEOREF MA OBJ OFF PDMS PTX SBF STL VTK\n[Plugin][Photoscan I/O] New file extensions registered: PSZ\nAuto-save is disabled\nOutput export format (clouds) set to: PLY\n[LOADING]\nOpening file: '/workspace/artifacts/one_stud/cloudcompare/stud.ply'\n[PLY][Comment] Created by Open3D\n[I/O] File '/workspace/artifacts/one_stud/cloudcompare/stud.ply' loaded successfully\nFound one cloud with 25666 points\n\tRANSAC : EPSILON_ABSOLUTE\n\tEpsilon : 0.008\n\tRANSAC : BITMAP_EPSILON_ABSOLUTE\n\tBitmap Epsilon : 0.02\n\tRANSAC : SUPPORT_POINTS\n\tsupport points: 400\n\tRANSAC : MAX_NORMAL_DEV\n\tMax Normal Deviation : 25\n\tRANSAC : PROBABILITY\n\tProbability : 0.01\n\tRANSAC : ENABLE_PRIMITIVE\n\tRANSAC : OUTPUT_INDIVIDUAL_SUBCLOUDS\n\tRANSAC : OUT_CLOUD_DIR\n\tOUT_CLOUD_DIR : /workspace/artifacts/one_stud/cloudcompare/primitives\n[qRansacSD] Skipping shape, did not meet minimum point requirement\n[qRansacSD] Input cloud has been automtically hidden!\n[SAVING]\n[I/O] File '/workspace/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0001_cloud.ply' saved successfully\n[SAVING]\n[I/O] File '/workspace/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0002_cloud.ply' saved successfully\n[SAVING]\n[I/O] File '/workspace/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0003_cloud.ply' saved successfully\n[SAVING]\n[I/O] File '/workspace/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0004_cloud.ply' saved successfully\n[SAVING]\n[I/O] File '/workspace/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0005_cloud.ply' saved successfully\n[SAVING]\n[I/O] File '/workspace/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0006_cloud.ply' saved successfully\n[SAVING]\n[I/O] File '/workspace/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0007_cloud.ply' saved successfully\n[SAVING]\n[I/O] File '/workspace/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0008_cloud.ply' saved successfully\nProcessed finished in 0.58 s.\n\nQSocketNotifier: Can only be used with threads started with QThread\n"
+      }
+    },
+    {
+      "rank": 4,
+      "algorithm": "Pointcept PTv3 / PointGroup (hook only until labeled Stage 5)",
+      "scorecard": "artifacts/scorecards/one_stud_pointcept.json",
+      "figure": "docs/research/images/one-stud-five-finders/04-pointcept.png",
+      "metrics": {
+        "status": "blocked_install",
+        "pass_fail": "blocked_install",
+        "detection_precision": null,
+        "detection_recall": null,
+        "section_err_mm": null,
+        "length_err_mm": null,
+        "angle_mae_deg": null,
+        "angle_max_abs_deg": null,
+        "paint": null,
+        "runtime_s": null,
+        "blocker_short": "No NVIDIA GPU and no stud checkpoint. Cloud loaded, no forward pass."
+      },
+      "blocker": "Pointcept PTv3 was not run. nvidia-smi: absent. torch importable: False. pointcept importable: False. There is no NVIDIA device in this VM, so a CUDA PTv3 / PointGroup forward pass cannot execute. Torch and Pointcept were not installed for a CPU-only import that still cannot segment. No stud-class checkpoint is in this repo. BIMStruct3D weights were not downloaded (CC BY-NC-SA 4.0; classes are wall, column, clutter, and similar, not stud). The stage 0 cloud was loaded in-process (25666 points) and no forward pass ran. Detection, geometry, angle, paint, and runtime are null.",
+      "implementation": null
+    },
+    {
+      "rank": 5,
+      "algorithm": "Open3D-ML RandLA-Net or KPConv, S3DIS weights (control only)",
+      "scorecard": "artifacts/scorecards/one_stud_open3d_ml.json",
+      "figure": "docs/research/images/one-stud-five-finders/05-open3d-ml.png",
+      "metrics": {
+        "status": "blocked_install",
+        "pass_fail": "blocked_install",
+        "detection_precision": null,
+        "detection_recall": null,
+        "section_err_mm": null,
+        "length_err_mm": null,
+        "angle_mae_deg": null,
+        "angle_max_abs_deg": null,
+        "paint": null,
+        "runtime_s": null,
+        "blocker_short": "Open3D-ML weights not loaded and no forward pass. Cloud loaded. Metrics null."
+      },
+      "blocker": "Open3D-ML S3DIS control did not run a forward pass. Import probe: ModuleNotFoundError: No module named 'torch'. S3DIS RandLA-Net and KPConv weights were not downloaded. There is no NVIDIA GPU. The open3d pin stays 0.20.0; a separate ML extra was not installed over it. The stage 0 cloud was loaded in-process (25666 points). No label histogram was produced, and no stud box was fit from an office class. S3DIS mIoU is not copied here. Metrics are null.",
+      "implementation": null
+    },
+    {
+      "rank": 6,
+      "algorithm": "pyRANSAC-3D sequential cuboid",
+      "scorecard": "artifacts/scorecards/one_stud_pyransac3d.json",
+      "figure": "docs/research/images/one-stud-five-finders/06-pyransac3d.png",
+      "metrics": {
+        "status": "ran",
+        "pass_fail": "pass",
+        "bar_failures": [],
+        "detection_precision": 1.0,
+        "detection_recall": 1.0,
+        "n_pred": 1,
+        "section_err_mm": 7.7,
+        "length_err_mm": 5.57,
+        "angle_mae_deg": 0.00345,
+        "angle_max_abs_deg": 0.00345,
+        "paint": [
+          "yellow"
+        ],
+        "runtime_s": 1.5501,
+        "implementation_short": "pyRANSAC-3D 0.7.0 Cuboid, thresh 0.05 m, 1000 iterations, seed 2. Plate peel kept every Stage 0 point. First cuboid inliers were 25666 of 25666. Wall-swallow did not fire. Shared minimal OBB, axis not forced to Z."
+      },
+      "blocker": null,
+      "implementation": {
+        "module": "openwall_stud.contenders.pyransac3d_cuboid",
+        "version": "0.7.0",
+        "thresh_m": 0.05,
+        "max_iteration": 1000,
+        "random_seed": 2,
+        "peel_floor_found": false,
+        "n_points_after_peel": 25666,
+        "wall_swallow_triggered": false,
+        "library_extents_sorted_m": [0.05765, 0.09605, 2.44398],
+        "n_inliers": 25666,
+        "n_accepted": 1,
+        "stopped": "accepted_and_remainder_below_min_points"
+      }
+    }
+  ],
+  "notes": [
+    "Synthetic stage 0 only. Not a field measurement.",
+    "PCL 1.14 RegionGrowing returned one cluster and 133 unassigned points, so the face-union step did not run. Printed section, length, and angle match Open3D because both boxes cover nearly the same points. Runtimes differ.",
+    "CloudCompare -RANSAC had no seed. This process saved 8 primitive clouds, all named as planes. Primitives were not merged. Stage 0 bars fail on precision, section, and angle.",
+    "Pointcept and Open3D-ML did not segment. Their metric cells are null.",
+    "Rank 6 is pyRANSAC-3D v0.7.0 sequential cuboid, the doc 17 add, appended on this same cloud without re-rolling ranks 1-5. Inliers were the whole stud, so the shared OBB matches the Open3D and PCL section, length, and angle. Library extents are the wall-swallow check and are not the scored section. Wall-swallow did not fire."
+  ]
+}
