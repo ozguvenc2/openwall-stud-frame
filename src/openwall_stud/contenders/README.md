@@ -11,6 +11,11 @@ the methods brief). Oz approved pyRANSAC-3D v0.7.0 sequential cuboid after
 the same plate peel as rank 1. That slot is not the master-table row numbered
 6 in the ranking note (Chen 2025), which stays out of the bake-off.
 
+Rank 7 is SAM 2, another bake-off add. It is not master-table row 7
+(ClearEdge3D EdgeWise). The module projects a cloud and lifts a mask when
+one exists. On this tree the weights are not run. The write-up is
+`docs/research/24-sam2-rank7-and-curriculum.md`.
+
 Each module below loads that same cloud unless `--stub` is set. `--stub` is
 what `scripts/run_stage0_baseline.py` still uses when it records null cards
 for the multi-scene Open3D sweep. A stub does not segment.
@@ -22,6 +27,7 @@ for the multi-scene Open3D sweep. A stub does not segment.
 | 4 | `pointcept_ptv3.py` | `python -m openwall_stud.contenders.pointcept_ptv3` | `control` when BIMStruct3D PTv3 runs; stud cells stay null (no stud class). `blocked_install` if CUDA torch or the checkpoint cannot run |
 | 5 | `open3d_ml_s3dis.py` | `python -m openwall_stud.contenders.open3d_ml_s3dis` | `control` when RandLA-Net S3DIS runs; stud cells stay null. `blocked_install` if `open3d.ml.torch` or the checkpoint cannot run |
 | 6 | `pyransac3d_cuboid.py` | `python -m openwall_stud.contenders.pyransac3d_cuboid` | `ran` when pyRANSAC-3D v0.7.0 fits a cuboid; `blocked_install` if the import fails |
+| 7 | `sam2_mask.py` | `python -m openwall_stud.contenders.sam2_mask` | `blocked_install` when `sam2` or the checkpoint is missing. Stud metrics stay null. A generator-mask control is a separate card and is not SAM 2 |
 
 Run them from the repo root with `PYTHONPATH=src`.
 

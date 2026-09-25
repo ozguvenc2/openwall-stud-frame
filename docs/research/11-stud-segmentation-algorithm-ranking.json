@@ -45,7 +45,13 @@
       "why_not_a_score": "Heavy timber, file Z is not documented as gravity, DBSCAN merges contacts, warn band is not a device error."
     }
   },
-  "top5_ids": ["A1", "A2", "A3", "A4", "A5"],
+  "top5_ids": [
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5"
+  ],
   "top5_why": "Head-to-head on the same clouds: corrected Open3D stud prior, PCL timber cuboids, Schnabel primitives as an independent check, Pointcept after labels (BIMStruct3D zero-shot as a control), and one S3DIS Open3D-ML pass so office mIoU is not reused.",
   "ranking": [
     {
@@ -353,6 +359,31 @@
         "https://www.clearedge3d.com/dpr-case-study-page/",
         "docs/research/02-software-segmentation-angles.md"
       ]
+    }
+  ],
+  "bakeoff_adds": [
+    {
+      "bakeoff_rank": 6,
+      "id": "B6",
+      "name": "pyRANSAC-3D v0.7.0 sequential cuboid after the rank-1 peel",
+      "not_master_table_rank": 6,
+      "master_table_rank_6_remains": "Lin Chen, Liufang Jiang, and Haibei Xiong 2025",
+      "status": "ran_on_phase1_s1"
+    },
+    {
+      "bakeoff_rank": 7,
+      "id": "B7",
+      "name": "SAM 2 image/video mask, lifted onto points",
+      "not_master_table_rank": 7,
+      "master_table_rank_7_remains": "ClearEdge3D EdgeWise",
+      "license": "Apache-2.0 (code and official checkpoints). Not linked in this pass.",
+      "license_url": "https://github.com/facebookresearch/sam2",
+      "paper": "https://arxiv.org/abs/2408.00714",
+      "status": "blocked_install",
+      "stud_metrics": null,
+      "how_it_applies": "Project a registered RGB or depth view, take a mask, lift visible points, then the shared box. A bare LAS or PLY skips it. Multi-view lifts would be unioned.",
+      "this_pass": "docs/research/24-sam2-rank7-and-curriculum.md",
+      "note": "No mask IoU. Generator-mask control is not a SAM 2 score."
     }
   ]
 }

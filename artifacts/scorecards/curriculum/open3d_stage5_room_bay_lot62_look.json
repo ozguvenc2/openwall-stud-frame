@@ -1,0 +1,899 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A1",
+  "algorithm": "Refined Open3D stud prior",
+  "rank": 1,
+  "stage": 5,
+  "status": "ran_synthetic",
+  "metrics_are_measurements": true,
+  "measurement_scope": "synthetic generator, this process",
+  "epsilon_locked": false,
+  "scene": {
+    "name": "stage5_room_bay_lot62_look",
+    "description": "Synthetic room or bay with a LOT-62 look: four stud walls, 16 inch centers, corner air gap 0.10 m, door gap on the south wall (5 south studs kept), plates and floor, no header. Not the Lot 62 Polycam file. Not a real capture. Not stages 6 or 7.",
+    "seed": 62,
+    "spacing_m": 0.006,
+    "noise_std_m": 0.001,
+    "n_points": 532301,
+    "n_studs": 26,
+    "reference": "floor_normal",
+    "floor_found": true,
+    "removed_z_intervals_m": [
+      [
+        -0.010248784033992289,
+        0.04852453961191431
+      ],
+      [
+        2.4654583162912265,
+        2.525855809180177
+      ]
+    ],
+    "tolerance_deg": 0.11937,
+    "meta": {
+      "curriculum_class": "stage5_synthetic_room",
+      "look": "LOT-62 framed bay you can walk",
+      "not_the_polycam_loft": true,
+      "parallel_corner_prs": [
+        23,
+        24
+      ],
+      "corner_gap_m": 0.1,
+      "min_plan_gap_after_lean_tip_m": 0.12336531497079137,
+      "header": "omitted; a global Z peel would slice every stud",
+      "door_x_m": [
+        0.6,
+        1.55
+      ],
+      "n_studs": 26,
+      "stud_spacing_m": 0.006,
+      "plate_spacing_m": 0.01,
+      "floor_spacing_m": 0.02,
+      "training_gate": false,
+      "stage_gate": false
+    }
+  },
+  "detection": {
+    "n_true": 26,
+    "n_pred": 26,
+    "true_positives": 26,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "match_radius_m": 0.15,
+    "scope": "synthetic_scene_only",
+    "note": "Counts are this synthetic scene, not a field accuracy."
+  },
+  "geometry": {
+    "max_section_error_mm": 7.93,
+    "max_length_error_mm": 22.12,
+    "per_stud": [
+      {
+        "stud_id": "S20",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          44.99,
+          96.12
+        ],
+        "section_error_mm": [
+          6.89,
+          7.22
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.28,
+        "length_error_mm": -22.12
+      },
+      {
+        "stud_id": "S14",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.14,
+          96.36
+        ],
+        "section_error_mm": [
+          7.04,
+          7.46
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.63,
+        "length_error_mm": -21.77
+      },
+      {
+        "stud_id": "S1",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.48,
+          96.4
+        ],
+        "section_error_mm": [
+          7.38,
+          7.5
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.57,
+        "length_error_mm": -21.83
+      },
+      {
+        "stud_id": "S2",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.14,
+          95.87
+        ],
+        "section_error_mm": [
+          7.04,
+          6.97
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.78,
+        "length_error_mm": -21.62
+      },
+      {
+        "stud_id": "S24",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.22,
+          96.22
+        ],
+        "section_error_mm": [
+          7.12,
+          7.32
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.67,
+        "length_error_mm": -21.73
+      },
+      {
+        "stud_id": "S11",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.31,
+          96.39
+        ],
+        "section_error_mm": [
+          7.21,
+          7.49
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.86,
+        "length_error_mm": -21.54
+      },
+      {
+        "stud_id": "S17",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.47,
+          95.54
+        ],
+        "section_error_mm": [
+          7.37,
+          6.64
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.77,
+        "length_error_mm": -21.63
+      },
+      {
+        "stud_id": "S10",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.13,
+          96.62
+        ],
+        "section_error_mm": [
+          7.03,
+          7.72
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.78,
+        "length_error_mm": -21.62
+      },
+      {
+        "stud_id": "S22",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.2,
+          95.59
+        ],
+        "section_error_mm": [
+          7.1,
+          6.69
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.82,
+        "length_error_mm": -21.58
+      },
+      {
+        "stud_id": "S21",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.28,
+          96.29
+        ],
+        "section_error_mm": [
+          7.18,
+          7.39
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.7,
+        "length_error_mm": -21.7
+      },
+      {
+        "stud_id": "S6",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.17,
+          95.68
+        ],
+        "section_error_mm": [
+          7.07,
+          6.78
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.58,
+        "length_error_mm": -21.82
+      },
+      {
+        "stud_id": "S23",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.61,
+          95.19
+        ],
+        "section_error_mm": [
+          7.51,
+          6.29
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.66,
+        "length_error_mm": -21.74
+      },
+      {
+        "stud_id": "S25",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.03,
+          95.71
+        ],
+        "section_error_mm": [
+          6.93,
+          6.81
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.62,
+        "length_error_mm": -21.78
+      },
+      {
+        "stud_id": "S15",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.16,
+          95.06
+        ],
+        "section_error_mm": [
+          7.06,
+          6.16
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.91,
+        "length_error_mm": -21.49
+      },
+      {
+        "stud_id": "S13",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.28,
+          95.34
+        ],
+        "section_error_mm": [
+          7.18,
+          6.44
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.65,
+        "length_error_mm": -21.75
+      },
+      {
+        "stud_id": "S19",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.63,
+          95.56
+        ],
+        "section_error_mm": [
+          7.53,
+          6.66
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.63,
+        "length_error_mm": -21.77
+      },
+      {
+        "stud_id": "S26",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.08,
+          95.83
+        ],
+        "section_error_mm": [
+          6.98,
+          6.93
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.75,
+        "length_error_mm": -21.65
+      },
+      {
+        "stud_id": "S9",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.54,
+          96.41
+        ],
+        "section_error_mm": [
+          7.44,
+          7.51
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.82,
+        "length_error_mm": -21.58
+      },
+      {
+        "stud_id": "S5",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          44.8,
+          95.96
+        ],
+        "section_error_mm": [
+          6.7,
+          7.06
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.65,
+        "length_error_mm": -21.75
+      },
+      {
+        "stud_id": "S3",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.34,
+          95.63
+        ],
+        "section_error_mm": [
+          7.24,
+          6.73
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.82,
+        "length_error_mm": -21.58
+      },
+      {
+        "stud_id": "S18",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          44.8,
+          96.67
+        ],
+        "section_error_mm": [
+          6.7,
+          7.77
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.28,
+        "length_error_mm": -22.12
+      },
+      {
+        "stud_id": "S4",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          46.03,
+          95.7
+        ],
+        "section_error_mm": [
+          7.93,
+          6.8
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.44,
+        "length_error_mm": -21.96
+      },
+      {
+        "stud_id": "S8",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.91,
+          95.51
+        ],
+        "section_error_mm": [
+          7.81,
+          6.61
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.8,
+        "length_error_mm": -21.6
+      },
+      {
+        "stud_id": "S16",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.45,
+          96.28
+        ],
+        "section_error_mm": [
+          7.35,
+          7.38
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.61,
+        "length_error_mm": -21.79
+      },
+      {
+        "stud_id": "S7",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.17,
+          95.49
+        ],
+        "section_error_mm": [
+          7.07,
+          6.59
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.67,
+        "length_error_mm": -21.73
+      },
+      {
+        "stud_id": "S12",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.47,
+          95.96
+        ],
+        "section_error_mm": [
+          7.37,
+          7.06
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.34,
+        "length_error_mm": -22.06
+      }
+    ],
+    "bbox_kind": "minimal_oriented",
+    "note": "Section is the two smaller minimal-OBB extents versus the dressed nominal. Length is the longest extent versus the generator length. Gaussian tails and the plate slab margin both move these numbers."
+  },
+  "angle": {
+    "mae_deg": 0.01134,
+    "max_abs_error_deg": 0.0423,
+    "pct_in_band": 100.0,
+    "band_deg": 0.11937,
+    "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
+    "reference": "floor_normal",
+    "per_stud": [
+      {
+        "stud_id": "S20",
+        "true_deg": 0.00924,
+        "measured_deg": 0.01099,
+        "abs_error_deg": 0.00175,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S14",
+        "true_deg": 0.29121,
+        "measured_deg": 0.30617,
+        "abs_error_deg": 0.01495,
+        "production_color": "yellow",
+        "hypothetical_color": "red"
+      },
+      {
+        "stud_id": "S1",
+        "true_deg": 0.19122,
+        "measured_deg": 0.21806,
+        "abs_error_deg": 0.02684,
+        "production_color": "yellow",
+        "hypothetical_color": "red"
+      },
+      {
+        "stud_id": "S2",
+        "true_deg": 0.00924,
+        "measured_deg": 0.01115,
+        "abs_error_deg": 0.00191,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S24",
+        "true_deg": 0.30293,
+        "measured_deg": 0.32226,
+        "abs_error_deg": 0.01932,
+        "production_color": "yellow",
+        "hypothetical_color": "red"
+      },
+      {
+        "stud_id": "S11",
+        "true_deg": 0.00924,
+        "measured_deg": 0.00924,
+        "abs_error_deg": 0.0,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S17",
+        "true_deg": 0.00924,
+        "measured_deg": 0.02197,
+        "abs_error_deg": 0.01273,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S10",
+        "true_deg": 0.00924,
+        "measured_deg": 0.03604,
+        "abs_error_deg": 0.0268,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S22",
+        "true_deg": 0.00924,
+        "measured_deg": 0.02171,
+        "abs_error_deg": 0.01247,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S21",
+        "true_deg": 0.00924,
+        "measured_deg": 0.02172,
+        "abs_error_deg": 0.01249,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S6",
+        "true_deg": 0.00924,
+        "measured_deg": 0.02173,
+        "abs_error_deg": 0.01249,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S23",
+        "true_deg": 0.00924,
+        "measured_deg": 0.01653,
+        "abs_error_deg": 0.00729,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S25",
+        "true_deg": 0.00924,
+        "measured_deg": 0.02171,
+        "abs_error_deg": 0.01247,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S15",
+        "true_deg": 0.00924,
+        "measured_deg": 0.01492,
+        "abs_error_deg": 0.00569,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S13",
+        "true_deg": 0.00924,
+        "measured_deg": 0.00924,
+        "abs_error_deg": 0.0,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S19",
+        "true_deg": 0.00924,
+        "measured_deg": 0.00403,
+        "abs_error_deg": 0.0052,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S26",
+        "true_deg": 0.00924,
+        "measured_deg": 0.0065,
+        "abs_error_deg": 0.00273,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S9",
+        "true_deg": 0.00924,
+        "measured_deg": 0.05154,
+        "abs_error_deg": 0.0423,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S5",
+        "true_deg": 0.00924,
+        "measured_deg": 0.0074,
+        "abs_error_deg": 0.00184,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S3",
+        "true_deg": 0.00924,
+        "measured_deg": 0.01871,
+        "abs_error_deg": 0.00947,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S18",
+        "true_deg": 0.00924,
+        "measured_deg": 0.03254,
+        "abs_error_deg": 0.0233,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S4",
+        "true_deg": 0.11123,
+        "measured_deg": 0.10552,
+        "abs_error_deg": 0.00571,
+        "production_color": "yellow",
+        "hypothetical_color": "yellow"
+      },
+      {
+        "stud_id": "S8",
+        "true_deg": 0.12312,
+        "measured_deg": 0.11655,
+        "abs_error_deg": 0.00657,
+        "production_color": "yellow",
+        "hypothetical_color": "yellow"
+      },
+      {
+        "stud_id": "S16",
+        "true_deg": 0.00924,
+        "measured_deg": 0.03838,
+        "abs_error_deg": 0.02915,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S7",
+        "true_deg": 0.00924,
+        "measured_deg": 0.00924,
+        "abs_error_deg": 0.0,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S12",
+        "true_deg": 0.30293,
+        "measured_deg": 0.30163,
+        "abs_error_deg": 0.0013,
+        "production_color": "yellow",
+        "hypothetical_color": "red"
+      }
+    ],
+    "note": "Truth is the generator lean against the same reference vector the pipeline used. Not a SKIL reading."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "tolerance_deg": 0.11937,
+    "production_colors": [
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow"
+    ],
+    "production_rule": "epsilon unlocked, so every stud is yellow",
+    "hypothetical_placeholder_epsilon_deg": 0.05,
+    "hypothetical_placeholder_note": "0.05 deg is a round illustration of the color rule. It is not a measured device band.",
+    "hypothetical_colors": [
+      "green",
+      "green",
+      "green",
+      "green",
+      "green",
+      "yellow",
+      "red",
+      "green",
+      "red",
+      "green",
+      "red",
+      "green",
+      "green",
+      "green",
+      "green",
+      "green",
+      "yellow",
+      "green",
+      "green",
+      "green",
+      "green",
+      "green",
+      "green",
+      "green",
+      "green",
+      "red"
+    ],
+    "note": "Do not read hypothetical colors as a pass/fail call."
+  },
+  "cost": {
+    "runtime_s": 1.9151,
+    "dbscan_eps_m": 0.025,
+    "dbscan_min_points": 20,
+    "bbox_kind": "minimal_oriented",
+    "license": "MIT",
+    "license_url": "https://github.com/isl-org/Open3D",
+    "hardware": "CPU",
+    "n_points_in": 532301,
+    "n_points_after_peel": 439845,
+    "floor_found": true,
+    "failure_modes": [
+      "DBSCAN eps above the bay gap merges neighboring studs into one box.",
+      "DBSCAN eps below the surface spacing splits one stud into faces.",
+      "A plate side face left behind bridges bays.",
+      "Peeling a vertical stud-face plane would delete the wall.",
+      "PCA OBB on a short or one-sided cluster can yaw the long axis."
+    ],
+    "note": "Runtime is this process on this scene. It is not a field budget."
+  }
+}

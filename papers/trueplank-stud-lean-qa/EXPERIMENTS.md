@@ -12,10 +12,12 @@ Curriculum stages match [`METHODS.md`](METHODS.md). This file says what has been
 | E-S1 | 25 scenes × six finders. Magnitudes 0, 0.05, 0.12, 0.15, 0.30, 1, 4 degrees. Axes ±X, ±Y, and `none` at 0 | S | **Run** 2026-09-25, Oz_PC. Ranks 1, 2, 6: 25/25 stage-0 pass. Rank 3 first sweep: `blocked_install` (PR #18). After `CLOUDCOMPARE_EXE` discovery (PR #19): lean on 25/25, stage-0 pass 0/25. Ranks 4 and 5: control. `docs/research/19-phase1-s1-lean-sweep.md` |
 | E-ft | Synthetic fine-tune, ranks 4 and 5. 386 train clouds. 25 phase-1 cards held out | S | **Run** 2026-09-25, Oz_PC. Rank 4 train 98.1 s, infer 0.050 s, phase-1 stud boxes 25/25. Rank 5 train 237.5 s, infer 0.149 s, phase-1 stud boxes 25/25. Floorless clouds labeled entirely stud. `docs/research/20-synthetic-stud-finetune.md` |
 | E-cc-tune | Stud-only CloudCompare parameter tune. Plane only, then a four-face merge | S | **Run** 2026-09-25, Oz_PC, CPU, rank 3 only. Stage-0 pass 25/25, one box per scene. Note and scorecards are on `cursor/cc-stud-param-tune-78b7` (PR #22), not in this tree. Quoted in Table 8 of the draft |
-| E3 | One real stud, finders, SKIL if standing | F | **Planned.** No cloud in git |
-| E4–E7 | Wall, room, story, complex frame | F | **Planned.** After a real capture |
+| E4 | One real wall | F | **Planned.** After a real capture |
+| E6–E7 | Story, complex frame | F | **Planned.** Stub cards only. The synthetic room is not these stages |
 | ER | Realisticized generator | R | **Not specified** |
-| E-sam | SAM 2 mask lifted onto points | — | **Not run.** Gated on a registered image (PR #14) |
+| E-sam | SAM 2 mask lifted onto points | S scaffold | **Blocked.** 2026-09-25, this CPU. No torch, no `sam2`, no checkpoint. Projection of one stud recorded. Stud metrics null. `docs/research/24-sam2-rank7-and-curriculum.md` |
+| E-room | Rank 1 on a synthetic 26-stud room, plus stage 2/3 expansions and S1b | S | **Run** 2026-09-25, CPU. Room recall 1, yellow. 2 mm noise and bows do not clear the straight-stud bars. Ranks 2–7 on the room `not_run`. Stages 6–7 stub. Same note |
+| E3 | One real stud, finders, SKIL if standing | F | **Planned.** No cloud in git. Unchanged by E-room |
 
 The one-stud protocol in the design plan is the field arm (E3). E-one is the synthetic stand-in and must stay labeled class S.
 

@@ -11,7 +11,9 @@ from openwall_stud.contenders.open3d_ml_s3dis import OPEN3D_ML
 from openwall_stud.contenders.pcl_region_grow import PCL
 from openwall_stud.contenders.pointcept_ptv3 import POINTCEPT
 from openwall_stud.contenders.pyransac3d_cuboid import PYRANSAC
+from openwall_stud.contenders.sam2_mask import SAM2
 
 STUBS = (PCL, CLOUDCOMPARE, POINTCEPT, OPEN3D_ML)
-# Rank 6 is the doc 17 add (pyRANSAC-3D). It is not one of the null stubs above.
-FINDERS = (PCL, CLOUDCOMPARE, POINTCEPT, OPEN3D_ML, PYRANSAC)
+# Rank 6 is the doc 17 add (pyRANSAC-3D). Rank 7 is SAM 2.
+# Neither is one of the null stubs above, and neither replaces a master-table row.
+FINDERS = (PCL, CLOUDCOMPARE, POINTCEPT, OPEN3D_ML, PYRANSAC, SAM2)

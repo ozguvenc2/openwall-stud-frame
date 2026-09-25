@@ -1,0 +1,122 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "B7",
+  "algorithm": "SAM 2 image/video mask, lifted onto points",
+  "rank": 7,
+  "stage": 0,
+  "status": "blocked_install",
+  "epsilon_locked": false,
+  "metrics_are_measurements": false,
+  "measurement_scope": "not measured; the stack did not segment this cloud",
+  "scene": {
+    "name": "stage0_2x4_lean0.050",
+    "description": "Synthetic single stud. Generator gravity is +Z.",
+    "seed": 2,
+    "n_points": 25666,
+    "stage": 0
+  },
+  "attempt": {
+    "model": "not executed",
+    "paper": "https://arxiv.org/abs/2408.00714",
+    "license_url": "https://github.com/facebookresearch/sam2",
+    "install": {
+      "torch_installed": false,
+      "torch_version": null,
+      "cuda": null,
+      "sam2_installed": false,
+      "checkpoint_env": "SAM2_CHECKPOINT",
+      "checkpoint_set": false,
+      "checkpoint_is_file": false,
+      "ready": false,
+      "blocker_short": "sam2 not installed"
+    },
+    "projection": {
+      "camera": {
+        "eye_m": [
+          0.55,
+          -1.15,
+          1.15
+        ],
+        "target_m": [
+          0.0,
+          0.0,
+          1.22
+        ],
+        "up": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "fov_y_deg": 42.0,
+        "width": 640,
+        "height": 480,
+        "frame": "generator Z-up"
+      },
+      "intrinsics": {
+        "fx": 625.2213755265124,
+        "fy": 625.2213755265124,
+        "cx": 319.5,
+        "cy": 239.5,
+        "width": 640,
+        "height": 480,
+        "fov_y_deg": 42.0
+      },
+      "n_points": 25666,
+      "n_projected_inside": 10214,
+      "n_occupied_pixels": 8269,
+      "n_stud_pixels_generator": 8269,
+      "n_stud_points": 25666,
+      "note": "These counts are the pinhole raster of this synthetic cloud. They are not a SAM 2 mask IoU and not a stud score."
+    }
+  },
+  "blocker": "SAM 2 is not installed in this process. No mask was produced. Stud metrics are null.",
+  "blocker_short": "sam2 not installed",
+  "detection": {
+    "n_true": null,
+    "n_pred": null,
+    "true_positives": null,
+    "false_positives": null,
+    "false_negatives": null,
+    "precision": null,
+    "recall": null,
+    "note": "SAM 2 is not installed in this process. No mask was produced. Stud metrics are null."
+  },
+  "geometry": {
+    "max_section_error_mm": null,
+    "max_length_error_mm": null,
+    "per_stud": [],
+    "note": "SAM 2 is not installed in this process. No mask was produced. Stud metrics are null."
+  },
+  "angle": {
+    "mae_deg": null,
+    "pct_in_band": null,
+    "band_deg": null,
+    "per_stud": [],
+    "note": "SAM 2 is not installed in this process. No mask was produced. Stud metrics are null."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "production_colors": [],
+    "hypothetical_placeholder_epsilon_deg": null,
+    "hypothetical_colors": [],
+    "note": "SAM 2 is not installed in this process. No mask was produced. Stud metrics are null."
+  },
+  "cost": {
+    "runtime_s": null,
+    "license": "Apache-2.0 (SAM 2 code and checkpoint license; not linked here)",
+    "hardware": "not run; no SAM 2 mask on this process",
+    "failure_modes": [
+      "SAM 2 needs an image. A bare LAS or PLY has no mask.",
+      "A single view hides the far faces of a stud.",
+      "Lifting a mask still needs the shared box. The network does not emit theta or epsilon.",
+      "Corner studs that touch in a real bay are not separated by an image mask alone."
+    ],
+    "note": "SAM 2 is not installed in this process. No mask was produced. Stud metrics are null."
+  },
+  "notes": [
+    "SAM 2 is not installed in this process. No mask was produced. Stud metrics are null.",
+    "Bake-off rank 7. The master-table row numbered 7 remains ClearEdge3D EdgeWise and is not this stack.",
+    "Device epsilon is unlocked. No production color was painted because no stud box was fit from a SAM 2 mask."
+  ]
+}

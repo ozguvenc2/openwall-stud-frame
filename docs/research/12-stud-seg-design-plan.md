@@ -36,15 +36,19 @@ Order is doc 11. Status is this repo today.
 
 | Rank | Stack | This repo | Next real experiment |
 | --- | --- | --- | --- |
-| 1 | Refined Open3D. Horizontal slab peel, DBSCAN with `eps` below the bay gap, 2×4 / 2×6 prior, minimal OBB, shared paint. | **Ready** on synthetic stages 0, 2, and 3. `scripts/run_stage0_baseline.py`. | A real single stud (stage 1) with SKIL on it. Keep ε unlocked. |
-| 2 | PCL region growing, then a cuboid in the Özkan / Pöchtrager sense. **No** Bassier remote coplanar merge. **No** axis forced to Z. | **Stub.** `python -m openwall_stud.contenders.pcl_region_grow`. PCL is not installed. | Same three synthetic scenes. Count merged bays and split studs against rank 1. |
-| 3 | CloudCompare RANSAC Shape Detection, CloudComPy optional for batch. Schnabel primitives. GPL-3.0 if linked. | **Stub.** Inspector notes in the module docstring. Not run. | On the stage 3 cloud, compare primitive count to the four studs. Expect planes, not four studs. |
-| 4 | Pointcept PTv3 / PointGroup. | **Stub.** Hook only. No CUDA train, no weights. | Nothing until stage 5 has stud labels. BIMStruct3D zero-shot is a control (no stud class, weights CC BY-NC-SA 4.0), not the model. |
-| 5 | Open3D-ML RandLA-Net or KPConv, S3DIS weights. | **Stub.** Control only. Weights not loaded. | One forward pass on the stage 5 cloud. Record the label histogram. Do not paint from it. Do not copy S3DIS mIoU. |
+| 1 | Refined Open3D. Horizontal slab peel, DBSCAN with `eps` below the bay gap, 2×4 / 2×6 prior, minimal OBB, shared paint. | **Ready** on synthetic stages 0, 2, 3, and the stage-5 room. `scripts/run_stage0_baseline.py` and `scripts/run_curriculum_through_room.py`. | A real single stud (stage 1) with SKIL on it. Keep ε unlocked. |
+| 2 | PCL region growing, then a cuboid in the Özkan / Pöchtrager sense. **No** Bassier remote coplanar merge. **No** axis forced to Z. | Phase 1 scored a NumPy port. **Not re-run** on the room. | Same clouds as rank 1 when PCL is present. Count merged bays. |
+| 3 | CloudCompare RANSAC Shape Detection, CloudComPy optional for batch. Schnabel primitives. GPL-3.0 if linked. | Phase 1 scored it. **Not re-run** on the room. | On a multi-stud cloud, compare primitive count to stud count. |
+| 4 | Pointcept PTv3 / PointGroup. | Phase 1 control and a synthetic fine-tune exist. **Not run** on the room (no GPU weights here). The synthetic room is not the training gate. | Labels on a real stage-5 capture, then a fine-tune. BIMStruct3D zero-shot stays a control. |
+| 5 | Open3D-ML RandLA-Net or KPConv, S3DIS weights. | **Stub on this curriculum pass.** Phase 1 already ran it as a control and as a synthetic fine-tune. | One forward pass on a real stage-5 capture. The synthetic room below is not that gate. Do not paint from S3DIS labels. Do not copy S3DIS mIoU. |
+| 6 | pyRANSAC-3D v0.7.0 sequential cuboid after the rank-1 peel. Bake-off add. Not master-table row 6 (Chen 2025). | **Not re-run here.** Phase 1 S1 already scored it. | Same clouds as rank 1 when a machine runs the sweep. Not required for the synthetic room card. |
+| 7 | SAM 2 image/video mask, lifted onto points. Bake-off add. Not master-table row 7 (EdgeWise). | **Scaffold.** Projection ran. Weights did not. Stud metrics null. `python -m openwall_stud.contenders.sam2_mask`. | A registered RGB or depth view, then a mask, then the shared box. Doc 24. |
 
 Shared post-step, once a stack actually returns stud points: tight box, θ versus the stored reference, then `openwall_stud.paint`. Ranks differ in the first arrow only.
 
-On 2026-09-25 the five finders were attempted on one synthetic 2×4 at 0.05° lean (seed 2) and the work stopped there. See [16-one-stud-five-finder-run.md](16-one-stud-five-finder-run.md). That note is the measured result. It is not a stage 2, stage 3, or lean-sweep expansion.
+On 2026-09-25 the five finders were attempted on one synthetic 2×4 at 0.05° lean (seed 2). See [16-one-stud-five-finder-run.md](16-one-stud-five-finder-run.md). Phase 1 then ran the six-finder lean sweep. The curriculum continuation in [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md) adds SAM 2 as bake-off rank 7 and carries rank 1 through a synthetic room. It does not replace those earlier notes.
+
+The painted-corner pilot (PR [#24](https://github.com/ozguvenc2/openwall-stud-frame/pull/24)) and the synthetic neural corner (PR [#23](https://github.com/ozguvenc2/openwall-stud-frame/pull/23)) are a **parallel** experiment. They are not a stage in the ladder below and they are not a gate on it.
 
 Pictures: rank 1 is a drawing of the real run. Ranks 2–5 are diagrams with a scaffold banner. The wall in those diagrams is the synthetic stage 3 input, not that stack’s output.
 
@@ -57,11 +61,11 @@ Pictures: rank 1 is a drawing of the real run. Ranks 2–5 are diagrams with a s
 | 2 | Stud plus a floor or slab. Floor removed, stud kept. | **In this repo** on a synthetic slab. The cloud is not leveled onto that plane. | Floor normal. |
 | 3 | Mini wall, 3–5 studs, little noise. First product-shaped milestone. | **In this repo** on four synthetic 2×4s at 16 inch centers, with plates. No merged bay. | Floor normal. |
 | 4 | One real wall, plus opening clutter. | Same stud class. Do not require king / jack / cripple labels. | Floor normal, SKIL on a sample of studs. |
-| 5 | One room or bay with a LOT-62 look (a single framed bay you can walk). | The cloud that later training is allowed to see. Open3D-ML control pass lives here, not before. | Floor normal, SKIL sample. |
-| 6 | Whole single-story frame. | Only after stage 5 has a filled scorecard on a real capture. | Same reference rule. |
-| 7 | Two-story or a complex frame. | Last. Not a shortcut to skip stages 3–5. | Same reference rule. |
+| 5 | One room or bay with a LOT-62 look (a single framed bay you can walk). | A **synthetic** look-alike is in this repo (`stage5_room_bay_lot62_look`). Rank 1 has a scorecard. It is not the Lot 62 Polycam file and not a real capture. It does not open training. A real stage-5 capture is still the cloud later training is allowed to see. | Floor normal on the synthetic room. SKIL sample only on a real capture. |
+| 6 | Whole single-story frame. | Stub only. Needs a real capture. The synthetic room is not this stage. | Same reference rule. |
+| 7 | Two-story or a complex frame. | Stub only. Needs a real capture. | Same reference rule. |
 
-Stages 4–7 have no clouds in git and no metrics. Their scorecard cells stay null until a capture exists.
+Stage 1 and stage 4 have no clouds in git. Stages 6 and 7 have stub cards with null metrics. Stage 5 has a synthetic cloud and a rank-1 card, and that card is not a field score.
 
 ## Capture protocol
 
@@ -89,8 +93,8 @@ Every capture records: sensor, export format, whether Z is gravity or only the f
 5. CloudCompare on the stage 3 cloud. Record primitive count versus stud count. Not a CI dependency.
 6. Real stage 1: one stud, phone or Mid-360, SKIL if it is standing. Yellow paint only.
 7. Stage 4: one wall and an opening. Still one class, “stud.”
-8. Stage 5: one room. Label studs only after the classical scorecard on that cloud is written. Then Pointcept may be trained. Open3D-ML runs once as a histogram, not as a painter.
-9. Stages 6 and 7 after stage 5 is a real capture, not a synthetic stand-in.
+8. Stage 5: one room. The synthetic look-alike can be scored with rank 1 before a capture exists. Label studs for training only after the classical scorecard on a **real** capture is written. Then Pointcept may be trained. Open3D-ML runs once as a histogram, not as a painter. The synthetic room does not replace that gate.
+9. Stages 6 and 7 after stage 5 is a real capture, not a synthetic stand-in. Their cards stay null until then.
 
 ## Pass / fail bars
 
@@ -104,7 +108,7 @@ These bars are the synthetic bring-up checks in `scripts/run_stage0_baseline.py`
 
 The stage 3 length bar is wider because the plate slab removes a few millimeters at each end of the stud. The measured shortening on this run is about 20 mm, inside the bar.
 
-Stages 1 and 4–7: no numeric bar yet. Detection and angle stay null until a cloud and, for angle, a SKIL or generator truth exists. Paint stays yellow.
+Stages 1, 4, 6, and 7: no numeric bar yet. Stage 5 has generator truth on the synthetic room and still has no acceptance bar. Paint stays yellow.
 
 “Percent in band” uses τ (~0.1194°) as the band on the angle error versus the reference. It is not the paint decision. Paint needs ε as well, and ε is unlocked.
 
@@ -141,6 +145,16 @@ Placeholder ε = 0.05° (not locked) would have painted the stage 0 rows green, 
 
 Loops 2–5 are open. The IntCDC counts in doc 11 (449 components, 6 / 3 / 90 under a different paint) stay a negative log. IntCDC is not re-run here and is not the acceptance set.
 
+## Curriculum continuation (2026-09-25)
+
+Write-up: [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md). Scorecards: `artifacts/scorecards/curriculum/`. Script: `scripts/run_curriculum_through_room.py`. ε unlocked. Paint yellow. Class S only.
+
+Stage 0 and the original stage-2 and stage-3 cards were linked and still meet the bars above. New rank-1 gates at 1 mm noise also meet them: three more stage-2 leans (0°, 0.12°, 1°) and stage-3 walls of 3, 4 (milder leans), and 5 studs. A 2 mm noise wall does not: recall 0.25, four clusters, three dropped by the 15 mm section gate. S1b bows of 6.35 mm keep a box and miss the 10 mm section bar. A 19.05 mm bow is dropped by that gate. Details and the cluster extents are in doc 24.
+
+Stage 5 synthetic room, rank 1, this process: 532,301 points, 26 studs, precision 1, recall 1, section 7.93 mm, length 22.12 mm, MAE 0.01134°, max angle 0.04230°, yellow, 1.9151 s, floor normal. Corner air gap 0.10 m. No header. Not the Lot 62 Polycam file (that file is PR #24). No stage-5 acceptance bar is declared from this row. Ranks 2–7 on the room are `not_run`. Stages 6 and 7 are stubs with null metrics.
+
+SAM 2 rank 7: `blocked_install`. Projection of the seed-2 stud produced 8,269 occupied pixels. No mask metric. The generator-mask control lifted 8,269 points and kept no stud box, because the visible length is 1.010 m.
+
 ## Non-goals
 
 - Plates, headers, and trusses as classes. Later. Plates are geometry to remove.
@@ -149,7 +163,9 @@ Loops 2–5 are open. The IntCDC counts in doc 11 (449 components, 6 / 3 / 90 un
 - Bassier remote coplanar merge. It glues studs that share a wall plane.
 - Forcing a cylinder axis to global Z. That hides the lean.
 - Paid APIs, and the commercial scan-to-BIM tools ranked 6–12 in doc 11, in this bake-off.
-- GPU training, a Pointcept fine-tune, or an Open3D-ML fine-tune in this tree.
+- Treating the synthetic stage-5 room as the capture that unlocks Pointcept training.
+- Treating SAM 2’s published video scores as a stud-angle result. The rank-7 card has null stud metrics.
+- GPU training, a Pointcept fine-tune, or an Open3D-ML fine-tune in this tree. The fine-tune that does exist is the separate class-S note, doc 20, and it is not this curriculum pass.
 - Painting green or red before ε is a measured band.
 - Quoting S3DIS mIoU, Özkan’s roof-beam completeness, or a published 3% dimension error as if it were stud-angle accuracy.
 - Leveling the cloud onto the floor and calling that Z gravity (doc 02).
@@ -158,14 +174,15 @@ Loops 2–5 are open. The IntCDC counts in doc 11 (449 components, 6 / 3 / 90 un
 
 | Path | Role |
 | --- | --- |
-| `src/openwall_stud/synthetic.py` | Stages 0, 2, and 3. |
+| `src/openwall_stud/synthetic.py` | Stages 0, 2, and 3, S1b bow, and the stage-5 room. |
 | `src/openwall_stud/open3d_baseline.py` | Rank 1 pipeline and the synthetic scorer. |
 | `src/openwall_stud/paint.py` | Green / yellow / red. Unlocked ε is yellow. |
 | `src/openwall_stud/scorecard.py` | JSON writer. Detection, geometry, angle, paint, cost. `append_day_row` updates the day table. |
 | `src/openwall_stud/results_by_day.py` | CSV, JSON, and markdown for the day-by-day results. |
 | `docs/research/13-stud-seg-results-by-day.md` | Human-readable day table. Regenerated from the CSV. |
-| `src/openwall_stud/contenders/` | Stubs and install notes for ranks 2–5. |
+| `src/openwall_stud/contenders/` | Ranks 2–7. Rank 7 is `sam2_mask.py`. |
 | `scripts/run_stage0_baseline.py` | Runs the bars and writes scorecards. |
+| `scripts/run_curriculum_through_room.py` | Links stage 0, extends stages 2 and 3, runs S1b and the synthetic room, stubs stages 6 and 7, scaffolds SAM 2. |
 | `scripts/render_algo_figures.py` | Writes the PNGs in `docs/research/images/algo-contenders/`. |
 | `artifacts/scorecards/` | The JSON from the run above, plus four stub cards with null metrics. |
 
