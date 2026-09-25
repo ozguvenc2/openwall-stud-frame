@@ -42,7 +42,7 @@ Written for the draft in [`draft/paper.md`](draft/paper.md). Items already reali
 
 **Open. Scripted scenes, no interval.** The seven-scene table and the 25-scene S1 table are censuses of generator scripts, not samples with a confidence interval. Runtime is one process on one machine (a Linux VM for the early cards, Oz_PC for the sweep and the fine-tune). Re-running can change the third digit of a timer.
 
-**Open. Perfect precision and recall on a designed gap.** With a clear bay and no occlusion, P = 1 and R = 1 on ranks 1, 2, and 6 is the expected bring-up outcome. Rank 3’s precision of 0.125–0.25 on the same clouds is the disagreement check, not a tuned stud finder. A stud-only CloudCompare parameter tune is in progress. A pass rate from that tune is not in this draft.
+**Open. Perfect precision and recall on a designed gap.** With a clear bay and no occlusion, P = 1 and R = 1 on ranks 1, 2, and 6, and on the tuned CloudCompare row, is the expected bring-up outcome. The untuned rank-3 precision of 0.125–0.25 on the same clouds is the disagreement check. The tuned pass (25/25, one box) is still one synthetic stud. The merge keeps that one box and would drop a second stud. It is not a wall segmenter.
 
 **Open. Rank 2 on the 25-scene matrix is not native PCL.** `native_pcl_region_growing` is false. Treating that row as a libpcl measurement would credit a binary that did not run.
 

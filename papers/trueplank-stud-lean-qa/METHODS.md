@@ -1,14 +1,14 @@
 # Methods outline
 
-Aligned with the code and the class-S runs through 2026-09-25 (phase-1 S1 lean sweep, CloudCompare measurement, synthetic fine-tune). Sections marked **planned** have no measurements. The narrative paper is [`draft/paper.md`](draft/paper.md).
+Aligned with the code and the class-S runs through 2026-09-25 (phase-1 S1 lean sweep, untuned and tuned CloudCompare, synthetic fine-tune). Sections marked **planned** have no measurements. The narrative paper is [`draft/paper.md`](draft/paper.md).
 
-Product names: BeamWeaver (platform), TruePlank (stud QA), OpenWall (this engineering pipeline).
+Product names (Oz, 2026-09-25): OpenWall is the suite. BeamWeaver and TruePlank are the apps. This paper is the TruePlank stud-lean draft. The package in this repository is `openwall_stud`.
 
 ## Claim classes
 
 | Class | Ground truth | Status |
 | --- | --- | --- |
-| S — synthetic bring-up | Generator geometry in `openwall_stud.synthetic` | **Run.** Open3D on stages 0, 2, and 3. Six finders on one stud and on the 25-scene S1 matrix. Ranks 4 and 5 as controls, then a synthetic fine-tune |
+| S — synthetic bring-up | Generator geometry in `openwall_stud.synthetic` | **Run.** Open3D on stages 0, 2, and 3. Six finders on one stud and on the 25-scene S1 matrix. Ranks 4 and 5 as controls, then a synthetic fine-tune. Rank 3 again after the stud-only CloudCompare tune (PR #22) |
 | R — realisticized | A sensor simulator on generator geometry | **Not defined.** The 1 mm Gaussian is class S |
 | F — experimental | `skil`, `total_station`, or `hand_label` | **Planned.** No row uses them |
 
@@ -62,7 +62,7 @@ Rank 1’s instance step is DBSCAN, `eps` 25 mm, `min_points` 20. An earlier set
 | --- | --- | --- |
 | 1 | Open3D peel, DBSCAN, minimal box | **Run**, class S, including S1 25/25 stage-0 bars |
 | 2 | Region growing, then a cuboid, no remote coplanar merge, axis not forced to Z | **Run** on class S. S1 scorecards set `native_pcl_region_growing` false (NumPy port). One Linux stud used PCL 1.14 |
-| 3 | CloudCompare RANSAC Shape Detection. One OBB per plane or cylinder. Primitives not merged | **Run** on class S. Linux one-stud failed the bars. Oz_PC S1: lean on 25/25, stage-0 bars 0/25 (multi-face). Binary discovery: `CLOUDCOMPARE_EXE`, then the default Windows install path, then PATH. Stud-only parameter tune **in progress**; no tuned pass rate |
+| 3 | CloudCompare RANSAC Shape Detection. Untuned: one OBB per plane or cylinder. Tuned: plane only, then a merge of the four long faces | **Run** on class S. Linux one-stud failed the bars. Oz_PC untuned S1: lean on 25/25, stage-0 bars 0/25 (4–8 boxes). Oz_PC tuned S1 (PR #22): stage-0 bars 25/25, one box. Binary discovery: `CLOUDCOMPARE_EXE`, then the default Windows install path, then PATH. The plugin has no cuboid |
 | 4 | BIMStruct3D PTv3 semantic control, then a 2-class head on a frozen backbone | Control **run** on Oz_PC (no stud class). Synthetic fine-tune **run** (head only, about 98.1 s). PointGroup not run |
 | 5 | Open3D-ML RandLA-Net, S3DIS weights, then a 2-class layer | Control **run** (no stud class). Synthetic fine-tune **run** (about 237.5 s). KPConv not run |
 | 6 | pyRANSAC-3D v0.7.0 sequential cuboid after the peel | **Run**, class S, S1 25/25. SAM 2 is still not run |

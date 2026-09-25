@@ -5,7 +5,7 @@ Citation keys live in [`references.bib`](references.bib). The draft uses them in
 Runs that changed what “related” means for a stack already in the plan:
 
 - Rank 2 has been executed on class S as a NumPy port on the 25-scene matrix, and as PCL 1.14 on one Linux stud. It is still not a historic-roof result.
-- Rank 3 (Schnabel / CloudCompare) has been executed on class S. It fails the one-stud bar by returning several faces. A stud-only parameter tune is in progress and has no pass rate here.
+- Rank 3 (Schnabel / CloudCompare) has been executed on class S twice. Untuned, it fails the one-stud bar by returning 4–8 faces. Tuned (PR #22), plane only plus a four-face merge, it passes the stage-0 bars on 25 of 25 scenes with one box. The plugin still has no cuboid.
 - Rank 6 (pyRANSAC-3D) has been executed on class S. SAM 2 has not.
 - Ranks 4 and 5 have been executed as controls (no stud class) and as a synthetic fine-tune. PointGroup and KPConv have not been run.
 
@@ -23,7 +23,7 @@ Runs that changed what “related” means for a stack already in the plan:
 
 | Key | What it is for this paper |
 | --- | --- |
-| `schnabel2007ransac` | Planes, spheres, cylinders, cones, and tori. This is the family behind CloudCompare RANSAC Shape Detection (rank 3). On the phase-1 matrix the plugin returned 4–8 primitives per synthetic stud and failed the stage-0 bars on 25 of 25 scenes. A stud-only parameter tune is in progress. |
+| `schnabel2007ransac` | Planes, spheres, cylinders, cones, and tori. This is the family behind CloudCompare RANSAC Shape Detection (rank 3). Untuned, the plugin returned 4–8 primitives per synthetic stud and failed the stage-0 bars on 25 of 25 scenes. The stud-only tune (PR #22) keeps plane only and merges four long faces: stage-0 pass 25/25, one box. |
 | `fischler1981ransac` | Original RANSAC article. Context for Schnabel and for pyRANSAC-3D. |
 | `mariga2026pyransac` | pyRANSAC-3D v0.7.0. Rank 6. Run on class S (one stud and the 25-scene matrix, 25/25 stage-0 bars). The library publishes no stud accuracy. |
 | `bassier2020walls` | Unsupervised BIM wall objects. The plan refuses a remote coplanar merge. |
