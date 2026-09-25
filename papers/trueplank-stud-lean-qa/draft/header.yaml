@@ -1,0 +1,20 @@
+# Pandoc / Quarto metadata for a later PDF.
+# No journal class is bundled. See ../Makefile.
+title: "Instance detection and lean assessment of light-frame wood studs from point clouds"
+subtitle: "Working draft. Class S (synthetic) only. Not submitted."
+author:
+  - "Oz (placeholder; legal name and affiliation unassigned)"
+  - "Gwench (placeholder; legal name and affiliation unassigned)"
+date: "2026-09-25"
+keywords:
+  - point cloud
+  - Scan-to-BIM
+  - light-frame wood
+  - stud detection
+  - instance segmentation
+  - plumbness
+  - oriented bounding box
+  - construction tolerance
+bibliography: ../references.bib
+link-citations: true
+lang: en

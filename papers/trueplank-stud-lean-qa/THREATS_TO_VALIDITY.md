@@ -6,7 +6,7 @@ Written for the draft in [`draft/paper.md`](draft/paper.md). Items already reali
 
 **Open. Two different “up” vectors.** Floor-normal angle and gravity plumb answer different questions. A stud square to a tilted slab can look acceptable against the floor and out of plumb against gravity. Stage 0 uses generator +Z because there is no floor. Publishing a single word, “plumb,” for all three references would measure the wrong construct. The draft keeps the reference name on every angle.
 
-**Open. τ is a derived finish guideline.** The working tolerance comes from `atan((1/4 inch) / (10 feet))` applied to the Handbook figure as summarized by WoodWorks. NAHB’s 3/8 inch in 32 inches and the UFGS 1/4 inch in 8 feet are different angles. The IRC reading in the repository notes did not find a general wood-stud plumb clause. A reader who treats τ as code is answering a different question than the paper.
+**Open. τ is a derived finish guideline.** The working tolerance comes from `atan((1/4 inch) / (10 feet))` applied to the Handbook figure as summarized by WoodWorks (≈ 0.1194°). The same derivation on WoodWorks’s summary of UFGS 1/4 inch in 8 feet is ≈ 0.1492°. The phase-1 matrix also uses 0.15° as a requested lean. Those are three different uses of a similar number: paint band, alternate guideline, scene magnitude. NAHB’s 3/8 inch in 32 inches is a further linear figure and was not adopted as τ. The UFGS PDF was not opened. A reader who treats τ as code is answering a different question than the paper.
 
 **Open. Paint is not yet a decision.** ε is unlocked, so every production color is yellow. Percent-in-band and hypothetical colors at 0.05° can be mistaken for a pass rate. The scorecard stores them in different fields for that reason. The draft repeats the separation.
 
@@ -40,11 +40,17 @@ Written for the draft in [`draft/paper.md`](draft/paper.md). Items already reali
 
 ## Statistical conclusion validity
 
-**Open. Seven scenes, one algorithm, no interval.** The synthetic table is a census of the scripted scenes, not a sample with a confidence interval. Runtime is one process. Re-running the script can change the third digit of a timer without changing the scientific claim.
+**Open. Scripted scenes, no interval.** The seven-scene table and the 25-scene S1 table are censuses of generator scripts, not samples with a confidence interval. Runtime is one process on one machine (a Linux VM for the early cards, Oz_PC for the sweep and the fine-tune). Re-running can change the third digit of a timer.
 
-**Open. Perfect precision and recall on a designed gap.** With a clear bay and no occlusion, P = 1 and R = 1 is the expected bring-up outcome. It has no standard error worth reporting, and it will not survive contact with a merged cluster.
+**Open. Perfect precision and recall on a designed gap.** With a clear bay and no occlusion, P = 1 and R = 1 on ranks 1, 2, and 6 is the expected bring-up outcome. Rank 3’s precision of 0.125–0.25 on the same clouds is the disagreement check, not a tuned stud finder. A stud-only CloudCompare parameter tune is in progress. A pass rate from that tune is not in this draft.
 
-**Later. Multiple comparisons across five finders.** When E3 runs, five stacks on one stud can be over-read. The plan’s rule is one shared cloud and one scorecard schema, with stubs left null. A winner picked from nulls is not a result.
+**Open. Rank 2 on the 25-scene matrix is not native PCL.** `native_pcl_region_growing` is false. Treating that row as a libpcl measurement would credit a binary that did not run.
+
+**Open. The fine-tune can look perfect on a cloud that is only a stud.** Both models labeled all 25,666 phase-1 points as stud. The 0.004° mean absolute error is the shared minimal box of that cloud. The two floor clouds are a different, still synthetic, result, with larger angle errors and about 20 mm section error.
+
+**Open. Rank 5 validation depends on which batch-norm statistics are used.** `model.eval()` with S3DIS running statistics is not the result recorded from `randlanet_val_corrected.json`.
+
+**Later. Multiple comparisons across finders.** When a real stud exists, six stacks on one cloud can be over-read. Stubs and in-progress tunes stay null.
 
 ## Citation and reproducibility threats
 
@@ -54,7 +60,7 @@ Written for the draft in [`draft/paper.md`](draft/paper.md). Items already reali
 
 **Open. DBSCAN pagination** is the standard KDD 1996 citation and was not confirmed from a DOI record in this pass.
 
-**Open. Figures for ranks 2–5 are scaffolds.** They draw the synthetic stage-3 input and a banner. Using them as outputs would fabricate a run.
+**Open. The 2026-09-24 rank 2–5 pictures are scaffolds.** They draw the synthetic stage-3 input and a banner. Using them as outputs would fabricate that day’s run. The 2026-09-25 phase-1 PNGs for ranks 1, 2, 3, and 6 are separate files and are credited as that sweep. Ranks 4 and 5 still have no stud-box figure.
 
 ## Ethics as a validity issue
 

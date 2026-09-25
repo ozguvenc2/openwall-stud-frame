@@ -1,30 +1,25 @@
 # Experiments plan
 
-Curriculum stages match [`METHODS.md`](METHODS.md) and the design plan. This file says what has been executed and what is only planned. It does not add a new matrix.
-
-The one-stud five-finder is **owned by another agent**. This paper space does not run it, does not invent its numbers, and does not redefine its factors. When that work lands, copy its scorecards into the day table and cite them here as class F (or as class S, if the finder is still on the generator).
+Curriculum stages match [`METHODS.md`](METHODS.md). This file says what has been executed. It does not add a matrix that the research notes do not contain. Every executed row is class S. Class F has no scorecards.
 
 ## Run versus planned
 
 | ID | What | Class | State on 2026-09-25 |
 | --- | --- | --- | --- |
-| E0 | Open3D on seven synthetic scenes (five stage-0 studs, one stage-2 stud-and-slab, one stage-3 four-stud wall) | S | **Run** 2026-09-24. Scorecards under `artifacts/scorecards/open3d_stage*.json`. Day table in `docs/research/13-stud-seg-results-by-day.md` |
-| E0-stubs | PCL, CloudCompare, Pointcept, Open3D-ML stub cards on those same scene names | — | **Written, not executed.** `pass_fail = not_run`, metrics null |
-| E1 | Same three synthetic stage families through PCL. Stop if bays merge or studs split | S | **Planned.** Needs a machine with PCL |
-| E2 | CloudCompare RANSAC-SD on the stage-3 cloud. Record primitive count versus stud count | S | **Planned.** Not a CI dependency |
-| E3 | One-stud five-finder: one real stud, five finders (ranks 1–5), SKIL if the stud is standing | F | **Planned, other owner.** Protocol below. No cloud in git |
-| E4 | One real wall with an opening. One class, “stud” | F | **Planned.** After E3 |
-| E5 | One room. Classical scorecard first. Then Pointcept may be trained. Open3D-ML once, as a label histogram | F | **Planned.** After E4 |
-| E6–E7 | Story, then a complex frame | F | **Planned.** After a real stage 5 |
-| ER | Realisticized generator (scanner noise, dropout, reflectance) | R | **Not specified.** Do not build it inside this paper pass |
-| E-py | pyRANSAC-3D v0.7.0 sequential cuboid after the rank-1 peel | S, then the same clouds as E1 | **Planned, not run.** Proposed in PR #14 (`docs/research/17-methods-that-beat-shortlist.md`). Not in this branch |
-| E-sam | SAM 2 mask lifted onto points, then the shared box | F or a capture that already has a registered image | **Planned, not run.** Same PR #14 note. Skip when the cloud has no image |
+| E0 | Open3D on seven synthetic scenes | S | **Run** 2026-09-24. `artifacts/scorecards/open3d_stage*.json`. Day table in `docs/research/13-stud-seg-results-by-day.md` |
+| E-one | One stage-0 2×4, 0.05° about +X, seed 2, ranks 1–6 | S | **Run** 2026-09-25, Linux. Ranks 4 and 5 `blocked_install`. `docs/research/16-one-stud-five-finder-run.md` |
+| E-gpu | Ranks 4 and 5 controls on that same stud | S | **Run** 2026-09-25, Oz_PC (RTX 4080 SUPER). Stud cells null. `docs/research/18-ozpc-ranks4-5-run.md` |
+| E-S1 | 25 scenes × six finders. Magnitudes 0, 0.05, 0.12, 0.15, 0.30, 1, 4 degrees. Axes ±X, ±Y, and `none` at 0 | S | **Run** 2026-09-25, Oz_PC. Ranks 1, 2, 6: 25/25 stage-0 pass. Rank 3 first sweep: `blocked_install` (PR #18). After `CLOUDCOMPARE_EXE` discovery (PR #19): lean on 25/25, stage-0 pass 0/25. Ranks 4 and 5: control. `docs/research/19-phase1-s1-lean-sweep.md` |
+| E-ft | Synthetic fine-tune, ranks 4 and 5. 386 train clouds. 25 phase-1 cards held out | S | **Run** 2026-09-25, Oz_PC. Rank 4 train 98.1 s, infer 0.050 s, phase-1 stud boxes 25/25. Rank 5 train 237.5 s, infer 0.149 s, phase-1 stud boxes 25/25. Floorless clouds labeled entirely stud. `docs/research/20-synthetic-stud-finetune.md` |
+| E-cc-tune | Stud-only CloudCompare parameter tune | S | **In progress.** Not on a merged branch as of this draft. No pass rate |
+| E3 | One real stud, finders, SKIL if standing | F | **Planned.** No cloud in git |
+| E4–E7 | Wall, room, story, complex frame | F | **Planned.** After a real capture |
+| ER | Realisticized generator | R | **Not specified** |
+| E-sam | SAM 2 mask lifted onto points | — | **Not run.** Gated on a registered image (PR #14) |
 
-Trial budget in the design plan: about five Wrong / Expected / Change loops per algorithm family. Open3D has spent loop 1 on E0. Loops 2–5 are open. The other four families have spent zero loops.
+The one-stud protocol in the design plan is the field arm (E3). E-one is the synthetic stand-in and must stay labeled class S.
 
 ## E0 scenes (already run)
-
-From `scripts/run_stage0_baseline.py`:
 
 | Scene | Nominal | Requested lean | Seed |
 | --- | --- | --- | --- |
@@ -36,31 +31,40 @@ From `scripts/run_stage0_baseline.py`:
 | `stage2_2x4_lean0.200` | 2×4 on a slab | 0.20° | 6 |
 | `stage3_mini_wall_4` | four 2×4s | 0°, 0.30°, 0.80°, 1.50° | 7 |
 
-Reported metrics, all class S: detection precision and recall, max section error, max length error, angle MAE, max absolute angle error, percent inside τ, production paint (must be yellow), runtime of that process. Placeholder colors may be stored and are not a result.
+## E-S1 matrix (already run)
 
-## E3 — one-stud five-finder (when available)
+Generated by `phase1_s1_single_stud`. Seed 2 on every scene. 25,666 points. Reference generator +Z. Floor none. Full per-scene numbers: `docs/research/19-phase1-s1-lean-sweep.md`. Summary counts are Table 4 of [`draft/paper.md`](draft/paper.md).
 
-Protocol already written in the design plan. Restated so the paper and the other agent share one checklist.
+Hardware recorded with that sweep: Windows 11, Python 3.12.10, Open3D 0.20.0, pyRANSAC-3D 0.7.0, NVIDIA GeForce RTX 4080 SUPER, driver 610.62, 16,376 MiB. Rank 4 used torch 2.7.0+cu126. Rank 5 used torch 2.13.0+cu126 in `.venv-o3dml`. CloudCompare on the rank-3 refresh: 2.14.beta (29 Aug 2026).
 
-1. One physical stud, isolated, bare wood. Sensor in the capture order: iPhone LiDAR (Polycam PLY or LAS) for detection, Livox Mid-360 if a denser cloud is needed, survey TLS only when a green/red call is the point of the session. Record sensor, export, and whether file Z is gravity.
-2. If the stud is standing and the face is reachable: one digital level, BOT / MID / TOP, model name, printed resolution, three readings, sign. If they disagree by more than that resolution, the stud stays yellow and angle MAE is null.
-3. Run the five finders on that same cloud. Ranks 2–5 may still be stubs; a stub remains `not_run` and is not filled from rank 1.
-4. Shared outputs: stud id, tight box, θ, ε interval (empty until ε is measured), color. Production color is yellow.
-5. Score detection against a human count of one. Do not invent a second stud. Match radius for a field cloud is not defined yet; do not reuse 0.15 m without writing down why.
+## E-ft split (already run)
 
-This paper’s results section gains an E3 table only after those scorecards exist.
+| Split | Clouds | Stud only | Stud + floor |
+| --- | ---: | ---: | ---: |
+| Train | 386 | 304 | 82 |
+| Val | 33 | 25 (phase-1 magnitudes, other seed) | 8 |
+
+The 25 phase-1 S1 cards are in neither split. Val uses seed 9001 and 1.5 mm noise for the magnitude ladder. Labels: 0 clutter (floor), 1 stud. Plates are not a class. RGB is zeros.
+
+## E3 — one real stud (when a cloud exists)
+
+1. One physical stud, isolated, bare wood. Record sensor, export, and whether file Z is gravity.
+2. If the stud is standing: one digital level, bottom / middle / top, model name, printed resolution, three readings, sign. Disagreement beyond that resolution keeps the stud yellow and leaves angle MAE null.
+3. Run the finders on that same cloud. A stub stays null.
+4. Production color is yellow until ε is measured.
+5. Score detection against a human count of one. Do not reuse the 0.15 m synthetic match radius without writing down why.
 
 ## What this plan refuses to add
 
-- A full factorial of noise, spacing, lean, and occlusion beyond the seven E0 scenes, unless a later methods revision needs it. The design plan is the matrix.
+- A tuned CloudCompare pass rate before that tune’s scorecards exist.
 - Painting green or red on E3.
-- Training Pointcept before stage 5 labels.
-- Treating IntCDC component counts as an experiment of this branch.
+- Treating the fine-tune’s 25/25 on floorless clouds as clutter rejection.
 - Quoting S3DIS mIoU, Özkan roof-beam completeness, or a published dimension error as the stud-angle result.
+- Calling the NumPy region-grow row a libpcl measurement.
 
 ## Reporting rules
 
-- Date rows in America/Los_Angeles, the way `results_by_day` already does.
-- `ground_truth_source` is `synthetic`, `skil`, `total_station`, or `hand_label`. Do not type a field number that was not measured.
-- `paint_correct_pct` while ε is empty is the fraction of studs painted yellow. It is not agreement with a level.
+- Date rows in America/Los_Angeles when the source note does.
+- `ground_truth_source` is `synthetic`, `skil`, `total_station`, or `hand_label`.
 - Separate tables for class S and class F. A caption that omits the class is a bug.
+- Ranges quoted in the paper are min and max of published scorecard rows, or a sentence already in the research note. They are not a new experiment.

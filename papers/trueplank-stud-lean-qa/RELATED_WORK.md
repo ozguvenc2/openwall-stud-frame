@@ -1,87 +1,81 @@
 # Related work — bibliography skeleton
 
-Citation keys live in [`references.bib`](references.bib). The draft uses them in [`draft/paper.md`](draft/paper.md). This page is the reading map, not a second results table.
+Citation keys live in [`references.bib`](references.bib). The draft uses them in [`draft/paper.md`](draft/paper.md). This page is the reading map. Checked on **2026-09-25** unless a row says the number sits only in an engineering note.
 
-Checked on **2026-09-25** unless a row says the number sits only in the engineering survey.
+Runs that changed what “related” means for a stack already in the plan:
+
+- Rank 2 has been executed on class S as a NumPy port on the 25-scene matrix, and as PCL 1.14 on one Linux stud. It is still not a historic-roof result.
+- Rank 3 (Schnabel / CloudCompare) has been executed on class S. It fails the one-stud bar by returning several faces. A stud-only parameter tune is in progress and has no pass rate here.
+- Rank 6 (pyRANSAC-3D) has been executed on class S. SAM 2 has not.
+- Ranks 4 and 5 have been executed as controls (no stud class) and as a synthetic fine-tune. PointGroup and KPConv have not been run.
 
 ## Timber cuboids
 
 | Key | What it is for this paper | What it must not be used as |
 | --- | --- | --- |
-| `ozkan2022timber` | Region growing on beam side faces, a split of non-linear segments, then cuboids. On one historic roof the authors report automatic beam completeness, against a manual beam count, rising from 29% to 63%. With additional manual splits they report 75%. Both the abstract (29% to 63%) and the method comparison (75% with manual splits) were visible on the publisher page during this check. | A 2×4 stud score, an angle error, or a green/red rate. Transept beam counts printed in the engineering ranking were not re-copied here. |
-| `pochtrager2018roof` | The cuboid workflow Özkan et al. extend. Beams are modeled as cuboids from planar side faces. The paper highlights sub-centimeter agreement of modeled beams with the reference cloud on historic roofs. | Stud plumb at ~0.12°. |
-| `pochtrager2017roof` | Earlier development note on the same roof problem (Vienna Hofburg). | A light-frame dataset. |
-| `ozkan2024completion` | Later completion of roof models that still depends on the 2022 cuboid workflow. | Evidence that the OpenWall rank-2 stub has been run. |
-| `chen2025timberfe` | Geometric finite-element models from a timber point cloud (Buildings, 2025). The engineering ranking records, for one specimen, dimension error within 3%, plane angles within 1°, and cylinders forced to global Z. Those specimen figures were **not** re-tabulated from the PDF in this pass. | A stud-lean RMSE. Forcing a member axis to global Z would hide the lean TruePlank exists to report. |
-
-Rank 2 in the engineering plan is “PCL region growing, then a cuboid in this sense,” with two refusals already written down: no remote coplanar merge, and no axis forced to Z. PCL has not been executed in this repository.
+| `ozkan2022timber` | Region growing on beam side faces, then cuboids. On one historic roof, automatic beam completeness 29% to 63% against a manual count, and 75% with additional manual splits. | A 2×4 stud score or a green/red rate. |
+| `pochtrager2018roof` | Cuboids from planar side faces. Sub-centimeter agreement on historic roofs, as the paper highlights. | Stud plumb at ~0.12°. |
+| `pochtrager2017roof` | Earlier note on the same roof problem. | A light-frame dataset. |
+| `ozkan2024completion` | Later completion that still depends on the 2022 cuboid workflow. | Evidence that a native PCL binary ran on S1. |
+| `chen2025timberfe` | Geometric FE models from a timber point cloud. Specimen digits in the engineering ranking (within 3%, plane angles within 1°, cylinders forced to global Z) were **not** re-tabulated from the PDF. | A stud-lean RMSE. Forcing the axis to global Z would hide the lean. |
 
 ## Primitive fitting
 
 | Key | What it is for this paper |
 | --- | --- |
-| `schnabel2007ransac` | Planes, spheres, cylinders, cones, and tori by efficient RANSAC. This is the algorithm behind CloudCompare’s RANSAC Shape Detection plugin, which the engineering plan keeps as an independent fitter (rank 3). A 2×4 is not one of those primitives. The plugin has not been run here. |
-| `bassier2020walls` | Unsupervised reconstruction of BIM wall objects from point clouds (Automation in Construction, 2020). Cited at title level. The engineering plan refuses a merge of coplanar patches because stud faces that share a wall plane would become one component. |
-| `ntiyakunze2023sensors` | **Citation hygiene.** Crossref resolves `10.3390/s23041924` to Ntiyakunze and Inoue (2023), Sensors 23(4):1924. The engineering ranking names that DOI as Bassier, Sensors 2023. This paper does not repeat that attribution. |
+| `schnabel2007ransac` | Planes, spheres, cylinders, cones, and tori. This is the family behind CloudCompare RANSAC Shape Detection (rank 3). On the phase-1 matrix the plugin returned 4–8 primitives per synthetic stud and failed the stage-0 bars on 25 of 25 scenes. A stud-only parameter tune is in progress. |
+| `fischler1981ransac` | Original RANSAC article. Context for Schnabel and for pyRANSAC-3D. |
+| `mariga2026pyransac` | pyRANSAC-3D v0.7.0. Rank 6. Run on class S (one stud and the 25-scene matrix, 25/25 stage-0 bars). The library publishes no stud accuracy. |
+| `bassier2020walls` | Unsupervised BIM wall objects. The plan refuses a remote coplanar merge. |
+| `ntiyakunze2023sensors` | **Citation hygiene.** Crossref resolves `10.3390/s23041924` to Ntiyakunze and Inoue (2023), not to Bassier. |
 
 ## Learned point clouds
 
 | Key | What it is for this paper |
 | --- | --- |
-| `wu2024ptv3` | Point Transformer V3 (CVPR 2024, pages 4840–4851). The planned Pointcept backbone. No weights are loaded in this repository. Indoor and outdoor benchmark scores from that paper are not stud scores. |
-| `pointcept` | The training codebase. The OpenWall hook is a stub until stage 5 has stud labels. |
-| `jiang2020pointgroup` | PointGroup instance segmentation (CVPR 2020, pages 4866–4875). Named because the engineering plan’s rank 4 is “Pointcept PTv3 / PointGroup.” Office and indoor instance metrics stay on those benchmarks. |
-| `zhou2018open3d` | Open3D library paper (arXiv:1801.09847). The rank-1 implementation uses Open3D 0.20. |
+| `wu2024ptv3` | Point Transformer V3. The rank-4 backbone. Indoor and outdoor scores from that paper are not stud scores. |
+| `pointcept` | Training codebase. Used for the BIMStruct3D control and for the synthetic 2-class head. |
+| `jiang2020pointgroup` | PointGroup, named in the rank-4 plan. **Not run.** |
+| `zhou2018open3d` | Open3D library paper. Rank 1 uses Open3D 0.20. Rank 5 uses `open3d.ml.torch`. |
 | `open3dSoftware` | The pinned software release. |
-| `ester1996dbscan` | Density clustering used after the horizontal-slab peel. Bibliographic pagination is the usual KDD 1996 record; confirm the PDF before camera-ready. |
+| `ester1996dbscan` | Density clustering after the plate peel. **UNVERIFIED PAGINATION.** |
+| `ravi2024sam2` | Planned gated mask when a registered image exists. **Not run.** |
 
-S3DIS, ScanNet, and SemanticKITTI numbers are intentionally absent. The engineering ranking already refuses to copy them onto studs.
+S3DIS and ScanNet mIoU stay off the stud table. The rank-5 control records a histogram on the generator cloud and does not copy a benchmark mIoU.
+
+## Methods shortlist that is not in this branch
+
+`docs/research/17-methods-that-beat-shortlist.md` on branch `cursor/methods-beat-shortlist-e9dc` (PR #14) surveys YOLO, Vuforia, RoomPlan, commercial scan-to-BIM tools, CGAL, and several 2023–2026 timber or frame papers. This bibliography pass did **not** re-open those pages and did **not** add keys for them. The draft repeats only the WFC README rotation figures that note already attributes to the dataset README (mean 1.43°, median 1.00°, 73.61% inside 20 mm and 2°), and it keeps the journal-PDF caveat on `xie2026wfc`.
+
+| Key | What it is for this paper |
+| --- | --- |
+| `xie2026wfc` | One 2×4, vision in front of 6D pose. Not our pipeline. |
+| `jocher2023ultralytics` | The image detector in front of that pose. Not a point-cloud lean method. |
 
 ## Construction tolerances
 
 | Key | What it is for this paper |
 | --- | --- |
-| `woodworksTolerances` | Primary page actually re-read for this draft. WoodWorks states that the IBC and the AWC NDS do not set a light-frame wood construction-tolerance requirement. The page summarizes a Handbook tightening to 1/4 inch in 10 feet when finishes such as gypsum wallboard and plaster are used, an NAHB figure of 3/8 inch in 32 inches, and UFGS figures. Those other documents were not re-opened here. |
-| `ballast2007handbook` | Handbook of Construction Tolerances, 2nd ed., Wiley, 2007. ISBN 978-0-471-93151-5 checked on the Wiley page. The angular working tolerance τ ≈ 0.1194° is **derived** in [`docs/tolerances.md`](../../docs/tolerances.md) by `atan((1/4 inch) / (10 feet))`. It is not a degree printed as code. |
-| `nahbGuidelines` | **UNVERIFIED PLACEHOLDER.** NAHB Residential Construction Performance Guidelines. Edition not opened. The 3/8 inch in 32 inches figure is only WoodWorks’s summary. |
-| `ufgs061000` | **UNVERIFIED PLACEHOLDER.** UFGS 06 10 00 as named by WoodWorks. The specification PDF was not opened. |
+| `woodworksTolerances` | Primary page re-read for the earlier draft. IBC and AWC NDS do not set a light-frame wood construction-tolerance requirement. Summarizes Handbook, NAHB, and UFGS. |
+| `ballast2007handbook` | Handbook of Construction Tolerances, 2nd ed. τ ≈ 0.1194° is **derived** by `atan((1/4 inch) / (10 feet))`. |
+| `nahbGuidelines` | **UNVERIFIED PLACEHOLDER.** 3/8 inch in 32 inches is WoodWorks’s summary only. |
+| `ufgs061000` | **UNVERIFIED PLACEHOLDER.** 1/4 inch in 8 feet is WoodWorks’s summary only. The same `atan` yields ≈ 0.1492° (about 0.15°). That alternate is not the paint band. |
 
-The 2021 IRC wall chapter is discussed in `docs/tolerances.md` via an UpCodes reading: stud size, height, and spacing are specified; a general wood-stud plumb tolerance was not found there. That code viewer was not re-opened for this draft, so the paper points at WoodWorks for the IBC/NDS statement and at the repository note for the IRC reading.
-
-## Libraries, primitives, and planned adds
+## As-built scanning, house-alike data, and phone context
 
 | Key | What it is for this paper |
 | --- | --- |
-| `rusu2011pcl` | PCL library paper (ICRA 2011, pages 1–4). Rank 2’s host. Not installed. Not run. |
-| `fischler1981ransac` | Original RANSAC article. Context for Schnabel and for pyRANSAC-3D. Crossref’s short title was expanded to the usual full title and the expansion is noted in the bib entry. |
-| `ester1996dbscan` | Density clustering after the plate peel. **UNVERIFIED PAGINATION.** |
-| `mariga2026pyransac` | pyRANSAC-3D v0.7.0, Zenodo version DOI 10.5281/zenodo.21988437 (concept record 7212567). Planned rank-6 add from PR #14. Not run. |
-| `ravi2024sam2` | SAM 2, arXiv:2408.00714. Planned gated mask when a registered image exists. Not a stud method. Not run. |
-| `schnabel2007ransac` | Already in the primitive table above. Rank 3. Not run. |
+| `tang2010asbuilt` | Review of automatic as-built BIM from laser scans. Not a stud score. |
+| `bosche2015scan` | Scan-to-BIM plus Scan-vs-BIM for cylindrical MEP. Not lumber. |
+| `apple2022roomplan` | **UNVERIFIED THIS PASS** as a live fetch. Walls and openings, not studs. |
+| `appleArkitGravity` | **UNVERIFIED THIS PASS** as a live fetch. Y-up gravity for a later reference vector. Not ε. |
+| `erland2026iphone` | Bibliographic record verified. RMSE centimeters in the sensing survey were not re-extracted. |
 
-## Wood-stud pose, related only
-
-| Key | What it is for this paper |
-| --- | --- |
-| `xie2026wfc` | Xie and Alwisy, Automation in Construction 185, 106858 (2026). One 2×4, vision in front of 6D pose. Not our pipeline. README rotation figures cited on PR #14 were not re-read from the PDF. |
-| `jocher2023ultralytics` | Ultralytics YOLO software citation (Jocher, Qiu, Chaurasia; version 8.0.0 in CITATION.cff). The image detector in front of that pose. Not a point-cloud lean method. AGPL-3.0 on that file. |
-
-## As-built scanning and phone context
-
-| Key | What it is for this paper |
-| --- | --- |
-| `tang2010asbuilt` | Review of automatic as-built BIM from laser scans. Context. Not a stud score. |
-| `bosche2015scan` | Scan-to-BIM plus Scan-vs-BIM for cylindrical MEP. Context. Not lumber. |
-| `apple2022roomplan` | RoomPlan documentation. **UNVERIFIED THIS PASS** as a live fetch. Walls and openings, not studs. |
-| `appleArkitGravity` | ARKit gravity alignment. **UNVERIFIED THIS PASS** as a live fetch. A possible later reference vector for our own capture. Not ε. |
-| `erland2026iphone` | Crossref: Erland and Gaulton, Remote Sensing Letters 17, pages 1620–1631 (2026). The repository sensing survey attributes centimeter-class iPhone LiDAR RMSE to this article. Those centimeters were not re-extracted from the PDF here. Phone LiDAR remains a detection sensor in the capture protocol, not the instrument for a green/red call. |
-
-Vendor TLS specifications (FARO Focus, Leica RTC360, and others) stay in [`docs/research/01-sensing-modalities.md`](../../docs/research/01-sensing-modalities.md) as vendor claims. They are not given BibTeX entries until a paper needs a specific brochure row, and they are not a measured stud-axis uncertainty.
+The house-alike hunt is `docs/research/15-house-alike-frame-clouds.md` on branch `cursor/house-alike-cloud-hunt-0474` (PR #12). Its conclusion, adopted here without re-fetching every listing: no public cloud was found that looks like a US platform-frame house at sheathing stage and that could bake off a phone or robotics lidar. Class F waits on an own scan. File sizes and licenses in that note were not re-checked for this paper pass.
 
 ## Gaps this related-work pass does not fill
 
 - No public light-frame stud benchmark was found in the repository survey. This draft does not invent one.
-- Commercial scan-to-BIM tools (EdgeWise, Verity, CloudWorx, PointCab) stay out of the five-stack bake-off, as in the ranking note.
-- Forestry stem cylinders stay out. A stem is a different object.
-- pyRANSAC-3D and SAM 2 are planned contenders from PR #14. They are cited. They are not results.
-- NAHB and UFGS primary documents are still closed. WoodWorks is the secondary source until those PDFs are opened.
+- Commercial scan-to-BIM tools stay out of the bake-off, as in the ranking note and the PR #14 shortlist.
+- NAHB and UFGS primary documents are still closed.
+- Doc 17 papers beyond the keys already in `references.bib` stay outside the bibliography until a later pass opens them.
