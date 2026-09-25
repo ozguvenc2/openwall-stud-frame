@@ -18,7 +18,7 @@ for the multi-scene Open3D sweep. A stub does not segment.
 | Rank | Module | Command | One-stud result |
 | --- | --- | --- | --- |
 | 2 | `pcl_region_grow.py` | `python -m openwall_stud.contenders.pcl_region_grow` | `ran` when `libpcl` 1.14 region growing executes |
-| 3 | `cloudcompare_ransac.py` | `python -m openwall_stud.contenders.cloudcompare_ransac` | `ran` when `CloudCompare -RANSAC` returns primitive clouds |
+| 3 | `cloudcompare_ransac.py` | `python -m openwall_stud.contenders.cloudcompare_ransac` | `ran` when `CloudCompare -RANSAC` returns primitive clouds. Binary: `CLOUDCOMPARE_EXE`, then `C:\Program Files\CloudCompare\CloudCompare.exe`, then PATH |
 | 4 | `pointcept_ptv3.py` | `python -m openwall_stud.contenders.pointcept_ptv3` | `control` when BIMStruct3D PTv3 runs; stud cells stay null (no stud class). `blocked_install` if CUDA torch or the checkpoint cannot run |
 | 5 | `open3d_ml_s3dis.py` | `python -m openwall_stud.contenders.open3d_ml_s3dis` | `control` when RandLA-Net S3DIS runs; stud cells stay null. `blocked_install` if `open3d.ml.torch` or the checkpoint cannot run |
 | 6 | `pyransac3d_cuboid.py` | `python -m openwall_stud.contenders.pyransac3d_cuboid` | `ran` when pyRANSAC-3D v0.7.0 fits a cuboid; `blocked_install` if the import fails |
