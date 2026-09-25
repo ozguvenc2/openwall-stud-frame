@@ -405,38 +405,61 @@ def _hist_fingerprint(card: dict[str, Any] | None) -> list[dict[str, Any]] | Non
     return ((card.get("control") or {}).get("label_histogram")) or None
 
 
+def _histogram_span(histograms: list[list[dict[str, Any]]]) -> list[dict[str, Any]]:
+    names = [str(item.get("name")) for item in histograms[0]]
+    spans = []
+    for name in names:
+        counts = []
+        for hist in histograms:
+            match = next(item for item in hist if str(item.get("name")) == name)
+            counts.append(int(match.get("count") or 0))
+        spans.append({"name": name, "min": min(counts), "max": max(counts)})
+    return spans
+
+
 def _control_summary(finder: dict[str, Any], specs: list[dict[str, Any]]) -> dict[str, Any]:
     histograms = []
     statuses = []
+    labeled = []
+    stud_names: list[str] = []
     for spec in specs:
         card = _load_json(_scorecard_path(finder["rank"], finder["key"], spec["name"]))
         statuses.append(None if card is None else card.get("status"))
-        histograms.append(_hist_fingerprint(card))
+        hist = _hist_fingerprint(card)
+        histograms.append(hist)
+        control = (card or {}).get("control") or {}
+        if control.get("stud_class_names") is not None and not stud_names:
+            stud_names = list(control.get("stud_class_names") or [])
+        if control.get("n_points_labeled") is not None:
+            labeled.append(int(control["n_points_labeled"]))
+        elif control.get("n_points_in") is not None and hist:
+            labeled.append(int(control["n_points_in"]))
     present = [item for item in histograms if item is not None]
     unique = []
     for item in present:
         if item not in unique:
             unique.append(item)
-    stud_names = []
-    if present:
-        sample_card = None
-        for spec in specs:
-            card = _load_json(_scorecard_path(finder["rank"], finder["key"], spec["name"]))
-            if card and card.get("control"):
-                sample_card = card
-                break
-        if sample_card:
-            stud_names = list((sample_card.get("control") or {}).get("stud_class_names") or [])
+    identical = len(unique) == 1 and len(present) == len(specs)
+    span = _histogram_span(present) if present else []
+    stud_positive = [
+        item["name"]
+        for item in span
+        if "stud" in item["name"].lower() and item["max"] > 0
+    ]
     return {
         "rank": finder["rank"],
         "algorithm": finder["name"],
         "n_scorecards": sum(status is not None for status in statuses),
         "statuses": sorted({str(status) for status in statuses}),
         "n_histograms": len(present),
-        "histograms_identical": len(unique) <= 1 and len(present) == len(specs),
+        "histograms_identical": identical,
         "unique_histogram_count": len(unique),
-        "label_histogram": unique[0] if len(unique) == 1 else None,
+        "label_histogram": unique[0] if identical else None,
+        "label_count_span": span,
+        "n_points_labeled_min": min(labeled) if labeled else None,
+        "n_points_labeled_max": max(labeled) if labeled else None,
         "stud_class_names": stud_names,
+        "stud_named_classes_with_points": stud_positive,
         "stud_metrics": "null on every scene in this control unless a scorecard says a stud class was scored",
     }
 
@@ -511,6 +534,25 @@ def _hist_table(histogram: list[dict[str, Any]] | None) -> str:
     for item in histogram:
         lines.append(f"| {item.get('name')} | {item.get('count')} |")
     return "\n".join(lines) + "\n"
+
+
+def _span_table(span: list[dict[str, Any]] | None) -> str:
+    if not span:
+        return "No histogram was recorded.\n"
+    lines = ["| Class | Min count | Max count |", "| --- | --- | --- |"]
+    for item in span:
+        lines.append(f"| {item.get('name')} | {item.get('min')} | {item.get('max')} |")
+    return "\n".join(lines) + "\n"
+
+
+def _same_text(finder: dict[str, Any], specs: list[dict[str, Any]], field: str) -> list[str]:
+    values: list[str] = []
+    for spec in specs:
+        card = _load_json(_scorecard_path(finder["rank"], finder["key"], spec["name"])) or {}
+        text = card.get(field)
+        if text and text not in values:
+            values.append(str(text))
+    return values
 
 
 def _figure_section(rows: list[dict[str, Any]]) -> str:
@@ -629,26 +671,62 @@ def write_report() -> None:
     control_blocks = []
     for item in controls:
         identical = item["histograms_identical"]
-        if identical and item["label_histogram"] is not None:
+        stud_named = ", ".join(item["stud_class_names"]) if item["stud_class_names"] else "none"
+        positive = item.get("stud_named_classes_with_points") or []
+        positive_text = ", ".join(positive) if positive else "none"
+        labeled = ""
+        if item.get("n_points_labeled_min") is not None:
+            labeled = (
+                f" Labeled-point count min/max: {item['n_points_labeled_min']} / {item['n_points_labeled_max']}."
+            )
+        if item["n_histograms"] == 0:
+            hist_note = "No histogram was recorded. Stud metrics were not filled."
+            table = "No histogram was recorded.\n"
+        elif identical:
             hist_note = (
                 f"All {item['n_histograms']} recorded histograms on this matrix were identical. "
-                "Stud-named classes: "
-                + (", ".join(item["stud_class_names"]) if item["stud_class_names"] else "none")
-                + ". Stud precision, recall, section, length, angle, and paint stay null."
+                f"Stud-named classes: {stud_named}. "
+                f"Stud-named classes with a nonzero count: {positive_text}. "
+                "Stud precision, recall, section, length, angle, and paint stay null."
+                f"{labeled}"
             )
-        elif item["n_histograms"] == 0:
-            hist_note = "No histogram was recorded. Stud metrics were not filled."
+            table = _hist_table(item["label_histogram"])
         else:
             hist_note = (
                 f"{item['unique_histogram_count']} distinct histograms across {item['n_histograms']} scorecards. "
-                "They are on the per-scene scorecards and are not collapsed here."
+                "The table is the min and max count of each class on those scorecards. "
+                "Per-scene histograms stay on the scorecards and are not replaced by one invented histogram. "
+                f"Stud-named classes: {stud_named}. "
+                f"Stud-named classes with a nonzero count: {positive_text}. "
+                "Stud precision, recall, section, length, angle, and paint stay null."
+                f"{labeled}"
             )
+            table = _span_table(item.get("label_count_span"))
         control_blocks.append(
             f"### Rank {item['rank']}. {item['algorithm']}\n\n"
             f"Role: control. Scorecards: {item['n_scorecards']} of 25. Statuses: {', '.join(item['statuses']) or 'none'}.\n\n"
             f"{hist_note}\n\n"
-            f"{_hist_table(item['label_histogram'] if identical else None)}"
+            f"{table}"
         )
+    finder_notes = []
+    for finder in FINDERS:
+        if finder["key"] == "pcl":
+            shorts = _same_text(finder, specs, "implementation_short")
+            native_flags = []
+            for spec in specs:
+                card = _load_json(_scorecard_path(finder["rank"], finder["key"], spec["name"])) or {}
+                flag = (card.get("implementation") or {}).get("native_pcl_region_growing")
+                if flag not in native_flags:
+                    native_flags.append(flag)
+            finder_notes.append(
+                "Rank 2 `native_pcl_region_growing` values on these scorecards: "
+                + ", ".join(str(flag) for flag in native_flags)
+                + ". "
+                + " ".join(shorts)
+            )
+        if finder["key"] == "cloudcompare":
+            shorts = _same_text(finder, specs, "blocker_short")
+            finder_notes.append("Rank 3 blocker: " + " ".join(shorts))
     text = f"""# Phase 1 S1 lean sweep
 
 Date (America/Los_Angeles): **{date}**. Machine: **Oz_PC**. This note is one rigid lean on one synthetic dressed 2×4. It is the stage 0 style bring-up (S1). It is not a multi-stud wall, not a plate-fixed bow (S1b), and not a field, phone, or SKIL measurement.
@@ -706,6 +784,12 @@ One row is one finder on one scene. Empty cells were not measured.
 Pointcept is rank 4 and uses `.venv` (the BIMStruct3D CUDA torch pin). Open3D-ML is rank 5 and uses `.venv-o3dml`. Ranks 1, 2, 3, and 6 use `.venv`. Rank 4 `runtime_s` includes checkpoint load, normal estimation, and the 10-pass test-time augmentation on that scene, because each scene calls the existing `run_one_stud` path. Rank 5 `runtime_s` is `run_inference` after that scene's checkpoint load.
 
 {chr(10).join(version_lines)}
+
+## What the scorecards say about ranks 2 and 3
+
+{"\n\n".join(finder_notes) if finder_notes else "No rank 2 or rank 3 note was on the scorecards."}
+
+Rank 2 metrics are the run that the scorecard names. They are not a libpcl measurement when `native_pcl_region_growing` is false. Rank 3 stud cells stay empty when the binary was not on PATH.
 
 ## Controls
 

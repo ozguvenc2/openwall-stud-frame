@@ -1,0 +1,147 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A1",
+  "algorithm": "Refined Open3D stud prior",
+  "rank": 1,
+  "stage": 0,
+  "status": "ran",
+  "epsilon_locked": false,
+  "metrics_are_measurements": true,
+  "measurement_scope": "synthetic generator, this process, one stud",
+  "scene": {
+    "name": "s1_2x4_lean1.000_ax+X",
+    "stage": 0,
+    "nominal": "2x4",
+    "lean_deg": 1.0,
+    "lean_axis": "+X",
+    "seed": 2,
+    "spacing_m": 0.005,
+    "noise_std_m": 0.001,
+    "n_points": 25666,
+    "length_m": 2.4383999999999997,
+    "section_m": [
+      0.038099999999999995,
+      0.08889999999999999
+    ],
+    "reference": "gravity_z_no_floor_plane",
+    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "description": "Phase 1 S1 synthetic dressed stud. Lean 1.000 deg about +X. Long axis is +Z before the right-hand rotation. Generator gravity is +Z. No floor. The cloud is not rotated."
+  },
+  "implementation": {
+    "module": "openwall_stud.open3d_baseline",
+    "reference": "gravity_z_no_floor_plane",
+    "floor_found": false,
+    "dbscan_eps_m": 0.025,
+    "dbscan_min_points": 20,
+    "bbox_kind": "minimal_oriented"
+  },
+  "implementation_short": "Refined Open3D DBSCAN and minimal OBB. S1 reference is +Z.",
+  "detection": {
+    "n_true": 1,
+    "n_pred": 1,
+    "true_positives": 1,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "match_radius_m": 0.15,
+    "scope": "synthetic_scene_only",
+    "note": "Refined Open3D stud prior on this phase 1 S1 synthetic stud. Counts are this scene, not a field accuracy."
+  },
+  "geometry": {
+    "max_section_error_mm": 7.7,
+    "max_length_error_mm": 5.55,
+    "per_stud": [
+      {
+        "stud_id": "S1",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.8,
+          95.67
+        ],
+        "section_error_mm": [
+          7.7,
+          6.77
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2443.95,
+        "length_error_mm": 5.55
+      }
+    ],
+    "bbox_kind": "minimal_oriented",
+    "note": "Section is the two smaller minimal-OBB extents versus the dressed nominal. Length is the longest extent versus the generator length. Gaussian tails and the plate slab margin both move these numbers."
+  },
+  "angle": {
+    "mae_deg": 0.00023,
+    "max_abs_error_deg": 0.00023,
+    "pct_in_band": 100.0,
+    "band_deg": 0.11937,
+    "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
+    "reference": "gravity_z_no_floor_plane",
+    "per_stud": [
+      {
+        "stud_id": "S1",
+        "true_deg": 1.0,
+        "measured_deg": 1.00023,
+        "abs_error_deg": 0.00023,
+        "production_color": "yellow",
+        "hypothetical_color": "red"
+      }
+    ],
+    "note": "Truth is the generator lean against +Z. S1 has no floor. Not a SKIL reading."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "tolerance_deg": 0.11937,
+    "production_colors": [
+      "yellow"
+    ],
+    "production_rule": "epsilon unlocked, so every stud is yellow",
+    "hypothetical_placeholder_epsilon_deg": 0.05,
+    "hypothetical_placeholder_note": "0.05 deg is a round illustration of the color rule. It is not a measured device band.",
+    "hypothetical_colors": [
+      "red"
+    ],
+    "note": "Do not read hypothetical colors as a pass/fail call."
+  },
+  "cost": {
+    "runtime_s": 0.0531,
+    "dbscan_eps_m": 0.025,
+    "dbscan_min_points": 20,
+    "bbox_kind": "minimal_oriented",
+    "license": "MIT",
+    "license_url": "https://github.com/isl-org/Open3D",
+    "hardware": "CPU",
+    "n_points_in": 25666,
+    "n_points_after_peel": 25666,
+    "floor_found": false,
+    "failure_modes": [
+      "DBSCAN eps above the bay gap merges neighboring studs into one box.",
+      "DBSCAN eps below the surface spacing splits one stud into faces.",
+      "A plate side face left behind bridges bays.",
+      "Peeling a vertical stud-face plane would delete the wall.",
+      "PCA OBB on a short or one-sided cluster can yaw the long axis."
+    ],
+    "note": "Runtime is this process on this scene. It is not a field budget."
+  },
+  "notes": [
+    "Synthetic stage 0 only. Not a field measurement. Device epsilon is unlocked, so production paint is yellow."
+  ],
+  "stage0_bar_failures": [],
+  "stage0_bars": {
+    "detection": "precision = 1 and recall = 1",
+    "section_mm": 10.0,
+    "length_mm": 25.0,
+    "max_abs_angle_deg": 0.05,
+    "paint": "every production color yellow",
+    "scope": "synthetic stage 0 bring-up, not a field test"
+  },
+  "stage0_pass_fail": "pass",
+  "scorecard_name": "r1_open3d__s1_2x4_lean1.000_ax+X.json"
+}

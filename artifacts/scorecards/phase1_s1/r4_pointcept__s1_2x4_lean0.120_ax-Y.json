@@ -1,0 +1,217 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A4",
+  "algorithm": "Pointcept PTv3 / PointGroup (hook only until labeled Stage 5)",
+  "rank": 4,
+  "stage": 0,
+  "status": "ran",
+  "stud_metrics_scored": false,
+  "epsilon_locked": false,
+  "metrics_are_measurements": false,
+  "measurement_scope": "label histogram from one forward pass on this synthetic cloud; stud detection, geometry, angle, and paint were not scored",
+  "scene": {
+    "name": "s1_2x4_lean0.120_ax-Y",
+    "stage": 0,
+    "nominal": "2x4",
+    "lean_deg": 0.12,
+    "lean_axis": "-Y",
+    "seed": 2,
+    "spacing_m": 0.005,
+    "noise_std_m": 0.001,
+    "n_points": 25666,
+    "length_m": 2.4383999999999997,
+    "section_m": [
+      0.038099999999999995,
+      0.08889999999999999
+    ],
+    "reference": "gravity_z_no_floor_plane",
+    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "description": "Phase 1 S1 synthetic dressed stud. Lean 0.120 deg about -Y. Long axis is +Z before the right-hand rotation. Generator gravity is +Z. No floor. The cloud is not rotated."
+  },
+  "control": {
+    "model": "BIMStruct3D PT-v3m1 semantic segmentation",
+    "repo": "dfki-av/BIMStruct3D-segmentation",
+    "license": "code MIT; weights CC BY-NC-SA 4.0; weights not committed",
+    "checkpoint": "weights/model_best.pth",
+    "checkpoint_bytes": 554610216,
+    "device": "NVIDIA GeForce RTX 4080 SUPER",
+    "torch": "2.7.0+cu126",
+    "class_names": [
+      "clutter",
+      "floor",
+      "ceiling",
+      "wall",
+      "column",
+      "door",
+      "window",
+      "stairs",
+      "railing",
+      "lights"
+    ],
+    "stud_class_names": [],
+    "label_histogram": [
+      {
+        "id": 0,
+        "name": "clutter",
+        "count": 25666
+      },
+      {
+        "id": 1,
+        "name": "floor",
+        "count": 0
+      },
+      {
+        "id": 2,
+        "name": "ceiling",
+        "count": 0
+      },
+      {
+        "id": 3,
+        "name": "wall",
+        "count": 0
+      },
+      {
+        "id": 4,
+        "name": "column",
+        "count": 0
+      },
+      {
+        "id": 5,
+        "name": "door",
+        "count": 0
+      },
+      {
+        "id": 6,
+        "name": "window",
+        "count": 0
+      },
+      {
+        "id": 7,
+        "name": "stairs",
+        "count": 0
+      },
+      {
+        "id": 8,
+        "name": "railing",
+        "count": 0
+      },
+      {
+        "id": 9,
+        "name": "lights",
+        "count": 0
+      }
+    ],
+    "n_points_labeled": 25666,
+    "n_points_with_votes": 25666,
+    "vote_mass": 25666,
+    "color_features": "zeros; the generator cloud has no RGB",
+    "normals": "open3d estimate_normals on the generator coordinates",
+    "inference": "segment_scan.TEST_CFG (10 scale/flip passes) and grid 0.04 m",
+    "runtime_includes": "checkpoint load, normal estimation, and the 10-pass test-time augmentation",
+    "pointgroup_ran": false
+  },
+  "implementation": {
+    "module": "openwall_stud.contenders.pointcept_ptv3",
+    "entry": "BIMStruct3D segment_scan.load_model / infer_tile",
+    "probe": {
+      "nvidia_smi": "C:\\WINDOWS\\system32\\nvidia-smi.EXE",
+      "nvidia_query": "NVIDIA GeForce RTX 4080 SUPER, 610.62, 16376 MiB",
+      "nvidia_present": true,
+      "torch_importable": true,
+      "torch_version": "2.7.0+cu126",
+      "torch_cuda_build": "12.6",
+      "torch_cuda_available": true,
+      "torch_device": "NVIDIA GeForce RTX 4080 SUPER",
+      "torch_error": null
+    },
+    "attempt": {
+      "cloud_loaded": true,
+      "n_points": 25666,
+      "nvidia_smi": "C:\\WINDOWS\\system32\\nvidia-smi.EXE",
+      "nvidia_query": "NVIDIA GeForce RTX 4080 SUPER, 610.62, 16376 MiB",
+      "torch_version": "2.7.0+cu126",
+      "torch_cuda_build": "12.6",
+      "torch_cuda_available": true,
+      "torch_device": "NVIDIA GeForce RTX 4080 SUPER",
+      "pointcept_importable": true,
+      "weights_downloaded": true,
+      "weights_committed": false,
+      "forward_pass": true,
+      "pointgroup_ran": false,
+      "pointgroup_reason": "No stud-class PointGroup checkpoint is in this repo.",
+      "weights_cache": "C:\\Repos\\openwall-stud-frame-ranks45\\data\\cache\\bimstruct3d",
+      "class_names": [
+        "clutter",
+        "floor",
+        "ceiling",
+        "wall",
+        "column",
+        "door",
+        "window",
+        "stairs",
+        "railing",
+        "lights"
+      ]
+    }
+  },
+  "implementation_short": "BIMStruct3D PTv3 semantic control. No stud class (clutter, floor, ceiling, wall, column, door, window, stairs, railing, lights). Histogram recorded. No stud box and no paint.",
+  "detection": {
+    "n_true": null,
+    "n_pred": null,
+    "true_positives": null,
+    "false_positives": null,
+    "false_negatives": null,
+    "precision": null,
+    "recall": null,
+    "note": "BIMStruct3D PTv3 semantic forward pass on this one synthetic stud. Classes: clutter, floor, ceiling, wall, column, door, window, stairs, railing, lights. Stud-named classes: none. No stud box was fit and no paint color was assigned. PointGroup was not run. The generator cloud has no RGB, so color features were zeros. S3DIS or ScanNet mIoU was not copied."
+  },
+  "geometry": {
+    "max_section_error_mm": null,
+    "max_length_error_mm": null,
+    "per_stud": [],
+    "note": "BIMStruct3D PTv3 semantic forward pass on this one synthetic stud. Classes: clutter, floor, ceiling, wall, column, door, window, stairs, railing, lights. Stud-named classes: none. No stud box was fit and no paint color was assigned. PointGroup was not run. The generator cloud has no RGB, so color features were zeros. S3DIS or ScanNet mIoU was not copied."
+  },
+  "angle": {
+    "mae_deg": null,
+    "pct_in_band": null,
+    "band_deg": null,
+    "per_stud": [],
+    "note": "BIMStruct3D PTv3 semantic forward pass on this one synthetic stud. Classes: clutter, floor, ceiling, wall, column, door, window, stairs, railing, lights. Stud-named classes: none. No stud box was fit and no paint color was assigned. PointGroup was not run. The generator cloud has no RGB, so color features were zeros. S3DIS or ScanNet mIoU was not copied."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "production_colors": [],
+    "hypothetical_placeholder_epsilon_deg": null,
+    "hypothetical_colors": [],
+    "note": "BIMStruct3D PTv3 semantic forward pass on this one synthetic stud. Classes: clutter, floor, ceiling, wall, column, door, window, stairs, railing, lights. Stud-named classes: none. No stud box was fit and no paint color was assigned. PointGroup was not run. The generator cloud has no RGB, so color features were zeros. S3DIS or ScanNet mIoU was not copied."
+  },
+  "cost": {
+    "runtime_s": 41.0168,
+    "license": "MIT code; BIMStruct3D weights CC BY-NC-SA 4.0, not committed",
+    "hardware": "NVIDIA GeForce RTX 4080 SUPER; CUDA torch 2.7.0+cu126",
+    "failure_modes": [
+      "Output classes are construction/indoor labels, not studs.",
+      "No PointGroup instance head was run.",
+      "Zero RGB on a model that was trained with color.",
+      "CC BY-NC-SA weights are not a commercial stud model."
+    ],
+    "note": "BIMStruct3D PTv3 semantic forward pass on this one synthetic stud. Classes: clutter, floor, ceiling, wall, column, door, window, stairs, railing, lights. Stud-named classes: none. No stud box was fit and no paint color was assigned. PointGroup was not run. The generator cloud has no RGB, so color features were zeros. S3DIS or ScanNet mIoU was not copied."
+  },
+  "notes": [
+    "BIMStruct3D PTv3 semantic forward pass on this one synthetic stud. Classes: clutter, floor, ceiling, wall, column, door, window, stairs, railing, lights. Stud-named classes: none. No stud box was fit and no paint color was assigned. PointGroup was not run. The generator cloud has no RGB, so color features were zeros. S3DIS or ScanNet mIoU was not copied."
+  ],
+  "stage0_pass_fail": "control",
+  "stage0_bar_failures": [
+    "No stud class in the forward-pass vocabulary, so stud bars were not scored."
+  ],
+  "stage0_bars": {
+    "detection": "precision = 1 and recall = 1",
+    "section_mm": 10.0,
+    "length_mm": 25.0,
+    "max_abs_angle_deg": 0.05,
+    "paint": "every production color yellow",
+    "scope": "synthetic stage 0 bring-up, not a field test"
+  },
+  "scorecard_name": "r4_pointcept__s1_2x4_lean0.120_ax-Y.json"
+}
