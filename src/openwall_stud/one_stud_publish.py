@@ -49,9 +49,9 @@ def publish_attempt(
             point_colors=point_colors,
         )
         try:
-            card["figure"] = str(figure.resolve().relative_to(repo_root()))
+            card["figure"] = str(figure.resolve().relative_to(repo_root())).replace("\\", "/")
         except ValueError:
-            card["figure"] = str(figure)
+            card["figure"] = str(figure).replace("\\", "/")
         write_scorecard(out, card)
     if write_day_row:
         from openwall_stud.results_by_day import repo_root

@@ -140,6 +140,13 @@ def _forward(scene: Scene, cache: Path, device: str) -> dict[str, Any]:
         tile_pred = segment_scan.infer_tile(model, dataset, index, num_classes, device)
         one_hot = F.one_hot(torch.from_numpy(tile_pred.astype(np.int64)), num_classes=num_classes)
         votes += one_hot.to(torch.int16)
+    vote_mass = int(votes.sum().item())
+    n_voted = int((votes.sum(dim=1) > 0).sum().item())
+    if n_voted == 0 or vote_mass == 0:
+        raise RuntimeError(
+            f"PTv3 returned no class votes (vote_mass={vote_mass}, n_voted={n_voted}). "
+            "An all-zero argmax would look like class 0 and is not a histogram."
+        )
     labels = votes.argmax(dim=1).numpy()
     runtime_s = round(time.perf_counter() - started, 4)
     histogram = _histogram(labels, names)
@@ -149,7 +156,9 @@ def _forward(scene: Scene, cache: Path, device: str) -> dict[str, Any]:
         "names": names,
         "num_classes": num_classes,
         "histogram": histogram,
-        "n_uncovered": 0,
+        "n_uncovered": int(coord.shape[0] - n_voted),
+        "vote_mass": vote_mass,
+        "n_points_with_votes": n_voted,
         "weight_bytes": weight_path.stat().st_size,
         "color": "zeros; the generator cloud has no RGB",
         "normals": "open3d estimate_normals on the generator coordinates",
@@ -298,9 +307,12 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
         "stud_class_names": stud_names,
         "label_histogram": histogram,
         "n_points_labeled": int(scene.n_points),
+        "n_points_with_votes": result["n_points_with_votes"],
+        "vote_mass": result["vote_mass"],
         "color_features": result["color"],
         "normals": result["normals"],
         "inference": result["tta"],
+        "runtime_includes": "checkpoint load, normal estimation, and the 10-pass test-time augmentation",
         "pointgroup_ran": False,
     }
     attempt["forward_pass"] = True

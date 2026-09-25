@@ -186,7 +186,9 @@ One call to `stage0_single_stud` in `src/openwall_stud/synthetic.py`.
 
 `nvidia-smi`: {gpu_line}
 
-Pointcept ran under `.venv` with CUDA torch 2.7 (the BIMStruct3D pin). Open3D-ML ran under `.venv-o3dml` with CUDA torch 2.13, because the Windows `open3d==0.20.0` wheel refuses any other minor version (`Pytorch_VERSION` is `2.13.0+cpu` in that wheel; `BUILD_CUDA_MODULE` is false, and RandLA-Net itself is PyTorch).
+Pointcept used `.venv` (CUDA torch 2.7, the BIMStruct3D pin). Open3D-ML used `.venv-o3dml` (CUDA torch 2.13). The Windows `open3d==0.20.0` wheel imports `open3d.ml.torch` only when the torch minor version is 2.13 (`Pytorch_VERSION` is `2.13.0+cpu` in that wheel). `BUILD_CUDA_MODULE` is false there; RandLA-Net itself is PyTorch and ran on the GPU.
+
+Rank 4 `runtime_s` includes checkpoint load, normal estimation, and the 10-pass test-time augmentation. Rank 5 `runtime_s` is `run_inference` after that checkpoint was already in memory.
 
 ## Result
 
