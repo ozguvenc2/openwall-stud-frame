@@ -2,7 +2,7 @@
 
 Research date: **2026-09-23**. Scope: residential frame-stage QA — sample point clouds, semantic stud/beam segmentation, angle versus gravity, red/green against industry margins, with measurement-error tolerance. Near-term stack is Python + Open3D. Unity is optional later for visualization or XR. XREAL Aura is an AR display, not the capture scanner.
 
-No multi-gigabyte datasets were downloaded into this repo. Large clouds stay behind the access URLs in [03-sample-datasets.md](03-sample-datasets.md). The frame-stage shortlist is [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md). The stud-segmentation ranking is [11-stud-segmentation-algorithm-ranking.md](11-stud-segmentation-algorithm-ranking.md). The stage ladder and the synthetic Open3D path are [12-stud-seg-design-plan.md](12-stud-seg-design-plan.md).
+No multi-gigabyte datasets were downloaded into this repo. Large clouds stay behind the access URLs in [03-sample-datasets.md](03-sample-datasets.md). The frame-stage shortlist is [06-top5-frame-pointclouds.md](06-top5-frame-pointclouds.md). The stud-segmentation ranking is [11-stud-segmentation-algorithm-ranking.md](11-stud-segmentation-algorithm-ranking.md). The stage ladder and the synthetic Open3D path are [12-stud-seg-design-plan.md](12-stud-seg-design-plan.md). Methods surveyed as possible replacements for that shortlist are [17-methods-that-beat-shortlist.md](17-methods-that-beat-shortlist.md). None was run, and none is scored as a win.
 
 ## How to read these docs
 
@@ -32,6 +32,7 @@ Numbers are copied from the cited page or marked **unknown**. Vendor brochure fi
 | [11-stud-segmentation-algorithm-ranking.md](11-stud-segmentation-algorithm-ranking.md) | Best-to-worst segmenters for vertical studs on a bare frame: tight boxes, angle versus the floor, then green/yellow/red once a device error band exists. Floor is not gravity. |
 | [12-stud-seg-design-plan.md](12-stud-seg-design-plan.md) | Curriculum stages 0–7, scorecard, pass bars, capture protocol (iPhone, Mid-360, SKIL BOT/MID/TOP), and what this repo runs. Figures: [images/algo-contenders/INDEX.md](images/algo-contenders/INDEX.md). |
 | [13-stud-seg-results-by-day.md](13-stud-seg-results-by-day.md) | Day-by-day algorithm outcome versus ground truth. Seeded with the 2026-09-24 synthetic Open3D runs. Stubs are `not_run`. |
+| [17-methods-that-beat-shortlist.md](17-methods-that-beat-shortlist.md) | 2026-09-25 survey of YOLO, Vuforia, XR capture, classical libraries, 2023–2026 timber papers, and commercial scan-to-BIM tools against the five-stack shortlist. No method is scored as a win. Two bake-off adds, nothing dropped. |
 | [04-seed-funds.md](04-seed-funds.md) | NSF America’s Seed Fund AR/VR topic and nearby SBIR / construction awards. |
 | [05-misc-resources.md](05-misc-resources.md) | Gaussian splats versus clouds, MIT VNAV, the brief’s video and Gemini links, LinkedIn posts, aerial-LiDAR tools. |
 | [catalog.json](catalog.json) | Same rows in one JSON file for later tooling. Each table also has a sibling `.json`. |

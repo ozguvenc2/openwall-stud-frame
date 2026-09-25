@@ -1,7 +1,7 @@
 {
   "generated": "2026-09-23",
   "repo": "https://github.com/ozguvenc2/openwall-stud-frame",
-  "notes": "Numbers are cited in the markdown or marked unknown. Tables 1-2 refreshed 2026-09-23 for LiDAR classes and gravity-up. Top-5 frame-stage ranking added the same day. Stud-segmentation algorithm ranking and the stage-ladder design plan added 2026-09-24. Synthetic Open3D scorecards are measurements of the generator, not a field accuracy. No datasets were downloaded.",
+  "notes": "Numbers are cited in the markdown or marked unknown. Tables 1-2 refreshed 2026-09-23 for LiDAR classes and gravity-up. Top-5 frame-stage ranking added the same day. Stud-segmentation algorithm ranking and the stage-ladder design plan added 2026-09-24. Synthetic Open3D scorecards are measurements of the generator, not a field accuracy. A 2026-09-25 survey of methods that could beat the stud shortlist found no published win; nothing in that pass was downloaded or run. No datasets were downloaded.",
   "stud_segmentation_ranking": {
     "doc": "docs/research/11-stud-segmentation-algorithm-ranking.md",
     "json": "docs/research/11-stud-segmentation-algorithm-ranking.json",
@@ -32,6 +32,18 @@
       "4": "stub",
       "5": "stub"
     }
+  },
+  "methods_that_could_beat_shortlist": {
+    "doc": "docs/research/17-methods-that-beat-shortlist.md",
+    "json": "docs/research/17-methods-that-beat-shortlist.json",
+    "generated": "2026-09-25",
+    "timezone": "America/Los_Angeles",
+    "finding": "No surveyed method is scored beat_shortlist. None was run. Add pyRANSAC-3D sequential cuboid after the rank-1 plate peel. Add a SAM 2 mask lift only when a registered image exists. Third slot empty. Drop nothing.",
+    "yolo_verdict": "no",
+    "vuforia_verdict": "no",
+    "bakeoff_add_ids": ["B1", "B2"],
+    "bakeoff_drop": [],
+    "status": "surveyed; not-downloaded"
   },
   "stud_segmentation_results_by_day": {
     "doc": "docs/research/13-stud-seg-results-by-day.md",

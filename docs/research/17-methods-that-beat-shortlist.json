@@ -1,0 +1,843 @@
+{
+  "table": "17-methods-that-beat-shortlist",
+  "generated": "2026-09-25",
+  "timezone": "America/Los_Angeles",
+  "product": "TruePlank",
+  "product_family": "BeamWeaver",
+  "engineering_name": "OpenWall",
+  "baseline_doc": "docs/research/11-stud-segmentation-algorithm-ranking.md",
+  "shortlist": [
+    {"rank": 1, "id": "A1", "name": "Refined Open3D stud prior", "fit_score": 5},
+    {"rank": 2, "id": "A2", "name": "PCL region-grow cuboid (Ozkan/Pochtrager, no remote coplanar merge)", "fit_score": 4},
+    {"rank": 3, "id": "A3", "name": "CloudCompare RANSAC-SD via CloudComPy", "fit_score": 3},
+    {"rank": 4, "id": "A4", "name": "Pointcept PTv3/PointGroup; BIMStruct3D zero-shot as control only", "fit_score": 3},
+    {"rank": 5, "id": "A5", "name": "Open3D-ML RandLA-Net or KPConv, S3DIS weights", "fit_score": 2}
+  ],
+  "finding": "No surveyed method is scored beat_shortlist. None was run. Add sequential cuboid RANSAC (pyRANSAC-3D v0.7.0) after the rank-1 plate peel. Add a SAM 2 mask lift only when a registered image exists. Leave the third slot empty. Do not drop ranks 1-5.",
+  "nothing_was_run": true,
+  "nothing_was_downloaded": true,
+  "verdict_vocabulary": ["beat_shortlist", "maybe", "no", "wrong_modality"],
+  "yolo_section": {
+    "verdict": "no",
+    "summary": "YOLO is an image detector. It does not emit a stud instance, a 3D oriented box, or lean from a point cloud. RGB helps only as a proposal whose points are then boxed by the shared post-step. YOLO3D and BEVFusion regress a bird's-eye heading for driving, which is not stud lean.",
+    "ultralytics_license": "AGPL-3.0 or Enterprise quote",
+    "coco_map_not_a_stud_score": 54.7
+  },
+  "vuforia_section": {
+    "verdict": "no",
+    "summary": "Model Targets track one CAD-matched object and return that CAD's axis-aligned box in the camera frame. Area Targets localize in a scanned room. Neither instances a wall of 2x4s nor reports lean against the floor or gravity.",
+    "premium_price": "unknown (quote)"
+  },
+  "bakeoff": {
+    "add": [
+      {
+        "id": "B1",
+        "condition": "Always, on the same clouds as rank 1, after the same plate peel."
+      },
+      {
+        "id": "B2",
+        "condition": "Only when the capture already has a registered image. Skip on a pure LAS/PLY."
+      }
+    ],
+    "third_slot": "empty",
+    "drop": []
+  },
+  "candidates": [
+    {
+      "id": "B1",
+      "name": "pyRANSAC-3D v0.7.0 sequential cuboid",
+      "what_it_does": "Fits one oriented cuboid (three orthogonal faces) to a point array and returns center, extents, and axes. A wall scan would need our plate peel, inlier removal, and a 2x4 section reject.",
+      "input_modality": "Point cloud (Nx3). No RGB required.",
+      "license": "Apache-2.0",
+      "pricing": "OSS, no fee",
+      "can_instance_2x4": "Unknown. One call fits one cuboid and can swallow coplanar studs. Unmeasured on a bare wall.",
+      "obb": "Yes. center, extents, and axes. Not locked to global Z.",
+      "angle_vs_gravity_or_floor": "Not native. Long axis can take the shared floor-normal angle. Gravity is the later repaint.",
+      "open_or_closed": "open",
+      "last_updated_or_paper_year": "v0.7.0 uploaded 2026-08-18",
+      "fit_score": 4,
+      "fit_why": "Emits the box and a free axis the scorecard needs. Unmeasured, and the default threshold is not a stud prior.",
+      "verdict": "maybe",
+      "bakeoff_add": true,
+      "reported_accuracy": "None on studs. Do not treat the library default thresh of 0.05 as a calibrated stud tolerance.",
+      "sources": [
+        "https://pypi.org/project/pyransac3d/",
+        "https://github.com/leomariga/pyRANSAC-3D/releases/tag/v0.7.0",
+        "https://leomariga.github.io/pyRANSAC-3D/api-documentation/cuboid/",
+        "https://doi.org/10.5281/zenodo.7212567"
+      ]
+    },
+    {
+      "id": "B2",
+      "name": "SAM 2 image mask lifted onto points, then the shared box",
+      "what_it_does": "Promptable image and video segmentation. A mask is useful only after a person or another detector names the stud. Lifted points then use the OpenWall box and angle.",
+      "input_modality": "Registered RGB (or video). Not a pure point cloud.",
+      "license": "Apache-2.0 for checkpoints, demo, and training code. Demo fonts SIL OFL 1.1. cctorch BSD-3-Clause.",
+      "pricing": "OSS, no fee",
+      "can_instance_2x4": "Unknown. SAM 2 has no stud class. Zero-shot stud accuracy was not tested.",
+      "obb": "No. Image mask only. The 3D box is our post-step.",
+      "angle_vs_gravity_or_floor": "No. Angle stays on the lifted points.",
+      "open_or_closed": "open",
+      "last_updated_or_paper_year": "Repository created 2024-07-29. License page read 2026-09-25.",
+      "fit_score": 3,
+      "fit_why": "Might separate touching members when a photo exists. Does not replace the box or the angle.",
+      "verdict": "maybe",
+      "bakeoff_add": true,
+      "reported_accuracy": "No stud metric found.",
+      "sources": [
+        "https://github.com/facebookresearch/sam2/"
+      ]
+    },
+    {
+      "id": "B3",
+      "name": "Ultralytics YOLO11 / YOLOv8 / YOLO-World",
+      "what_it_does": "Image detection, instance masks, 2D keypoints, and 2D oriented boxes. YOLO-World adds a text prompt. Not a point-cloud stud model.",
+      "input_modality": "RGB image",
+      "license": "AGPL-3.0, or Ultralytics Enterprise",
+      "pricing": "AGPL at no fee if the whole application is AGPL. Enterprise price unknown (quote).",
+      "can_instance_2x4": "Only as a 2D box or mask. Wall-scale stud accuracy unknown. COCO mAP is not a stud score.",
+      "obb": "2D image OBB only (aerial-style). Not a 3D stud box.",
+      "angle_vs_gravity_or_floor": "No.",
+      "open_or_closed": "open under AGPL; closed use needs Enterprise",
+      "last_updated_or_paper_year": "YOLO11 docs read 2026-09-25 (software year 2024 on the citation).",
+      "fit_score": 2,
+      "fit_why": "A registered photo could propose instances. The lean still comes from points. AGPL is a poor fit for closed-source TruePlank.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "Hugging Face YOLO11 card: COCO mAP 54.7 at 0.5:0.95. Not studs.",
+      "sources": [
+        "https://docs.ultralytics.com/models/yolo11",
+        "https://www.ultralytics.com/license",
+        "https://huggingface.co/Ultralytics/YOLO11/blob/main/README.md"
+      ]
+    },
+    {
+      "id": "B4",
+      "name": "YOLO3D (Ali et al., ECCV 2018 workshop)",
+      "what_it_does": "YOLO v2 on a bird's-eye LiDAR image. Regresses a 3D box and a heading in that plane.",
+      "input_modality": "LiDAR projected to a bird's-eye image. KITTI.",
+      "license": "Paper is a CVF open-access PDF. Code license not fetched.",
+      "pricing": "unknown",
+      "can_instance_2x4": "No stud class. Domain is driving.",
+      "obb": "Yes, a 3D box for KITTI objects, with bird's-eye yaw.",
+      "angle_vs_gravity_or_floor": "Bird's-eye heading is rotation about vertical, not lean of a stud axis.",
+      "open_or_closed": "research paper",
+      "last_updated_or_paper_year": "2018",
+      "fit_score": 1,
+      "fit_why": "Wrong objects and the wrong angle.",
+      "verdict": "wrong_modality",
+      "bakeoff_add": false,
+      "reported_accuracy": "KITTI only. Not copied as a stud score.",
+      "sources": [
+        "https://openaccess.thecvf.com/content_ECCVW_2018/papers/11131/Ali_YOLO3D_End-to-end_real-time_3D_Oriented_Object_Bounding_Box_Detection_from_ECCVW_2018_paper.pdf"
+      ]
+    },
+    {
+      "id": "B5",
+      "name": "BEVFusion",
+      "what_it_does": "Camera and LiDAR fusion in a bird's-eye grid for 3D detection and map segmentation.",
+      "input_modality": "Multi-camera plus spinning LiDAR. nuScenes.",
+      "license": "Paper PDF. Code license not fetched.",
+      "pricing": "unknown",
+      "can_instance_2x4": "No. Driving classes.",
+      "obb": "3D boxes for driving objects.",
+      "angle_vs_gravity_or_floor": "Bird's-eye vehicle heading, not stud lean.",
+      "open_or_closed": "research",
+      "last_updated_or_paper_year": "2022",
+      "fit_score": 1,
+      "fit_why": "Driving fusion. No stud class.",
+      "verdict": "wrong_modality",
+      "bakeoff_add": false,
+      "reported_accuracy": "nuScenes mAP in the paper. Not copied.",
+      "sources": [
+        "https://arxiv.org/pdf/2205.13542"
+      ]
+    },
+    {
+      "id": "B6",
+      "name": "Xie and Alwisy 2026 WFC 6D pose (YOLOv8 detect plus point-cloud pose)",
+      "what_it_does": "Close-range 6D pose of one 2x4 from ZED 2i RGB-D. YOLOv8 detects. A geometry-prior pose refiner follows. Code for the pose method is not in the public repo.",
+      "input_modality": "RGB-D of a single stud. 288 turntable views.",
+      "license": "Dataset README license heading was empty. Unknown.",
+      "pricing": "Dataset host is Dropbox. No fee stated. Archive 10.65 GB was not downloaded.",
+      "can_instance_2x4": "One stud per frame in a controlled setup. Not a wall of studs. Pose code listed as coming soon.",
+      "obb": "6D pose of a measured stud model, which implies a box. Not demonstrated on a registered wall cloud.",
+      "angle_vs_gravity_or_floor": "Full rotation error versus their manual pose. Mean 1.43 degrees, median 1.00 degrees. Their strict bar is 2 degrees and 20 mm. Not floor-relative lean of a wall stud.",
+      "open_or_closed": "paper plus dataset; fitter code not released",
+      "last_updated_or_paper_year": "2026",
+      "fit_score": 3,
+      "fit_why": "The only public 2x4 pose table found. Scene, code, and 1-degree rotation keep it off the bake-off.",
+      "verdict": "maybe",
+      "bakeoff_add": false,
+      "reported_accuracy": "README Table 2 rotation mean/median degrees: theirs 1.43/1.00; FoundationPose 7.25/5.30; SAM-6D 9.18/2.90; MegaPose 5.16/2.01; plane-fitting baseline 28.28/23.93. Table 3: 73.61 percent within 20 mm and 2 degrees. ADD-S mean 4.80 mm. LinkedIn grasp and 99.82 percent claims were not in the README and are excluded.",
+      "sources": [
+        "https://github.com/yigediao/wfcdataset",
+        "https://doi.org/10.1016/j.autcon.2026.106858"
+      ]
+    },
+    {
+      "id": "B7",
+      "name": "FoundationPose, SAM-6D, and MegaPose on the WFC set",
+      "what_it_does": "General RGB-D 6D pose. The WFC README scores them on one 2x4 and they trail the authors' pose method.",
+      "input_modality": "RGB-D. FoundationPose was run at 1280x720. MegaPose used manual boxes. SAM-6D failed on 50 of 288 samples.",
+      "license": "Not re-read per project this pass.",
+      "pricing": "unknown",
+      "can_instance_2x4": "They consume a detection or a model. They do not schedule a stud wall.",
+      "obb": "6D pose, not a wall OBB.",
+      "angle_vs_gravity_or_floor": "Rotation errors of several degrees on the WFC table. Not a floor angle.",
+      "open_or_closed": "research",
+      "last_updated_or_paper_year": "Scored in the 2026 WFC README. Original paper years not re-fetched.",
+      "fit_score": 2,
+      "fit_why": "Published rotation on a single stud is coarser than the working band, and the scene is not a wall.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "See B6 table. No separate stud-wall metric.",
+      "sources": [
+        "https://github.com/yigediao/wfcdataset"
+      ]
+    },
+    {
+      "id": "B8",
+      "name": "Panelized-framing YOLOv8s",
+      "what_it_does": "Factory cameras detect stud centers and nailer positions so a PLC can correct nailing.",
+      "input_modality": "Industrial RGB. Not a site point cloud.",
+      "license": "Journal article. Code license unknown. Full text not opened.",
+      "pricing": "unknown",
+      "can_instance_2x4": "Abstract says stud centers on a framing machine. Not a scanned wall.",
+      "obb": "2D detections. 3D OBB unknown.",
+      "angle_vs_gravity_or_floor": "Abstract alignment error is nailing, not plumb.",
+      "open_or_closed": "paper",
+      "last_updated_or_paper_year": "Journal page read 2026-09-25. Year of the article not extracted.",
+      "fit_score": 1,
+      "fit_why": "Factory nail alignment. Authors and full text were not extracted.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "Abstract only: defect-detection accuracy 99.7 percent; average alignment error below 1 mm. Not a site lean.",
+      "sources": [
+        "https://journalofindustrializedconstruction.com/index.php/jic/article/view/341"
+      ]
+    },
+    {
+      "id": "B9",
+      "name": "WDNET-YOLO",
+      "what_it_does": "YOLOv8n variant for surface cracks, knots, and similar timber defects in RGB.",
+      "input_modality": "RGB photos of timber surfaces",
+      "license": "MDPI paper CC BY. Code license not fetched.",
+      "pricing": "OSS paper, no fee",
+      "can_instance_2x4": "No. Defect patches, not members.",
+      "obb": "2D defect boxes.",
+      "angle_vs_gravity_or_floor": "No. Paper says RGB cannot see internal defects.",
+      "open_or_closed": "paper",
+      "last_updated_or_paper_year": "2025",
+      "fit_score": 1,
+      "fit_why": "Surface defects.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "mAP50 65.5 percent to 69.2 percent and mAP50-95 36.7 percent to 40.2 percent versus YOLOv8n, on their defect set.",
+      "sources": [
+        "https://doi.org/10.3390/buildings15132281"
+      ]
+    },
+    {
+      "id": "B10",
+      "name": "HBIM YOLO on point-cloud images",
+      "what_it_does": "YOLO boxes on rendered images of traditional timber clouds. Dimensions start in pixels and need a scale conversion.",
+      "input_modality": "Image of a point cloud",
+      "license": "npj article. Code unknown.",
+      "pricing": "unknown",
+      "can_instance_2x4": "Traditional timber components, not a residential 2x4 wall.",
+      "obb": "2D pixel boxes.",
+      "angle_vs_gravity_or_floor": "No lean versus floor or gravity found.",
+      "open_or_closed": "paper",
+      "last_updated_or_paper_year": "2025",
+      "fit_score": 1,
+      "fit_why": "Image scale on heritage members.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud-plumb number extracted.",
+      "sources": [
+        "https://doi.org/10.1038/s40494-025-02151-6"
+      ]
+    },
+    {
+      "id": "B11",
+      "name": "ISARC 2025 YOLOv8 timber structural defects",
+      "what_it_does": "Image detection of bends, twists, and missing parts on timber studs.",
+      "input_modality": "RGB",
+      "license": "Conference paper. Code unknown.",
+      "pricing": "unknown",
+      "can_instance_2x4": "Defect localization in images. Not a wall instance model.",
+      "obb": "2D boxes. 3D OBB not established.",
+      "angle_vs_gravity_or_floor": "No.",
+      "open_or_closed": "paper",
+      "last_updated_or_paper_year": "2025",
+      "fit_score": 1,
+      "fit_why": "Image defects. Metric values were not extracted.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "Precision, recall, and mAP are named. Values not extracted this pass.",
+      "sources": [
+        "https://doi.org/10.22260/isarc2025/0179"
+      ]
+    },
+    {
+      "id": "B12",
+      "name": "Vuforia Engine Model Targets and Area Targets",
+      "what_it_does": "Model Targets track a CAD-matched object from a camera. Area Targets localize the device in a pre-scanned space.",
+      "input_modality": "Camera, plus CAD (Model Targets) or a prior 3D scan (Area Targets). Not a raw stud cloud.",
+      "license": "PTC proprietary",
+      "pricing": "Basic free with watermark and no store publish for Model/Area Targets (20 generated targets). Premium and Enterprise are quote. Dollar amounts not on the pages read.",
+      "can_instance_2x4": "No. Identical repeated studs conflict with the one-distinctive-object guidance.",
+      "obb": "Axis-aligned box of the CAD model via vuModelTargetObserverGetAABB. Not a fit to scanned points.",
+      "angle_vs_gravity_or_floor": "Camera-to-model pose. No floor or gravity lean API found.",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "Docs read 2026-09-25",
+      "fit_score": 1,
+      "fit_why": "Tracking and room anchors. Wrong output for a stud schedule.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric.",
+      "sources": [
+        "https://developer.vuforia.com/library/vuforia-engine/images-and-objects/model-targets/model-targets-api-overview/",
+        "https://developer.vuforia.com/library/vuforia-engine/images-and-objects/model-targets/best-practices/model-targets-supported-objects-cad-model-best-practices/",
+        "https://developer.vuforia.com/library/vuforia-engine/FAQ/pricing-and-licensing-options/",
+        "https://www.ptc.com/en/products/vuforia/vuforia-engine/pricing",
+        "https://developer.vuforia.com/references/native/group__ModelTargetObserverGroup.html"
+      ]
+    },
+    {
+      "id": "B13",
+      "name": "ARKit RoomPlan",
+      "what_it_does": "Parametric room: walls, openings, doors, windows, and furniture cuboids from iPhone or iPad LiDAR.",
+      "input_modality": "ARKit camera plus LiDAR",
+      "license": "Apple proprietary",
+      "pricing": "No API fee found.",
+      "can_instance_2x4": "No stud category on the WWDC22 surface list.",
+      "obb": "Furniture cuboids and planar surfaces. Not studs.",
+      "angle_vs_gravity_or_floor": "No stud lean. ARKit gravity remains the reference vector in doc 02, separate from RoomPlan.",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "WWDC22 introduction; WWDC23 added curved and slanted walls. Pages read 2026-09-25.",
+      "fit_score": 1,
+      "fit_why": "Room shell and furniture.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric.",
+      "sources": [
+        "https://developer.apple.com/videos/play/wwdc2022/10127/",
+        "https://machinelearning.apple.com/research/roomplan"
+      ]
+    },
+    {
+      "id": "B14",
+      "name": "ARCore Depth and Raw Depth",
+      "what_it_does": "Per-frame depth and confidence. Raw Depth is denser and does not cover every pixel.",
+      "input_modality": "Android depth image",
+      "license": "Google API",
+      "pricing": "Platform API. Price not stated as a fee on the page read.",
+      "can_instance_2x4": "No object class.",
+      "obb": "No.",
+      "angle_vs_gravity_or_floor": "No.",
+      "open_or_closed": "closed platform",
+      "last_updated_or_paper_year": "Docs read 2026-09-25",
+      "fit_score": 1,
+      "fit_why": "A depth map, not a segmenter.",
+      "verdict": "wrong_modality",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric. No millimeter accuracy copied.",
+      "sources": [
+        "https://developers.google.com/ar/develop/java/depth/raw-depth"
+      ]
+    },
+    {
+      "id": "B15",
+      "name": "Polycam",
+      "what_it_does": "Phone capture and export. Not a stud segmenter. Detail is in doc 01.",
+      "input_modality": "Phone LiDAR or photogrammetry",
+      "license": "Commercial app",
+      "pricing": "Point-cloud export is Business and Enterprise (doc 01). Not re-priced this pass.",
+      "can_instance_2x4": "No.",
+      "obb": "No.",
+      "angle_vs_gravity_or_floor": "No. Whether an export stores ARKit gravity is still unverified (doc 02).",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "Surveyed in doc 01 (2026-09-23). Not re-fetched 2026-09-25.",
+      "fit_score": 1,
+      "fit_why": "Capture path only.",
+      "verdict": "wrong_modality",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric.",
+      "sources": [
+        "docs/research/01-sensing-modalities.md"
+      ]
+    },
+    {
+      "id": "B16",
+      "name": "Scaniverse (Niantic Spatial)",
+      "what_it_does": "Capture and reconstruct meshes, Gaussian splats, and visual-positioning maps.",
+      "input_modality": "Phone, and 360-degree cameras on paid tiers",
+      "license": "Commercial app. No third-party scan API (community reply 2026-09-12).",
+      "pricing": "Free; Plus 20 USD/month or 200 USD/year; Pro 50 USD/month or 500 USD/year; Enterprise custom. Page read 2026-09-25.",
+      "can_instance_2x4": "No stud tool found.",
+      "obb": "No.",
+      "angle_vs_gravity_or_floor": "No.",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "Pricing page and community thread read 2026-09-25",
+      "fit_score": 1,
+      "fit_why": "Capture and viewing. LAS export on a staging support host is unverified.",
+      "verdict": "wrong_modality",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric. Splat is not metrology (doc 05).",
+      "sources": [
+        "https://www.nianticspatial.com/en/pricing",
+        "https://community.nianticspatial.com/t/not-able-to-locate-scaniverse-api-documentation-to-integrate-it-in-project/5795"
+      ]
+    },
+    {
+      "id": "B17",
+      "name": "StudSpec API",
+      "what_it_does": "Private HTTP API. Sample responses tag framing photos and list components in text, including a stud description, wall location, and height-from-floor as a string.",
+      "input_modality": "Photo, video URL, or document",
+      "license": "Private API",
+      "pricing": "unknown",
+      "can_instance_2x4": "Sample JSON names a stud in language. No point instance.",
+      "obb": "No box in the published sample.",
+      "angle_vs_gravity_or_floor": "No degree in the published sample.",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "Docs read 2026-09-25",
+      "fit_score": 1,
+      "fit_why": "Photo language, not a metric stud box. Revisit only if a geometry payload is documented.",
+      "verdict": "wrong_modality",
+      "bakeoff_add": false,
+      "reported_accuracy": "No measured stud error. Sample strings are documentation examples.",
+      "sources": [
+        "https://developers.studspec.ai/docs"
+      ]
+    },
+    {
+      "id": "B18",
+      "name": "CGAL Shape Detection",
+      "what_it_does": "Efficient RANSAC and region growing for planes, spheres, and cylinders on 3D points. No cuboid region in the manual read.",
+      "input_modality": "Point cloud with normals",
+      "license": "Shape Detection reference page (5.2.3) says GPL. CGAL is dual GPL/LGPL or commercial via GeometryFactory. 6.x header not opened.",
+      "pricing": "OSS under GPL. Commercial fee unknown.",
+      "can_instance_2x4": "No cuboid. Same plane-merge risk as rank 3.",
+      "obb": "No stud box.",
+      "angle_vs_gravity_or_floor": "No.",
+      "open_or_closed": "open under GPL; commercial license available",
+      "last_updated_or_paper_year": "Manual for CGAL 6.2/6.3 read 2026-09-25",
+      "fit_score": 3,
+      "fit_why": "A second copy of rank 2's grow, with a license that blocks closed-source linking.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric.",
+      "sources": [
+        "https://doc.cgal.org/latest/Shape_detection/index.html",
+        "https://doc.cgal.org/5.2.3/Shape_detection/group__PkgShapeDetectionRef.html",
+        "https://www.cgal.org/license.html"
+      ]
+    },
+    {
+      "id": "B19",
+      "name": "PDAL filters.dbscan and filters.cluster",
+      "what_it_does": "Writes ClusterID from DBSCAN or Euclidean clustering inside a LAS pipeline.",
+      "input_modality": "LAS/LAZ and other PDAL readers",
+      "license": "BSD-family (doc 02). LICENSE file not re-opened.",
+      "pricing": "OSS, no fee",
+      "can_instance_2x4": "Generic clusters. Same failure modes as rank 1. Default eps/tolerance 1.0 is cloud units, not a bay gap.",
+      "obb": "No.",
+      "angle_vs_gravity_or_floor": "No.",
+      "open_or_closed": "open",
+      "last_updated_or_paper_year": "Stable docs read 2026-09-25",
+      "fit_score": 1,
+      "fit_why": "Rank 1's cluster step in another library.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric.",
+      "sources": [
+        "https://pdal.io/en/stable/stages/filters.dbscan.html",
+        "https://pdal.io/en/stable/stages/filters.cluster.html"
+      ]
+    },
+    {
+      "id": "B20",
+      "name": "LAStools",
+      "what_it_does": "LAS/LAZ clip, thin, and reproject. Doc 02 found no plumb flag in las2las.",
+      "input_modality": "LAS/LAZ",
+      "license": "Mixed rapidlasso binaries (doc 02). Not re-read.",
+      "pricing": "unknown this pass",
+      "can_instance_2x4": "No.",
+      "obb": "No.",
+      "angle_vs_gravity_or_floor": "No.",
+      "open_or_closed": "mixed",
+      "last_updated_or_paper_year": "Surveyed in doc 02. Not re-fetched 2026-09-25.",
+      "fit_score": 1,
+      "fit_why": "Interchange, not a segmenter.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric.",
+      "sources": [
+        "docs/research/02-software-segmentation-angles.md"
+      ]
+    },
+    {
+      "id": "B21",
+      "name": "Potree",
+      "what_it_does": "Out-of-core point-cloud viewer. Doc 02 surveyed the Unity port as display.",
+      "input_modality": "Point cloud for viewing",
+      "license": "Not re-fetched this pass.",
+      "pricing": "unknown this pass",
+      "can_instance_2x4": "No.",
+      "obb": "No.",
+      "angle_vs_gravity_or_floor": "No.",
+      "open_or_closed": "open viewer",
+      "last_updated_or_paper_year": "Not re-fetched 2026-09-25",
+      "fit_score": 1,
+      "fit_why": "Display.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric.",
+      "sources": [
+        "docs/research/02-software-segmentation-angles.md"
+      ]
+    },
+    {
+      "id": "B22",
+      "name": "Hough split of timber facets (Murtiyoso and Grussenmeyer 2020)",
+      "what_it_does": "Projects a facet to 2D and uses a Hough transform to split L- and Y-shaped historic timber faces.",
+      "input_modality": "TLS point cloud of historic timber",
+      "license": "MDPI Sensors, CC BY",
+      "pricing": "Paper, no fee. Code release not fetched.",
+      "can_instance_2x4": "Historic beams. Median recall 75.58 percent on a 100k-point subset. Not a 2x4 wall.",
+      "obb": "Individual beam clusters, then modeling. Not our stud OBB.",
+      "angle_vs_gravity_or_floor": "No plumb paint.",
+      "open_or_closed": "paper",
+      "last_updated_or_paper_year": "2020",
+      "fit_score": 2,
+      "fit_why": "The joint-split idea is already inside rank 2.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "Median recall 75.58 percent on one 100k-point castle subset. Not a stud score.",
+      "sources": [
+        "https://doi.org/10.3390/s20082161"
+      ]
+    },
+    {
+      "id": "B23",
+      "name": "PCL supervoxel clustering",
+      "what_it_does": "Over-segments a cloud into patches inside the same BSD library as rank 2. A later merge would still be ours.",
+      "input_modality": "Point cloud",
+      "license": "BSD (PCL). Supervoxel class page not opened.",
+      "pricing": "OSS, no fee",
+      "can_instance_2x4": "Patches, not studs. No stud metric found.",
+      "obb": "No.",
+      "angle_vs_gravity_or_floor": "No.",
+      "open_or_closed": "open",
+      "last_updated_or_paper_year": "Library current with PCL. Class page not read 2026-09-25.",
+      "fit_score": 2,
+      "fit_why": "Optional preprocess if rank 2 shatters faces.",
+      "verdict": "maybe",
+      "bakeoff_add": false,
+      "reported_accuracy": "None on studs.",
+      "sources": [
+        "https://github.com/PointCloudLibrary/pcl"
+      ]
+    },
+    {
+      "id": "B24",
+      "name": "GrowSP",
+      "what_it_does": "Unsupervised semantic segmentation by growing superpoints. Demonstrated on S3DIS, ScanNet, and SemanticKITTI.",
+      "input_modality": "Point cloud. GPU training.",
+      "license": "Unknown. LICENSE file not opened.",
+      "pricing": "Research code. Fee unknown.",
+      "can_instance_2x4": "No instance head and no stud class.",
+      "obb": "No.",
+      "angle_vs_gravity_or_floor": "No.",
+      "open_or_closed": "research code",
+      "last_updated_or_paper_year": "CVPR 2023",
+      "fit_score": 2,
+      "fit_why": "Wrong benchmarks and no instances. ERES 2026 names it without a number.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "S3DIS, ScanNet, and SemanticKITTI figures were not copied.",
+      "sources": [
+        "https://github.com/vLAR-group/GrowSP",
+        "https://arxiv.org/abs/2305.16404"
+      ]
+    },
+    {
+      "id": "B25",
+      "name": "ERES 2026 timber point-cloud segmentation (Windapo et al.)",
+      "what_it_does": "Abstract: fine-tune PointNet++, GrowSP, RandLA-Net, and SQN-DLA-Net on 20 timber structures for reuse quantities.",
+      "input_modality": "Laser-scan point clouds of timber structures",
+      "license": "Abstract only. Code unknown.",
+      "pricing": "n/a",
+      "can_instance_2x4": "Unknown. Semantic classes are not listed. No code.",
+      "obb": "Unknown. Abstract mentions dimensional errors and does not define a box.",
+      "angle_vs_gravity_or_floor": "Unknown. Not mentioned.",
+      "open_or_closed": "unpublished numbers",
+      "last_updated_or_paper_year": "2026 abstract",
+      "fit_score": 2,
+      "fit_why": "Right domain words, no metric, no weights.",
+      "verdict": "maybe",
+      "bakeoff_add": false,
+      "reported_accuracy": "None in the abstract. Direct fetch of the record hit a bot check.",
+      "sources": [
+        "https://eres.architexturez.net/doc/oai-eres-id-eres2026-160"
+      ]
+    },
+    {
+      "id": "B26",
+      "name": "Lee et al. 2024 light-steel framing segmentation",
+      "what_it_does": "Semantic labels on light-gauge steel wall frames from HoloLens 2 meshes and synthetic BIM, in MATLAB. Labels include stud, plates, noggin, and bracing.",
+      "input_modality": "Mesh-derived points. Steel C-channels, 90 mm, not wood 2x4.",
+      "license": "MDPI CC BY for the paper. Data on request, not public (ENDUROFRAME sensitivity). Code not found.",
+      "pricing": "Paper, no fee. Data not public.",
+      "can_instance_2x4": "Semantic points on steel, not wood instances. Architecture name not established in the sections read.",
+      "obb": "Cuboids are used to paint training labels. Detection does not emit a lean box. Dimensional inspection is described as future work.",
+      "angle_vs_gravity_or_floor": "No lean number.",
+      "open_or_closed": "paper; data closed",
+      "last_updated_or_paper_year": "2024",
+      "fit_score": 2,
+      "fit_why": "The label list is the closest published wall schedule. The member and the sensor are wrong, and there is no angle.",
+      "verdict": "maybe",
+      "bakeoff_add": false,
+      "reported_accuracy": "Average testing accuracy 82.88 percent as-built, 86.15 percent with synthetic BIM in training, 79.55 percent hybrid. Not instance F1 and not an angle.",
+      "sources": [
+        "https://doi.org/10.3390/buildings14040952"
+      ]
+    },
+    {
+      "id": "B27",
+      "name": "Zhang et al. 2026 RC frame dimension recognition",
+      "what_it_does": "PointNet++ semantics, Fast Euclidean Clustering, PCA axis, RANSAC section lines, IFC export.",
+      "input_modality": "Drone photogrammetry of scaled reinforced-concrete frames",
+      "license": "MDPI paper. Code release not stated in the sections read.",
+      "pricing": "Paper, no fee",
+      "can_instance_2x4": "Beams and columns of an RC frame. Not wood studs.",
+      "obb": "Rectangular extrusion along the PCA axis. Lean is not forced to Z.",
+      "angle_vs_gravity_or_floor": "Not reported. Dimensional error is not an angle.",
+      "open_or_closed": "paper",
+      "last_updated_or_paper_year": "Published 2026-01-09",
+      "fit_score": 3,
+      "fit_why": "PCA axis matches rank 1. Euclidean clustering is a knob on rank 1, not a new stack.",
+      "verdict": "maybe",
+      "bakeoff_add": false,
+      "reported_accuracy": "Average beam and column dimensional error within 3 mm, except some occluded members. Not a stud angle.",
+      "sources": [
+        "https://www.mdpi.com/2079-9292/15/2/293"
+      ]
+    },
+    {
+      "id": "B28",
+      "name": "BIMStruct3D horizontal oriented box",
+      "what_it_does": "Wall reconstruction that fits a horizontal box in XY under a Manhattan assumption, after a segmentation network.",
+      "input_modality": "Indoor construction point clouds",
+      "license": "arXiv preprint. Weights of the related model are CC BY-NC-SA (doc 11).",
+      "pricing": "Research",
+      "can_instance_2x4": "Walls, not studs. Already the rank 4 control vocabulary.",
+      "obb": "Horizontal rectangle. Small leans are flattened.",
+      "angle_vs_gravity_or_floor": "The box is constrained level. It cannot report the lean this project paints.",
+      "open_or_closed": "research",
+      "last_updated_or_paper_year": "arXiv 2604.24311 read 2026-09-25",
+      "fit_score": 2,
+      "fit_why": "Do not adopt this box. Rank 4 may still run the network once as a label control.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric in the sections read.",
+      "sources": [
+        "https://arxiv.org/pdf/2604.24311"
+      ]
+    },
+    {
+      "id": "B29",
+      "name": "ClearEdge3D EdgeWise",
+      "what_it_does": "Scan-to-BIM extraction for pipes, steel, ducts, walls, and related plant objects. Wood studs were not on the product page read for doc 11.",
+      "input_modality": "Registered point clouds",
+      "license": "Commercial",
+      "pricing": "Lite USD 1995 per year (doc 11, 2026-09-24). Pro unknown. Not re-fetched.",
+      "can_instance_2x4": "Not documented as light-frame studs. A 2018 brochure says catalog steel, concrete, and wood. That is not a 2x4 schedule.",
+      "obb": "Vendor solid. Not our stud OBB.",
+      "angle_vs_gravity_or_floor": "SmartSheet RMSE is fit-to-cloud, not lean (doc 11).",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "Product page not re-fetched 2026-09-25. Brochure year 2018.",
+      "fit_score": 1,
+      "fit_why": "Wrong unit until a current page names studs and a lean.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric. Vendor speed claims are not accuracy.",
+      "sources": [
+        "docs/research/11-stud-segmentation-algorithm-ranking.md",
+        "https://www.clearedge3d.com/products/edgewise/"
+      ]
+    },
+    {
+      "id": "B30",
+      "name": "ClearEdge3D Verity",
+      "what_it_does": "Compares a cloud to an existing model.",
+      "input_modality": "Cloud plus design model",
+      "license": "Commercial",
+      "pricing": "Quote (doc 02). Not re-fetched.",
+      "can_instance_2x4": "No. Not a segmenter.",
+      "obb": "Elements already in the model.",
+      "angle_vs_gravity_or_floor": "Rotation versus the model, not versus the floor, unless the model is square to the floor.",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "Surveyed in doc 02 and doc 11",
+      "fit_score": 1,
+      "fit_why": "Later scan-versus-model check, after studs exist.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud-segmentation score.",
+      "sources": [
+        "https://www.clearedge3d.com/products/verity/",
+        "docs/research/11-stud-segmentation-algorithm-ranking.md"
+      ]
+    },
+    {
+      "id": "B31",
+      "name": "PointCab Origins + 4Revit",
+      "what_it_does": "User-guided columns and walls from picked points.",
+      "input_modality": "Point cloud",
+      "license": "Commercial",
+      "pricing": "Live price unknown. 2026-09-23 shop URLs returned 404 on 2026-09-24 (doc 11).",
+      "can_instance_2x4": "No automatic stud instance.",
+      "obb": "User-guided column.",
+      "angle_vs_gravity_or_floor": "No plumb command found (doc 02).",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "Not re-fetched 2026-09-25",
+      "fit_score": 1,
+      "fit_why": "Click path.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric.",
+      "sources": [
+        "docs/research/02-software-segmentation-angles.md"
+      ]
+    },
+    {
+      "id": "B32",
+      "name": "FARO As-Built for Revit and BuildIT Construction",
+      "what_it_does": "Wall and BIM fitting. BuildIT can constrain a wall plane perpendicular to Z and color surface deviation.",
+      "input_modality": "Registered scans, E57 for the BuildIT workflow in doc 02",
+      "license": "Commercial",
+      "pricing": "unknown this pass",
+      "can_instance_2x4": "Wall plane, not a stud schedule.",
+      "obb": "Wall plane, not a stud OBB.",
+      "angle_vs_gravity_or_floor": "Uses cloud Z. Constraining the plane to Z erases stud lean.",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "Surveyed in doc 02. Not re-fetched 2026-09-25.",
+      "fit_score": 1,
+      "fit_why": "Wall inspection that assumes plumb.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric. Tutorial tolerances in doc 02 are not a wood spec.",
+      "sources": [
+        "docs/research/02-software-segmentation-angles.md"
+      ]
+    },
+    {
+      "id": "B33",
+      "name": "Leica CloudWorx and Cyclone 3DR AI classification",
+      "what_it_does": "CloudWorx fits steel, pipes, walls, and openings (doc 02). Cyclone 3DR AI page describes outdoor, road, and person filters.",
+      "input_modality": "Leica and exchanged point clouds",
+      "license": "Commercial",
+      "pricing": "unknown this pass",
+      "can_instance_2x4": "Studs not named.",
+      "obb": "BIM solids or class labels. Not a stud OBB.",
+      "angle_vs_gravity_or_floor": "No stud lean found.",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "Cyclone 3DR AI page read 2026-09-25. CloudWorx from doc 02.",
+      "fit_score": 1,
+      "fit_why": "Steel, pipes, and outdoor classes.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric.",
+      "sources": [
+        "https://leica-geosystems.com/products/laser-scanners/software/leica-cyclone/leica-cyclone-3dr/ai-classification-in-leica-cyclone-3dr-pt1",
+        "docs/research/02-software-segmentation-angles.md"
+      ]
+    },
+    {
+      "id": "B34",
+      "name": "Canvas Scan to CAD",
+      "what_it_does": "Semi-automated architectural shell: walls, floors, cabinets, countertops, fireplaces. Revit aimed at LOD 200.",
+      "input_modality": "Canvas scan, typically phone",
+      "license": "Commercial service",
+      "pricing": "unknown this pass",
+      "can_instance_2x4": "Studs not named. Help page updated 15 Jan 2026.",
+      "obb": "Architectural model, not a stud box.",
+      "angle_vs_gravity_or_floor": "No.",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "Help updated 2026-01-15. Read 2026-09-25.",
+      "fit_score": 1,
+      "fit_why": "Finished-shell CAD.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric.",
+      "sources": [
+        "https://support.canvas.io/article/12-what-is-scan-to-cad"
+      ]
+    },
+    {
+      "id": "B35",
+      "name": "Avvir",
+      "what_it_does": "Compare BIM to point clouds and flag installation discrepancies. Page says the brand moved into Hexagon Building Solutions as of 1 Feb 2024.",
+      "input_modality": "Cloud or 360 photos plus a BIM",
+      "license": "Commercial",
+      "pricing": "unknown",
+      "can_instance_2x4": "No. Needs the model.",
+      "obb": "Model elements.",
+      "angle_vs_gravity_or_floor": "Discrepancy versus the model, not a raw stud lean.",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "Product page read 2026-09-25",
+      "fit_score": 1,
+      "fit_why": "Scan-versus-model, same role as Verity.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric.",
+      "sources": [
+        "https://www.avvir.io/"
+      ]
+    },
+    {
+      "id": "B36",
+      "name": "Cupix",
+      "what_it_does": "360-degree capture to a cloud, measurements, and BIM viewing. A stud extractor was not found.",
+      "input_modality": "360 video and imported scans",
+      "license": "Commercial",
+      "pricing": "unknown",
+      "can_instance_2x4": "Not found.",
+      "obb": "No stud box found.",
+      "angle_vs_gravity_or_floor": "No.",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "No current stud page found 2026-09-25",
+      "fit_score": 1,
+      "fit_why": "Capture and measurement. A trade-article accuracy sentence is not a stud spec and is not copied as a number.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "No stud metric on a primary page.",
+      "sources": [
+        "https://www.ironpros.com/photogrammetry/article/22908563/point-clouds-from-construction-photogrammetry-software-how"
+      ]
+    },
+    {
+      "id": "B37",
+      "name": "Elysium InfiPoints",
+      "what_it_does": "Plant scan-to-CAD: pipes as cylinders and walls, floors, and ceilings as planes.",
+      "input_modality": "TLS and mobile-mapping clouds",
+      "license": "Commercial",
+      "pricing": "unknown",
+      "can_instance_2x4": "Studs not named.",
+      "obb": "Planes and cylinders.",
+      "angle_vs_gravity_or_floor": "No stud lean.",
+      "open_or_closed": "closed",
+      "last_updated_or_paper_year": "Product page read 2026-09-25",
+      "fit_score": 1,
+      "fit_why": "Plant primitives.",
+      "verdict": "no",
+      "bakeoff_add": false,
+      "reported_accuracy": "Vendor wording about automation percent was not copied. No stud metric.",
+      "sources": [
+        "https://www.elysium-global.com/en/product/infipoints/"
+      ]
+    }
+  ]
+}
