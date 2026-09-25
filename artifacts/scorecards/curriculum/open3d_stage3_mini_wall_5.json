@@ -1,0 +1,248 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A1",
+  "algorithm": "Refined Open3D stud prior",
+  "rank": 1,
+  "stage": 3,
+  "status": "ran_synthetic",
+  "metrics_are_measurements": true,
+  "measurement_scope": "synthetic generator, this process",
+  "epsilon_locked": false,
+  "scene": {
+    "name": "stage3_mini_wall_5",
+    "description": "Synthetic mini wall, 5 2x4 studs at 16 inch centers, leans 0.000, 0.300, 0.800, 1.500, 0.150 deg about +X, bottom and top plates, floor slab, 1.0 mm noise. First product-shaped scene.",
+    "seed": 31,
+    "spacing_m": 0.005,
+    "noise_std_m": 0.001,
+    "n_points": 179650,
+    "n_studs": 5,
+    "reference": "floor_normal",
+    "floor_found": true,
+    "removed_z_intervals_m": [
+      [
+        -0.009995857514581371,
+        0.0495674997968367
+      ],
+      [
+        2.4654641806951347,
+        2.524823397819853
+      ]
+    ],
+    "tolerance_deg": 0.11937,
+    "meta": {}
+  },
+  "detection": {
+    "n_true": 5,
+    "n_pred": 5,
+    "true_positives": 5,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "match_radius_m": 0.15,
+    "scope": "synthetic_scene_only",
+    "note": "Counts are this synthetic scene, not a field accuracy."
+  },
+  "geometry": {
+    "max_section_error_mm": 7.85,
+    "max_length_error_mm": 22.66,
+    "per_stud": [
+      {
+        "stud_id": "S1",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.38,
+          96.66
+        ],
+        "section_error_mm": [
+          7.28,
+          7.76
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2415.74,
+        "length_error_mm": -22.66
+      },
+      {
+        "stud_id": "S2",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.58,
+          95.66
+        ],
+        "section_error_mm": [
+          7.48,
+          6.76
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.24,
+        "length_error_mm": -22.16
+      },
+      {
+        "stud_id": "S5",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.64,
+          96.75
+        ],
+        "section_error_mm": [
+          7.54,
+          7.85
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2415.89,
+        "length_error_mm": -22.51
+      },
+      {
+        "stud_id": "S3",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.43,
+          95.65
+        ],
+        "section_error_mm": [
+          7.33,
+          6.75
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2416.85,
+        "length_error_mm": -21.55
+      },
+      {
+        "stud_id": "S4",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.84,
+          95.53
+        ],
+        "section_error_mm": [
+          7.74,
+          6.63
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2418.79,
+        "length_error_mm": -19.61
+      }
+    ],
+    "bbox_kind": "minimal_oriented",
+    "note": "Section is the two smaller minimal-OBB extents versus the dressed nominal. Length is the longest extent versus the generator length. Gaussian tails and the plate slab margin both move these numbers."
+  },
+  "angle": {
+    "mae_deg": 0.01846,
+    "max_abs_error_deg": 0.03838,
+    "pct_in_band": 100.0,
+    "band_deg": 0.11937,
+    "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
+    "reference": "floor_normal",
+    "per_stud": [
+      {
+        "stud_id": "S1",
+        "true_deg": 0.00205,
+        "measured_deg": 0.03529,
+        "abs_error_deg": 0.03325,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      },
+      {
+        "stud_id": "S2",
+        "true_deg": 0.30008,
+        "measured_deg": 0.29361,
+        "abs_error_deg": 0.00647,
+        "production_color": "yellow",
+        "hypothetical_color": "red"
+      },
+      {
+        "stud_id": "S5",
+        "true_deg": 0.15009,
+        "measured_deg": 0.11171,
+        "abs_error_deg": 0.03838,
+        "production_color": "yellow",
+        "hypothetical_color": "yellow"
+      },
+      {
+        "stud_id": "S3",
+        "true_deg": 0.80008,
+        "measured_deg": 0.80793,
+        "abs_error_deg": 0.00785,
+        "production_color": "yellow",
+        "hypothetical_color": "red"
+      },
+      {
+        "stud_id": "S4",
+        "true_deg": 1.50008,
+        "measured_deg": 1.49375,
+        "abs_error_deg": 0.00633,
+        "production_color": "yellow",
+        "hypothetical_color": "red"
+      }
+    ],
+    "note": "Truth is the generator lean against the same reference vector the pipeline used. Not a SKIL reading."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "tolerance_deg": 0.11937,
+    "production_colors": [
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow"
+    ],
+    "production_rule": "epsilon unlocked, so every stud is yellow",
+    "hypothetical_placeholder_epsilon_deg": 0.05,
+    "hypothetical_placeholder_note": "0.05 deg is a round illustration of the color rule. It is not a measured device band.",
+    "hypothetical_colors": [
+      "green",
+      "red",
+      "red",
+      "red",
+      "yellow"
+    ],
+    "note": "Do not read hypothetical colors as a pass/fail call."
+  },
+  "cost": {
+    "runtime_s": 0.6085,
+    "dbscan_eps_m": 0.025,
+    "dbscan_min_points": 20,
+    "bbox_kind": "minimal_oriented",
+    "license": "MIT",
+    "license_url": "https://github.com/isl-org/Open3D",
+    "hardware": "CPU",
+    "n_points_in": 179650,
+    "n_points_after_peel": 125657,
+    "floor_found": true,
+    "failure_modes": [
+      "DBSCAN eps above the bay gap merges neighboring studs into one box.",
+      "DBSCAN eps below the surface spacing splits one stud into faces.",
+      "A plate side face left behind bridges bays.",
+      "Peeling a vertical stud-face plane would delete the wall.",
+      "PCA OBB on a short or one-sided cluster can yaw the long axis."
+    ],
+    "note": "Runtime is this process on this scene. It is not a field budget."
+  }
+}

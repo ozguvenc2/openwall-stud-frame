@@ -14,8 +14,23 @@
   "epsilon_locked": false,
   "placeholder_epsilon_deg": 0.05,
   "placeholder_epsilon_note": "Round illustration of the color rule. Not a measured device band. Production paint stays yellow.",
-  "stages": [0, 1, 2, 3, 4, 5, 6, 7],
-  "runnable_stages_now": [0, 2, 3],
+  "stages": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "runnable_stages_now": [
+    0,
+    2,
+    3,
+    5
+  ],
+  "stage5_note": "Synthetic room only. Rank 1 scored. Not a real capture and not a training gate.",
   "contenders": [
     {
       "rank": 1,
@@ -56,23 +71,144 @@
       "status": "stub",
       "entrypoint": "python -m openwall_stud.contenders.open3d_ml_s3dis",
       "scope": "Control only. No weights loaded."
+    },
+    {
+      "rank": 6,
+      "id": "B6",
+      "name": "pyRANSAC-3D sequential cuboid",
+      "status": "ran_phase1_not_rerun_on_room",
+      "entrypoint": "python -m openwall_stud.contenders.pyransac3d_cuboid",
+      "scope": "Bake-off add. Not master-table row 6."
+    },
+    {
+      "rank": 7,
+      "id": "B7",
+      "name": "SAM 2 image/video mask",
+      "status": "blocked_install",
+      "entrypoint": "python -m openwall_stud.contenders.sam2_mask",
+      "scope": "Bake-off add. Not master-table row 7. Stud metrics null."
     }
   ],
   "synthetic_bringup": {
     "note": "Numbers copied from artifacts/scorecards after scripts/run_stage0_baseline.py. Synthetic only.",
     "bars": {
-      "0": {"precision": 1, "recall": 1, "section_mm": 10, "length_mm": 25, "angle_deg": 0.05},
-      "2": {"precision": 1, "recall": 1, "section_mm": 10, "length_mm": 25, "angle_deg": 0.05},
-      "3": {"precision": 1, "recall": 1, "section_mm": 10, "length_mm": 30, "angle_deg": 0.1}
+      "0": {
+        "precision": 1,
+        "recall": 1,
+        "section_mm": 10,
+        "length_mm": 25,
+        "angle_deg": 0.05
+      },
+      "2": {
+        "precision": 1,
+        "recall": 1,
+        "section_mm": 10,
+        "length_mm": 25,
+        "angle_deg": 0.05
+      },
+      "3": {
+        "precision": 1,
+        "recall": 1,
+        "section_mm": 10,
+        "length_mm": 30,
+        "angle_deg": 0.1
+      }
     },
     "scenes": [
-      {"scene": "stage0_2x4_lean0.000", "precision": 1, "recall": 1, "max_section_error_mm": 7.86, "max_length_error_mm": 6.24, "max_abs_angle_error_deg": 0.03084, "reference": "gravity_z_no_floor_plane"},
-      {"scene": "stage0_2x4_lean0.050", "precision": 1, "recall": 1, "max_section_error_mm": 7.7, "max_length_error_mm": 5.57, "max_abs_angle_error_deg": 0.00345, "reference": "gravity_z_no_floor_plane"},
-      {"scene": "stage0_2x4_lean0.120", "precision": 1, "recall": 1, "max_section_error_mm": 7.39, "max_length_error_mm": 4.85, "max_abs_angle_error_deg": 0.01358, "reference": "gravity_z_no_floor_plane"},
-      {"scene": "stage0_2x4_lean4.000", "precision": 1, "recall": 1, "max_section_error_mm": 7.86, "max_length_error_mm": 4.99, "max_abs_angle_error_deg": 0.02471, "reference": "gravity_z_no_floor_plane"},
-      {"scene": "stage0_2x6_lean0.300", "precision": 1, "recall": 1, "max_section_error_mm": 7.57, "max_length_error_mm": 6.02, "max_abs_angle_error_deg": 0.00582, "reference": "gravity_z_no_floor_plane"},
-      {"scene": "stage2_2x4_lean0.200", "precision": 1, "recall": 1, "max_section_error_mm": 7.84, "max_length_error_mm": 8.16, "max_abs_angle_error_deg": 0.01721, "reference": "floor_normal"},
-      {"scene": "stage3_mini_wall_4", "precision": 1, "recall": 1, "max_section_error_mm": 7.76, "max_length_error_mm": 22.19, "mae_deg": 0.00426, "max_abs_angle_error_deg": 0.00719, "reference": "floor_normal"}
+      {
+        "scene": "stage0_2x4_lean0.000",
+        "precision": 1,
+        "recall": 1,
+        "max_section_error_mm": 7.86,
+        "max_length_error_mm": 6.24,
+        "max_abs_angle_error_deg": 0.03084,
+        "reference": "gravity_z_no_floor_plane"
+      },
+      {
+        "scene": "stage0_2x4_lean0.050",
+        "precision": 1,
+        "recall": 1,
+        "max_section_error_mm": 7.7,
+        "max_length_error_mm": 5.57,
+        "max_abs_angle_error_deg": 0.00345,
+        "reference": "gravity_z_no_floor_plane"
+      },
+      {
+        "scene": "stage0_2x4_lean0.120",
+        "precision": 1,
+        "recall": 1,
+        "max_section_error_mm": 7.39,
+        "max_length_error_mm": 4.85,
+        "max_abs_angle_error_deg": 0.01358,
+        "reference": "gravity_z_no_floor_plane"
+      },
+      {
+        "scene": "stage0_2x4_lean4.000",
+        "precision": 1,
+        "recall": 1,
+        "max_section_error_mm": 7.86,
+        "max_length_error_mm": 4.99,
+        "max_abs_angle_error_deg": 0.02471,
+        "reference": "gravity_z_no_floor_plane"
+      },
+      {
+        "scene": "stage0_2x6_lean0.300",
+        "precision": 1,
+        "recall": 1,
+        "max_section_error_mm": 7.57,
+        "max_length_error_mm": 6.02,
+        "max_abs_angle_error_deg": 0.00582,
+        "reference": "gravity_z_no_floor_plane"
+      },
+      {
+        "scene": "stage2_2x4_lean0.200",
+        "precision": 1,
+        "recall": 1,
+        "max_section_error_mm": 7.84,
+        "max_length_error_mm": 8.16,
+        "max_abs_angle_error_deg": 0.01721,
+        "reference": "floor_normal"
+      },
+      {
+        "scene": "stage3_mini_wall_4",
+        "precision": 1,
+        "recall": 1,
+        "max_section_error_mm": 7.76,
+        "max_length_error_mm": 22.19,
+        "mae_deg": 0.00426,
+        "max_abs_angle_error_deg": 0.00719,
+        "reference": "floor_normal"
+      }
     ]
+  },
+  "curriculum_continuation": {
+    "date": "2026-09-25",
+    "doc": "docs/research/24-sam2-rank7-and-curriculum.md",
+    "scorecards": "artifacts/scorecards/curriculum/",
+    "epsilon_locked": false,
+    "parallel_prs": [
+      23,
+      24
+    ],
+    "parallel_note": "Corner field and neural experiments. Not a stage gate.",
+    "sam2_bakeoff_rank": 7,
+    "sam2_status": "blocked_install",
+    "stage5_synthetic_room": {
+      "scene": "stage5_room_bay_lot62_look",
+      "algorithm": "open3d",
+      "n_points": 532301,
+      "n_studs": 26,
+      "precision": 1,
+      "recall": 1,
+      "max_section_error_mm": 7.93,
+      "max_length_error_mm": 22.12,
+      "mae_deg": 0.01134,
+      "max_abs_angle_error_deg": 0.0423,
+      "paint": "yellow",
+      "runtime_s": 1.9151,
+      "acceptance_bar": null,
+      "training_gate": false
+    },
+    "stages_6_and_7": "not_run"
   }
 }

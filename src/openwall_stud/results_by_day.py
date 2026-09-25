@@ -55,7 +55,7 @@ METRIC_COLUMNS = (
     "runtime_s",
 )
 
-ALGORITHMS = ("open3d", "pcl", "cloudcompare", "pointcept", "open3d_ml", "pyransac3d")
+ALGORITHMS = ("open3d", "pcl", "cloudcompare", "pointcept", "open3d_ml", "pyransac3d", "sam2")
 
 
 def repo_root() -> Path:

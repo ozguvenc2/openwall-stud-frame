@@ -8,7 +8,7 @@ Product names (Oz, 2026-09-25): OpenWall is the suite. BeamWeaver and TruePlank 
 
 | Class | Ground truth | Status |
 | --- | --- | --- |
-| S — synthetic bring-up | Generator geometry in `openwall_stud.synthetic` | **Run.** Open3D on stages 0, 2, and 3. Six finders on one stud and on the 25-scene S1 matrix. Ranks 4 and 5 as controls, then a synthetic fine-tune. Rank 3 again after the stud-only CloudCompare tune (PR #22) |
+| S — synthetic bring-up | Generator geometry in `openwall_stud.synthetic` | **Run.** Open3D on stages 0, 2, and 3, then a 26-stud room. Six finders on one stud and on the 25-scene S1 matrix. Ranks 4 and 5 as controls, then a synthetic fine-tune. Rank 3 again after the stud-only CloudCompare tune (PR #22). SAM 2 (rank 7) is a projection scaffold only |
 | R — realisticized | A sensor simulator on generator geometry | **Not defined.** The 1 mm Gaussian is class S |
 | F — experimental | `skil`, `total_station`, or `hand_label` | **Planned.** No row uses them |
 
@@ -22,8 +22,11 @@ From [`docs/research/12-stud-seg-design-plan.md`](../../docs/research/12-stud-se
 | S1 | Phase 1: one rigid lean, one dressed 2×4, 25 scenes | **Run** 2026-09-25 on Oz_PC. Not a bow (S1b) | Generator +Z (`gravity_z_no_floor_plane`) |
 | 1 | One real stud, isolated | **Not run.** The five-finder protocol belongs here when that cloud exists | SKIL mean of BOT / MID / TOP only if the three readings agree; otherwise no MAE, yellow paint |
 | 2 | Stud plus floor or slab | Synthetic slab, **run** for Open3D. Two held-out floor clouds also scored by the fine-tuned ranks 4 and 5 | Floor normal from the lowest peeled slab. Cloud is not rotated |
-| 3 | Mini wall, 3–5 studs | Four synthetic 2×4s at 16 inch centers, plates and floor, **run** for Open3D | Floor normal |
-| 4–7 | Real wall, room, story, complex frame | No cloud | Floor normal, SKIL on a sample |
+| 3 | Mini wall, 3–5 studs | Four synthetic 2×4s at 16 inch centers, plus later 3-stud and 5-stud walls, **run** for Open3D at 1 mm noise. A 2 mm probe missed the bars | Floor normal |
+| S1b | Bow, ends held | **Probed** 2026-09-25. Straight box does not absorb the bow. Not a stage gate | Chord versus generator +Z, or floor normal on the wall |
+| 4 | One real wall, plus opening clutter | No cloud | Floor normal, SKIL on a sample |
+| 5 | Room or bay, LOT-62 look | Synthetic look-alike **run** for Open3D only. Not the Polycam loft. Not a training gate | Floor normal |
+| 6–7 | Whole story, then a complex frame | Stub cards, null metrics. Need a real capture | Floor normal, SKIL on a sample |
 
 Plates are peeled. They are not a QA class. King, jack, and cripple labels are not required.
 
@@ -56,7 +59,7 @@ Once a finder returns stud points:
 
 Rank 1’s instance step is DBSCAN, `eps` 25 mm, `min_points` 20. An earlier setting (`eps` 20 mm, `min_points` 80) labeled the synthetic stud as noise. That edit is class S.
 
-## Six finders
+## Seven bake-off ranks
 
 | Rank | First step | State on 2026-09-25 |
 | --- | --- | --- |
@@ -65,7 +68,8 @@ Rank 1’s instance step is DBSCAN, `eps` 25 mm, `min_points` 20. An earlier set
 | 3 | CloudCompare RANSAC Shape Detection. Untuned: one OBB per plane or cylinder. Tuned: plane only, then a merge of the four long faces | **Run** on class S. Linux one-stud failed the bars. Oz_PC untuned S1: lean on 25/25, stage-0 bars 0/25 (4–8 boxes). Oz_PC tuned S1 (PR #22): stage-0 bars 25/25, one box. Binary discovery: `CLOUDCOMPARE_EXE`, then the default Windows install path, then PATH. The plugin has no cuboid |
 | 4 | BIMStruct3D PTv3 semantic control, then a 2-class head on a frozen backbone | Control **run** on Oz_PC (no stud class). Synthetic fine-tune **run** (head only, about 98.1 s). PointGroup not run |
 | 5 | Open3D-ML RandLA-Net, S3DIS weights, then a 2-class layer | Control **run** (no stud class). Synthetic fine-tune **run** (about 237.5 s). KPConv not run |
-| 6 | pyRANSAC-3D v0.7.0 sequential cuboid after the peel | **Run**, class S, S1 25/25. SAM 2 is still not run |
+| 6 | pyRANSAC-3D v0.7.0 sequential cuboid after the peel | **Run**, class S, S1 25/25. Not re-run on the synthetic room |
+| 7 | SAM 2 mask on a registered view, then the shared box | **Not run** as a mask. Projection and a generator-mask control only (`docs/research/24-sam2-rank7-and-curriculum.md`). Stud metrics null |
 
 ## Angle, tolerance, and paint (in code)
 

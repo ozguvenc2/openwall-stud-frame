@@ -1,0 +1,554 @@
+{
+  "epsilon_locked": false,
+  "linked": [
+    {
+      "stage": 0,
+      "file": "artifacts/scorecards/open3d_stage0_stage0_2x4_lean0.000.json",
+      "scene": "stage0_2x4_lean0.000",
+      "bars_ok": true,
+      "failures": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.86,
+      "length_mm": 6.24,
+      "mae_deg": 0.03084,
+      "max_angle_deg": 0.03084,
+      "paint": [
+        "yellow"
+      ],
+      "epsilon_locked": false
+    },
+    {
+      "stage": 0,
+      "file": "artifacts/scorecards/open3d_stage0_stage0_2x4_lean0.050.json",
+      "scene": "stage0_2x4_lean0.050",
+      "bars_ok": true,
+      "failures": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.7,
+      "length_mm": 5.57,
+      "mae_deg": 0.00345,
+      "max_angle_deg": 0.00345,
+      "paint": [
+        "yellow"
+      ],
+      "epsilon_locked": false
+    },
+    {
+      "stage": 0,
+      "file": "artifacts/scorecards/open3d_stage0_stage0_2x4_lean0.120.json",
+      "scene": "stage0_2x4_lean0.120",
+      "bars_ok": true,
+      "failures": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.39,
+      "length_mm": 4.85,
+      "mae_deg": 0.01358,
+      "max_angle_deg": 0.01358,
+      "paint": [
+        "yellow"
+      ],
+      "epsilon_locked": false
+    },
+    {
+      "stage": 0,
+      "file": "artifacts/scorecards/open3d_stage0_stage0_2x4_lean4.000.json",
+      "scene": "stage0_2x4_lean4.000",
+      "bars_ok": true,
+      "failures": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.86,
+      "length_mm": 4.99,
+      "mae_deg": 0.02471,
+      "max_angle_deg": 0.02471,
+      "paint": [
+        "yellow"
+      ],
+      "epsilon_locked": false
+    },
+    {
+      "stage": 0,
+      "file": "artifacts/scorecards/open3d_stage0_stage0_2x6_lean0.300.json",
+      "scene": "stage0_2x6_lean0.300",
+      "bars_ok": true,
+      "failures": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.57,
+      "length_mm": 6.02,
+      "mae_deg": 0.00582,
+      "max_angle_deg": 0.00582,
+      "paint": [
+        "yellow"
+      ],
+      "epsilon_locked": false
+    },
+    {
+      "stage": 2,
+      "file": "artifacts/scorecards/open3d_stage2_stage2_2x4_lean0.200.json",
+      "scene": "stage2_2x4_lean0.200",
+      "bars_ok": true,
+      "failures": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.84,
+      "length_mm": 8.16,
+      "mae_deg": 0.01721,
+      "max_angle_deg": 0.01721,
+      "paint": [
+        "yellow"
+      ],
+      "epsilon_locked": false
+    },
+    {
+      "stage": 3,
+      "file": "artifacts/scorecards/open3d_stage3_stage3_mini_wall_4.json",
+      "scene": "stage3_mini_wall_4",
+      "bars_ok": true,
+      "failures": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.76,
+      "length_mm": 22.19,
+      "mae_deg": 0.00426,
+      "max_angle_deg": 0.00719,
+      "paint": [
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow"
+      ],
+      "epsilon_locked": false
+    }
+  ],
+  "link_failures": [],
+  "gate_failures": [],
+  "measured": [
+    {
+      "scene": "stage2_2x4_lean0.000",
+      "stage": 2,
+      "status": "ran_synthetic",
+      "n_points": 45547,
+      "n_true": 1,
+      "n_pred": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.11,
+      "length_mm": 6.76,
+      "mae_deg": 0.02551,
+      "max_angle_deg": 0.02551,
+      "pct_in_band": 100.0,
+      "runtime_s": 0.2184,
+      "reference": "floor_normal",
+      "paint": [
+        "yellow"
+      ],
+      "epsilon_locked": false,
+      "role": "gate",
+      "failures": []
+    },
+    {
+      "scene": "stage2_2x4_lean0.120",
+      "stage": 2,
+      "status": "ran_synthetic",
+      "n_points": 45547,
+      "n_true": 1,
+      "n_pred": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.67,
+      "length_mm": 6.96,
+      "mae_deg": 0.01788,
+      "max_angle_deg": 0.01788,
+      "pct_in_band": 100.0,
+      "runtime_s": 0.1346,
+      "reference": "floor_normal",
+      "paint": [
+        "yellow"
+      ],
+      "epsilon_locked": false,
+      "role": "gate",
+      "failures": []
+    },
+    {
+      "scene": "stage2_2x4_lean1.000",
+      "stage": 2,
+      "status": "ran_synthetic",
+      "n_points": 45547,
+      "n_true": 1,
+      "n_pred": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.07,
+      "length_mm": 6.39,
+      "mae_deg": 0.01714,
+      "max_angle_deg": 0.01714,
+      "pct_in_band": 100.0,
+      "runtime_s": 0.1373,
+      "reference": "floor_normal",
+      "paint": [
+        "yellow"
+      ],
+      "epsilon_locked": false,
+      "role": "gate",
+      "failures": []
+    },
+    {
+      "scene": "stage3_mini_wall_3",
+      "stage": 3,
+      "status": "ran_synthetic",
+      "n_points": 106274,
+      "n_true": 3,
+      "n_pred": 3,
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 8.71,
+      "length_mm": 27.47,
+      "mae_deg": 0.0168,
+      "max_angle_deg": 0.03139,
+      "pct_in_band": 100.0,
+      "runtime_s": 0.3639,
+      "reference": "floor_normal",
+      "paint": [
+        "yellow",
+        "yellow",
+        "yellow"
+      ],
+      "epsilon_locked": false,
+      "role": "gate",
+      "failures": []
+    },
+    {
+      "scene": "stage3_mini_wall_5",
+      "stage": 3,
+      "status": "ran_synthetic",
+      "n_points": 179650,
+      "n_true": 5,
+      "n_pred": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.85,
+      "length_mm": 22.66,
+      "mae_deg": 0.01846,
+      "max_angle_deg": 0.03838,
+      "pct_in_band": 100.0,
+      "runtime_s": 0.6085,
+      "reference": "floor_normal",
+      "paint": [
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow"
+      ],
+      "epsilon_locked": false,
+      "role": "gate",
+      "failures": []
+    },
+    {
+      "scene": "stage3_mini_wall_4_leanmild",
+      "stage": 3,
+      "status": "ran_synthetic",
+      "n_points": 142872,
+      "n_true": 4,
+      "n_pred": 4,
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.55,
+      "length_mm": 24.31,
+      "mae_deg": 0.01928,
+      "max_angle_deg": 0.03317,
+      "pct_in_band": 100.0,
+      "runtime_s": 0.4779,
+      "reference": "floor_normal",
+      "paint": [
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow"
+      ],
+      "epsilon_locked": false,
+      "role": "gate",
+      "failures": []
+    },
+    {
+      "scene": "stage3_mini_wall_4_noise2mm",
+      "stage": 3,
+      "status": "ran_synthetic",
+      "n_points": 142872,
+      "n_true": 4,
+      "n_pred": 1,
+      "precision": 1.0,
+      "recall": 0.25,
+      "section_mm": 14.88,
+      "length_mm": 24.7,
+      "mae_deg": 0.03765,
+      "max_angle_deg": 0.03765,
+      "pct_in_band": 100.0,
+      "runtime_s": 0.4894,
+      "reference": "floor_normal",
+      "paint": [
+        "yellow"
+      ],
+      "epsilon_locked": false,
+      "role": "probe",
+      "failures": [
+        "stage3_mini_wall_4_noise2mm: detection P=1.0 R=0.25",
+        "stage3_mini_wall_4_noise2mm: section 14.88 mm > 10.0"
+      ]
+    },
+    {
+      "scene": "s1b_bow_2x4_amp6.35mm_lean0.000",
+      "stage": 0,
+      "status": "ran_synthetic",
+      "n_points": 25666,
+      "n_true": 1,
+      "n_pred": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 13.35,
+      "length_mm": 5.98,
+      "mae_deg": 0.00958,
+      "max_angle_deg": 0.00958,
+      "pct_in_band": 100.0,
+      "runtime_s": 0.1087,
+      "reference": "gravity_z_no_floor_plane",
+      "paint": [
+        "yellow"
+      ],
+      "epsilon_locked": false,
+      "role": "probe",
+      "failures": [
+        "s1b_bow_2x4_amp6.35mm_lean0.000: section 13.35 mm > 10.0"
+      ]
+    },
+    {
+      "scene": "s1b_bow_2x4_amp6.35mm_lean0.300",
+      "stage": 0,
+      "status": "ran_synthetic",
+      "n_points": 25666,
+      "n_true": 1,
+      "n_pred": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 11.65,
+      "length_mm": 4.63,
+      "mae_deg": 0.00684,
+      "max_angle_deg": 0.00684,
+      "pct_in_band": 100.0,
+      "runtime_s": 0.112,
+      "reference": "gravity_z_no_floor_plane",
+      "paint": [
+        "yellow"
+      ],
+      "epsilon_locked": false,
+      "role": "probe",
+      "failures": [
+        "s1b_bow_2x4_amp6.35mm_lean0.300: section 11.65 mm > 10.0"
+      ]
+    },
+    {
+      "scene": "s1b_bow_2x4_amp19.05mm_lean0.000",
+      "stage": 0,
+      "status": "ran_synthetic",
+      "n_points": 25666,
+      "n_true": 1,
+      "n_pred": 0,
+      "precision": null,
+      "recall": 0.0,
+      "section_mm": null,
+      "length_mm": null,
+      "mae_deg": null,
+      "max_angle_deg": null,
+      "pct_in_band": null,
+      "runtime_s": 0.1148,
+      "reference": "gravity_z_no_floor_plane",
+      "paint": [],
+      "epsilon_locked": false,
+      "role": "probe",
+      "failures": [
+        "s1b_bow_2x4_amp19.05mm_lean0.000: detection P=None R=0.0",
+        "s1b_bow_2x4_amp19.05mm_lean0.000: section None mm > 10.0",
+        "s1b_bow_2x4_amp19.05mm_lean0.000: length None mm > 25.0",
+        "s1b_bow_2x4_amp19.05mm_lean0.000: angle None deg > 0.05",
+        "s1b_bow_2x4_amp19.05mm_lean0.000: production paint was not all yellow"
+      ]
+    },
+    {
+      "scene": "s1b_bow_wall_3",
+      "stage": 3,
+      "status": "ran_synthetic",
+      "n_points": 106274,
+      "n_true": 3,
+      "n_pred": 3,
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 11.54,
+      "length_mm": 22.23,
+      "mae_deg": 0.01325,
+      "max_angle_deg": 0.02345,
+      "pct_in_band": 100.0,
+      "runtime_s": 0.365,
+      "reference": "floor_normal",
+      "paint": [
+        "yellow",
+        "yellow",
+        "yellow"
+      ],
+      "epsilon_locked": false,
+      "role": "probe",
+      "failures": [
+        "s1b_bow_wall_3: section 11.54 mm > 10.0"
+      ]
+    },
+    {
+      "scene": "stage5_room_bay_lot62_look",
+      "stage": 5,
+      "status": "ran_synthetic",
+      "n_points": 532301,
+      "n_true": 26,
+      "n_pred": 26,
+      "precision": 1.0,
+      "recall": 1.0,
+      "section_mm": 7.93,
+      "length_mm": 22.12,
+      "mae_deg": 0.01134,
+      "max_angle_deg": 0.0423,
+      "pct_in_band": 100.0,
+      "runtime_s": 1.9151,
+      "reference": "floor_normal",
+      "paint": [
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow"
+      ],
+      "epsilon_locked": false,
+      "role": "probe",
+      "failures": []
+    }
+  ],
+  "sam2": {
+    "status": "blocked_install",
+    "blocker_short": "sam2 not installed",
+    "install": {
+      "torch_installed": false,
+      "torch_version": null,
+      "cuda": null,
+      "sam2_installed": false,
+      "checkpoint_env": "SAM2_CHECKPOINT",
+      "checkpoint_set": false,
+      "checkpoint_is_file": false,
+      "ready": false,
+      "blocker_short": "sam2 not installed"
+    },
+    "projection": {
+      "camera": {
+        "eye_m": [
+          0.55,
+          -1.15,
+          1.15
+        ],
+        "target_m": [
+          0.0,
+          0.0,
+          1.22
+        ],
+        "up": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "fov_y_deg": 42.0,
+        "width": 640,
+        "height": 480,
+        "frame": "generator Z-up"
+      },
+      "intrinsics": {
+        "fx": 625.2213755265124,
+        "fy": 625.2213755265124,
+        "cx": 319.5,
+        "cy": 239.5,
+        "width": 640,
+        "height": 480,
+        "fov_y_deg": 42.0
+      },
+      "n_points": 25666,
+      "n_projected_inside": 10214,
+      "n_occupied_pixels": 8269,
+      "n_stud_pixels_generator": 8269,
+      "n_stud_points": 25666,
+      "note": "These counts are the pinhole raster of this synthetic cloud. They are not a SAM 2 mask IoU and not a stud score."
+    },
+    "generator_mask_control": {
+      "scene": "stage0_2x4_lean0.050",
+      "stage": 0,
+      "status": "control",
+      "n_points": 25666,
+      "n_true": 1,
+      "n_pred": 0,
+      "precision": null,
+      "recall": 0.0,
+      "section_mm": null,
+      "length_mm": null,
+      "mae_deg": null,
+      "max_angle_deg": null,
+      "pct_in_band": null,
+      "runtime_s": 0.0416,
+      "reference": "gravity_z_no_floor_plane",
+      "paint": [],
+      "epsilon_locked": false
+    }
+  },
+  "room_stubs": [
+    "pcl_stage5_not_run.json",
+    "cloudcompare_stage5_not_run.json",
+    "pointcept_stage5_not_run.json",
+    "open3d_ml_stage5_not_run.json",
+    "pyransac3d_stage5_not_run.json",
+    "sam2_stage5_not_run.json",
+    "open3d_stage6_not_run.json",
+    "pcl_stage6_not_run.json",
+    "cloudcompare_stage6_not_run.json",
+    "pointcept_stage6_not_run.json",
+    "open3d_ml_stage6_not_run.json",
+    "pyransac3d_stage6_not_run.json",
+    "sam2_stage6_not_run.json",
+    "open3d_stage7_not_run.json",
+    "pcl_stage7_not_run.json",
+    "cloudcompare_stage7_not_run.json",
+    "pointcept_stage7_not_run.json",
+    "open3d_ml_stage7_not_run.json",
+    "pyransac3d_stage7_not_run.json",
+    "sam2_stage7_not_run.json"
+  ],
+  "parallel_corner_prs": [
+    "https://github.com/ozguvenc2/openwall-stud-frame/pull/23",
+    "https://github.com/ozguvenc2/openwall-stud-frame/pull/24"
+  ]
+}

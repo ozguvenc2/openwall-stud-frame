@@ -7,7 +7,7 @@ Status date: **2026-09-25**.
 **Alternate titles** (not used as the H1):
 
 1. Scan-to-BIM lean measurement for light-frame wood studs: instance boxes, a finish tolerance, and a withheld pass/fail.
-2. Plumbness of bare wood studs from LiDAR point clouds: six finders, an oriented box, and a yellow paint rule.
+2. Plumbness of bare wood studs from LiDAR point clouds: seven bake-off ranks, an oriented box, and a yellow paint rule. Rank 7 (SAM 2) is scaffolded and not run as a mask.
 
 | Name | What it means here |
 | --- | --- |
@@ -26,7 +26,7 @@ Pandoc metadata: [`draft/header.yaml`](draft/header.yaml). Optional PDF note: [`
 | File | Role |
 | --- | --- |
 | [`draft/paper.md`](draft/paper.md) | Article skeleton: abstract through references |
-| [`METHODS.md`](METHODS.md) | Pipeline, six finders, τ and the 0.15° alternate, blank error budget |
+| [`METHODS.md`](METHODS.md) | Pipeline, seven bake-off ranks, τ and the 0.15° alternate, blank error budget |
 | [`EXPERIMENTS.md`](EXPERIMENTS.md) | Which class-S runs exist |
 | [`RELATED_WORK.md`](RELATED_WORK.md) | How each bib key may be used |
 | [`references.bib`](references.bib) | Keys. Unverified entries stay marked |
@@ -52,7 +52,7 @@ Cited by branch because they are not in this tree: house-alike hunt on `cursor/h
 | Phase 1 S1, 25 × 6 | **Quoted** from doc 19. Ranks 1, 2, 6 pass 25/25. Rank 3 untuned: lean 25/25, stage-0 bars 0/25. Ranks 4 and 5 are controls. Final comparison is Table 8 of the draft |
 | CloudCompare stud-only parameter tune | **Quoted** from PR #22. Stage-0 pass 25/25, one box per scene. Untuned row kept |
 | Synthetic fine-tune, ranks 4 and 5 | **Quoted** from doc 20, control and fine-tune both in Table 8. Train about 98 s and 237 s. Phase-1 stud boxes 25/25. Floorless limitation stated |
-| Class F, ε, SAM 2, native PCL on the 25-scene matrix | **Empty or not run** |
+| Class F, ε, SAM 2 weights, native PCL on the 25-scene matrix | **Empty or not run.** SAM 2 has a projection scaffold only (draft Section 5.6) |
 | Bibliography | **Usable draft.** NAHB, UFGS, DBSCAN pagination, RoomPlan, and ARKit remain marked unverified |
 
 ## Contribution candidates

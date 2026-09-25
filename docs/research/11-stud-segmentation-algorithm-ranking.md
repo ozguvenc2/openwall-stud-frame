@@ -6,7 +6,7 @@ Machine-readable twin: [11-stud-segmentation-algorithm-ranking.json](11-stud-seg
 
 File-number note: unmerged PR [#6](https://github.com/ozguvenc2/openwall-stud-frame/pull/6) also uses a `11-*.md` name (`11-residential-light-frame-scans.md`) on another branch. These are different documents. One of them should be renumbered if both land on `main`.
 
-The stage ladder, capture protocol, pass bars, and the runnable synthetic Open3D path are in [12-stud-seg-design-plan.md](12-stud-seg-design-plan.md). This ranking’s order is unchanged. Figures for the five contenders are in [images/algo-contenders/INDEX.md](images/algo-contenders/INDEX.md).
+The stage ladder, capture protocol, pass bars, and the runnable synthetic Open3D path are in [12-stud-seg-design-plan.md](12-stud-seg-design-plan.md). The master-table order below is unchanged. Figures for the five contenders are in [images/algo-contenders/INDEX.md](images/algo-contenders/INDEX.md). Bake-off rank 7 (SAM 2) and the synthetic-room continuation are in [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md).
 
 Nothing in this pass was downloaded. No checkpoint, LAS, or PLY was committed.
 
@@ -94,6 +94,8 @@ Ranks 6–12 in the master table below are not in the original five-stack bake-o
 
 Bake-off **rank 6** is a later add, not that master-table row. Doc 17 (`17-methods-that-beat-shortlist`, the methods brief on PR #14) names pyRANSAC-3D v0.7.0 sequential cuboid, after rank 1’s plate peel, as an add. Oz approved it. The one-stud run is in [16-one-stud-five-finder-run.md](16-one-stud-five-finder-run.md). The Chen, Jiang, and Xiong 2025 row numbered 6 in the table stays out of the bake-off.
 
+Bake-off **rank 7** is SAM 2 (Ravi et al., 2024), also a later add, and also not the master-table row with that number. The master-table row numbered 7 remains ClearEdge3D EdgeWise. SAM 2 segments images and video. It applies to a stud cloud only by a registered view: project the points, take a mask, lift the visible points, then the shared box. A pure LAS or PLY skips it. On 2026-09-25 the weights were not installed on the cloud CPU that wrote [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md). The rank-7 stud metrics are null. A generator-mask control on one stud is recorded there and is not a SAM 2 score. Ranks 1–6 are unchanged.
+
 ## Master table
 
 Every cell is filled. `unknown` and `n/a` say why. Metrics are from the named source only. A number from S3DIS, ScanNet, a historic roof, or one small timber specimen is **not** a 2×4 stud score.
@@ -165,13 +167,19 @@ The zoo ships semantic weights for SemanticKITTI, Toronto3D, S3DIS, Semantic3D, 
 
 Fit 2, and still in the five, because one controlled failure on our cloud is cheaper than a later argument from a 70.9 S3DIS mIoU.
 
+### 7. SAM 2, bake-off only
+
+SAM 2 is a promptable model for images and video (arXiv:2408.00714). It has no stud class and no oriented box. The bake-off uses it only as a mask on a view that is already registered to the cloud. Multi-view masks would be unioned per stud before the shared box. One view misses occluded faces and can miss the stud ends; the generator-mask control in doc 24 dropped a 1.010 m visible span because the keep gate starts at 1.2 m.
+
+The checkpoint was not loaded in that pass. No mask IoU is stated. License for the SAM 2 code and the official checkpoints is Apache-2.0; nothing was linked. EdgeWise, which occupies master-table rank 7, stays out of the bake-off.
+
 ### Commercial scan-to-BIM
 
 EdgeWise, PointCab, and CloudWorx do not document bare wood studs. Verity does not segment; it compares a model. None of them enter the five. EdgeWise Lite’s published price is the only fresh commercial number this pass (USD 1,995 per year). Pro, Verity, CloudWorx, and a live PointCab cart were not available as list prices here.
 
 ## Shared post-step (every rank)
 
-Segmentation output → points of one stud → tight OBB → θ versus the stored floor normal → interval with ε → green, yellow, or red. Ranks 1–5 differ in the first arrow only. Reporting S3DIS mIoU, roof-beam completeness, or a 3% dimension error as if it were stud-angle accuracy is out of scope for the bake-off.
+Segmentation output → points of one stud → tight OBB → θ versus the stored floor normal → interval with ε → green, yellow, or red. Bake-off ranks differ in the first arrow only. Rank 7 has not returned points. Reporting S3DIS mIoU, roof-beam completeness, a SAM 2 video J&F, or a 3% dimension error as if it were stud-angle accuracy is out of scope for the bake-off.
 
 Later metric, same clouds, digital level per stud:
 
@@ -200,6 +208,7 @@ Later metric, same clouds, digital level per stud:
 - BIMStruct3D model card (classes, MIT code, CC BY-NC-SA weights): https://huggingface.co/dfki-av/BIMStruct3D-segmentation
 - Open3D-ML model zoo (S3DIS numbers live in doc 08’s 2026-09-23 reading): https://github.com/isl-org/Open3D-ML/blob/main/model_zoo.md
 - RandLA-Net upstream NC license: https://github.com/QingyongHu/RandLA-Net
+- SAM 2: https://arxiv.org/abs/2408.00714 and https://github.com/facebookresearch/sam2
 - EdgeWise editions and Lite price: https://www.clearedge3d.com/products/edgewise/
 - Verity (model required): https://www.clearedge3d.com/products/verity/
 - Draft scripts and the IntCDC counts: PR https://github.com/ozguvenc2/openwall-stud-frame/pull/5 and https://github.com/ozguvenc2/openwall-stud-frame/pull/7
