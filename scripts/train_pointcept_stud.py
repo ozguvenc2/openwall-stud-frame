@@ -102,7 +102,9 @@ def _run_epochs(model, rows, val_rows, *, epochs: int, train_decoder: bool, hist
     if other:
         groups.append({"params": other, "lr": 1e-4})
     optimizer = torch.optim.AdamW(groups, weight_decay=1e-4)
-    class_weight = torch.tensor([1.0, 2.0], device="cuda")
+    # Clutter is the smaller set. Upweight it so the head cannot win by
+    # calling every point a stud.
+    class_weight = torch.tensor([3.0, 1.0], device="cuda")
     for epoch in range(1, epochs + 1):
         order = torch.randperm(len(rows)).tolist()
         losses = []

@@ -123,7 +123,9 @@ def main(argv: list[str] | None = None) -> int:
         [{"params": rest, "lr": 1e-4}, {"params": head, "lr": 1e-3}],
         weight_decay=1e-4,
     )
-    class_weight = torch.tensor([1.0, 2.0], device="cuda")
+    # Clutter is the smaller set. Upweight it so the net cannot win by
+    # calling every point a stud.
+    class_weight = torch.tensor([3.0, 1.0], device="cuda")
     best = -1.0
     history = []
     wall_start = time.perf_counter()

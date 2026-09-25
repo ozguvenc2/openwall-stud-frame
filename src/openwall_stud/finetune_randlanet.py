@@ -19,7 +19,7 @@ WEIGHT_DIR = repo_root() / "artifacts" / "weights" / "finetune"
 WEIGHT_NAME = "randlanet_stud_2class.pth"
 S3DIS_NAME = "randlanet_s3dis_202201071330utc.pth"
 
-NUM_POINTS = 8192
+NUM_POINTS = 16384
 GRID_SIZE = 0.02
 NUM_CLASSES = 2
 
@@ -165,6 +165,21 @@ def _pipeline(model):
     return _PIPELINE
 
 
+def use_batch_norm_stats(model) -> None:
+    """Dropout off, BatchNorm on this cloud's statistics.
+
+    Training steps are batch size 1. The running averages stay close to the
+    S3DIS checkpoint, so ``model.eval()`` labels every point as stud. Matching
+    the training step means normalizing with the cloud in front of the model.
+    """
+    import torch.nn as nn
+
+    nn.Module.eval(model)
+    for module in model.modules():
+        if isinstance(module, nn.modules.batchnorm._BatchNorm):
+            module.train()
+
+
 def predict_labels(model, points: np.ndarray) -> tuple[np.ndarray, float]:
     """One S3DIS-style inference. Returned labels cover the input points."""
     dummy = np.zeros((points.shape[0],), dtype=np.int32)
@@ -173,9 +188,22 @@ def predict_labels(model, points: np.ndarray) -> tuple[np.ndarray, float]:
         "feat": np.zeros((points.shape[0], 3), dtype=np.float32),
         "label": dummy,
     }
+    # run_inference swaps in a spatial sampler sized to that cloud.
+    # Put the training sampler back or the next step indexes off the end.
+    training_sampler = model.trans_point_sampler
     pipeline = _pipeline(model)
+
+    def _eval_with_batch_stats(*_args, **_kwargs):
+        use_batch_norm_stats(model)
+        return model
+
+    model.eval = _eval_with_batch_stats  # type: ignore[method-assign]
     started = time.perf_counter()
-    result = pipeline.run_inference(data)
+    try:
+        result = pipeline.run_inference(data)
+    finally:
+        model.trans_point_sampler = training_sampler
+        del model.eval
     runtime_s = time.perf_counter() - started
     pred = np.asarray(result["predict_labels"]).reshape(-1)
     if pred.shape[0] != points.shape[0]:
