@@ -1,7 +1,7 @@
 """Non-baseline contenders.
 
-Only the Open3D baseline runs in this environment. These modules record a
-stub scorecard and document how to install the real stack later.
+`python -m` on each module attempts the one Stage 0 stud.
+`--stub` writes a null scorecard and does not segment.
 """
 
 from __future__ import annotations

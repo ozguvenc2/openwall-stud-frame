@@ -119,7 +119,7 @@ def row_from_card(
         "pass_fail": pass_fail,
     }
     row.update(_blank_metrics())
-    if pass_fail == "not_run" or card is None:
+    if pass_fail in {"not_run", "blocked_install"} or card is None:
         return row
     detection = card.get("detection") or {}
     geometry = card.get("geometry") or {}
@@ -229,7 +229,7 @@ Dates are **America/Los_Angeles**. This page is regenerated from [`../../artifac
 
 One row is one algorithm on one scene that day, compared with that scene’s ground truth. `python scripts/run_stage0_baseline.py` upserts rows when a run finishes: the same date, stage, scene, and algorithm is updated; a later date is appended. Hand-added CSV rows are kept. Refresh this page with `python -m openwall_stud.results_by_day` from the repo root (`PYTHONPATH=src`).
 
-`paint_correct_pct` is the share of studs whose production color matches the paint rule. While `device_eps_deg` is empty, the rule is yellow on every stud, so the percentage is that check only. It is not a green/red score against a level. `pass_fail` is `not_run` when the stack did not execute. Empty cells were not measured.
+`paint_correct_pct` is the share of studs whose production color matches the paint rule. While `device_eps_deg` is empty, the rule is yellow on every stud, so the percentage is that check only. It is not a green/red score against a level. `pass_fail` is `pass` or `fail` against that scene's bars when a stack was scored, `blocked_install` when the cloud was loaded but the stack could not segment (metrics left empty), and `not_run` for a stub that did not attempt the cloud. A later `not_run` stub does not replace a same-day `pass`, `fail`, or `blocked_install` row. Empty cells were not measured.
 
 Ground-truth sources intended for later rows: `synthetic`, `skil`, `total_station`, `hand_label`. Do not type a field number that was not measured.
 
@@ -258,9 +258,9 @@ def append_day_row(
     root: Path | None = None,
 ) -> dict[str, Any]:
     """Insert or replace one day-row and rewrite CSV, JSON, and markdown."""
-    if pass_fail not in {"pass", "fail", "not_run"}:
-        raise ValueError(f"pass_fail must be pass, fail, or not_run, got {pass_fail!r}")
-    if pass_fail != "not_run" and card is None:
+    if pass_fail not in {"pass", "fail", "not_run", "blocked_install"}:
+        raise ValueError(f"pass_fail must be pass, fail, not_run, or blocked_install, got {pass_fail!r}")
+    if pass_fail in {"pass", "fail"} and card is None:
         raise ValueError("a measured row needs the scorecard that produced it")
     row = row_from_card(
         card,
@@ -274,6 +274,12 @@ def append_day_row(
     )
     rows = load_rows(root)
     key = _key(row)
+    # The multi-scene baseline still records stub rows as not_run. That must
+    # not wipe a same-day pass, fail, or blocked_install from the one-stud run.
+    if pass_fail == "not_run":
+        for existing in rows:
+            if _key(existing) == key and existing.get("pass_fail") in {"pass", "fail", "blocked_install"}:
+                return existing
     replaced = False
     for index, existing in enumerate(rows):
         if _key(existing) == key:

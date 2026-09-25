@@ -44,6 +44,8 @@ Order is doc 11. Status is this repo today.
 
 Shared post-step, once a stack actually returns stud points: tight box, θ versus the stored reference, then `openwall_stud.paint`. Ranks differ in the first arrow only.
 
+On 2026-09-25 the five finders were attempted on one synthetic 2×4 at 0.05° lean (seed 2) and the work stopped there. See [16-one-stud-five-finder-run.md](16-one-stud-five-finder-run.md). That note is the measured result. It is not a stage 2, stage 3, or lean-sweep expansion.
+
 Pictures: rank 1 is a drawing of the real run. Ranks 2–5 are diagrams with a scaffold banner. The wall in those diagrams is the synthetic stage 3 input, not that stack’s output.
 
 ## Stage ladder

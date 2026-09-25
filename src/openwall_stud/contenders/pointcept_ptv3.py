@@ -1,31 +1,27 @@
-"""Pointcept PTv3 / PointGroup hook (rank 4).
+"""Pointcept PTv3 / PointGroup on the one Stage 0 stud.
 
-Install
-    Pointcept is a CUDA training stack: https://github.com/Pointcept/Pointcept
-    Code license is MIT. This environment does not install it and does not
-    train. Do not download BIMStruct3D weights for a stud call: that file is
-    CC BY-NC-SA 4.0 and its classes are wall, column, and similar, not stud.
+The finder loads that cloud and then tries to import a CUDA Pointcept stack.
+This VM has no NVIDIA device. BIMStruct3D weights are not downloaded: they are
+CC BY-NC-SA 4.0 and have no stud class. No forward pass is invented.
 
 Entrypoint
-    python -m openwall_stud.contenders.pointcept_ptv3 --out artifacts/scorecards/pointcept_stub.json
+    python -m openwall_stud.contenders.pointcept_ptv3
 
-    After labeled Stage 5 clouds exist, the real entry is Pointcept's train
-    and test scripts on a stud/plate config that this repo does not contain
-    yet. Instance labels would then go through the same OBB and paint
-    post-step as the Open3D baseline. That config is intentionally absent.
-
-Do not
-    Do not start training in CI or on an unlabeled cloud.
-    Do not paint green/red from a BIMStruct3D zero-shot label.
-    Do not copy ScanNet or S3DIS scores into the stud scorecard.
+    ``--stub`` writes the null card without loading the cloud.
 """
 
 from __future__ import annotations
 
 import argparse
+import importlib.util
+import shutil
 from pathlib import Path
+from typing import Any
 
-from openwall_stud.contenders.common import emit_stub, stub_card
+from openwall_stud.contenders.common import blocked_card, emit_stub, stub_card
+from openwall_stud.one_stud import make_scene, scene_record
+from openwall_stud.results_by_day import repo_root
+from openwall_stud.synthetic import Scene
 
 POINTCEPT = {
     "rank": 4,
@@ -35,7 +31,7 @@ POINTCEPT = {
 }
 
 
-def build_card() -> dict:
+def build_stub_card() -> dict:
     return stub_card(
         algorithm_id="A4",
         algorithm=POINTCEPT["name"],
@@ -52,16 +48,86 @@ def build_card() -> dict:
     )
 
 
-def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Write the Pointcept stub scorecard. Does not train.")
-    parser.add_argument(
-        "--out",
-        type=Path,
-        default=Path("artifacts/scorecards/pointcept_stub.json"),
+def build_card() -> dict:
+    return build_stub_card()
+
+
+def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
+    scene = scene or make_scene()
+    torch_spec = importlib.util.find_spec("torch")
+    pointcept_spec = importlib.util.find_spec("pointcept")
+    nvidia = shutil.which("nvidia-smi")
+    blocker = (
+        "Pointcept PTv3 was not run. "
+        f"nvidia-smi: {nvidia or 'absent'}. "
+        f"torch importable: {torch_spec is not None}. "
+        f"pointcept importable: {pointcept_spec is not None}. "
+        "There is no NVIDIA device in this VM, so a CUDA PTv3 / PointGroup forward pass cannot execute. "
+        "Torch and Pointcept were not installed for a CPU-only import that still cannot segment. "
+        "No stud-class checkpoint is in this repo. "
+        "BIMStruct3D weights were not downloaded (CC BY-NC-SA 4.0; classes are wall, column, clutter, and similar, not stud). "
+        f"The stage 0 cloud was loaded in-process ({scene.n_points} points) and no forward pass ran. "
+        "Detection, geometry, angle, paint, and runtime are null."
     )
+    card = blocked_card(
+        algorithm_id="A4",
+        algorithm=POINTCEPT["name"],
+        rank=4,
+        license_name="MIT code; BIMStruct3D weights are CC BY-NC-SA 4.0 and were not downloaded",
+        hardware="CUDA required for PTv3; no NVIDIA device",
+        failure_modes=[
+            "No NVIDIA GPU, so the CUDA stack was not installed and was not run.",
+            "No stud labels and no stud-class checkpoint.",
+            "BIMStruct3D has no stud class and its weights were not fetched.",
+            "A label histogram was not invented.",
+        ],
+        blocker=blocker,
+        blocker_short="No NVIDIA GPU and no stud checkpoint. Cloud loaded, no forward pass.",
+        scene=scene_record(scene),
+        attempt={
+            "cloud_loaded": True,
+            "n_points": scene.n_points,
+            "nvidia_smi": nvidia,
+            "torch_importable": torch_spec is not None,
+            "pointcept_importable": pointcept_spec is not None,
+            "weights_downloaded": False,
+            "forward_pass": False,
+        },
+    )
+    return card, []
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Attempt Pointcept on the one synthetic stud.")
+    parser.add_argument("--stub", action="store_true")
+    parser.add_argument("--out", type=Path, default=None)
+    parser.add_argument("--figure", type=Path, default=None)
+    parser.add_argument("--skip-day-row", action="store_true")
     args = parser.parse_args(argv)
-    path = emit_stub(args.out, build_card())
-    print(f"Pointcept stub scorecard written to {path}. No training was run.")
+    if args.stub:
+        dest = args.out or Path("artifacts/scorecards/pointcept_stub.json")
+        path = emit_stub(dest, build_stub_card())
+        print(f"Pointcept stub scorecard written to {path}. No training was run.")
+        return 0
+
+    from openwall_stud.one_stud_publish import publish_attempt
+
+    scene = make_scene()
+    card, detections = run_one_stud(scene)
+    dest = args.out or (repo_root() / "artifacts" / "scorecards" / "one_stud_pointcept.json")
+    figure = args.figure or (
+        repo_root() / "docs" / "research" / "images" / "one-stud-five-finders" / "04-pointcept.png"
+    )
+    publish_attempt(
+        algorithm="pointcept",
+        card=card,
+        detections=detections,
+        scene=scene,
+        out=dest,
+        figure=figure,
+        write_day_row=not args.skip_day_row,
+    )
+    print(f"Pointcept one-stud scorecard written to {dest}. status={card['status']}")
     return 0
 
 
