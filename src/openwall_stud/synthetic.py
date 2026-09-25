@@ -1,8 +1,10 @@
-"""Synthetic stud scenes for curriculum stages 0, 2, and 3.
+"""Synthetic stud scenes for curriculum stages 0, 2, and 3, plus phase-1 S1.
 
-Stage 0 is one dressed stud. Gravity in the generator is +Z. Lean is a
-rotation about +X through the base center, so the long-axis angle from +Z
-equals the requested lean.
+Stage 0 is one dressed stud. Gravity in the generator is +Z. The stud long
+axis is +Z before lean. Lean is a right-hand rotation about a named axis
+through the base center. The historical default is +X, so the long-axis angle
+from +Z equals the requested lean. Phase 1 S1 also allows −X, +Y, and −Y.
+A zero lean is labeled axis ``none`` and is not rotated.
 
 Stage 2 adds a floor slab in the same frame. Stage 3 is a 3–5 stud mini wall
 (default 4) at 16 inch centers, with a bottom plate, a top plate, and a floor.
@@ -18,6 +20,16 @@ import numpy as np
 from openwall_stud.lumber import DRESSED_SECTION_M, OC_16_IN_M, STUD_LENGTH_8FT_M
 
 
+LEAN_AXES = ("+X", "-X", "+Y", "-Y")
+# Right-hand unit axes. +Z stays the stud long axis before the lean rotation.
+_LEAN_AXIS_VECTORS = {
+    "+X": np.array([1.0, 0.0, 0.0]),
+    "-X": np.array([-1.0, 0.0, 0.0]),
+    "+Y": np.array([0.0, 1.0, 0.0]),
+    "-Y": np.array([0.0, -1.0, 0.0]),
+}
+
+
 @dataclass(frozen=True)
 class StudTruth:
     stud_id: str
@@ -27,6 +39,7 @@ class StudTruth:
     section_m: tuple[float, float]
     center_m: np.ndarray
     long_axis: np.ndarray
+    lean_axis: str = "+X"
 
 
 @dataclass
@@ -88,13 +101,40 @@ def _box_surface(x0: float, x1: float, y0: float, y1: float, z0: float, z1: floa
     return stacked[np.sort(index)]
 
 
-def _lean_rotation(lean_deg: float) -> np.ndarray:
+def _legacy_plus_x_rotation(lean_deg: float) -> np.ndarray:
+    """The historical stage 0 matrix: right-hand rotation about +X."""
     angle = np.deg2rad(lean_deg)
     cosine, sine = float(np.cos(angle)), float(np.sin(angle))
     return np.array(
         [[1.0, 0.0, 0.0], [0.0, cosine, -sine], [0.0, sine, cosine]],
         dtype=float,
     )
+
+
+def _lean_rotation(lean_deg: float, axis: str = "+X") -> np.ndarray:
+    """Right-hand rotation by ``lean_deg`` about ``axis``.
+
+    ``axis`` is one of ``+X``, ``-X``, ``+Y``, ``-Y``. The stud long axis
+    before this rotation is +Z. ``+X`` matches ``_legacy_plus_x_rotation``.
+    """
+    if axis not in _LEAN_AXIS_VECTORS:
+        raise ValueError(f"lean axis must be one of {LEAN_AXES}, got {axis!r}")
+    angle = float(np.deg2rad(lean_deg))
+    axis_u = _LEAN_AXIS_VECTORS[axis]
+    skew = np.array(
+        [
+            [0.0, -axis_u[2], axis_u[1]],
+            [axis_u[2], 0.0, -axis_u[0]],
+            [-axis_u[1], axis_u[0], 0.0],
+        ],
+        dtype=float,
+    )
+    rotation = np.eye(3) + np.sin(angle) * skew + (1.0 - np.cos(angle)) * (skew @ skew)
+    if axis == "+X":
+        legacy = _legacy_plus_x_rotation(lean_deg)
+        if not np.allclose(rotation, legacy, atol=1e-12):
+            raise RuntimeError("+X lean rotation drifted from the historical matrix")
+    return rotation
 
 
 def _sample_stud(
@@ -105,6 +145,7 @@ def _sample_stud(
     z_base: float,
     length_m: float,
     spacing_m: float,
+    lean_axis: str = "+X",
 ) -> tuple[np.ndarray, StudTruth, str]:
     thickness, width = DRESSED_SECTION_M[nominal]
     local = _box_surface(
@@ -116,7 +157,7 @@ def _sample_stud(
         length_m,
         spacing_m,
     )
-    rotation = _lean_rotation(lean_deg)
+    rotation = _lean_rotation(lean_deg, lean_axis)
     world = local @ rotation.T
     world[:, 0] += origin_xy[0]
     world[:, 1] += origin_xy[1]
@@ -131,6 +172,7 @@ def _sample_stud(
         section_m=(float(thickness), float(width)),
         center_m=center,
         long_axis=axis,
+        lean_axis=lean_axis,
     )
     return world, truth, nominal
 
@@ -186,6 +228,7 @@ def _pack(
             section_m=stud.section_m,
             center_m=stud.center_m,
             long_axis=stud.long_axis,
+            lean_axis=stud.lean_axis,
         )
     return Scene(
         name=name,
@@ -201,6 +244,90 @@ def _pack(
     )
 
 
+def phase1_s1_scene_name(lean_deg: float, axis: str) -> str:
+    """Scene id for one phase-1 S1 cloud.
+
+    Zero lean is ``s1_2x4_lean0.000_axnone``. A non-zero lean encodes the
+    absolute magnitude and the rotation axis, for example
+    ``s1_2x4_lean0.050_ax+X``.
+    """
+    magnitude = abs(float(lean_deg))
+    if magnitude == 0.0:
+        if axis != "none":
+            raise ValueError("a zero lean uses axis 'none'")
+        return "s1_2x4_lean0.000_axnone"
+    if axis not in LEAN_AXES:
+        raise ValueError(f"lean axis must be one of {LEAN_AXES}, got {axis!r}")
+    return f"s1_2x4_lean{magnitude:.3f}_ax{axis}"
+
+
+def phase1_s1_single_stud(
+    *,
+    lean_deg: float,
+    axis: str,
+    seed: int = 2,
+    spacing_m: float = 0.005,
+    noise_std_m: float = 0.001,
+    length_m: float = STUD_LENGTH_8FT_M,
+    nominal: str = "2x4",
+) -> Scene:
+    """One dressed stud for phase-1 S1. No floor. The cloud is not rotated onto a plane.
+
+    ``lean_deg`` is the magnitude. ``axis`` is ``none`` at 0°, otherwise
+    ``+X``, ``-X``, ``+Y``, or ``-Y``. The long axis is +Z before that
+    right-hand rotation. Gravity in the generator stays +Z.
+    """
+    if nominal not in DRESSED_SECTION_M:
+        raise ValueError(f"nominal must be one of {sorted(DRESSED_SECTION_M)}")
+    magnitude = abs(float(lean_deg))
+    name = phase1_s1_scene_name(magnitude, axis)
+    # Axis ``none`` is the zero-lean label. The rotation itself is the identity
+    # about +X, then the stored label is set back to ``none``.
+    rotation_axis = "+X" if axis == "none" else axis
+    rng = np.random.default_rng(seed)
+    points, truth, _ = _sample_stud(
+        nominal=nominal,
+        lean_deg=magnitude,
+        origin_xy=(0.0, 0.0),
+        z_base=0.0,
+        length_m=length_m,
+        spacing_m=spacing_m,
+        lean_axis=rotation_axis,
+    )
+    if axis == "none":
+        truth = StudTruth(
+            stud_id=truth.stud_id,
+            nominal=truth.nominal,
+            lean_deg=0.0,
+            length_m=truth.length_m,
+            section_m=truth.section_m,
+            center_m=truth.center_m,
+            long_axis=truth.long_axis,
+            lean_axis="none",
+        )
+        description = (
+            "Phase 1 S1 synthetic dressed stud. Lean 0, axis none. "
+            "Generator gravity is +Z. No floor. The cloud is not rotated."
+        )
+    else:
+        description = (
+            f"Phase 1 S1 synthetic dressed stud. Lean {magnitude:.3f} deg about {axis}. "
+            "Long axis is +Z before the right-hand rotation. "
+            "Generator gravity is +Z. No floor. The cloud is not rotated."
+        )
+    return _pack(
+        name=name,
+        stage=0,
+        chunks=[(points, 2, 0)],
+        studs=[truth],
+        seed=seed,
+        spacing_m=spacing_m,
+        noise_std_m=noise_std_m,
+        description=description,
+        rng=rng,
+    )
+
+
 def stage0_single_stud(
     *,
     nominal: str = "2x4",
@@ -209,10 +336,17 @@ def stage0_single_stud(
     spacing_m: float = 0.005,
     noise_std_m: float = 0.001,
     length_m: float = STUD_LENGTH_8FT_M,
+    lean_axis: str = "+X",
 ) -> Scene:
-    """One stud standing on z = 0. No floor and no plate."""
+    """One stud standing on z = 0. No floor and no plate.
+
+    ``lean_axis`` defaults to ``+X``, and that default keeps the historical
+    scene name. Any other axis is appended so the name encodes the rotation.
+    """
     if nominal not in DRESSED_SECTION_M:
         raise ValueError(f"nominal must be one of {sorted(DRESSED_SECTION_M)}")
+    if lean_axis not in LEAN_AXES:
+        raise ValueError(f"lean axis must be one of {LEAN_AXES}, got {lean_axis!r}")
     rng = np.random.default_rng(seed)
     points, truth, _ = _sample_stud(
         nominal=nominal,
@@ -221,9 +355,13 @@ def stage0_single_stud(
         z_base=0.0,
         length_m=length_m,
         spacing_m=spacing_m,
+        lean_axis=lean_axis,
     )
+    name = f"stage0_{nominal}_lean{lean_deg:.3f}"
+    if lean_axis != "+X":
+        name = f"{name}_ax{lean_axis}"
     return _pack(
-        name=f"stage0_{nominal}_lean{lean_deg:.3f}",
+        name=name,
         stage=0,
         chunks=[(points, 2, 0)],
         studs=[truth],
