@@ -24,7 +24,7 @@ Read the draft at [`draft/paper.md`](draft/paper.md). Method outline: [`METHODS.
 
 | Piece | State |
 | --- | --- |
-| Folder, claim rules, BibTeX skeleton, IMRAD draft | **Draft**, this pass |
+| Bibliography (`references.bib` and the References section of the draft) | **Usable draft.** NAHB, UFGS, DBSCAN pagination, and the RoomPlan / ARKit page fetches are still marked unverified |
 | Abstract | **TBD** |
 | Synthetic Open3D numbers quoted in the draft | **Copied** from the 2026-09-24 scorecards. Labeled synthetic. |
 | Ranks 2–5 (PCL, CloudCompare, Pointcept, Open3D-ML) | **Not run.** Stub scorecards only. |

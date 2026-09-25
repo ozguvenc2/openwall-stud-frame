@@ -4,7 +4,21 @@
 
 **Products.** BeamWeaver is the platform. TruePlank is the stud QA product. OpenWall is the engineering name of this repository and of the pipeline in `src/openwall_stud/`.
 
-**Status.** First draft of the section skeleton. Venue-agnostic Markdown. Not submitted. Abstract is TBD.
+**Status.** PRELIMINARY / DRAFT. Revise later. Venue-agnostic Markdown. Not submitted. Abstract is TBD. The References section is the part intended to be usable now; intro, methodology, and tables are preliminary.
+
+## What remains to write
+
+- [ ] Abstract. Do not draft it from the synthetic table.
+- [ ] Legal names, affiliations, and CRediT for the Oz and Gwench placeholders.
+- [ ] Keep or drop contribution candidates C1–C5 after a class F capture exists.
+- [ ] Confirm DBSCAN pagination against the KDD 1996 PDF (`ester1996dbscan` is marked unverified).
+- [ ] Open the NAHB guidelines and UFGS 06 10 00 PDFs. Those two bib entries are placeholders.
+- [ ] Re-fetch the RoomPlan and ARKit documentation pages before camera-ready.
+- [ ] When PR #14 merges, point the rank-6 and SAM 2 rows at `docs/research/17-methods-that-beat-shortlist.md` in-tree. Until then they are planned contenders only.
+- [ ] Class F results, including the one-stud five-finder, after scorecards exist.
+- [ ] Draw the pipeline figure. The prose diagram in Section 3 is the stand-in.
+- [ ] Re-tabulate Chen et al. (2025) specimen numbers from the PDF before they move out of related work.
+- [ ] Venue formatting. No arXiv upload and no publisher submission from this draft.
 
 **Authors.** Oz (placeholder). Gwench (placeholder). Legal names, affiliations, and CRediT roles are unassigned. See the [paper-space README](../README.md).
 
@@ -30,7 +44,7 @@ Working scope, not a substitute abstract: TruePlank finds vertical studs on a ba
 
 ---
 
-## 1. Introduction
+## 1. Introduction (PRELIMINARY / DRAFT — revise later)
 
 Light-frame wood studs are checked, in the field, with a level and a finish tolerance. WoodWorks states that the International Building Code and the American Wood Council’s National Design Specification do not set a light-frame wood construction-tolerance requirement, and it summarizes a Handbook tightening to 1/4 inch in 10 feet when finishes such as gypsum wallboard and plaster are used [woodworksTolerances, ballast2007handbook]. The OpenWall notes convert that Handbook figure to an angle,
 
@@ -49,7 +63,27 @@ TruePlank’s target, on a bare frame with no drywall and no sheathing, is narro
 
 ε is unknown. The honest production paint is yellow on every stud.
 
-This paper is the public write-up of that method. The implementation that exists today is a synthetic bring-up of one classical stack (Open3D) on curriculum stages 0, 2, and 3. Four other stacks are specified and not run. No jobsite cloud is in the repository. Section 5 therefore contains one labeled synthetic excerpt and an explicit placeholder for field results.
+This paper is the public write-up of that method. The implementation that exists today is a synthetic bring-up of one classical stack (Open3D) on curriculum stages 0, 2, and 3 [zhou2018open3d, open3dSoftware]. Four other stacks are specified and not run. No jobsite cloud is in the repository. Section 5 therefore contains one labeled synthetic excerpt and an explicit placeholder for field results.
+
+### 1.1 Gap
+
+Scan-to-BIM reviews and Scan-vs-BIM systems turn a laser scan into, or against, a building model [tang2010asbuilt, bosche2015scan]. Those systems answer a modeling or progress question. Timber cuboid pipelines answer a historic-roof completeness question [ozkan2022timber, pochtrager2018roof]. A vision pipeline for wood framing can put an image detector in front of a 6D pose on one close-range stud [xie2026wfc, jocher2023ultralytics]. Phone room capture names walls and openings, and an ARKit session can name gravity, without emitting a stud lean [apple2022roomplan, appleArkitGravity].
+
+The gap for TruePlank is the conjunction: one box per vertical stud on a bare light-frame wall, a long-axis angle against a named reference, and a paint rule that stays yellow until a measured device band exists. None of the related lines above publishes that conjunction, and this draft does not claim to have closed it on a jobsite.
+
+### 1.2 Contribution candidates
+
+C1–C5 are candidates for a later abstract. They are not findings, and they are not field accuracy.
+
+| ID | Candidate | What would have to be true before it is a result |
+| --- | --- | --- |
+| C1 | A light-frame stud can be an instance: one tight box, plates peeled, a merged bay counted as a miss, then a long-axis angle against a stored reference. | A real bare-frame cloud with an independent stud count. Synthetic stage 3 is bring-up only. |
+| C2 | Lean QA stays yellow until a measured device-plus-algorithm band ε exists. | A measured ε on the capture path that would actually ship. The 0.05° placeholder is an illustration. |
+| C3 | Floor-normal angle and gravity plumb are different references. Replacing the vector repaints the same boxes. | Paired floor-normal and inclinometer or IMU readings on the same studs. |
+| C4 | Historic-roof cuboid completeness, Schnabel primitives, indoor mIoU, and a single-stud pose error are the wrong score for 2×4 lean. | The bake-off on one shared cloud, including finders that are still stubs. |
+| C5 | An end-to-end budget (level, LiDAR, algorithm) can sit beside the paint, with empty terms left empty. | At least one filled term from a real capture. |
+
+Drop a candidate if the experiment does not support it.
 
 ## 2. Related work
 
@@ -69,15 +103,41 @@ Bassier and Vergauwen reconstruct BIM wall objects from point clouds without sup
 
 Point Transformer V3 is a scalable point backbone with reported results on indoor and outdoor benchmarks [wu2024ptv3]. Pointcept is the codebase in which that backbone is trained [pointcept]. PointGroup is an instance-segmentation head from the same research line [jiang2020pointgroup]. The planned rank 4 uses that stack only after stud labels exist on a real room (stage 5). No weights are loaded here. Published ScanNet or S3DIS figures are left on those benchmarks.
 
-Open3D is the library behind the implemented baseline [zhou2018open3d, open3dSoftware]. Clustering after the plate peel is DBSCAN [ester1996dbscan].
+Open3D is the library behind the implemented baseline [zhou2018open3d, open3dSoftware]. Clustering after the plate peel is DBSCAN [ester1996dbscan]. The DBSCAN pagination in the bibliography is marked unverified until the KDD PDF is checked. PCL is the planned host for region growing [rusu2011pcl]. It is not installed here, and the rank-2 stub has not been executed.
 
-### 2.4 Tolerances and sensors
+### 2.4 Planned image and cuboid adds (not run)
 
-The tolerance chain used in software is the WoodWorks summary and the derived angle above, not a new code interpretation [woodworksTolerances, ballast2007handbook]. Phone LiDAR comparisons are centimeter-class in the repository sensing survey, which points at Erland and Gaulton for a cross-model iPhone study [erland2026iphone]. The centimeters in that survey were not re-extracted from the PDF here. The sensing note’s conclusion, which this paper adopts as a protocol constraint, is that survey terrestrial scanners are the instrument class whose published specifications sit near τ, while phone LiDAR and robotics lidars are detection sensors. Brochure specifications are not ε. A full stack — range, registration, segmentation, box fit, and the gravity or level reference — is unmeasured [docs/tolerances.md, docs/research/01-sensing-modalities.md].
+A separate research note, `docs/research/17-methods-that-beat-shortlist.md` on draft pull request #14, proposes two bake-off adds and does not run them. This branch does not contain that file. They appear in Table 1 as planned contenders.
 
-## 3. Method
+Sequential cuboid fitting with pyRANSAC-3D v0.7.0 would run after the same plate peel as rank 1 [mariga2026pyransac]. The library fits one cuboid per call. The fair experiment, as that note describes it, is repeated fits with inlier removal and a 2×4 section test that is ours. Schnabel’s primitive set does not include that cuboid [schnabel2007ransac, fischler1981ransac]. No stud accuracy is published for the library, and this repository has not called it.
 
-The outline with parameters, the blank error budget, and the statement that the names Hypothetical / Ideal / Realistic / Absolute are not a method in the design documents is [`METHODS.md`](../METHODS.md). This section is the narrative form.
+SAM 2 is a promptable segmenter for images and video [ravi2024sam2]. The note would lift a mask onto points only when the capture already has a registered camera, then hand the points to the shared box. A pure LAS or PLY would skip it. It is not a stud finder and it has not been run.
+
+### 2.5 Wood-stud pose, as related work only
+
+Xie and Alwisy study vision-driven automation for wood-framed construction and release the WFC pose dataset: one 2×4 under controlled views, with a detector in front of a separate 6D pose [xie2026wfc, jocher2023ultralytics]. That detector is not this paper’s method. The engineering survey of their README, recorded on PR #14, describes a published rotation on the order of a degree and a 2° acceptance bar. Those README digits were not re-tabulated from the journal PDF here, and they are not a wall-lean result at τ. YOLO stays related context. It does not replace an oriented box on a point cloud.
+
+### 2.6 Tolerances and sensors
+
+The tolerance chain used in software is the WoodWorks summary and the derived angle above, not a new code interpretation [woodworksTolerances, ballast2007handbook]. WoodWorks also summarizes an NAHB figure of 3/8 inch in 32 inches and UFGS figures of 1/4 inch in 8 feet and 1/8 inch in 8 feet. The NAHB book and the UFGS section were not opened; their bibliography entries are placeholders [nahbGuidelines, ufgs061000].
+
+Phone LiDAR comparisons are centimeter-class in the repository sensing survey, which points at Erland and Gaulton for a cross-model iPhone study [erland2026iphone]. The centimeters in that survey were not re-extracted from the PDF here. The sensing note’s conclusion, which this paper adopts as a protocol constraint, is that survey terrestrial scanners are the instrument class whose published specifications sit near τ, while phone LiDAR and robotics lidars are detection sensors. Brochure specifications are not ε.
+
+As-built modeling from laser scans is the neighboring literature [tang2010asbuilt, bosche2015scan, bassier2020walls]. It reconstructs or checks building objects, including MEP cylinders in the Bosché case. It does not supply a bare-stud lean. RoomPlan and ARKit gravity are sensing context only [apple2022roomplan, appleArkitGravity]. RoomPlan’s published surface list is walls, openings, and furniture, not studs. An ARKit session can store a Y-up gravity axis for a capture we run ourselves. The engineering notes say that vector does not travel inside a Polycam PLY by any page they found, and phone tilt error is unquantified. A full stack — range, registration, segmentation, box fit, and the gravity or level reference — is unmeasured [docs/tolerances.md, docs/research/01-sensing-modalities.md].
+
+## 3. Methodology (PRELIMINARY / DRAFT — revise later)
+
+The outline with parameters, the blank error budget, and the statement that the names Hypothetical / Ideal / Realistic / Absolute are not a method in the design documents is [`METHODS.md`](../METHODS.md). This section is the preliminary narrative.
+
+### 3.0 Pipeline in prose
+
+One cloud, then five steps. Ranks differ in the instance step only. The box, the angle, and the paint are shared.
+
+1. **Peel.** Remove near-horizontal slabs (floor and plates). Bands within one plate thickness go together so a plate’s vertical side faces do not bridge bays. Vertical stud faces stay. The cloud is not rotated onto the floor.
+2. **Instance.** On the remainder, form one point set per physical stud. Rank 1 uses DBSCAN (`eps` 25 mm, `min_points` 20) [ester1996dbscan]. A merged bay is a miss. Planned replacements for this step alone are PCL region growing [rusu2011pcl], Schnabel primitives [schnabel2007ransac], a later Pointcept or PointGroup head [wu2024ptv3, jiang2020pointgroup, pointcept], an Open3D-ML control histogram, and, only as planned adds from PR #14, sequential pyRANSAC-3D cuboids [mariga2026pyransac] and a SAM 2 mask lifted from a registered image [ravi2024sam2].
+3. **Box.** Fit one minimal oriented bounding box. Keep clusters whose section is near a dressed 2×4 or 2×6, whose length is between 1.2 m and 3.3 m, and whose long axis is within 20° of the reference.
+4. **Angle.** θ is the angle between that long axis and the stored reference. Zero means aligned with the reference. Stage 0 uses generator +Z. Later stages use the floor normal from the lowest peeled slab. A later gravity vector (scanner inclinometer, dual-axis compensator, or an ARKit gravity session converted from Y-up to Z-up) replaces the reference and repaints the same boxes [appleArkitGravity]. A floor is not gravity.
+5. **Paint.** Green when θ + ε ≤ τ, red when θ − ε > τ, yellow when the interval overlaps τ or when ε is unknown. ε is unknown, so production paint is yellow.
 
 ### 3.1 Inputs and references
 
@@ -109,15 +169,45 @@ Three terms are reserved and unfilled.
 
 ### 3.6 Ground-truth classes
 
-Class S compares the box to the generator. Class F will compare it to a level, a total station, or a hand label, using the source names already reserved in the day-table writer. Class R, a realisticized cloud whose noise comes from a scanner model, is not implemented. The 1 mm Gaussian is class S.
+Class S compares the box to the generator. Class F will compare it to a level, a total station, or a hand label, using the source names already reserved in the day-table writer. Class R, a realisticized cloud whose noise comes from a scanner model, is not implemented. The 1 mm Gaussian is class S. Synthetic bring-up and later real ground truth stay in separate tables.
 
-## 4. Experiments
+### 3.7 Table 1. Algorithm shortlist (PRELIMINARY)
+
+Ranks 1–5 are the engineering bake-off in `docs/research/11-stud-segmentation-algorithm-ranking.md`. Rank 6 and the gated SAM 2 row are the adds proposed in PR #14’s research note (2026-09-25). Nothing in the last two rows has been executed. “Run” means a synthetic Open3D scorecard exists. “Stub” means a null scorecard was written.
+
+| Rank | Stack | Role | State |
+| --- | --- | --- | --- |
+| 1 | Refined Open3D: horizontal peel, DBSCAN, minimal oriented box [zhou2018open3d, ester1996dbscan] | First experiment | **Run**, class S only |
+| 2 | PCL region growing, then a cuboid in the Özkan / Pöchtrager sense, no remote coplanar merge, axis not forced to Z [rusu2011pcl, ozkan2022timber, pochtrager2018roof] | Partial faces and joints | **Stub** |
+| 3 | CloudCompare RANSAC shape detection, Schnabel primitives [schnabel2007ransac, fischler1981ransac] | Disagreement check. Expect planes, not four studs | **Stub** |
+| 4 | Pointcept PTv3 / PointGroup after stage-5 stud labels [wu2024ptv3, jiang2020pointgroup, pointcept] | Learning path. BIMStruct3D is a control, not the model | **Stub** |
+| 5 | Open3D-ML RandLA-Net or KPConv, S3DIS weights | One histogram so an office mIoU is not reused as a stud score | **Stub**. Do not paint from it |
+| 6 (planned) | pyRANSAC-3D v0.7.0, sequential cuboid after the rank-1 peel [mariga2026pyransac] | Rectangular primitive rank 3 does not have | **Not run.** Proposed on PR #14 |
+| Gated (planned) | SAM 2 mask, lifted onto points, then the shared box [ravi2024sam2] | Instance help only when a registered image already exists | **Not run.** Skip on a pure LAS/PLY |
+
+### 3.8 Table 2. Scorecard fields (definitions)
+
+Writer: `openwall_stud.scorecard`. Missing measurements are null. These definitions are the schema. They are not results.
+
+| Section | Field | Definition used in this repo |
+| --- | --- | --- |
+| Detection | Precision, recall, TP / FP / FN | One predicted box per physical stud. A merged bay is a miss. Synthetic match radius 0.15 m. Field match radius is not defined yet |
+| Geometry | Section error | The two smaller minimal-OBB extents versus dressed size (38.1 × 88.9 mm for a 2×4, 38.1 × 139.7 mm for a 2×6), reported as a maximum in the day log |
+| Geometry | Length error | Longest OBB extent versus generator length (2438.4 mm on these scenes), as a maximum in the day log |
+| Angle | MAE | Mean absolute error of θ against the stored reference (generator on class S; SKIL only when three readings agree on class F) |
+| Angle | Percent in band | Share of matched studs whose absolute angle error is within τ ≈ 0.1194°. This does not set the paint |
+| Paint | Production color | Yellow while ε is unlocked. `paint_correct_pct` is then the share of studs painted yellow |
+| Paint | Hypothetical colors | Colors if a placeholder ε of 0.05° were locked. Stored beside production colors. Not a QA call |
+| Cost | Runtime, license, hardware, failure modes | Runtime is the process that wrote the card. It is not a field budget |
+| — | `device_eps_deg` | Empty until a measured band exists |
+
+## 4. Experiments (PRELIMINARY / DRAFT — revise later)
 
 The plan, including what is run and what is owned elsewhere, is [`EXPERIMENTS.md`](../EXPERIMENTS.md).
 
 **Executed (class S).** On 2026-09-24 (America/Los_Angeles) the Open3D baseline was run on seven generator scenes by `scripts/run_stage0_baseline.py`. Stub cards were written for the other four stacks and marked `not_run`. Pass bars inside that script are bring-up checks: perfect detection, section error at most 10 mm, length error at most 25 mm (30 mm on stage 3), angle error at most 0.05° (0.10° on stage 3), and yellow production paint. A miss fails the script. The bars are not a field acceptance test.
 
-**Not executed.** PCL on the same scenes. CloudCompare primitive counts. Any real capture. The one-stud five-finder (one physical stud, five finders, a level if the stud is standing, yellow paint) is specified as stage 1 and is owned by another agent. This draft does not report it. Stages 4–7 have no clouds. No realisticized generator is specified.
+**Not executed.** PCL on the same scenes. CloudCompare primitive counts. pyRANSAC-3D. SAM 2. Any real capture. The one-stud five-finder (one physical stud, five finders, a level if the stud is standing, yellow paint) is specified as stage 1 and is owned by another agent. This draft does not report it. Stages 4–7 have no clouds. No realisticized generator is specified.
 
 **Intended field protocol, still empty.** Record sensor, export format, whether Z is gravity, and the floor normal if one was fit. On a standing stud, record the level model and BOT / MID / TOP. Do not publish an angle MAE when the three readings disagree by more than the printed resolution.
 
@@ -129,7 +219,9 @@ No class F numbers exist. The one-stud five-finder has not been copied into this
 
 ### 5.2 Class S excerpt — synthetic Open3D, 2026-09-24
 
-The table quotes the day log regenerated from `artifacts/scorecards/results_by_day.csv`, which matches the per-scene JSON files `artifacts/scorecards/open3d_stage*.json`. Ground-truth source on every row is `synthetic`. Detection precision and recall are 1. Section and length columns are the maxima. Angle is the mean absolute error against the generator reference; with one stud that equals the absolute error. Stage 3 also stores a maximum absolute error of 0.00719° in `open3d_stage3_stage3_mini_wall_4.json`. Percent of studs inside τ is 100 on each scene. Production colors are yellow, so the day-log paint column is 100 under the yellow-only rule. That percentage is not agreement with a level. `device_eps_deg` is empty.
+**SYNTHETIC.** Table 3 quotes the day log regenerated from `artifacts/scorecards/results_by_day.csv`, which matches the per-scene JSON files `artifacts/scorecards/open3d_stage*.json`. Ground-truth source on every row is `synthetic`. Detection precision and recall are 1. Section and length columns are the maxima. Angle is the mean absolute error against the generator reference; with one stud that equals the absolute error. Stage 3 also stores a maximum absolute error of 0.00719° in `open3d_stage3_stage3_mini_wall_4.json`. Percent of studs inside τ is 100 on each scene. Production colors are yellow, so the day-log paint column is 100 under the yellow-only rule. That percentage is not agreement with a level. `device_eps_deg` is empty. These numbers are not a field accuracy.
+
+**Table 3. Synthetic Open3D day log, 2026-09-24 (class S only).**
 
 | Scene | Section (mm) | Length (mm) | Angle MAE (°) | Runtime (s) |
 | --- | ---: | ---: | ---: | ---: |
@@ -181,4 +273,77 @@ Jobsite and residential scans can identify people and addresses. None are includ
 
 ## References
 
-Rendered from [`references.bib`](../references.bib). Keys are in square brackets above so a later Pandoc or LaTeX pass can resolve them. This Markdown file does not embed a generated bibliography.
+Markdown list keyed to [`references.bib`](../references.bib). A later Pandoc pass can resolve the same keys. Entries marked **UNVERIFIED PLACEHOLDER** or **UNVERIFIED PAGINATION** or **UNVERIFIED THIS PASS** must be checked before camera-ready. DOI collisions are footnoted under Bassier.
+
+### Timber cuboids and region growing
+
+**ozkan2022timber.** Özkan, T., Pfeifer, N., Styhler-Aydın, G., Hochreiner, G., Herbig, U., and Döring-Williams, M. (2022). Historic timber roof structure reconstruction through automated analysis of point clouds. *Journal of Imaging*, 8(1), 10. https://doi.org/10.3390/jimaging8010010
+
+**pochtrager2018roof.** Pöchtrager, M., Styhler-Aydın, G., Döring-Williams, M., and Pfeifer, N. (2018). Digital reconstruction of historic roof structures: Developing a workflow for a highly automated analysis. *Virtual Archaeology Review*, 9(19), 21–33. https://doi.org/10.4995/var.2018.8855
+
+**pochtrager2017roof.** Pöchtrager, M., Styhler-Aydın, G., Döring-Williams, M., and Pfeifer, N. (2017). Automated reconstruction of historic roof structures from point clouds — development and examples. *ISPRS Annals of the Photogrammetry, Remote Sensing and Spatial Information Sciences*, IV-2/W2, 195–202. https://doi.org/10.5194/isprs-annals-IV-2-W2-195-2017
+
+**ozkan2024completion.** Özkan, T., Pfeifer, N., and Hochreiner, G. (2024). Automatic completion of geometric models from point clouds for analyzing historic timber roof structures. *Frontiers in Built Environment*, 10, 1368918. https://doi.org/10.3389/fbuil.2024.1368918
+
+**chen2025timberfe.** Chen, L., Jiang, L., and Xiong, H. (2025). Automated generation of geometric FE models for timber structures using 3D point cloud data. *Buildings*, 15(13), 2213. https://doi.org/10.3390/buildings15132213
+
+**rusu2011pcl.** Rusu, R. B., and Cousins, S. (2011). 3D is here: Point Cloud Library (PCL). *2011 IEEE International Conference on Robotics and Automation*, 1–4. https://doi.org/10.1109/ICRA.2011.5980567
+
+### Primitives, RANSAC, and instance clustering
+
+**schnabel2007ransac.** Schnabel, R., Wahl, R., and Klein, R. (2007). Efficient RANSAC for point-cloud shape detection. *Computer Graphics Forum*, 26(2), 214–226. https://doi.org/10.1111/j.1467-8659.2007.01016.x
+
+**fischler1981ransac.** Fischler, M. A., and Bolles, R. C. (1981). Random sample consensus: A paradigm for model fitting with applications to image analysis and automated cartography. *Communications of the ACM*, 24(6), 381–395. https://doi.org/10.1145/358669.358692
+
+**ester1996dbscan.** Ester, M., Kriegel, H.-P., Sander, J., and Xu, X. (1996). A density-based algorithm for discovering clusters in large spatial databases with noise. *Proceedings of the Second International Conference on Knowledge Discovery and Data Mining (KDD)*, 226–231. AAAI Press. **UNVERIFIED PAGINATION.** No DOI retrieved on this pass.
+
+**mariga2026pyransac.** Mariga, L. (2026). pyRANSAC-3D (version 0.7.0) [software]. Zenodo. https://doi.org/10.5281/zenodo.21988437 — Concept record id 7212567. PR #14 names https://doi.org/10.5281/zenodo.7212567. Not run here.
+
+**bassier2020walls.** Bassier, M., and Vergauwen, M. (2020). Unsupervised reconstruction of Building Information Modeling wall objects from point cloud data. *Automation in Construction*, 120, 103338. https://doi.org/10.1016/j.autcon.2020.103338
+
+**Footnote, DOI collision.** The engineering ranking cites Sensors 2023, DOI 10.3390/s23041924, as Bassier. Crossref resolves that DOI to **ntiyakunze2023sensors**: Ntiyakunze, J., and Inoue, T. (2023). Segmentation of structural elements from 3D point cloud using spatial dependencies for sustainability studies. *Sensors*, 23(4), 1924. https://doi.org/10.3390/s23041924 — This draft does not treat that paper as Bassier’s.
+
+### Learned point clouds, and gated image segmentation
+
+**wu2024ptv3.** Wu, X., Jiang, L., Wang, P.-S., Liu, Z., Liu, X., Qiao, Y., Ouyang, W., He, T., and Zhao, H. (2024). Point Transformer V3: Simpler, faster, stronger. *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)*, 4840–4851. https://openaccess.thecvf.com/content/CVPR2024/html/Wu_Point_Transformer_V3_Simpler_Faster_Stronger_CVPR_2024_paper.html — Also arXiv:2312.10035. The open-access bibtex did not print a DOI, so none is invented here.
+
+**pointcept.** Pointcept contributors. Pointcept [software]. https://github.com/Pointcept/Pointcept — Codebase for the planned rank-4 hook. The backbone paper is wu2024ptv3.
+
+**jiang2020pointgroup.** Jiang, L., Zhao, H., Shi, S., Liu, S., Fu, C.-W., and Jia, J. (2020). PointGroup: Dual-set point grouping for 3D instance segmentation. *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)*, 4866–4875. https://doi.org/10.1109/CVPR42600.2020.00492
+
+**zhou2018open3d.** Zhou, Q.-Y., Park, J., and Koltun, V. (2018). Open3D: A modern library for 3D data processing. arXiv:1801.09847. https://arxiv.org/abs/1801.09847
+
+**open3dSoftware.** Open3D authors. Open3D (version 0.20.0) [software]. https://github.com/isl-org/Open3D — MIT. Version pinned in this repository.
+
+**ravi2024sam2.** Ravi, N., Gabeur, V., Hu, Y.-T., Hu, R., Ryali, C., Ma, T., Khedr, H., Rädle, R., Rolland, C., Gustafson, L., Mintun, E., Pan, J., Alwala, K. V., Carion, N., Wu, C.-Y., Girshick, R., Dollár, P., and Feichtenhofer, C. (2024). SAM 2: Segment anything in images and videos. arXiv:2408.00714. https://arxiv.org/abs/2408.00714 — Planned gated mask only. Not run.
+
+### Wood-stud pose and the image detector in front of it
+
+**xie2026wfc.** Xie, C., and Alwisy, A. (2026). Advancing robotic automation in wood-framed construction using vision-driven adaptive control. *Automation in Construction*, 185, 106858. https://doi.org/10.1016/j.autcon.2026.106858 — Related only. Not this method.
+
+**jocher2023ultralytics.** Jocher, G., Qiu, J., and Chaurasia, A. (2023). Ultralytics YOLO (version 8.0.0) [software]. https://github.com/ultralytics/ultralytics — Authors and version from CITATION.cff on 2026-09-25. AGPL-3.0 in that file. Related only as the detector in front of pose in xie2026wfc. Not a point-cloud stud finder.
+
+### As-built LiDAR and scan-to-BIM
+
+**tang2010asbuilt.** Tang, P., Huber, D., Akinci, B., Lipman, R., and Lytle, A. (2010). Automatic reconstruction of as-built building information models from laser-scanned point clouds: A review of related techniques. *Automation in Construction*, 19(7), 829–843. https://doi.org/10.1016/j.autcon.2010.06.007
+
+**bosche2015scan.** Bosché, F., Ahmed, M., Turkan, Y., Haas, C. T., and Haas, R. (2015). The value of integrating Scan-to-BIM and Scan-vs-BIM techniques for construction monitoring using laser scanning and BIM: The case of cylindrical MEP components. *Automation in Construction*, 49, 201–213. https://doi.org/10.1016/j.autcon.2014.05.014
+
+### Construction tolerances
+
+**woodworksTolerances.** WoodWorks. Construction tolerances for light wood-frame projects. Wood Products Council expert tip. https://www.woodworks.org/resources/construction-tolerances-for-light-wood-frame-projects/ — Page text checked 2026-09-25. Access year is the check year. The page states that the IBC and the AWC NDS do not set a light-frame wood construction-tolerance requirement, and it summarizes Ballast, NAHB, and UFGS.
+
+**ballast2007handbook.** Ballast, D. K. (2007). *Handbook of Construction Tolerances* (2nd ed.). John Wiley & Sons. ISBN 978-0-471-93151-5. Publisher page checked 2026-09-25. The 1/4 inch in 10 feet figure used here is WoodWorks’s summary of this handbook, not a re-reading of the handbook page. τ ≈ 0.1194° is derived from that summary.
+
+**nahbGuidelines.** National Association of Home Builders. Residential Construction Performance Guidelines. **UNVERIFIED PLACEHOLDER.** Edition and year were not opened. The 3/8 inch in 32 inches figure is WoodWorks’s summary only.
+
+**ufgs061000.** Unified Facilities Guide Specifications. UFGS 06 10 00, Rough Carpentry. **UNVERIFIED PLACEHOLDER.** The specification PDF was not opened. WoodWorks’s summary is the only text used: 1/4 inch in 8 feet, and 1/8 inch in 8 feet for tighter finishes. Confirm the section title and the “United” versus “Unified” wording against the PDF.
+
+### Sensing context
+
+**erland2026iphone.** Erland, B. M., and Gaulton, R. (2026). A comparison of lidar accuracy across iPhone models, with implications for reproducibility and cross-study comparison. *Remote Sensing Letters*, 17, 1620–1631. https://doi.org/10.1080/2150704X.2026.2720055 — Bibliographic record verified. RMSE centimeters in the repository sensing survey were not re-extracted from the PDF.
+
+**apple2022roomplan.** Apple. (2022). RoomPlan. Apple Machine Learning Research; WWDC22 session 10127. https://machinelearning.apple.com/research/roomplan — **UNVERIFIED THIS PASS** as a live fetch. Sensing context only. Not a stud schedule.
+
+**appleArkitGravity.** Apple. ARKit `ARConfiguration.WorldAlignment`. Apple Developer Documentation. https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.enum — **UNVERIFIED THIS PASS** as a live fetch. Sensing context for a capture that runs ARKit. Y-up. Not ε.
+

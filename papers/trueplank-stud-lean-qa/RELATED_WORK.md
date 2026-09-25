@@ -43,13 +43,37 @@ S3DIS, ScanNet, and SemanticKITTI numbers are intentionally absent. The engineer
 | --- | --- |
 | `woodworksTolerances` | Primary page actually re-read for this draft. WoodWorks states that the IBC and the AWC NDS do not set a light-frame wood construction-tolerance requirement. The page summarizes a Handbook tightening to 1/4 inch in 10 feet when finishes such as gypsum wallboard and plaster are used, an NAHB figure of 3/8 inch in 32 inches, and UFGS figures. Those other documents were not re-opened here. |
 | `ballast2007handbook` | Handbook of Construction Tolerances, 2nd ed., Wiley, 2007. ISBN 978-0-471-93151-5 checked on the Wiley page. The angular working tolerance τ ≈ 0.1194° is **derived** in [`docs/tolerances.md`](../../docs/tolerances.md) by `atan((1/4 inch) / (10 feet))`. It is not a degree printed as code. |
+| `nahbGuidelines` | **UNVERIFIED PLACEHOLDER.** NAHB Residential Construction Performance Guidelines. Edition not opened. The 3/8 inch in 32 inches figure is only WoodWorks’s summary. |
+| `ufgs061000` | **UNVERIFIED PLACEHOLDER.** UFGS 06 10 00 as named by WoodWorks. The specification PDF was not opened. |
 
 The 2021 IRC wall chapter is discussed in `docs/tolerances.md` via an UpCodes reading: stud size, height, and spacing are specified; a general wood-stud plumb tolerance was not found there. That code viewer was not re-opened for this draft, so the paper points at WoodWorks for the IBC/NDS statement and at the repository note for the IRC reading.
 
-## Sensing context
+## Libraries, primitives, and planned adds
 
 | Key | What it is for this paper |
 | --- | --- |
+| `rusu2011pcl` | PCL library paper (ICRA 2011, pages 1–4). Rank 2’s host. Not installed. Not run. |
+| `fischler1981ransac` | Original RANSAC article. Context for Schnabel and for pyRANSAC-3D. Crossref’s short title was expanded to the usual full title and the expansion is noted in the bib entry. |
+| `ester1996dbscan` | Density clustering after the plate peel. **UNVERIFIED PAGINATION.** |
+| `mariga2026pyransac` | pyRANSAC-3D v0.7.0, Zenodo version DOI 10.5281/zenodo.21988437 (concept record 7212567). Planned rank-6 add from PR #14. Not run. |
+| `ravi2024sam2` | SAM 2, arXiv:2408.00714. Planned gated mask when a registered image exists. Not a stud method. Not run. |
+| `schnabel2007ransac` | Already in the primitive table above. Rank 3. Not run. |
+
+## Wood-stud pose, related only
+
+| Key | What it is for this paper |
+| --- | --- |
+| `xie2026wfc` | Xie and Alwisy, Automation in Construction 185, 106858 (2026). One 2×4, vision in front of 6D pose. Not our pipeline. README rotation figures cited on PR #14 were not re-read from the PDF. |
+| `jocher2023ultralytics` | Ultralytics YOLO software citation (Jocher, Qiu, Chaurasia; version 8.0.0 in CITATION.cff). The image detector in front of that pose. Not a point-cloud lean method. AGPL-3.0 on that file. |
+
+## As-built scanning and phone context
+
+| Key | What it is for this paper |
+| --- | --- |
+| `tang2010asbuilt` | Review of automatic as-built BIM from laser scans. Context. Not a stud score. |
+| `bosche2015scan` | Scan-to-BIM plus Scan-vs-BIM for cylindrical MEP. Context. Not lumber. |
+| `apple2022roomplan` | RoomPlan documentation. **UNVERIFIED THIS PASS** as a live fetch. Walls and openings, not studs. |
+| `appleArkitGravity` | ARKit gravity alignment. **UNVERIFIED THIS PASS** as a live fetch. A possible later reference vector for our own capture. Not ε. |
 | `erland2026iphone` | Crossref: Erland and Gaulton, Remote Sensing Letters 17, pages 1620–1631 (2026). The repository sensing survey attributes centimeter-class iPhone LiDAR RMSE to this article. Those centimeters were not re-extracted from the PDF here. Phone LiDAR remains a detection sensor in the capture protocol, not the instrument for a green/red call. |
 
 Vendor TLS specifications (FARO Focus, Leica RTC360, and others) stay in [`docs/research/01-sensing-modalities.md`](../../docs/research/01-sensing-modalities.md) as vendor claims. They are not given BibTeX entries until a paper needs a specific brochure row, and they are not a measured stud-axis uncertainty.
@@ -59,3 +83,5 @@ Vendor TLS specifications (FARO Focus, Leica RTC360, and others) stay in [`docs/
 - No public light-frame stud benchmark was found in the repository survey. This draft does not invent one.
 - Commercial scan-to-BIM tools (EdgeWise, Verity, CloudWorx, PointCab) stay out of the five-stack bake-off, as in the ranking note.
 - Forestry stem cylinders stay out. A stem is a different object.
+- pyRANSAC-3D and SAM 2 are planned contenders from PR #14. They are cited. They are not results.
+- NAHB and UFGS primary documents are still closed. WoodWorks is the secondary source until those PDFs are opened.

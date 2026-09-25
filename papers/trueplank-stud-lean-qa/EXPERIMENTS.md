@@ -17,6 +17,8 @@ The one-stud five-finder is **owned by another agent**. This paper space does no
 | E5 | One room. Classical scorecard first. Then Pointcept may be trained. Open3D-ML once, as a label histogram | F | **Planned.** After E4 |
 | E6–E7 | Story, then a complex frame | F | **Planned.** After a real stage 5 |
 | ER | Realisticized generator (scanner noise, dropout, reflectance) | R | **Not specified.** Do not build it inside this paper pass |
+| E-py | pyRANSAC-3D v0.7.0 sequential cuboid after the rank-1 peel | S, then the same clouds as E1 | **Planned, not run.** Proposed in PR #14 (`docs/research/17-methods-that-beat-shortlist.md`). Not in this branch |
+| E-sam | SAM 2 mask lifted onto points, then the shared box | F or a capture that already has a registered image | **Planned, not run.** Same PR #14 note. Skip when the cloud has no image |
 
 Trial budget in the design plan: about five Wrong / Expected / Change loops per algorithm family. Open3D has spent loop 1 on E0. Loops 2–5 are open. The other four families have spent zero loops.
 
