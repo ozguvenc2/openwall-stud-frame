@@ -5,8 +5,9 @@ sits at z = 0. Labels are floor, wall_a, and wall_b. There is no stud class
 and no stud box. Planted leans are the SKIL face means from the 2026-09-25
 painted-corner session unless the caller overrides them.
 
-Export +Z is the vertical. Lean of a plane is asin(|n · +Z|) in degrees.
-A floor is not the plumb reference.
+Export +Z is the vertical of this generator. Lean of a plane is asin(|n · +Z|)
+in degrees. The field pilot uses a fitted floor normal as up; this generator
+does not. A synthetic floor patch is not that plumb reference.
 """
 
 from __future__ import annotations

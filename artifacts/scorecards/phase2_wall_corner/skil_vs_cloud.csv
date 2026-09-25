@@ -1,17 +1,23 @@
-source,height,display_deg,lean_from_vertical_deg,notes
-SKIL Face A,top,89.95,0.05,doorway / hall side
-SKIL Face A,mid,89.75,0.25,doorway / hall side
-SKIL Face A,bottom,89.15,0.85,doorway / hall side
-SKIL Face A mean,mean,,0.3833,mean of three leans
-SKIL Face B,top,89.85,0.15,cat-tree / plant side
-SKIL Face B,mid,89.95,0.05,cat-tree / plant side
-SKIL Face B,bottom,89.45,0.55,cat-tree / plant side
-SKIL Face B mean,mean,,0.2500,mean of three leans
-plane_1,global_plane,,1.003417,not registered to a SKIL face
-plane_1,bottom,,0.369275,z -1.241 to -0.468 m
-plane_1,mid,,1.441439,z -0.468 to 0.546 m
-plane_1,top,,0.080365,z 0.546 to 1.246 m
-plane_2,global_plane,,0.763264,not registered to a SKIL face
-plane_2,bottom,,1.044340,z -1.237 to -0.498 m
-plane_2,mid,,0.865219,z -0.498 to 0.264 m
-plane_2,top,,0.422646,z 0.264 to 1.247 m
+source,height,display_deg,lean_from_export_plus_z_deg,lean_from_floor_normal_deg,notes
+SKIL Face A,top,89.95,0.05,0.05,"doorway / hall side; level reads gravity, so both columns repeat the same lean"
+SKIL Face A,mid,89.75,0.25,0.25,"doorway / hall side; level reads gravity, so both columns repeat the same lean"
+SKIL Face A,bottom,89.15,0.85,0.85,"doorway / hall side; level reads gravity, so both columns repeat the same lean"
+SKIL Face A mean,mean,,0.3833,0.3833,mean of three leans
+SKIL Face B,top,89.85,0.15,0.15,"cat-tree / plant side; level reads gravity, so both columns repeat the same lean"
+SKIL Face B,mid,89.95,0.05,0.05,"cat-tree / plant side; level reads gravity, so both columns repeat the same lean"
+SKIL Face B,bottom,89.45,0.55,0.55,"cat-tree / plant side; level reads gravity, so both columns repeat the same lean"
+SKIL Face B mean,mean,,0.2500,0.2500,mean of three leans
+plane_1,global_plane,,1.005288,1.685037,not registered to a SKIL face
+plane_1,bottom,,0.366986,,"equal-count third along export Z, s -1.241 to -0.470 m"
+plane_1,mid,,1.483512,,"equal-count third along export Z, s -0.470 to 0.552 m"
+plane_1,top,,0.080475,,"equal-count third along export Z, s 0.552 to 1.246 m"
+plane_1,bottom,,,1.043180,"equal-count third along the floor normal, s -1.238 to -0.469 m"
+plane_1,mid,,,2.161617,"equal-count third along the floor normal, s -0.469 to 0.553 m"
+plane_1,top,,,0.762054,"equal-count third along the floor normal, s 0.553 to 1.247 m"
+plane_2,global_plane,,0.763046,0.976311,not registered to a SKIL face
+plane_2,bottom,,1.045530,,"equal-count third along export Z, s -1.237 to -0.498 m"
+plane_2,mid,,0.859061,,"equal-count third along export Z, s -0.498 to 0.263 m"
+plane_2,top,,0.425088,,"equal-count third along export Z, s 0.263 to 1.247 m"
+plane_2,bottom,,,1.260450,"equal-count third along the floor normal, s -1.232 to -0.499 m"
+plane_2,mid,,,1.074807,"equal-count third along the floor normal, s -0.499 to 0.262 m"
+plane_2,top,,,0.638293,"equal-count third along the floor normal, s 0.262 to 1.249 m"
