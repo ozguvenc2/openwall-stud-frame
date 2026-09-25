@@ -1,0 +1,230 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A3",
+  "algorithm": "CloudCompare RANSAC-SD / CloudComPy",
+  "rank": 3,
+  "stage": 0,
+  "status": "ran",
+  "epsilon_locked": false,
+  "metrics_are_measurements": true,
+  "measurement_scope": "synthetic generator, this process, one stud",
+  "scene": {
+    "name": "s1_2x4_lean0.150_ax-X",
+    "stage": 0,
+    "nominal": "2x4",
+    "lean_deg": 0.15,
+    "lean_axis": "-X",
+    "seed": 2,
+    "spacing_m": 0.005,
+    "noise_std_m": 0.001,
+    "n_points": 25666,
+    "length_m": 2.4383999999999997,
+    "section_m": [
+      0.038099999999999995,
+      0.08889999999999999
+    ],
+    "reference": "gravity_z_no_floor_plane",
+    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "description": "Phase 1 S1 synthetic dressed stud. Lean 0.150 deg about -X. Long axis is +Z before the right-hand rotation. Generator gravity is +Z. No floor. The cloud is not rotated."
+  },
+  "implementation": {
+    "tool": "CloudCompare RANSAC Shape Detection",
+    "package": "2.14.beta (Aug 29 2026)",
+    "plugin": "QRANSAC_SD_PLUGIN.dll",
+    "primitives": [
+      "PLANE",
+      "CYLINDER"
+    ],
+    "merged_primitives_into_stud": false,
+    "attempt": {
+      "cloud_loaded": true,
+      "n_points": 25666,
+      "binary": "C:\\Program Files\\CloudCompare\\CloudCompare.exe",
+      "binary_source": "env",
+      "command": [
+        "C:\\Program Files\\CloudCompare\\CloudCompare.exe",
+        "-SILENT",
+        "-NO_TIMESTAMP",
+        "-AUTO_SAVE",
+        "OFF",
+        "-C_EXPORT_FMT",
+        "PLY",
+        "-PLY_EXPORT_FMT",
+        "ASCII",
+        "-O",
+        "C:\\Repos\\openwall-stud-frame-rank3\\artifacts\\one_stud\\cloudcompare\\stud.ply",
+        "-RANSAC",
+        "EPSILON_ABSOLUTE",
+        "0.008",
+        "BITMAP_EPSILON_ABSOLUTE",
+        "0.020",
+        "SUPPORT_POINTS",
+        "400",
+        "MAX_NORMAL_DEV",
+        "25",
+        "PROBABILITY",
+        "0.01",
+        "ENABLE_PRIMITIVE",
+        "PLANE",
+        "CYLINDER",
+        "OUTPUT_INDIVIDUAL_SUBCLOUDS",
+        "OUT_CLOUD_DIR",
+        "C:\\Repos\\openwall-stud-frame-rank3\\artifacts\\one_stud\\cloudcompare\\primitives"
+      ],
+      "returncode": 0,
+      "n_primitive_clouds": 4,
+      "output_files": [
+        "stud_stud - Cloud_CYLINDER_0001_cloud.ply",
+        "stud_stud - Cloud_CYLINDER_0002_cloud.ply",
+        "stud_stud - Cloud_PLANE_0001_cloud.ply",
+        "stud_stud - Cloud_PLANE_0002_cloud.ply"
+      ],
+      "gpl": "Separate process. GPL sources were not copied into this repository."
+    },
+    "log_tail": "metric Segmenter (QCOLORIMETRIC_SEGMENTER_PLUGIN.dll)\n[14:04:00] \tPlugin found: Compass (QCOMPASS_PLUGIN.dll)\n[14:04:00] \tPlugin found: Core I/O (QCORE_IO_PLUGIN.dll)\n[14:04:00] \tPlugin found: Cork (QCORK_PLUGIN.dll)\n[14:04:00] \tPlugin found: CSF Filter (QCSF_PLUGIN.dll)\n[14:04:00] \tPlugin found: CSV Matrix I/O (QCSV_MATRIX_IO_PLUGIN.dll)\n[14:04:00] \tPlugin found: DP (QDOT_PRODUCT_IO_PLUGIN.dll)\n[14:04:00] \tPlugin found: E57 (QE57_IO_PLUGIN.dll)\n[14:04:00] \tPlugin found: EDL Shader (QEDL_GL_PLUGIN.dll)\n[14:04:00] \tPlugin found: ELlipser (QELLIPSER_PLUGIN.dll)\n[14:04:00] \tPlugin found: Facet/fracture detection (QFACETS_PLUGIN.dll)\n[14:04:00] \tPlugin found: FARO file I/O (QFARO_IO_PLUGIN.dll)\n[14:04:00] \tPlugin found: FBX (QFBX_IO_PLUGIN.dll)\n[14:04:00] \tPlugin found: Hough Normals Computation (QHOUGH_NORMALS_PLUGIN.dll)\n[14:04:00] \tPlugin found: Hidden Point Removal (QHPR_PLUGIN.dll)\n[14:04:00] \tPlugin found: Json RPC (Standard Plugin) (QJSON_RPC_PLUGIN.dll)\n[14:04:00] \tPlugin found: LAS (I/O Plugin) (QLAS_IO_PLUGIN.dll)\n[14:04:00] \tPlugin found: M3C2 Distance (QM3C2_PLUGIN.dll)\n[14:04:00] \tPlugin found: Mesh Boolean (QMESH_BOOLEAN_PLUGIN.dll)\n[14:04:00] \tPlugin found: MPlane (QMPLANE_PLUGIN.dll)\n[14:04:00] \tPlugin found: PCD file I/O (QPCL_IO_PLUGIN.dll)\n[14:04:00] \tPlugin found: PCL wrapper (QPCL_PLUGIN.dll)\n[14:04:00] \tPlugin found: PCV / ShadeVis (QPCV_PLUGIN.dll)\n[14:04:00] \tPlugin found: Photoscan I/O (QPHOTOSCAN_IO_PLUGIN.dll)\n[14:04:00] \tPlugin found: PoissonRecon (QPOISSON_RECON_PLUGIN.dll)\n[14:04:00] \tPlugin found: RANSAC Shape Detection (QRANSAC_SD_PLUGIN.dll)\n[14:04:00] \tPlugin found: RDB2 (I/O Plugin) (QRDB_IO_PLUGIN.dll)\n[14:04:00] \tPlugin found: Riegl RDB I/O (QRIEGL_IO_PLUGIN.dll)\n[14:04:00] \tPlugin found: Surface of Revolution Analysis (QSRA_PLUGIN.dll)\n[14:04:00] \tPlugin found: SSAO Shader (QSSAO_GL_PLUGIN.dll)\n[14:04:00] \tPlugin found: Step file loader (I/O plugin) (QSTEP_IO_PLUGIN.dll)\n[14:04:00] \tPlugin found: TreeIso (QTREEISO_PLUGIN.dll)\n[14:04:00] \tPlugin found: VoxFall (QVOXFALL_PLUGIN.dll)\n[14:04:00] [Plugin] Searching: C:/Users/oguzg/AppData/Roaming/CCCorp/CloudCompare/plugins\n[14:04:00] [Plugin] Searching: C:/ProgramData/CCCorp/CloudCompare/plugins\n[14:04:00] [Plugin] Searching: C:/Program Files/CloudCompare/data/plugins\n[14:04:00] [Plugin] Searching: C:/Program Files/CloudCompare/data/CCCorp/CloudCompare/plugins\n[14:04:00] [Plugin][Mesh I/O] New file extensions registered: DAE GLTF IFC\n[14:04:00] [Plugin][Additional I/O] New file extensions registered: ICM OUT PN POLY POV PV SOI SX\n[14:04:00] [Plugin][Core I/O] New file extensions registered:  GEOREF MA OBJ OFF PDMS PTX SBF STL VTK\n[14:04:00] [Plugin][CSV Matrix I/O] New file extensions registered: CSV\n[14:04:00] [Plugin][DP] New file extensions registered: DP\n[14:04:00] [Plugin][E57] New file extensions registered: E57\n[14:04:00] [Plugin][FARO file I/O] New file extensions registered: FWS\n[14:04:00] [Plugin][FBX] New file extensions registered: FBX\n[14:04:00] [Plugin][LAS (I/O Plugin)] New file extensions registered: LAS\n[14:04:00] [Plugin][PCD file I/O] New file extensions registered: PCD\n[14:04:00] [Plugin][Photoscan I/O] New file extensions registered: PSZ\n[14:04:00] [Plugin][RDB2 (I/O Plugin)] New file extensions registered: RDB2\n[14:04:00] [Plugin][Riegl RDB I/O] New file extensions registered: RDS\n[14:04:00] [Plugin][Step file loader (I/O plugin)] New file extensions registered: STEP\n[14:04:00] [Global Shift] Max abs. coord = 1e+04 / max abs. diag = 1e+06\n[14:04:00] [NO TIMESTAMP] Command detected\n[14:04:00] [NO TIMESTAMP] finished in 0.00 s.\n[14:04:00] [AUTO SAVE STATE] Command detected\n[14:04:00] Auto-save is disabled\n[14:04:00] [AUTO SAVE STATE] finished in 0.00 s.\n[14:04:00] [CHANGE CLOUD OUTPUT FORMAT] Command detected\n[14:04:00] Output export format (clouds) set to: PLY\n[14:04:00] [CHANGE CLOUD OUTPUT FORMAT] finished in 0.00 s.\n[14:04:00] [CHANGE PLY OUTPUT FORMAT] Command detected\n[14:04:00] [CHANGE PLY OUTPUT FORMAT] finished in 0.00 s.\n[14:04:00] [LOAD] Command detected\n[14:04:00] Opening file: 'C:\\Repos\\openwall-stud-frame-rank3\\artifacts\\one_stud\\cloudcompare\\stud.ply'\n[14:04:00] [PLY][Comment] Created by Open3D\n[14:04:00] [I/O] File 'C:\\Repos\\openwall-stud-frame-rank3\\artifacts\\one_stud\\cloudcompare\\stud.ply' loaded successfully\n[14:04:00] Found one cloud with 25666 points\n[14:04:00] [LOAD] finished in 0.02 s.\n[14:04:00] [RANSAC] Command detected\n[14:04:00] \tRANSAC : EPSILON_ABSOLUTE\n[14:04:00] \tEpsilon : 0.008\n[14:04:00] \tRANSAC : BITMAP_EPSILON_ABSOLUTE\n[14:04:00] \tBitmap Epsilon : 0.02\n[14:04:00] \tRANSAC : SUPPORT_POINTS\n[14:04:00] \tsupport points: 400\n[14:04:00] \tRANSAC : MAX_NORMAL_DEV\n[14:04:00] \tMax Normal Deviation : 25\n[14:04:00] \tRANSAC : PROBABILITY\n[14:04:00] \tProbability : 0.01\n[14:04:00] \tRANSAC : ENABLE_PRIMITIVE\n[14:04:00] \tRANSAC : OUTPUT_INDIVIDUAL_SUBCLOUDS\n[14:04:00] \tRANSAC : OUT_CLOUD_DIR\n[14:04:00] \tOUT_CLOUD_DIR : C:/Repos/openwall-stud-frame-rank3/artifacts/one_stud/cloudcompare/primitives\n[14:04:01] [qRANSAC] Search Timing: 0.503 s\n[14:04:01] [qRansacSD] Skipping shape, did not meet minimum point requirement\n[14:04:01] [qRansacSD] Input cloud has been automtically hidden!\n[14:04:01] [SAVING]\n[14:04:01] [I/O] File 'C:/Repos/openwall-stud-frame-rank3/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0001_cloud.ply' saved successfully\n[14:04:01] [SAVING]\n[14:04:01] [I/O] File 'C:/Repos/openwall-stud-frame-rank3/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0002_cloud.ply' saved successfully\n[14:04:01] [SAVING]\n[14:04:01] [I/O] File 'C:/Repos/openwall-stud-frame-rank3/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0001_cloud.ply' saved successfully\n[14:04:01] [SAVING]\n[14:04:01] [I/O] File 'C:/Repos/openwall-stud-frame-rank3/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0002_cloud.ply' saved successfully\n[14:04:01] [RANSAC] finished in 0.61 s.\n[14:04:01] Processed finished in 0.63 s.\n\n"
+  },
+  "implementation_short": "CloudCompare 2.14.beta (Aug 29 2026) RANSAC-SD, one OBB per plane or cylinder primitive, primitives not merged.",
+  "detection": {
+    "n_true": 1,
+    "n_pred": 4,
+    "true_positives": 1,
+    "false_positives": 3,
+    "false_negatives": 0,
+    "precision": 0.25,
+    "recall": 1.0,
+    "match_radius_m": 0.15,
+    "scope": "synthetic_scene_only",
+    "note": "Each CloudCompare RANSAC-SD primitive inlier set is one detection. Primitives were not merged into a stud. Counts are this synthetic stud, not a field accuracy."
+  },
+  "geometry": {
+    "max_section_error_mm": 30.46,
+    "max_length_error_mm": 2.07,
+    "per_stud": [
+      {
+        "stud_id": "S1",
+        "nominal": "2x4",
+        "nominal_guess": null,
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          7.64,
+          92.36
+        ],
+        "section_error_mm": [
+          -30.46,
+          3.46
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2436.33,
+        "length_error_mm": -2.07
+      }
+    ],
+    "bbox_kind": "minimal_oriented",
+    "note": "Section and length are the minimal OBB of one primitive's points versus the dressed stud. A plane on one face is expected to miss the stud section."
+  },
+  "angle": {
+    "mae_deg": 0.08872,
+    "max_abs_error_deg": 0.08872,
+    "pct_in_band": 100.0,
+    "band_deg": 0.11937,
+    "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
+    "reference": "gravity_z_no_floor_plane",
+    "per_stud": [
+      {
+        "stud_id": "S1",
+        "true_deg": 0.15,
+        "measured_deg": 0.06128,
+        "abs_error_deg": 0.08872,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      }
+    ],
+    "note": "Truth is the generator lean against +Z. Not a SKIL reading. A face plane's long axis may still lie along the stud."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "tolerance_deg": 0.11937,
+    "production_colors": [
+      "yellow",
+      "yellow",
+      "yellow",
+      "yellow"
+    ],
+    "production_rule": "epsilon unlocked, so every stud is yellow",
+    "hypothetical_placeholder_epsilon_deg": 0.05,
+    "hypothetical_placeholder_note": "0.05 deg is a round illustration of the color rule. It is not a measured device band.",
+    "hypothetical_colors": [
+      "yellow",
+      "yellow",
+      "yellow",
+      "green"
+    ],
+    "note": "Do not read hypothetical colors as a pass/fail call."
+  },
+  "cost": {
+    "runtime_s": 1.3426,
+    "license": "GPL-3.0",
+    "license_note": "CloudCompare was executed as a separate process. Its sources were not vendored or linked.",
+    "hardware": "CPU",
+    "n_points_in": 25666,
+    "failure_modes": [
+      "A rectangular stud is not one Schnabel primitive. Planes describe faces.",
+      "A cylinder on a 2x4 is the wrong section.",
+      "Enabling both planes and cylinders can emit more than one detection for one stud.",
+      "GPL-3.0 blocks shipping a closed app linked to CloudCompare. This run does not link it."
+    ],
+    "note": "Runtime includes the CloudCompare process on this one stud. It is not a field budget.",
+    "command": [
+      "C:\\Program Files\\CloudCompare\\CloudCompare.exe",
+      "-SILENT",
+      "-NO_TIMESTAMP",
+      "-AUTO_SAVE",
+      "OFF",
+      "-C_EXPORT_FMT",
+      "PLY",
+      "-PLY_EXPORT_FMT",
+      "ASCII",
+      "-O",
+      "C:\\Repos\\openwall-stud-frame-rank3\\artifacts\\one_stud\\cloudcompare\\stud.ply",
+      "-RANSAC",
+      "EPSILON_ABSOLUTE",
+      "0.008",
+      "BITMAP_EPSILON_ABSOLUTE",
+      "0.020",
+      "SUPPORT_POINTS",
+      "400",
+      "MAX_NORMAL_DEV",
+      "25",
+      "PROBABILITY",
+      "0.01",
+      "ENABLE_PRIMITIVE",
+      "PLANE",
+      "CYLINDER",
+      "OUTPUT_INDIVIDUAL_SUBCLOUDS",
+      "OUT_CLOUD_DIR",
+      "C:\\Repos\\openwall-stud-frame-rank3\\artifacts\\one_stud\\cloudcompare\\primitives"
+    ],
+    "n_primitive_clouds": 4
+  },
+  "notes": [
+    "Synthetic stage 0 only. Not a field measurement. Device epsilon is unlocked, so production paint is yellow."
+  ],
+  "stage0_bar_failures": [
+    "detection P=0.25 R=1.0",
+    "section error 30.46 mm > 10.0",
+    "angle error 0.08872 deg > 0.05"
+  ],
+  "stage0_bars": {
+    "detection": "precision = 1 and recall = 1",
+    "section_mm": 10.0,
+    "length_mm": 25.0,
+    "max_abs_angle_deg": 0.05,
+    "paint": "every production color yellow",
+    "scope": "synthetic stage 0 bring-up, not a field test"
+  },
+  "stage0_pass_fail": "fail",
+  "scorecard_name": "r3_cloudcompare__s1_2x4_lean0.150_ax-X.json"
+}

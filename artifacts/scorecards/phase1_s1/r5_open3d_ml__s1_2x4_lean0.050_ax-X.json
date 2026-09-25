@@ -1,0 +1,292 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A5",
+  "algorithm": "Open3D-ML RandLA-Net or KPConv, S3DIS weights (control only)",
+  "rank": 5,
+  "stage": 0,
+  "status": "ran",
+  "stud_metrics_scored": false,
+  "epsilon_locked": false,
+  "metrics_are_measurements": false,
+  "measurement_scope": "label histogram from one forward pass on this synthetic cloud; stud detection, geometry, angle, and paint were not scored",
+  "scene": {
+    "name": "s1_2x4_lean0.050_ax-X",
+    "stage": 0,
+    "nominal": "2x4",
+    "lean_deg": 0.05,
+    "lean_axis": "-X",
+    "seed": 2,
+    "spacing_m": 0.005,
+    "noise_std_m": 0.001,
+    "n_points": 25666,
+    "length_m": 2.4383999999999997,
+    "section_m": [
+      0.038099999999999995,
+      0.08889999999999999
+    ],
+    "reference": "gravity_z_no_floor_plane",
+    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "description": "Phase 1 S1 synthetic dressed stud. Lean 0.050 deg about -X. Long axis is +Z before the right-hand rotation. Generator gravity is +Z. No floor. The cloud is not rotated."
+  },
+  "control": {
+    "model": "RandLANet",
+    "dataset_weights": "S3DIS",
+    "checkpoint": "randlanet_s3dis_202201071330utc.pth",
+    "checkpoint_url": "https://storage.googleapis.com/open3d-releases/model-zoo/randlanet_s3dis_202201071330utc.pth",
+    "checkpoint_bytes": 60260469,
+    "config": "open3d/_ml3d/configs/randlanet_s3dis.yml",
+    "runtime_includes": "SemanticSegmentation.run_inference after the checkpoint was loaded",
+    "device": "NVIDIA GeForce RTX 4080 SUPER",
+    "torch": "2.13.0+cu126",
+    "class_names": [
+      "ceiling",
+      "floor",
+      "wall",
+      "beam",
+      "column",
+      "window",
+      "door",
+      "table",
+      "chair",
+      "sofa",
+      "bookcase",
+      "board",
+      "clutter"
+    ],
+    "stud_class_names": [],
+    "label_histogram": [
+      {
+        "id": 0,
+        "name": "ceiling",
+        "count": 0
+      },
+      {
+        "id": 1,
+        "name": "floor",
+        "count": 2228
+      },
+      {
+        "id": 2,
+        "name": "wall",
+        "count": 0
+      },
+      {
+        "id": 3,
+        "name": "beam",
+        "count": 0
+      },
+      {
+        "id": 4,
+        "name": "column",
+        "count": 0
+      },
+      {
+        "id": 5,
+        "name": "window",
+        "count": 0
+      },
+      {
+        "id": 6,
+        "name": "door",
+        "count": 6992
+      },
+      {
+        "id": 7,
+        "name": "table",
+        "count": 0
+      },
+      {
+        "id": 8,
+        "name": "chair",
+        "count": 4370
+      },
+      {
+        "id": 9,
+        "name": "sofa",
+        "count": 0
+      },
+      {
+        "id": 10,
+        "name": "bookcase",
+        "count": 0
+      },
+      {
+        "id": 11,
+        "name": "board",
+        "count": 0
+      },
+      {
+        "id": 12,
+        "name": "clutter",
+        "count": 12076
+      }
+    ],
+    "n_points_in": 25666,
+    "n_points_labeled": 25666,
+    "color_features": "zeros; the generator cloud has no RGB",
+    "sampler_seed": 2,
+    "kpconv_ran": false,
+    "s3dis_miou_copied": false
+  },
+  "implementation": {
+    "module": "openwall_stud.contenders.open3d_ml_s3dis",
+    "entry": "open3d.ml.torch RandLANet + SemanticSegmentation.run_inference",
+    "probe": {
+      "nvidia_smi": "C:\\WINDOWS\\system32\\nvidia-smi.EXE",
+      "nvidia_query": "NVIDIA GeForce RTX 4080 SUPER, 610.62, 16376 MiB",
+      "nvidia_present": true,
+      "torch_importable": true,
+      "torch_version": "2.13.0+cu126",
+      "torch_cuda_build": "12.6",
+      "torch_cuda_available": true,
+      "torch_device": "NVIDIA GeForce RTX 4080 SUPER",
+      "torch_error": null
+    },
+    "attempt": {
+      "cloud_loaded": true,
+      "n_points": 25666,
+      "nvidia_smi": "C:\\WINDOWS\\system32\\nvidia-smi.EXE",
+      "nvidia_query": "NVIDIA GeForce RTX 4080 SUPER, 610.62, 16376 MiB",
+      "torch_version": "2.13.0+cu126",
+      "torch_cuda_build": "12.6",
+      "torch_cuda_available": true,
+      "torch_device": "NVIDIA GeForce RTX 4080 SUPER",
+      "open3d_ml_torch_probe": "open3d.ml.torch imported",
+      "ml_torch_imported": true,
+      "weights_downloaded": true,
+      "weights_committed": false,
+      "forward_pass": true,
+      "label_histogram": [
+        {
+          "id": 0,
+          "name": "ceiling",
+          "count": 0
+        },
+        {
+          "id": 1,
+          "name": "floor",
+          "count": 2228
+        },
+        {
+          "id": 2,
+          "name": "wall",
+          "count": 0
+        },
+        {
+          "id": 3,
+          "name": "beam",
+          "count": 0
+        },
+        {
+          "id": 4,
+          "name": "column",
+          "count": 0
+        },
+        {
+          "id": 5,
+          "name": "window",
+          "count": 0
+        },
+        {
+          "id": 6,
+          "name": "door",
+          "count": 6992
+        },
+        {
+          "id": 7,
+          "name": "table",
+          "count": 0
+        },
+        {
+          "id": 8,
+          "name": "chair",
+          "count": 4370
+        },
+        {
+          "id": 9,
+          "name": "sofa",
+          "count": 0
+        },
+        {
+          "id": 10,
+          "name": "bookcase",
+          "count": 0
+        },
+        {
+          "id": 11,
+          "name": "board",
+          "count": 0
+        },
+        {
+          "id": 12,
+          "name": "clutter",
+          "count": 12076
+        }
+      ],
+      "model": "RandLANet",
+      "dataset_weights": "S3DIS",
+      "kpconv_ran": false,
+      "weight_path": "C:\\Repos\\openwall-stud-frame-ranks45\\data\\cache\\open3d-ml\\randlanet_s3dis_202201071330utc.pth"
+    }
+  },
+  "implementation_short": "RandLA-Net S3DIS control. No stud class (ceiling, floor, wall, beam, column, window, door, table, chair, sofa, bookcase, board, clutter). Histogram recorded. No stud box and no paint.",
+  "detection": {
+    "n_true": null,
+    "n_pred": null,
+    "true_positives": null,
+    "false_positives": null,
+    "false_negatives": null,
+    "precision": null,
+    "recall": null,
+    "note": "Open3D-ML RandLA-Net S3DIS forward pass on this one synthetic stud. Classes: ceiling, floor, wall, beam, column, window, door, table, chair, sofa, bookcase, board, clutter. Stud-named classes: none. RGB features were zeros because the generator cloud has no color. The library's own sampler pads when the subsampled cloud is shorter than 40960 points. predict_labels length 25666 on 25666 input points. Placeholder API labels were zeros and were not treated as ground truth. No stud box was fit and no paint color was assigned. KPConv was not run. S3DIS mIoU was not copied."
+  },
+  "geometry": {
+    "max_section_error_mm": null,
+    "max_length_error_mm": null,
+    "per_stud": [],
+    "note": "Open3D-ML RandLA-Net S3DIS forward pass on this one synthetic stud. Classes: ceiling, floor, wall, beam, column, window, door, table, chair, sofa, bookcase, board, clutter. Stud-named classes: none. RGB features were zeros because the generator cloud has no color. The library's own sampler pads when the subsampled cloud is shorter than 40960 points. predict_labels length 25666 on 25666 input points. Placeholder API labels were zeros and were not treated as ground truth. No stud box was fit and no paint color was assigned. KPConv was not run. S3DIS mIoU was not copied."
+  },
+  "angle": {
+    "mae_deg": null,
+    "pct_in_band": null,
+    "band_deg": null,
+    "per_stud": [],
+    "note": "Open3D-ML RandLA-Net S3DIS forward pass on this one synthetic stud. Classes: ceiling, floor, wall, beam, column, window, door, table, chair, sofa, bookcase, board, clutter. Stud-named classes: none. RGB features were zeros because the generator cloud has no color. The library's own sampler pads when the subsampled cloud is shorter than 40960 points. predict_labels length 25666 on 25666 input points. Placeholder API labels were zeros and were not treated as ground truth. No stud box was fit and no paint color was assigned. KPConv was not run. S3DIS mIoU was not copied."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "production_colors": [],
+    "hypothetical_placeholder_epsilon_deg": null,
+    "hypothetical_colors": [],
+    "note": "Open3D-ML RandLA-Net S3DIS forward pass on this one synthetic stud. Classes: ceiling, floor, wall, beam, column, window, door, table, chair, sofa, bookcase, board, clutter. Stud-named classes: none. RGB features were zeros because the generator cloud has no color. The library's own sampler pads when the subsampled cloud is shorter than 40960 points. predict_labels length 25666 on 25666 input points. Placeholder API labels were zeros and were not treated as ground truth. No stud box was fit and no paint color was assigned. KPConv was not run. S3DIS mIoU was not copied."
+  },
+  "cost": {
+    "runtime_s": 0.2164,
+    "license": "Open3D-ML MIT; upstream RandLA-Net repo is CC BY-NC-SA 4.0",
+    "hardware": "NVIDIA GeForce RTX 4080 SUPER; CUDA torch 2.13.0+cu126",
+    "failure_modes": [
+      "S3DIS classes are finished office scenes, not a bare 2x4.",
+      "Semantic labels are not stud instances.",
+      "Zero RGB on a model trained with office color.",
+      "S3DIS mIoU is not a stud score and was not copied."
+    ],
+    "note": "Open3D-ML RandLA-Net S3DIS forward pass on this one synthetic stud. Classes: ceiling, floor, wall, beam, column, window, door, table, chair, sofa, bookcase, board, clutter. Stud-named classes: none. RGB features were zeros because the generator cloud has no color. The library's own sampler pads when the subsampled cloud is shorter than 40960 points. predict_labels length 25666 on 25666 input points. Placeholder API labels were zeros and were not treated as ground truth. No stud box was fit and no paint color was assigned. KPConv was not run. S3DIS mIoU was not copied."
+  },
+  "notes": [
+    "Open3D-ML RandLA-Net S3DIS forward pass on this one synthetic stud. Classes: ceiling, floor, wall, beam, column, window, door, table, chair, sofa, bookcase, board, clutter. Stud-named classes: none. RGB features were zeros because the generator cloud has no color. The library's own sampler pads when the subsampled cloud is shorter than 40960 points. predict_labels length 25666 on 25666 input points. Placeholder API labels were zeros and were not treated as ground truth. No stud box was fit and no paint color was assigned. KPConv was not run. S3DIS mIoU was not copied."
+  ],
+  "stage0_pass_fail": "control",
+  "stage0_bar_failures": [
+    "No stud class in the forward-pass vocabulary, so stud bars were not scored."
+  ],
+  "stage0_bars": {
+    "detection": "precision = 1 and recall = 1",
+    "section_mm": 10.0,
+    "length_mm": 25.0,
+    "max_abs_angle_deg": 0.05,
+    "paint": "every production color yellow",
+    "scope": "synthetic stage 0 bring-up, not a field test"
+  },
+  "scorecard_name": "r5_open3d_ml__s1_2x4_lean0.050_ax-X.json"
+}

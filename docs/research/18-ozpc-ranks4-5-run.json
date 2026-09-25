@@ -1,0 +1,231 @@
+{
+  "doc": "docs/research/18-ozpc-ranks4-5-run.md",
+  "date_america_los_angeles": "2026-09-25",
+  "machine": "Oz_PC",
+  "stopped_after": "ranks 4 and 5 on one synthetic stud",
+  "not_field_accuracy": true,
+  "epsilon_locked": false,
+  "scene": {
+    "name": "stage0_2x4_lean0.050",
+    "stage": 0,
+    "nominal": "2x4",
+    "lean_deg": 0.05,
+    "seed": 2,
+    "spacing_m": 0.005,
+    "noise_std_m": 0.001,
+    "n_points": 25666,
+    "length_m": 2.4383999999999997,
+    "section_m": [
+      0.038099999999999995,
+      0.08889999999999999
+    ],
+    "reference": "gravity_z_no_floor_plane",
+    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "description": "Synthetic single stud. Generator gravity is +Z."
+  },
+  "gpu": {
+    "nvidia_query": "NVIDIA GeForce RTX 4080 SUPER, 610.62, 16376 MiB",
+    "torch_device": "NVIDIA GeForce RTX 4080 SUPER"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "stacks": [
+    {
+      "rank": 4,
+      "scorecard": "artifacts/scorecards/one_stud_pointcept.json",
+      "status": "ran",
+      "stage0_pass_fail": "control",
+      "runtime_s": 39.7666,
+      "control": {
+        "model": "BIMStruct3D PT-v3m1 semantic segmentation",
+        "repo": "dfki-av/BIMStruct3D-segmentation",
+        "license": "code MIT; weights CC BY-NC-SA 4.0; weights not committed",
+        "checkpoint": "weights/model_best.pth",
+        "checkpoint_bytes": 554610216,
+        "device": "NVIDIA GeForce RTX 4080 SUPER",
+        "torch": "2.7.0+cu126",
+        "class_names": [
+          "clutter",
+          "floor",
+          "ceiling",
+          "wall",
+          "column",
+          "door",
+          "window",
+          "stairs",
+          "railing",
+          "lights"
+        ],
+        "stud_class_names": [],
+        "label_histogram": [
+          {
+            "id": 0,
+            "name": "clutter",
+            "count": 25666
+          },
+          {
+            "id": 1,
+            "name": "floor",
+            "count": 0
+          },
+          {
+            "id": 2,
+            "name": "ceiling",
+            "count": 0
+          },
+          {
+            "id": 3,
+            "name": "wall",
+            "count": 0
+          },
+          {
+            "id": 4,
+            "name": "column",
+            "count": 0
+          },
+          {
+            "id": 5,
+            "name": "door",
+            "count": 0
+          },
+          {
+            "id": 6,
+            "name": "window",
+            "count": 0
+          },
+          {
+            "id": 7,
+            "name": "stairs",
+            "count": 0
+          },
+          {
+            "id": 8,
+            "name": "railing",
+            "count": 0
+          },
+          {
+            "id": 9,
+            "name": "lights",
+            "count": 0
+          }
+        ],
+        "n_points_labeled": 25666,
+        "n_points_with_votes": 25666,
+        "vote_mass": 25666,
+        "color_features": "zeros; the generator cloud has no RGB",
+        "normals": "open3d estimate_normals on the generator coordinates",
+        "inference": "segment_scan.TEST_CFG (10 scale/flip passes) and grid 0.04 m",
+        "runtime_includes": "checkpoint load, normal estimation, and the 10-pass test-time augmentation",
+        "pointgroup_ran": false
+      },
+      "blocker": null
+    },
+    {
+      "rank": 5,
+      "scorecard": "artifacts/scorecards/one_stud_open3d_ml.json",
+      "status": "ran",
+      "stage0_pass_fail": "control",
+      "runtime_s": 0.5064,
+      "control": {
+        "model": "RandLANet",
+        "dataset_weights": "S3DIS",
+        "checkpoint": "randlanet_s3dis_202201071330utc.pth",
+        "checkpoint_url": "https://storage.googleapis.com/open3d-releases/model-zoo/randlanet_s3dis_202201071330utc.pth",
+        "checkpoint_bytes": 60260469,
+        "config": "open3d/_ml3d/configs/randlanet_s3dis.yml",
+        "runtime_includes": "SemanticSegmentation.run_inference after the checkpoint was loaded",
+        "device": "NVIDIA GeForce RTX 4080 SUPER",
+        "torch": "2.13.0+cu126",
+        "class_names": [
+          "ceiling",
+          "floor",
+          "wall",
+          "beam",
+          "column",
+          "window",
+          "door",
+          "table",
+          "chair",
+          "sofa",
+          "bookcase",
+          "board",
+          "clutter"
+        ],
+        "stud_class_names": [],
+        "label_histogram": [
+          {
+            "id": 0,
+            "name": "ceiling",
+            "count": 0
+          },
+          {
+            "id": 1,
+            "name": "floor",
+            "count": 2229
+          },
+          {
+            "id": 2,
+            "name": "wall",
+            "count": 0
+          },
+          {
+            "id": 3,
+            "name": "beam",
+            "count": 0
+          },
+          {
+            "id": 4,
+            "name": "column",
+            "count": 0
+          },
+          {
+            "id": 5,
+            "name": "window",
+            "count": 0
+          },
+          {
+            "id": 6,
+            "name": "door",
+            "count": 7239
+          },
+          {
+            "id": 7,
+            "name": "table",
+            "count": 0
+          },
+          {
+            "id": 8,
+            "name": "chair",
+            "count": 4421
+          },
+          {
+            "id": 9,
+            "name": "sofa",
+            "count": 0
+          },
+          {
+            "id": 10,
+            "name": "bookcase",
+            "count": 0
+          },
+          {
+            "id": 11,
+            "name": "board",
+            "count": 0
+          },
+          {
+            "id": 12,
+            "name": "clutter",
+            "count": 11777
+          }
+        ],
+        "n_points_in": 25666,
+        "n_points_labeled": 25666,
+        "color_features": "zeros; the generator cloud has no RGB",
+        "sampler_seed": 2,
+        "kpconv_ran": false,
+        "s3dis_miou_copied": false
+      },
+      "blocker": null
+    }
+  ]
+}

@@ -44,7 +44,7 @@ Four synthetic studs at 16 inch centers. Gray points are the floor and plates th
 
 ### Figures 6–9. Contender scaffolds
 
-These are diagrams with a scaffold banner. The wall in the corner is the synthetic stage-3 **input**, not that stack’s output. PCL, CloudCompare, Pointcept, and Open3D-ML were not executed.
+These are diagrams with a scaffold banner from 2026-09-24, before the Oz_PC sweep. The wall in the corner is the synthetic stage-3 **input**, not that stack’s output. The credit line printed on each file is unchanged. Measured phase-1 renders for ranks 2, 3, and 6 are the later figures in this file. Rank 4 and rank 5 still have no stud-box render.
 
 | Figure | File | Credit line to keep on the figure |
 | --- | --- | --- |
@@ -52,6 +52,21 @@ These are diagrams with a scaffold banner. The wall in the corner is the synthet
 | 7 | [`03-cloudcompare-ransac-scaffold.png`](../../../docs/research/images/algo-contenders/03-cloudcompare-ransac-scaffold.png) | Scaffold. CloudCompare was not run. Schnabel primitives. A wall of studs is not one plane. |
 | 8 | [`04-pointcept-ptv3-scaffold.png`](../../../docs/research/images/algo-contenders/04-pointcept-ptv3-scaffold.png) | Scaffold. No training and no weights. Hook waits for labeled stage 5. |
 | 9 | [`05-open3d-ml-s3dis-scaffold.png`](../../../docs/research/images/algo-contenders/05-open3d-ml-s3dis-scaffold.png) | Scaffold. No forward pass. S3DIS office classes are not studs. |
+
+## Phase 1 S1 renders (class S, 2026-09-25, Oz_PC)
+
+These PNGs are outputs of the sweep, not scaffolds. Production paint is yellow because ε is unlocked. Full paths are under `docs/research/images/phase1-s1/`. The note that links them is `docs/research/19-phase1-s1-lean-sweep.md`.
+
+| Figure | File stem | What it is |
+| --- | --- | --- |
+| 10 | `r1_open3d__s1_2x4_lean0.000_axnone.png` | Rank 1, lean 0°. Stage-0 bars pass. Yellow ×1 |
+| 11 | `r1_open3d__s1_2x4_lean0.150_axpX.png` | Rank 1, 0.15° about +X. Pass. The 0.15° is a requested lean, not a second tolerance |
+| 12 | `r1_open3d__s1_2x4_lean4.000_axpY.png` | Rank 1, 4° about +Y. Pass |
+| 13–15 | `r2_pcl__…` the same three leans | Rank 2 NumPy region-grow. Pass. Not native PCL |
+| 16–18 | `r3_cloudcompare__…` the same three leans | Rank 3 after the path fix. Stage-0 bars fail. Several yellow boxes |
+| 19–21 | `r6_pyransac3d__…` the same three leans | Rank 6. Pass. Yellow ×1 |
+
+Ranks 4 and 5 have no stud-box figure on this matrix. Their control histograms are in doc 19 and doc 18. The fine-tune did not add a new render set in doc 20.
 
 ## Regeneration
 

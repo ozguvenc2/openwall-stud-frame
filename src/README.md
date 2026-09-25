@@ -9,12 +9,14 @@
 - `paint.py` — green / yellow / red. Unlocked ε is yellow.
 - `scorecard.py` — shared JSON writer (detection, geometry, angle, paint, cost) and `append_day_row`.
 - `results_by_day.py` — day table CSV, JSON, and markdown. Dates are America/Los_Angeles.
-- `contenders/` — stubs for PCL, CloudCompare / CloudComPy, Pointcept, and Open3D-ML. See `contenders/README.md`.
+- `contenders/` — PCL, CloudCompare RANSAC-SD, Pointcept, Open3D-ML, and pyRANSAC-3D rank 6 (the doc 17 add). See `contenders/README.md`.
+- `one_stud.py` — the single Stage 0 cloud (2×4, lean 0.05°, seed 2) and the stage 0 bars.
 
 Run from the repo root:
 
 ```bash
 python scripts/run_stage0_baseline.py
+python scripts/run_one_stud_five_finders.py
 python scripts/render_algo_figures.py
 ```
 
