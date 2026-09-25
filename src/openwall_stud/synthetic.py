@@ -382,8 +382,15 @@ def stage2_stud_and_floor(
     floor_spacing_m: float = 0.01,
     noise_std_m: float = 0.001,
     length_m: float = STUD_LENGTH_8FT_M,
+    lean_axis: str = "+X",
 ) -> Scene:
-    """One stud plus a horizontal floor slab at z = 0."""
+    """One stud plus a horizontal floor slab at z = 0.
+
+    ``lean_axis`` defaults to ``+X``. That default keeps the historical scene
+    name. Any other axis is appended so the name encodes the rotation.
+    """
+    if lean_axis not in LEAN_AXES:
+        raise ValueError(f"lean axis must be one of {LEAN_AXES}, got {lean_axis!r}")
     rng = np.random.default_rng(seed)
     points, truth, _ = _sample_stud(
         nominal=nominal,
@@ -392,10 +399,14 @@ def stage2_stud_and_floor(
         z_base=0.0,
         length_m=length_m,
         spacing_m=spacing_m,
+        lean_axis=lean_axis,
     )
     floor = _floor_points(-0.7, 0.7, -0.7, 0.7, floor_spacing_m)
+    name = f"stage2_{nominal}_lean{lean_deg:.3f}"
+    if lean_axis != "+X":
+        name = f"{name}_ax{lean_axis}"
     return _pack(
-        name=f"stage2_{nominal}_lean{lean_deg:.3f}",
+        name=name,
         stage=2,
         chunks=[(floor, 0, -1), (points, 2, 0)],
         studs=[truth],

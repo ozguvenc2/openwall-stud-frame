@@ -8,4 +8,6 @@
 
 `render_algo_figures.py` writes the PNGs in `docs/research/images/algo-contenders/`. Rank 1 is the baseline. Ranks 2–5 in that older figure set are labeled scaffold diagrams, not the one-stud run.
 
+`build_finetune_synth.py` writes `data/finetune/synthetic_stud_manifest.json` and caches labeled clouds under `data/cache/finetune-synth/` (gitignored). `train_randlanet_stud.py` is the Open3D-ML interpreter (torch 2.13). `train_pointcept_stud.py` is the Pointcept interpreter (torch 2.7). `infer_finetune_phase1.py --stack randlanet|pointcept` scores the 25 phase-1 S1 clouds into `artifacts/scorecards/phase1_s1_finetune/`. The note is `docs/research/20-synthetic-stud-finetune.md`. Synthetic only.
+
 Dataset download helpers are not here yet. Large clouds stay linked from `docs/research/`.
