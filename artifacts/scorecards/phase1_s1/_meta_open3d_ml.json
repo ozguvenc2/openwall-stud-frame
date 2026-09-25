@@ -1,0 +1,21 @@
+{
+  "group": "open3d_ml",
+  "versions": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "executable": "C:\\Repos\\openwall-stud-frame-ranks45\\.venv-o3dml\\Scripts\\python.exe",
+    "torch": "2.13.0+cu126",
+    "open3d": "0.20.0"
+  },
+  "gpu": {
+    "nvidia_smi": "C:\\WINDOWS\\system32\\nvidia-smi.EXE",
+    "nvidia_query": "NVIDIA GeForce RTX 4080 SUPER, 610.62, 16376 MiB",
+    "nvidia_present": true,
+    "torch_importable": true,
+    "torch_version": "2.13.0+cu126",
+    "torch_cuda_build": "12.6",
+    "torch_cuda_available": true,
+    "torch_device": "NVIDIA GeForce RTX 4080 SUPER",
+    "torch_error": null
+  }
+}

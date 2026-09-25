@@ -1,0 +1,91 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A3",
+  "algorithm": "CloudCompare RANSAC-SD / CloudComPy",
+  "rank": 3,
+  "stage": 0,
+  "status": "blocked_install",
+  "epsilon_locked": false,
+  "metrics_are_measurements": false,
+  "measurement_scope": "not measured; the stack did not segment this cloud",
+  "scene": {
+    "name": "s1_2x4_lean1.000_ax+X",
+    "stage": 0,
+    "nominal": "2x4",
+    "lean_deg": 1.0,
+    "lean_axis": "+X",
+    "seed": 2,
+    "spacing_m": 0.005,
+    "noise_std_m": 0.001,
+    "n_points": 25666,
+    "length_m": 2.4383999999999997,
+    "section_m": [
+      0.038099999999999995,
+      0.08889999999999999
+    ],
+    "reference": "gravity_z_no_floor_plane",
+    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "description": "Phase 1 S1 synthetic dressed stud. Lean 1.000 deg about +X. Long axis is +Z before the right-hand rotation. Generator gravity is +Z. No floor. The cloud is not rotated."
+  },
+  "attempt": {
+    "cloud_loaded": true,
+    "n_points": 25666,
+    "binary": null
+  },
+  "blocker": "CloudCompare is not on PATH. The stage 0 cloud was generated in-process (25666 points) and no primitive was fit. GPL sources were not copied into this repo. Metrics are null.",
+  "blocker_short": "CloudCompare binary not on PATH. Cloud was generated and not segmented.",
+  "detection": {
+    "n_true": null,
+    "n_pred": null,
+    "true_positives": null,
+    "false_positives": null,
+    "false_negatives": null,
+    "precision": null,
+    "recall": null,
+    "note": "CloudCompare is not on PATH. The stage 0 cloud was generated in-process (25666 points) and no primitive was fit. GPL sources were not copied into this repo. Metrics are null."
+  },
+  "geometry": {
+    "max_section_error_mm": null,
+    "max_length_error_mm": null,
+    "per_stud": [],
+    "note": "CloudCompare is not on PATH. The stage 0 cloud was generated in-process (25666 points) and no primitive was fit. GPL sources were not copied into this repo. Metrics are null."
+  },
+  "angle": {
+    "mae_deg": null,
+    "pct_in_band": null,
+    "band_deg": null,
+    "per_stud": [],
+    "note": "CloudCompare is not on PATH. The stage 0 cloud was generated in-process (25666 points) and no primitive was fit. GPL sources were not copied into this repo. Metrics are null."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "production_colors": [],
+    "hypothetical_placeholder_epsilon_deg": null,
+    "hypothetical_colors": [],
+    "note": "CloudCompare is not on PATH. The stage 0 cloud was generated in-process (25666 points) and no primitive was fit. GPL sources were not copied into this repo. Metrics are null."
+  },
+  "cost": {
+    "runtime_s": null,
+    "license": "GPL-3.0",
+    "hardware": "CPU",
+    "failure_modes": [
+      "CloudCompare is not on PATH, so RANSAC-SD was not executed."
+    ],
+    "note": "CloudCompare is not on PATH. The stage 0 cloud was generated in-process (25666 points) and no primitive was fit. GPL sources were not copied into this repo. Metrics are null."
+  },
+  "notes": [
+    "CloudCompare is not on PATH. The stage 0 cloud was generated in-process (25666 points) and no primitive was fit. GPL sources were not copied into this repo. Metrics are null."
+  ],
+  "stage0_pass_fail": "blocked_install",
+  "stage0_bar_failures": [],
+  "stage0_bars": {
+    "detection": "precision = 1 and recall = 1",
+    "section_mm": 10.0,
+    "length_mm": 25.0,
+    "max_abs_angle_deg": 0.05,
+    "paint": "every production color yellow",
+    "scope": "synthetic stage 0 bring-up, not a field test"
+  },
+  "scorecard_name": "r3_cloudcompare__s1_2x4_lean1.000_ax+X.json"
+}
