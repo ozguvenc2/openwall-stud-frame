@@ -509,6 +509,108 @@ def recover_faces(
                 break
 
     both = bool(faces["face_a"]["detected"] and faces["face_b"]["detected"])
+    return _face_payload(walls, wall_ids, wall_mask, parts, recall, faces, both, unmatched)
+
+
+def score_named_faces(
+    points: np.ndarray,
+    pred: np.ndarray,
+    names: list[str],
+    gt_labels: np.ndarray,
+    gt_normal_a: np.ndarray,
+    gt_normal_b: np.ndarray,
+    *,
+    gt_lean_a: float,
+    gt_lean_b: float,
+) -> dict[str, Any]:
+    """Score a head whose classes are floor, face_a, and face_b.
+
+    Lean is the plane fit on points predicted as that face. Ground truth
+    picks the target angle and the normal check. It does not choose the points.
+    """
+    pred = np.asarray(pred).reshape(-1)
+    gt_labels = np.asarray(gt_labels).reshape(-1)
+    names = [str(name) for name in names]
+    name_to_id = {name: index for index, name in enumerate(names)}
+    parts = {
+        "face_a": majority_name(pred, gt_labels == LABEL_FACE_A, names),
+        "face_b": majority_name(pred, gt_labels == LABEL_FACE_B, names),
+        "floor": majority_name(pred, gt_labels == LABEL_FLOOR, names),
+    }
+    gt_normals = {
+        "face_a": np.asarray(gt_normal_a, dtype=float),
+        "face_b": np.asarray(gt_normal_b, dtype=float),
+    }
+    gt_leans = {"face_a": gt_lean_a, "face_b": gt_lean_b}
+    gt_ids = {"face_a": LABEL_FACE_A, "face_b": LABEL_FACE_B, "floor": LABEL_FLOOR}
+    recall = {}
+    faces: dict[str, Any] = {}
+    for name in ("face_a", "face_b"):
+        class_id = name_to_id.get(name)
+        gt_mask = gt_labels == gt_ids[name]
+        pred_mask = pred == class_id if class_id is not None else np.zeros(pred.shape[0], dtype=bool)
+        gt_total = int(gt_mask.sum())
+        pred_total = int(pred_mask.sum())
+        hit = int(np.sum(pred_mask & gt_mask))
+        recall[name] = None if gt_total == 0 else float(hit / gt_total)
+        entry: dict[str, Any] = {
+            "gt_lean_deg": gt_leans[name],
+            "detected": False,
+            "measured_lean_deg": None,
+            "abs_error_deg": None,
+            "inliers": pred_total,
+            "normal_dot_gt": None,
+            "precision": None if pred_total == 0 else float(hit / pred_total),
+            "recall": recall[name],
+            "svd_lean_deg": None,
+            "svd_abs_error_deg": None,
+        }
+        if class_id is not None and pred_total >= 200:
+            # Same 15 mm inlier plane as the control RANSAC. A few points from
+            # the other wall would otherwise tilt a least-squares fit.
+            chosen = points[pred_mask]
+            svd_center, svd_normal = fit_plane(chosen)
+            svd_out = orient_outward(svd_normal, svd_center)
+            svd_lean = signed_outward_lean_deg(svd_out)
+            entry["svd_lean_deg"] = svd_lean
+            entry["svd_abs_error_deg"] = abs(svd_lean - gt_leans[name])
+            rng = np.random.default_rng(class_id + 17)
+            found = _ransac_plane(chosen, rng, thresh_m=0.015, iters=40, min_inliers=200)
+            if found is None:
+                center, normal = fit_plane(chosen)
+                outward = orient_outward(normal, center)
+                inliers = pred_total
+            else:
+                outward = found["normal"]
+                inliers = found["inliers"]
+            dot = float(np.dot(outward, gt_normals[name]))
+            measured = signed_outward_lean_deg(outward)
+            entry["inliers"] = inliers
+            entry["normal_dot_gt"] = dot
+            entry["measured_lean_deg"] = measured
+            entry["abs_error_deg"] = abs(measured - gt_leans[name])
+            entry["detected"] = bool(dot >= 0.85 and abs(outward[2]) <= 0.34 and inliers >= 200)
+        faces[name] = entry
+    floor_id = name_to_id.get("floor")
+    floor_mask = gt_labels == LABEL_FLOOR
+    if floor_id is None or int(floor_mask.sum()) == 0:
+        recall["floor"] = None
+    else:
+        recall["floor"] = float(np.sum((pred == floor_id) & floor_mask) / floor_mask.sum())
+    both = bool(faces["face_a"]["detected"] and faces["face_b"]["detected"])
+    return _face_payload(
+        {"face_a", "face_b"},
+        {name_to_id[name] for name in ("face_a", "face_b") if name in name_to_id},
+        np.isin(pred, [name_to_id[name] for name in ("face_a", "face_b") if name in name_to_id]),
+        parts,
+        recall,
+        faces,
+        both,
+        [],
+    )
+
+
+def _face_payload(walls, wall_ids, wall_mask, parts, recall, faces, both, unmatched) -> dict[str, Any]:
     return {
         "wall_class_names": sorted(walls) if wall_ids else [],
         "wall_class_ids": sorted(wall_ids),

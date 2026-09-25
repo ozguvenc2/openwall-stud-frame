@@ -1,0 +1,125 @@
+{
+  "file_stem": "r4_pointcept_control__corner_skil_means_floor_n5",
+  "rank": 4,
+  "stack": "pointcept",
+  "weights": "control",
+  "scene": "corner_skil_means_floor_n5",
+  "claim": "wall planes and corner lean. Not a stud detection.",
+  "gt_face_a_lean_deg": 0.383,
+  "gt_face_b_lean_deg": 0.25,
+  "n_points": 299145,
+  "runtime_s": 50.4894,
+  "histogram": [
+    {
+      "id": 0,
+      "name": "clutter",
+      "count": 227485
+    },
+    {
+      "id": 1,
+      "name": "floor",
+      "count": 365
+    },
+    {
+      "id": 2,
+      "name": "ceiling",
+      "count": 0
+    },
+    {
+      "id": 3,
+      "name": "wall",
+      "count": 71295
+    },
+    {
+      "id": 4,
+      "name": "column",
+      "count": 0
+    },
+    {
+      "id": 5,
+      "name": "door",
+      "count": 0
+    },
+    {
+      "id": 6,
+      "name": "window",
+      "count": 0
+    },
+    {
+      "id": 7,
+      "name": "stairs",
+      "count": 0
+    },
+    {
+      "id": 8,
+      "name": "railing",
+      "count": 0
+    },
+    {
+      "id": 9,
+      "name": "lights",
+      "count": 0
+    }
+  ],
+  "faces_score": {
+    "wall_class_names": [
+      "wall"
+    ],
+    "wall_class_ids": [
+      3
+    ],
+    "n_predicted_wall": 71295,
+    "majority_on_gt": {
+      "face_a": {
+        "name": "clutter",
+        "id": 0,
+        "count": 89858,
+        "fraction": 0.7500354743124243
+      },
+      "face_b": {
+        "name": "clutter",
+        "id": 0,
+        "count": 78404,
+        "fraction": 0.6544355781109145
+      },
+      "floor": {
+        "name": "clutter",
+        "id": 0,
+        "count": 59223,
+        "fraction": 0.9947426766998119
+      }
+    },
+    "wall_recall_on_gt": {
+      "face_a": 0.24973915946746797,
+      "face_b": 0.3453390537878535,
+      "floor": 3.359312012899758e-05
+    },
+    "faces": {
+      "face_a": {
+        "gt_lean_deg": 0.383,
+        "detected": true,
+        "measured_lean_deg": 0.02710522475722917,
+        "abs_error_deg": 0.35589477524277086,
+        "inliers": 29794,
+        "normal_dot_gt": 0.9999806666567773
+      },
+      "face_b": {
+        "gt_lean_deg": 0.25,
+        "detected": true,
+        "measured_lean_deg": -0.054972666662357825,
+        "abs_error_deg": 0.30497266666235784,
+        "inliers": 41499,
+        "normal_dot_gt": 0.9999858307190869
+      }
+    },
+    "both_faces_detected": true,
+    "unmatched_planes": [],
+    "empty_face_inference": false
+  },
+  "path": "openwall_stud.contenders.pointcept_ptv3._forward",
+  "weight": "data/cache/bimstruct3d/weights/model_best.pth",
+  "license": "BIMStruct3D weights CC BY-NC-SA 4.0, not committed",
+  "tta": "segment_scan.TEST_CFG (10 scale/flip passes) and grid 0.04 m",
+  "vote_mass": 299145,
+  "n_uncovered": 0
+}
