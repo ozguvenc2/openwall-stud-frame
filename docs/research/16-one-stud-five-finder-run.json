@@ -1,7 +1,7 @@
 {
   "doc": "docs/research/16-one-stud-five-finder-run.md",
   "date_america_los_angeles": "2026-09-25",
-  "stopped_after": "one synthetic stud and five finders",
+  "stopped_after": "one synthetic stud, ranks 1-5 from the five-finder run, then pyRANSAC-3D rank 6 appended without re-rolling CloudCompare",
   "not_field_accuracy": true,
   "epsilon_locked": false,
   "scene": {
@@ -38,14 +38,16 @@
     "cloudcompare": "2.11.3-7.1build3",
     "libpcl_segmentation": "1.14.0+dfsg-1",
     "g++": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
-    "nvidia_smi": "absent"
+    "nvidia_smi": "absent",
+    "pyransac3d": "0.7.0"
   },
   "commands": [
     "python scripts/run_one_stud_five_finders.py",
     "python -m openwall_stud.contenders.pcl_region_grow",
     "python -m openwall_stud.contenders.cloudcompare_ransac",
     "python -m openwall_stud.contenders.pointcept_ptv3",
-    "python -m openwall_stud.contenders.open3d_ml_s3dis"
+    "python -m openwall_stud.contenders.open3d_ml_s3dis",
+    "python -m openwall_stud.contenders.pyransac3d_cuboid"
   ],
   "stacks": [
     {
@@ -272,12 +274,51 @@
       },
       "blocker": "Open3D-ML S3DIS control did not run a forward pass. Import probe: ModuleNotFoundError: No module named 'torch'. S3DIS RandLA-Net and KPConv weights were not downloaded. There is no NVIDIA GPU. The open3d pin stays 0.20.0; a separate ML extra was not installed over it. The stage 0 cloud was loaded in-process (25666 points). No label histogram was produced, and no stud box was fit from an office class. S3DIS mIoU is not copied here. Metrics are null.",
       "implementation": null
+    },
+    {
+      "rank": 6,
+      "algorithm": "pyRANSAC-3D sequential cuboid",
+      "scorecard": "artifacts/scorecards/one_stud_pyransac3d.json",
+      "figure": "docs/research/images/one-stud-five-finders/06-pyransac3d.png",
+      "metrics": {
+        "status": "ran",
+        "pass_fail": "pass",
+        "bar_failures": [],
+        "detection_precision": 1.0,
+        "detection_recall": 1.0,
+        "n_pred": 1,
+        "section_err_mm": 7.7,
+        "length_err_mm": 5.57,
+        "angle_mae_deg": 0.00345,
+        "angle_max_abs_deg": 0.00345,
+        "paint": [
+          "yellow"
+        ],
+        "runtime_s": 1.5501,
+        "implementation_short": "pyRANSAC-3D 0.7.0 Cuboid, thresh 0.05 m, 1000 iterations, seed 2. Plate peel kept every Stage 0 point. First cuboid inliers were 25666 of 25666. Wall-swallow did not fire. Shared minimal OBB, axis not forced to Z."
+      },
+      "blocker": null,
+      "implementation": {
+        "module": "openwall_stud.contenders.pyransac3d_cuboid",
+        "version": "0.7.0",
+        "thresh_m": 0.05,
+        "max_iteration": 1000,
+        "random_seed": 2,
+        "peel_floor_found": false,
+        "n_points_after_peel": 25666,
+        "wall_swallow_triggered": false,
+        "library_extents_sorted_m": [0.05765, 0.09605, 2.44398],
+        "n_inliers": 25666,
+        "n_accepted": 1,
+        "stopped": "accepted_and_remainder_below_min_points"
+      }
     }
   ],
   "notes": [
     "Synthetic stage 0 only. Not a field measurement.",
     "PCL 1.14 RegionGrowing returned one cluster and 133 unassigned points, so the face-union step did not run. Printed section, length, and angle match Open3D because both boxes cover nearly the same points. Runtimes differ.",
     "CloudCompare -RANSAC had no seed. This process saved 8 primitive clouds, all named as planes. Primitives were not merged. Stage 0 bars fail on precision, section, and angle.",
-    "Pointcept and Open3D-ML did not segment. Their metric cells are null."
+    "Pointcept and Open3D-ML did not segment. Their metric cells are null.",
+    "Rank 6 is pyRANSAC-3D v0.7.0 sequential cuboid, the doc 17 add, appended on this same cloud without re-rolling ranks 1-5. Inliers were the whole stud, so the shared OBB matches the Open3D and PCL section, length, and angle. Library extents are the wall-swallow check and are not the scored section. Wall-swallow did not fire."
   ]
 }

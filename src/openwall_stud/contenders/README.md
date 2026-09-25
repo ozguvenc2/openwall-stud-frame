@@ -2,9 +2,14 @@
 
 Rank 1 (refined Open3D) lives in `openwall_stud.open3d_baseline`.
 
-`scripts/run_one_stud_five_finders.py` runs all five finders on one synthetic
-2×4 at 0.05° lean (seed 2) and stops. The write-up is
+`scripts/run_one_stud_five_finders.py` runs the five original finders, then
+rank 6, on one synthetic 2×4 at 0.05° lean (seed 2) and stops. The write-up is
 `docs/research/16-one-stud-five-finder-run.md`.
+
+Rank 6 is the bake-off add from doc 17 (`17-methods-that-beat-shortlist`,
+the methods brief). Oz approved pyRANSAC-3D v0.7.0 sequential cuboid after
+the same plate peel as rank 1. That slot is not the master-table row numbered
+6 in the ranking note (Chen 2025), which stays out of the bake-off.
 
 Each module below loads that same cloud unless `--stub` is set. `--stub` is
 what `scripts/run_stage0_baseline.py` still uses when it records null cards
@@ -16,6 +21,7 @@ for the multi-scene Open3D sweep. A stub does not segment.
 | 3 | `cloudcompare_ransac.py` | `python -m openwall_stud.contenders.cloudcompare_ransac` | `ran` when `CloudCompare -RANSAC` returns primitive clouds |
 | 4 | `pointcept_ptv3.py` | `python -m openwall_stud.contenders.pointcept_ptv3` | `blocked_install` without a GPU and a stud checkpoint |
 | 5 | `open3d_ml_s3dis.py` | `python -m openwall_stud.contenders.open3d_ml_s3dis` | `blocked_install` without weights and a forward pass |
+| 6 | `pyransac3d_cuboid.py` | `python -m openwall_stud.contenders.pyransac3d_cuboid` | `ran` when pyRANSAC-3D v0.7.0 fits a cuboid; `blocked_install` if the import fails |
 
 Run them from the repo root with `PYTHONPATH=src`.
 

@@ -55,7 +55,7 @@ METRIC_COLUMNS = (
     "runtime_s",
 )
 
-ALGORITHMS = ("open3d", "pcl", "cloudcompare", "pointcept", "open3d_ml")
+ALGORITHMS = ("open3d", "pcl", "cloudcompare", "pointcept", "open3d_ml", "pyransac3d")
 
 
 def repo_root() -> Path:
@@ -227,7 +227,7 @@ def render_markdown(rows: list[dict[str, Any]]) -> str:
 
 Dates are **America/Los_Angeles**. This page is regenerated from [`../../artifacts/scorecards/results_by_day.csv`](../../artifacts/scorecards/results_by_day.csv). The JSON mirror is [`../../artifacts/scorecards/results_by_day.json`](../../artifacts/scorecards/results_by_day.json).
 
-One row is one algorithm on one scene that day, compared with that scene’s ground truth. `python scripts/run_stage0_baseline.py` upserts rows when a run finishes: the same date, stage, scene, and algorithm is updated; a later date is appended. Hand-added CSV rows are kept. Refresh this page with `python -m openwall_stud.results_by_day` from the repo root (`PYTHONPATH=src`).
+One row is one algorithm on one scene that day, compared with that scene’s ground truth. `python scripts/run_stage0_baseline.py` upserts rows when a run finishes: the same date, stage, scene, and algorithm is updated; a later date is appended. The one-stud finder commands upsert the same way, including `pyransac3d` for bake-off rank 6. Hand-added CSV rows are kept. Refresh this page with `python -m openwall_stud.results_by_day` from the repo root (`PYTHONPATH=src`).
 
 `paint_correct_pct` is the share of studs whose production color matches the paint rule. While `device_eps_deg` is empty, the rule is yellow on every stud, so the percentage is that check only. It is not a green/red score against a level. `pass_fail` is `pass` or `fail` against that scene's bars when a stack was scored, `blocked_install` when the cloud was loaded but the stack could not segment (metrics left empty), and `not_run` for a stub that did not attempt the cloud. A later `not_run` stub does not replace a same-day `pass`, `fail`, or `blocked_install` row. Empty cells were not measured.
 

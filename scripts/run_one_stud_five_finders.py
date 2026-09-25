@@ -1,7 +1,8 @@
-"""Run five stud finders on one synthetic Stage 0 stud, then stop.
+"""Run the stud finders on one synthetic Stage 0 stud, then stop.
 
 Scene: dressed 2x4, lean 0.05 degrees, seed 2. Reference is generator +Z.
-This script does not build a floor, a mini wall, or a lean sweep.
+Ranks 1–5 are the original five. Rank 6 is pyRANSAC-3D sequential cuboid,
+the doc 17 add. This script does not build a floor, a mini wall, or a lean sweep.
 
     python scripts/run_one_stud_five_finders.py
 """
@@ -23,6 +24,7 @@ from openwall_stud.contenders.common import ran_card
 from openwall_stud.contenders.open3d_ml_s3dis import run_one_stud as run_open3d_ml
 from openwall_stud.contenders.pcl_region_grow import run_one_stud as run_pcl
 from openwall_stud.contenders.pointcept_ptv3 import run_one_stud as run_pointcept
+from openwall_stud.contenders.pyransac3d_cuboid import run_one_stud as run_pyransac
 from openwall_stud.one_stud import make_scene, scene_record
 from openwall_stud.one_stud_publish import publish_attempt
 from openwall_stud.open3d_baseline import run_baseline, score_run
@@ -33,6 +35,15 @@ SCORE = ROOT / "artifacts" / "scorecards"
 FIG = ROOT / "docs" / "research" / "images" / "one-stud-five-finders"
 REPORT_MD = ROOT / "docs" / "research" / "16-one-stud-five-finder-run.md"
 REPORT_JSON = ROOT / "docs" / "research" / "16-one-stud-five-finder-run.json"
+
+
+def _package_version(name: str) -> str:
+    import importlib.metadata
+
+    try:
+        return importlib.metadata.version(name)
+    except importlib.metadata.PackageNotFoundError:
+        return "not installed"
 
 
 def _versions() -> dict[str, str]:
@@ -60,6 +71,7 @@ def _versions() -> dict[str, str]:
         "libpcl_segmentation": dpkg("libpcl-segmentation1.14"),
         "g++": (gxx.stdout or gxx.stderr or "").splitlines()[0] if gxx.returncode == 0 else "not available",
         "nvidia_smi": "absent",
+        "pyransac3d": _package_version("pyransac3d"),
     }
 
 
@@ -150,6 +162,17 @@ def _finder_extra(card: dict) -> str:
             "They were not merged into one stud. The matched primitive is a thin face when the section bar fails. "
             "Recall stays 1 when one primitive still lands within 0.15 m of the stud center.\n"
         )
+    if rank == 6:
+        swallow = ((card.get("implementation") or {}).get("wall_swallow") or {})
+        attempts = (card.get("implementation") or {}).get("attempts") or []
+        first = attempts[0] if attempts else {}
+        return (
+            "\nThe printed section, length, and angle match the Open3D and PCL rows when the cuboid "
+            "inliers are the whole stud and the shared minimal OBB is the same post-step. "
+            "They are separate measurements. The library extents are on the scorecard and are not the scored section. "
+            f"First-cuboid inliers {first.get('n_inliers')} of {first.get('n_points_in')}. "
+            f"Wall-swallow triggered={swallow.get('triggered')}.\n"
+        )
     return ""
 
 
@@ -167,7 +190,7 @@ def _write_report(scene_info: dict, versions: dict[str, str], cards: list[dict],
     payload = {
         "doc": "docs/research/16-one-stud-five-finder-run.md",
         "date_america_los_angeles": date,
-        "stopped_after": "one synthetic stud and five finders",
+        "stopped_after": "one synthetic stud, ranks 1-5, then pyRANSAC-3D rank 6",
         "not_field_accuracy": True,
         "epsilon_locked": False,
         "scene": scene_info,
@@ -190,6 +213,7 @@ def _write_report(scene_info: dict, versions: dict[str, str], cards: list[dict],
             "python -m openwall_stud.contenders.cloudcompare_ransac",
             "python -m openwall_stud.contenders.pointcept_ptv3",
             "python -m openwall_stud.contenders.open3d_ml_s3dis",
+            "python -m openwall_stud.contenders.pyransac3d_cuboid",
         ],
         "stacks": [
             {
@@ -267,7 +291,7 @@ def _write_report(scene_info: dict, versions: dict[str, str], cards: list[dict],
     version_lines = "\n".join(f"- `{key}`: {value}" for key, value in versions.items())
     text = f"""# One synthetic stud, five finders
 
-Date (America/Los_Angeles): **{date}**. This note records one Stage 0 cloud through the five ranked finders, then stops. It is a synthetic bring-up. It is not a field measurement, not a phone-LiDAR result, and not a stage 2, stage 3, or lean-sweep result.
+Date (America/Los_Angeles): **{date}**. This note records one Stage 0 cloud through the five ranked finders, then rank 6 (pyRANSAC-3D sequential cuboid, the doc 17 add), then stops. It is a synthetic bring-up. It is not a field measurement, not a phone-LiDAR result, and not a stage 2, stage 3, or lean-sweep result.
 
 Machine-readable twin: [16-one-stud-five-finder-run.json](16-one-stud-five-finder-run.json).
 
@@ -320,9 +344,10 @@ python -m openwall_stud.contenders.pcl_region_grow
 python -m openwall_stud.contenders.cloudcompare_ransac
 python -m openwall_stud.contenders.pointcept_ptv3
 python -m openwall_stud.contenders.open3d_ml_s3dis
+python -m openwall_stud.contenders.pyransac3d_cuboid
 ```
 
-The module commands repeat this same stud. `python scripts/run_stage0_baseline.py` is unchanged: it still scores Open3D on stages 0, 2, and 3 and writes null stubs for the other four (`--stub`). It was not the command for this note.
+The module commands repeat this same stud. `python scripts/run_stage0_baseline.py` is unchanged: it still scores Open3D on stages 0, 2, and 3 and writes null stubs for the other four (`--stub`). It was not the command for this note. Rank 6 is not one of those stubs.
 
 ## Finders
 
@@ -348,6 +373,7 @@ def main() -> int:
         ("cloudcompare", "one_stud_cloudcompare.json", FIG / "03-cloudcompare.png", lambda: run_cloudcompare(scene)),
         ("pointcept", "one_stud_pointcept.json", FIG / "04-pointcept.png", lambda: run_pointcept(scene)),
         ("open3d_ml", "one_stud_open3d_ml.json", FIG / "05-open3d-ml.png", lambda: run_open3d_ml(scene)),
+        ("pyransac3d", "one_stud_pyransac3d.json", FIG / "06-pyransac3d.png", lambda: run_pyransac(scene)),
     ]
     cards = []
     for algorithm, filename, figure, runner in jobs:
@@ -373,7 +399,7 @@ def main() -> int:
     versions = _versions()
     _write_report(info, versions, cards, today_la())
     print(f"Wrote {REPORT_MD}")
-    print("Stopped after one stud and five finders.")
+    print("Stopped after one stud, five finders, and pyRANSAC-3D rank 6.")
     return 0
 
 
