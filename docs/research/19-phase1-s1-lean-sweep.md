@@ -44,7 +44,7 @@ These bars are the synthetic bring-up checks. They are not a field acceptance te
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Refined Open3D stud prior | classical | 25 | 25 | 0 | 0 | 0 | 0 |
 | 2 | PCL region-grow + cuboid (Ozkan/Pochtrager, no Bassier merge) | classical | 25 | 25 | 0 | 0 | 0 | 0 |
-| 3 | CloudCompare RANSAC-SD / CloudComPy | classical | 25 | 0 | 0 | 0 | 25 | 0 |
+| 3 | CloudCompare RANSAC-SD / CloudComPy | classical | 25 | 0 | 25 | 0 | 0 | 0 |
 | 4 | Pointcept PTv3 / PointGroup (hook only until labeled Stage 5) | control | 25 | 0 | 0 | 25 | 0 | 0 |
 | 5 | Open3D-ML RandLA-Net or KPConv, S3DIS weights (control only) | control | 25 | 0 | 0 | 25 | 0 | 0 |
 | 6 | pyRANSAC-3D sequential cuboid | classical | 25 | 25 | 0 | 0 | 0 | 0 |
@@ -105,31 +105,31 @@ One row is one finder on one scene. Empty cells were not measured.
 | 2 | `s1_2x4_lean4.000_ax-X` | 4 | -X | ran | 1 | 1 | 7.7 | 5.62 | 0.01569 | 0.01569 | yellow x1 | 0.6318 | pass |
 | 2 | `s1_2x4_lean4.000_ax+Y` | 4 | +Y | ran | 1 | 1 | 7.77 | 5.49 | 0.00749 | 0.00749 | yellow x1 | 0.6185 | pass |
 | 2 | `s1_2x4_lean4.000_ax-Y` | 4 | -Y | ran | 1 | 1 | 7.63 | 5.62 | 0.00057 | 0.00057 | yellow x1 | 0.6525 | pass |
-| 3 | `s1_2x4_lean0.000_axnone` | 0 | none | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.050_ax+X` | 0.05 | +X | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.050_ax-X` | 0.05 | -X | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.050_ax+Y` | 0.05 | +Y | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.050_ax-Y` | 0.05 | -Y | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.120_ax+X` | 0.12 | +X | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.120_ax-X` | 0.12 | -X | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.120_ax+Y` | 0.12 | +Y | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.120_ax-Y` | 0.12 | -Y | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.150_ax+X` | 0.15 | +X | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.150_ax-X` | 0.15 | -X | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.150_ax+Y` | 0.15 | +Y | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.150_ax-Y` | 0.15 | -Y | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.300_ax+X` | 0.3 | +X | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.300_ax-X` | 0.3 | -X | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.300_ax+Y` | 0.3 | +Y | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean0.300_ax-Y` | 0.3 | -Y | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean1.000_ax+X` | 1 | +X | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean1.000_ax-X` | 1 | -X | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean1.000_ax+Y` | 1 | +Y | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean1.000_ax-Y` | 1 | -Y | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean4.000_ax+X` | 4 | +X | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean4.000_ax-X` | 4 | -X | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean4.000_ax+Y` | 4 | +Y | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
-| 3 | `s1_2x4_lean4.000_ax-Y` | 4 | -Y | blocked_install | — | — | — | — | — | — | — | — | blocked_install |
+| 3 | `s1_2x4_lean0.000_axnone` | 0 | none | ran | 0.1429 | 1 | 30.46 | 2.07 | 0.08851 | 0.08851 | yellow x7 | 1.57 | fail |
+| 3 | `s1_2x4_lean0.050_ax+X` | 0.05 | +X | ran | 0.1429 | 1 | 30.46 | 2.07 | 0.08837 | 0.08837 | yellow x7 | 1.4897 | fail |
+| 3 | `s1_2x4_lean0.050_ax-X` | 0.05 | -X | ran | 0.1429 | 1 | 30.46 | 2.08 | 0.01147 | 0.01147 | yellow x7 | 1.3308 | fail |
+| 3 | `s1_2x4_lean0.050_ax+Y` | 0.05 | +Y | ran | 0.125 | 1 | 30.46 | 2.07 | 0.05207 | 0.05207 | yellow x8 | 1.4399 | fail |
+| 3 | `s1_2x4_lean0.050_ax-Y` | 0.05 | -Y | ran | 0.1667 | 1 | 30.46 | 2.07 | 0.05127 | 0.05127 | yellow x6 | 1.4675 | fail |
+| 3 | `s1_2x4_lean0.120_ax+X` | 0.12 | +X | ran | 0.1667 | 1 | 30.46 | 2.06 | 0.08826 | 0.08826 | yellow x6 | 1.3747 | fail |
+| 3 | `s1_2x4_lean0.120_ax-X` | 0.12 | -X | ran | 0.1667 | 1 | 30.46 | 2.08 | 0.08861 | 0.08861 | yellow x6 | 1.5905 | fail |
+| 3 | `s1_2x4_lean0.120_ax+Y` | 0.12 | +Y | ran | 0.1429 | 1 | 30.46 | 2.07 | 0.0298 | 0.0298 | yellow x7 | 1.4167 | fail |
+| 3 | `s1_2x4_lean0.120_ax-Y` | 0.12 | -Y | ran | 0.1667 | 1 | 30.46 | 2.07 | 0.0285 | 0.0285 | yellow x6 | 1.4359 | fail |
+| 3 | `s1_2x4_lean0.150_ax+X` | 0.15 | +X | ran | 0.1429 | 1 | 30.46 | 2.06 | 0.08816 | 0.08816 | yellow x7 | 1.4733 | fail |
+| 3 | `s1_2x4_lean0.150_ax-X` | 0.15 | -X | ran | 0.25 | 1 | 30.46 | 2.07 | 0.08872 | 0.08872 | yellow x4 | 1.3426 | fail |
+| 3 | `s1_2x4_lean0.150_ax+Y` | 0.15 | +Y | ran | 0.125 | 1 | 30.46 | 2.07 | 0.01022 | 0.01022 | yellow x8 | 1.4905 | fail |
+| 3 | `s1_2x4_lean0.150_ax-Y` | 0.15 | -Y | ran | 0.1667 | 1 | 30.46 | 2.07 | 0.02349 | 0.02349 | yellow x6 | 1.4503 | fail |
+| 3 | `s1_2x4_lean0.300_ax+X` | 0.3 | +X | ran | 0.1429 | 1 | 30.46 | 2.06 | 0.08787 | 0.08787 | yellow x7 | 1.3971 | fail |
+| 3 | `s1_2x4_lean0.300_ax-X` | 0.3 | -X | ran | 0.25 | 1 | 30.46 | 2.1 | 0.03027 | 0.03027 | yellow x4 | 1.4801 | fail |
+| 3 | `s1_2x4_lean0.300_ax+Y` | 0.3 | +Y | ran | 0.125 | 1 | 30.46 | 2.06 | 0.01367 | 0.01367 | yellow x8 | 1.5225 | fail |
+| 3 | `s1_2x4_lean0.300_ax-Y` | 0.3 | -Y | ran | 0.1667 | 1 | 30.46 | 2.08 | 0.01206 | 0.01206 | yellow x6 | 1.4317 | fail |
+| 3 | `s1_2x4_lean1.000_ax+X` | 1 | +X | ran | 0.1429 | 1 | 30.46 | 2.03 | 0.08669 | 0.08669 | yellow x7 | 1.5721 | fail |
+| 3 | `s1_2x4_lean1.000_ax-X` | 1 | -X | ran | 0.1429 | 1 | 30.46 | 2.12 | 0.03034 | 0.03034 | yellow x7 | 1.4255 | fail |
+| 3 | `s1_2x4_lean1.000_ax+Y` | 1 | +Y | ran | 0.1429 | 1 | 30.73 | 5.31 | 0.01525 | 0.01525 | yellow x7 | 1.4369 | fail |
+| 3 | `s1_2x4_lean1.000_ax-Y` | 1 | -Y | ran | 0.1667 | 1 | 4.95 | 5.51 | 0.00299 | 0.00299 | yellow x6 | 1.4729 | fail |
+| 3 | `s1_2x4_lean4.000_ax+X` | 4 | +X | ran | 0.1667 | 1 | 30.46 | 1.93 | 0.08116 | 0.08116 | yellow x6 | 1.3535 | fail |
+| 3 | `s1_2x4_lean4.000_ax-X` | 4 | -X | ran | 0.1667 | 1 | 5.33 | 7.52 | 0.00204 | 0.00204 | yellow x6 | 1.4874 | fail |
+| 3 | `s1_2x4_lean4.000_ax+Y` | 4 | +Y | ran | 0.1667 | 1 | 5.01 | 2.89 | 0.01006 | 0.01006 | yellow x6 | 1.5062 | fail |
+| 3 | `s1_2x4_lean4.000_ax-Y` | 4 | -Y | ran | 0.1667 | 1 | 30.44 | 2.23 | 0.00123 | 0.00123 | yellow x6 | 1.5176 | fail |
 | 4 | `s1_2x4_lean0.000_axnone` | 0 | none | ran | — | — | — | — | — | — | — | 39.7139 | control |
 | 4 | `s1_2x4_lean0.050_ax+X` | 0.05 | +X | ran | — | — | — | — | — | — | — | 39.1124 | control |
 | 4 | `s1_2x4_lean0.050_ax-X` | 0.05 | -X | ran | — | — | — | — | — | — | — | 39.3866 | control |
@@ -233,9 +233,9 @@ Pointcept is rank 4 and uses `.venv` (the BIMStruct3D CUDA torch pin). Open3D-ML
 
 Rank 2 `native_pcl_region_growing` values on these scorecards: False. NumPy smoothness region-grow port, because the PCL binary did not run. Adjacent-face cuboid. Axis not forced to Z.
 
-Rank 3 blocker: CloudCompare binary not on PATH. Cloud was generated and not segmented.
+Rank 2 metrics are the run that the scorecard names. They are not a libpcl measurement when `native_pcl_region_growing` is false.
 
-Rank 2 metrics are the run that the scorecard names. They are not a libpcl measurement when `native_pcl_region_growing` is false. Rank 3 stud cells stay empty when the binary was not on PATH.
+Rank 3 returned primitive boxes on 25 of 25 scorecards. Stage 0 bars: pass 0, fail 25, blocked_install 0. CloudCompare 2.14.beta (Aug 29 2026) RANSAC-SD, one OBB per plane or cylinder primitive, primitives not merged. Binary: `C:\Program Files\CloudCompare\CloudCompare.exe`. Discovery source: env. Discovery order is the `CLOUDCOMPARE_EXE` environment variable, then `C:\Program Files\CloudCompare\CloudCompare.exe` when that file exists, then PATH. Smoke test (`CloudCompare -SILENT -NO_TIMESTAMP`) succeeded. Version: 2.14.beta (Aug 29 2026). Return code: 0. Record: `artifacts/scorecards/cloudcompare_smoke.json`.
 
 ## Controls
 
@@ -320,6 +320,24 @@ Stage 0 bars: `pass`. Paint: yellow x1.
 Stage 0 bars: `pass`. Paint: yellow x1.
 
 ![PCL region-grow + cuboid (Ozkan/Pochtrager, no Bassier merge) s1_2x4_lean4.000_ax+Y](images/phase1-s1/r2_pcl__s1_2x4_lean4.000_axpY.png)
+
+### Rank 3 `s1_2x4_lean0.000_axnone`
+
+Stage 0 bars: `fail`. Paint: yellow x7.
+
+![CloudCompare RANSAC-SD / CloudComPy s1_2x4_lean0.000_axnone](images/phase1-s1/r3_cloudcompare__s1_2x4_lean0.000_axnone.png)
+
+### Rank 3 `s1_2x4_lean0.150_ax+X`
+
+Stage 0 bars: `fail`. Paint: yellow x7.
+
+![CloudCompare RANSAC-SD / CloudComPy s1_2x4_lean0.150_ax+X](images/phase1-s1/r3_cloudcompare__s1_2x4_lean0.150_axpX.png)
+
+### Rank 3 `s1_2x4_lean4.000_ax+Y`
+
+Stage 0 bars: `fail`. Paint: yellow x6.
+
+![CloudCompare RANSAC-SD / CloudComPy s1_2x4_lean4.000_ax+Y](images/phase1-s1/r3_cloudcompare__s1_2x4_lean4.000_axpY.png)
 
 ### Rank 6 `s1_2x4_lean0.000_axnone`
 

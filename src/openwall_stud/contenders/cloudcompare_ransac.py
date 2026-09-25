@@ -1,10 +1,20 @@
 """CloudCompare RANSAC Shape Detection on the one Stage 0 stud.
 
 Install
-    Ubuntu package ``cloudcompare`` (GPL-3.0), invoked as a separate process.
-    This repo does not copy or link the GPL sources. The command is
-    ``CloudCompare -RANSAC`` with the RANSAC Shape Detection plugin
-    (``libQRANSAC_SD_PLUGIN.so``), which is Schnabel, Wahl, and Klein 2007.
+    Invoked as a separate process. This repo does not copy or link the GPL
+    sources. The command is ``CloudCompare -RANSAC`` with the RANSAC Shape
+    Detection plugin (Schnabel, Wahl, and Klein 2007).
+
+    Discovery order for the binary:
+
+    1. ``CLOUDCOMPARE_EXE`` (absolute path to ``CloudCompare`` or
+       ``CloudCompare.exe``).
+    2. The Oz_PC default ``C:\\Program Files\\CloudCompare\\CloudCompare.exe``
+       when that file exists.
+    3. ``CloudCompare`` or ``cloudcompare`` on ``PATH``.
+
+    On Linux the plugin file is ``libQRANSAC_SD_PLUGIN.so``. On Windows it is
+    ``QRANSAC_SD_PLUGIN.dll`` next to the executable.
 
     Each primitive inlier set gets its own minimal OBB. Primitives are not
     merged into a stud. A 2x4 is not a cylinder, and coplanar faces are planes.
@@ -13,6 +23,8 @@ Entrypoint
     python -m openwall_stud.contenders.cloudcompare_ransac
 
     ``--stub`` writes the null card and does not launch CloudCompare.
+    ``--smoke`` launches ``CloudCompare -SILENT -NO_TIMESTAMP`` once and writes
+    ``artifacts/scorecards/cloudcompare_smoke.json``.
 
 Do not
     Do not link CloudComPy into a closed-source app.
@@ -22,7 +34,9 @@ Do not
 from __future__ import annotations
 
 import argparse
+import json
 import os
+import re
 import shutil
 import subprocess
 import time
@@ -44,6 +58,14 @@ CLOUDCOMPARE = {
     "name": "CloudCompare RANSAC-SD / CloudComPy",
 }
 
+# Env override, then the Oz_PC install, then PATH. See resolve_cloudcompare_binary.
+CLOUDCOMPARE_ENV = "CLOUDCOMPARE_EXE"
+DEFAULT_WINDOWS_CLOUDCOMPARE = Path(r"C:\Program Files\CloudCompare\CloudCompare.exe")
+_ABOUT_VERSION = re.compile(rb"(\d+\.\d+\.(?:alpha|beta|stable|\d+)) \(%1\)")
+_BUILD_DATE = re.compile(
+    rb"((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2}\s+\d{4})"
+)
+
 # Epsilon is a few times the 1 mm generator noise and the 5 mm surface spacing.
 # Support is below one stud face and above a handful of noisy points.
 RANSAC_ARGS = [
@@ -62,6 +84,45 @@ RANSAC_ARGS = [
     "CYLINDER",
     "OUTPUT_INDIVIDUAL_SUBCLOUDS",
 ]
+
+
+def resolve_cloudcompare_binary() -> tuple[str | None, str]:
+    """Return ``(path, source)`` for the CloudCompare executable.
+
+    ``source`` is ``env``, ``default_windows_path``, ``path``, or ``missing``.
+    A set but missing ``CLOUDCOMPARE_EXE`` is skipped so the default path and
+    PATH can still resolve.
+    """
+    env_value = os.environ.get(CLOUDCOMPARE_ENV, "").strip().strip('"')
+    if env_value and Path(env_value).is_file():
+        return str(Path(env_value)), "env"
+    if DEFAULT_WINDOWS_CLOUDCOMPARE.is_file():
+        return str(DEFAULT_WINDOWS_CLOUDCOMPARE), "default_windows_path"
+    which = shutil.which("CloudCompare") or shutil.which("cloudcompare")
+    if which:
+        return which, "path"
+    return None, "missing"
+
+
+def _plugin_file() -> str:
+    if os.name == "nt":
+        return "QRANSAC_SD_PLUGIN.dll"
+    return "libQRANSAC_SD_PLUGIN.so"
+
+
+def _process_env() -> dict[str, str]:
+    env = os.environ.copy()
+    # The Windows build ships qwindows.dll, not an offscreen Qt platform.
+    if os.name != "nt":
+        env["QT_QPA_PLATFORM"] = "offscreen"
+        env.setdefault("XDG_RUNTIME_DIR", "/tmp/runtime-ubuntu")
+    return env
+
+
+def _subprocess_kwargs() -> dict[str, Any]:
+    if os.name == "nt":
+        return {"creationflags": getattr(subprocess, "CREATE_NO_WINDOW", 0)}
+    return {}
 
 
 def build_stub_card() -> dict:
@@ -87,7 +148,7 @@ def build_card() -> dict:
 def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
     scene = scene or make_scene()
     record = scene_record(scene)
-    binary = shutil.which("CloudCompare") or shutil.which("cloudcompare")
+    binary, binary_source = resolve_cloudcompare_binary()
     work = repo_root() / "artifacts" / "one_stud" / "cloudcompare"
     work.mkdir(parents=True, exist_ok=True)
     if binary is None:
@@ -97,15 +158,29 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
             rank=3,
             license_name="GPL-3.0",
             hardware="CPU",
-            failure_modes=["CloudCompare is not on PATH, so RANSAC-SD was not executed."],
+            failure_modes=[
+                "CloudCompare was not found via CLOUDCOMPARE_EXE, "
+                "the default Windows path, or PATH, so RANSAC-SD was not executed."
+            ],
             blocker=(
-                f"CloudCompare is not on PATH. The stage 0 cloud was generated in-process "
-                f"({scene.n_points} points) and no primitive was fit. "
+                "CloudCompare was not found. Discovery checks CLOUDCOMPARE_EXE, then "
+                f"{DEFAULT_WINDOWS_CLOUDCOMPARE}, then PATH. The stage 0 cloud was generated "
+                f"in-process ({scene.n_points} points) and no primitive was fit. "
                 "GPL sources were not copied into this repo. Metrics are null."
             ),
-            blocker_short="CloudCompare binary not on PATH. Cloud was generated and not segmented.",
+            blocker_short=(
+                "CloudCompare binary not found "
+                "(CLOUDCOMPARE_EXE, default Windows path, or PATH). "
+                "Cloud was generated and not segmented."
+            ),
             scene=record,
-            attempt={"cloud_loaded": True, "n_points": scene.n_points, "binary": None},
+            attempt={
+                "cloud_loaded": True,
+                "n_points": scene.n_points,
+                "binary": None,
+                "binary_source": binary_source,
+                "env": CLOUDCOMPARE_ENV,
+            },
         )
         return card, []
 
@@ -133,9 +208,7 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
         "OUT_CLOUD_DIR",
         str(out_dir),
     ]
-    env = os.environ.copy()
-    env["QT_QPA_PLATFORM"] = "offscreen"
-    env.setdefault("XDG_RUNTIME_DIR", "/tmp/runtime-ubuntu")
+    env = _process_env()
     started = time.perf_counter()
     proc = subprocess.run(
         command,
@@ -145,6 +218,7 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
         env=env,
         timeout=180,
         cwd=work,
+        **_subprocess_kwargs(),
     )
     runtime_s = time.perf_counter() - started
     log = ((proc.stdout or "") + "\n" + (proc.stderr or ""))[-6000:]
@@ -155,6 +229,7 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
         "cloud_loaded": True,
         "n_points": scene.n_points,
         "binary": binary,
+        "binary_source": binary_source,
         "command": command,
         "returncode": proc.returncode,
         "n_primitive_clouds": len(clouds),
@@ -216,7 +291,7 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
             "n_primitive_clouds": len(clouds),
         },
     )
-    version = _package_version()
+    version = _package_version(binary)
     card = ran_card(
         algorithm_id="A3",
         algorithm=CLOUDCOMPARE["name"],
@@ -226,7 +301,7 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
         implementation={
             "tool": "CloudCompare RANSAC Shape Detection",
             "package": version,
-            "plugin": "libQRANSAC_SD_PLUGIN.so",
+            "plugin": _plugin_file(),
             "primitives": ["PLANE", "CYLINDER"],
             "merged_primitives_into_stud": False,
             "attempt": {key: value for key, value in attempt.items() if key != "log_tail"},
@@ -248,15 +323,94 @@ def _failure_reason(code: int, log: str, clouds: list[np.ndarray]) -> str:
     )
 
 
-def _package_version() -> str:
+def _version_from_executable(binary: str) -> str | None:
+    """Read the about-dialog version baked into the CloudCompare binary.
+
+    The Windows build stores ``2.14.beta (%1)`` next to the compile date.
+    This does not launch the GUI.
+    """
+    try:
+        data = Path(binary).read_bytes()
+    except OSError:
+        return None
+    match = _ABOUT_VERSION.search(data)
+    if match is None:
+        return None
+    version = match.group(1).decode("ascii")
+    window = data[match.end() : match.end() + 80]
+    dated = _BUILD_DATE.search(window)
+    if dated is not None:
+        return f"{version} ({dated.group(1).decode('ascii')})"
+    return version
+
+
+def _package_version(binary: str | None = None) -> str:
+    dpkg = shutil.which("dpkg-query")
+    if dpkg:
+        proc = subprocess.run(
+            [dpkg, "-W", "-f", "${Version}", "cloudcompare"],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        text = (proc.stdout or "").strip()
+        if text:
+            return text
+    if binary:
+        found = _version_from_executable(binary)
+        if found:
+            return found
+    return "unknown"
+
+
+def smoke_test() -> dict[str, Any]:
+    """Launch CloudCompare once with ``-SILENT`` and record whether it exits.
+
+    This does not fit a stud. A later ``run_one_stud`` call is the measurement.
+    """
+    binary, source = resolve_cloudcompare_binary()
+    record: dict[str, Any] = {
+        "ok": False,
+        "binary": binary,
+        "binary_source": source,
+        "env": CLOUDCOMPARE_ENV,
+        "default_windows_path": str(DEFAULT_WINDOWS_CLOUDCOMPARE),
+        "version": _package_version(binary) if binary else None,
+        "returncode": None,
+        "plugin_seen": False,
+        "processed_finished": False,
+        "evidence_lines": [],
+    }
+    if binary is None:
+        record["error"] = (
+            "CloudCompare was not found via CLOUDCOMPARE_EXE, "
+            f"{DEFAULT_WINDOWS_CLOUDCOMPARE}, or PATH."
+        )
+        return record
+    command = [binary, "-SILENT", "-NO_TIMESTAMP"]
+    record["command"] = command
     proc = subprocess.run(
-        ["dpkg-query", "-W", "-f", "${Version}", "cloudcompare"],
+        command,
         check=False,
         capture_output=True,
         text=True,
+        env=_process_env(),
+        timeout=90,
+        cwd=str(Path(binary).parent),
+        **_subprocess_kwargs(),
     )
-    text = (proc.stdout or "").strip()
-    return text or "unknown"
+    log = ((proc.stdout or "") + "\n" + (proc.stderr or "")).strip()
+    evidence = [
+        line.strip()
+        for line in log.splitlines()
+        if "RANSAC Shape Detection" in line or "Processed finished" in line
+    ]
+    record["returncode"] = proc.returncode
+    record["plugin_seen"] = any("RANSAC Shape Detection" in line for line in evidence)
+    record["processed_finished"] = "Processed finished" in log
+    record["evidence_lines"] = evidence
+    record["ok"] = proc.returncode == 0 and record["processed_finished"] and record["plugin_seen"]
+    return record
 
 
 def _write_ply(path: Path, points: np.ndarray) -> None:
@@ -289,10 +443,27 @@ def _load_primitive_clouds(out_dir: Path, source_ply: Path) -> list[np.ndarray]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="CloudCompare RANSAC-SD on the one synthetic stud, or a stub card.")
     parser.add_argument("--stub", action="store_true")
+    parser.add_argument(
+        "--smoke",
+        action="store_true",
+        help="Launch CloudCompare -SILENT once and write cloudcompare_smoke.json.",
+    )
     parser.add_argument("--out", type=Path, default=None)
     parser.add_argument("--figure", type=Path, default=None)
     parser.add_argument("--skip-day-row", action="store_true")
     args = parser.parse_args(argv)
+    if args.smoke and args.stub:
+        parser.error("--smoke and --stub cannot be combined")
+    if args.smoke:
+        dest = args.out or (repo_root() / "artifacts" / "scorecards" / "cloudcompare_smoke.json")
+        record = smoke_test()
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+        print(
+            f"CloudCompare smoke written to {dest}. "
+            f"ok={record['ok']} source={record['binary_source']} version={record['version']}"
+        )
+        return 0 if record["ok"] else 1
     if args.stub:
         dest = args.out or Path("artifacts/scorecards/cloudcompare_stub.json")
         path = emit_stub(dest, build_stub_card())
