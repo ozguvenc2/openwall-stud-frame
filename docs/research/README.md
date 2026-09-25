@@ -32,6 +32,7 @@ Numbers are copied from the cited page or marked **unknown**. Vendor brochure fi
 | [11-stud-segmentation-algorithm-ranking.md](11-stud-segmentation-algorithm-ranking.md) | Best-to-worst segmenters for vertical studs on a bare frame: tight boxes, angle versus the floor, then green/yellow/red once a device error band exists. Floor is not gravity. |
 | [12-stud-seg-design-plan.md](12-stud-seg-design-plan.md) | Curriculum stages 0–7, scorecard, pass bars, capture protocol (iPhone, Mid-360, SKIL BOT/MID/TOP), and what this repo runs. Figures: [images/algo-contenders/INDEX.md](images/algo-contenders/INDEX.md). |
 | [13-stud-seg-results-by-day.md](13-stud-seg-results-by-day.md) | Day-by-day algorithm outcome versus ground truth. Seeded with the 2026-09-24 synthetic Open3D runs. Stubs are `not_run`. |
+| [TruePlank paper space](../../papers/trueplank-stud-lean-qa/README.md) | Publication draft for stud instance detection and lean QA (BeamWeaver / TruePlank / OpenWall). Skeleton and synthetic excerpt only. |
 | [04-seed-funds.md](04-seed-funds.md) | NSF America’s Seed Fund AR/VR topic and nearby SBIR / construction awards. |
 | [05-misc-resources.md](05-misc-resources.md) | Gaussian splats versus clouds, MIT VNAV, the brief’s video and Gemini links, LinkedIn posts, aerial-LiDAR tools. |
 | [catalog.json](catalog.json) | Same rows in one JSON file for later tooling. Each table also has a sibling `.json`. |
