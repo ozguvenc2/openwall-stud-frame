@@ -17,7 +17,7 @@ Status date: **2026-09-25**.
 
 Live draft: [`draft/paper.md`](draft/paper.md). This branch is `cursor/trueplank-phase2-wall-corner-fdf2`, cut from `cursor/trueplank-paper-draft-20c5`.
 
-Parent draft: [https://github.com/ozguvenc2/openwall-stud-frame/pull/21](https://github.com/ozguvenc2/openwall-stud-frame/pull/21) (branch `cursor/trueplank-paper-draft-20c5`). Phase 2 is the pull request opened from this branch onto that paper branch.
+Parent draft: [https://github.com/ozguvenc2/openwall-stud-frame/pull/21](https://github.com/ozguvenc2/openwall-stud-frame/pull/21) (branch `cursor/trueplank-paper-draft-20c5`). Phase 2: [https://github.com/ozguvenc2/openwall-stud-frame/pull/24](https://github.com/ozguvenc2/openwall-stud-frame/pull/24).
 
 Pandoc metadata: [`draft/header.yaml`](draft/header.yaml). Optional PDF note: [`Makefile`](Makefile) (`make note`). No journal class is bundled. This folder is not an arXiv upload and not a publisher submission.
 
