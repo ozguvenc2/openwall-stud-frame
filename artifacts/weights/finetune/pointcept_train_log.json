@@ -1,0 +1,57 @@
+{
+  "wall_s": 98.1,
+  "history": [
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 1.0,
+      "stud_iou_floor_scenes": 0.9939977224613311,
+      "clutter_iou_floor_scenes": 0.9828607631860534,
+      "selection_score": 0.9922861618824615,
+      "epoch": 1,
+      "train_decoder": false,
+      "train_loss": 0.043720872417771985,
+      "epoch_s": 32.4,
+      "n_trainable": 4
+    },
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 1.0,
+      "stud_iou_floor_scenes": 0.9975914435932145,
+      "clutter_iou_floor_scenes": 0.9930327028677997,
+      "selection_score": 0.9968747154870048,
+      "epoch": 2,
+      "train_decoder": false,
+      "train_loss": 0.0009262779672971374,
+      "epoch_s": 33.8,
+      "n_trainable": 4
+    },
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 1.0,
+      "stud_iou_floor_scenes": 0.9937000553563505,
+      "clutter_iou_floor_scenes": 0.9820724467074257,
+      "selection_score": 0.9919241673545921,
+      "epoch": 3,
+      "train_decoder": false,
+      "train_loss": 0.0005530802818993459,
+      "epoch_s": 31.9,
+      "n_trainable": 4
+    }
+  ],
+  "best_row": {
+    "n": 33,
+    "stud_recall_stud_scenes": 1.0,
+    "stud_iou_floor_scenes": 0.9975914435932145,
+    "clutter_iou_floor_scenes": 0.9930327028677997,
+    "selection_score": 0.9968747154870048,
+    "epoch": 2,
+    "train_decoder": false,
+    "train_loss": 0.0009262779672971374,
+    "epoch_s": 33.8,
+    "n_trainable": 4
+  },
+  "trained_decoder": false,
+  "best_selection_score": 0.9968747154870048,
+  "weight": "C:\\Repos\\openwall-stud-frame-finetune\\artifacts\\weights\\finetune\\pointcept_stud_2class.pth",
+  "copied_backbone_tensors": 486
+}

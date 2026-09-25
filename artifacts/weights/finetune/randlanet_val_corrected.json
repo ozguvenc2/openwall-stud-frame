@@ -1,0 +1,8 @@
+{
+  "n": 33,
+  "stud_recall_stud_scenes": 1.0,
+  "stud_iou_floor_scenes": 0.991727180959721,
+  "clutter_iou_floor_scenes": 0.9765283995187186,
+  "mean_runtime_s": 0.1648809909088551,
+  "selection_score": 0.9894185268261465
+}

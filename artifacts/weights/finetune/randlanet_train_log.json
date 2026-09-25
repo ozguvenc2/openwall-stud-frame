@@ -1,0 +1,69 @@
+{
+  "wall_s": 237.5,
+  "epochs": 5,
+  "train_presentations": 468,
+  "best_selection_score": 0.5884899344127023,
+  "history": [
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 1.0,
+      "stud_iou_floor_scenes": 0.7410357998014181,
+      "clutter_iou_floor_scenes": 0.009663791700495845,
+      "mean_runtime_s": 0.19802527576261622,
+      "selection_score": 0.583566530500638,
+      "epoch": 1,
+      "train_loss": 0.4410522305048429,
+      "epoch_s": 46.8
+    },
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 0.9994124522714876,
+      "stud_iou_floor_scenes": 0.7440012209607412,
+      "clutter_iou_floor_scenes": 0.005871273658083415,
+      "mean_runtime_s": 0.20138237272851367,
+      "selection_score": 0.5830949822967707,
+      "epoch": 2,
+      "train_loss": 0.05949177665428983,
+      "epoch_s": 47.6
+    },
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 0.9998659705446894,
+      "stud_iou_floor_scenes": 0.7473180145509546,
+      "clutter_iou_floor_scenes": 0.01828581814246278,
+      "mean_runtime_s": 0.20071366060768592,
+      "selection_score": 0.5884899344127023,
+      "epoch": 3,
+      "train_loss": 0.015346170387143252,
+      "epoch_s": 47.6
+    },
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 1.0,
+      "stud_iou_floor_scenes": 0.7439393390912059,
+      "clutter_iou_floor_scenes": 0.0002122000905387053,
+      "mean_runtime_s": 0.19674645454330003,
+      "selection_score": 0.5813838463939148,
+      "epoch": 4,
+      "train_loss": 0.008318032964896888,
+      "epoch_s": 47.6
+    },
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 1.0,
+      "stud_iou_floor_scenes": 0.7439123813876742,
+      "clutter_iou_floor_scenes": 7.073336351290176e-05,
+      "mean_runtime_s": 0.2064792606062397,
+      "selection_score": 0.5813277049170623,
+      "epoch": 5,
+      "train_loss": 0.005710702160628051,
+      "epoch_s": 47.9
+    }
+  ],
+  "s3dis_skipped": [
+    "fc1.3.conv.weight",
+    "fc1.3.conv.bias"
+  ],
+  "num_classes": 2,
+  "weight": "C:\\Repos\\openwall-stud-frame-finetune\\artifacts\\weights\\finetune\\randlanet_stud_2class.pth"
+}
