@@ -72,18 +72,68 @@ GRID: tuple[tuple[str, RansacStudParams], ...] = (
             primitives=("PLANE",),
         ),
     ),
-    ("eps5_sup800_n15", RansacStudParams(epsilon_absolute_m=0.005, support_points=800, max_normal_dev_deg=15.0)),
-    ("eps6_sup800_n15", RansacStudParams()),
-    ("eps8_sup800_n15", RansacStudParams(epsilon_absolute_m=0.008, support_points=800, max_normal_dev_deg=15.0)),
-    ("eps6_sup1500_n15", RansacStudParams(support_points=1500)),
-    ("eps6_sup2000_n15", RansacStudParams(support_points=2000)),
+    (
+        "eps5_sup800_n15",
+        RansacStudParams(
+            epsilon_absolute_m=0.005,
+            bitmap_epsilon_absolute_m=0.020,
+            support_points=800,
+            max_normal_dev_deg=15.0,
+        ),
+    ),
+    (
+        "eps6_sup800_n15",
+        RansacStudParams(
+            epsilon_absolute_m=0.006,
+            bitmap_epsilon_absolute_m=0.020,
+            support_points=800,
+            max_normal_dev_deg=15.0,
+        ),
+    ),
+    (
+        "eps8_sup800_n15",
+        RansacStudParams(
+            epsilon_absolute_m=0.008,
+            bitmap_epsilon_absolute_m=0.020,
+            support_points=800,
+            max_normal_dev_deg=15.0,
+        ),
+    ),
+    (
+        "eps6_sup1500_n15",
+        RansacStudParams(
+            epsilon_absolute_m=0.006,
+            bitmap_epsilon_absolute_m=0.020,
+            support_points=1500,
+            max_normal_dev_deg=15.0,
+        ),
+    ),
+    (
+        "eps6_sup2000_n15",
+        RansacStudParams(
+            epsilon_absolute_m=0.006,
+            bitmap_epsilon_absolute_m=0.020,
+            support_points=2000,
+            max_normal_dev_deg=15.0,
+        ),
+    ),
     (
         "eps6_sup800_n25_bmp12",
-        RansacStudParams(bitmap_epsilon_absolute_m=0.012, max_normal_dev_deg=25.0),
+        RansacStudParams(
+            epsilon_absolute_m=0.006,
+            bitmap_epsilon_absolute_m=0.012,
+            support_points=800,
+            max_normal_dev_deg=25.0,
+        ),
     ),
     (
         "eps10_sup800_n25",
-        RansacStudParams(epsilon_absolute_m=0.010, max_normal_dev_deg=25.0),
+        RansacStudParams(
+            epsilon_absolute_m=0.010,
+            bitmap_epsilon_absolute_m=0.020,
+            support_points=800,
+            max_normal_dev_deg=25.0,
+        ),
     ),
 )
 

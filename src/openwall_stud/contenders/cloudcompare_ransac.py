@@ -98,24 +98,29 @@ _VERTICAL_MAX_DEG = 15.0
 class RansacStudParams:
     """Knobs for one stud-sized box. See knob_notes and doc 21.
 
-    Starting point before the S1 grid, chosen from the generator, not from
-    a field scan:
+    Chosen on the three-scene grid in ``scripts/tune_cloudcompare_stud.py``
+    (0°, 0.15° about +X, 4° about +Y). Several plane-only rows tied on
+    section. This row also tied the best angle and returned four planes,
+    one per long face. See docs/research/21-cloudcompare-stud-param-tune.md.
 
     - epsilon 6 mm: above the 1 mm noise, below half the 38 mm thickness,
       so the opposite face stays a separate plane.
-    - bitmap epsilon 20 mm: a few times the 5 mm surface spacing, so one
-      face is one connected primitive.
+    - bitmap epsilon 12 mm: just above the 5 mm surface spacing. 20 mm tied
+      on the grid; 12 mm is the tighter cell that still kept one face intact.
     - support 800: above an end cap (~135 points at 5 mm) and below half of
-      a narrow face (~3700), so small fragments drop and a split face can remain.
-    - max normal deviation 15°: the faces are flat. 25° was the untuned value.
+      a narrow face (~3700). The grid's support-400 rows kept extra fragments.
+    - max normal deviation 25°: the faces are flat, and 25° beat 15° on the
+      upright scene's long-axis angle (0.0056° versus 0.0077°).
     - probability 0.01: the plugin default overlooking probability.
     - PLANE only: a dressed 2x4 is not a cylinder, sphere, cone, or torus.
+      Leaving the cylinder on dropped two long faces on the upright stud
+      and failed the 0.05° angle bar.
     """
 
     epsilon_absolute_m: float = 0.006
-    bitmap_epsilon_absolute_m: float = 0.020
+    bitmap_epsilon_absolute_m: float = 0.012
     support_points: int = 800
-    max_normal_dev_deg: float = 15.0
+    max_normal_dev_deg: float = 25.0
     probability: float = 0.01
     primitives: tuple[str, ...] = ("PLANE",)
 

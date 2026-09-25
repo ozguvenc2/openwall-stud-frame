@@ -237,6 +237,8 @@ Rank 2 metrics are the run that the scorecard names. They are not a libpcl measu
 
 Rank 3 returned primitive boxes on 25 of 25 scorecards. Stage 0 bars: pass 0, fail 25, blocked_install 0. CloudCompare 2.14.beta (Aug 29 2026) RANSAC-SD, one OBB per plane or cylinder primitive, primitives not merged. Binary: `C:\Program Files\CloudCompare\CloudCompare.exe`. Discovery source: env. Discovery order is the `CLOUDCOMPARE_EXE` environment variable, then `C:\Program Files\CloudCompare\CloudCompare.exe` when that file exists, then PATH. Smoke test (`CloudCompare -SILENT -NO_TIMESTAMP`) succeeded. Version: 2.14.beta (Aug 29 2026). Return code: 0. Record: `artifacts/scorecards/cloudcompare_smoke.json`.
 
+Those rank 3 numbers are the untuned multi-plane pass. A later tune merges the four long faces into one stud box and passes 25 of 25 stage-0 bars. Write-up: [21-cloudcompare-stud-param-tune.md](21-cloudcompare-stud-param-tune.md). The three rank 3 PNGs below are that tuned pass.
+
 ## Controls
 
 ### Rank 4. Pointcept PTv3 / PointGroup (hook only until labeled Stage 5)
@@ -323,19 +325,19 @@ Stage 0 bars: `pass`. Paint: yellow x1.
 
 ### Rank 3 `s1_2x4_lean0.000_axnone`
 
-Stage 0 bars: `fail`. Paint: yellow x7.
+Untuned scorecard in the table above: `fail`, several face planes. The PNG is the tuned one-box pass (doc 21). Paint: yellow x1.
 
 ![CloudCompare RANSAC-SD / CloudComPy s1_2x4_lean0.000_axnone](images/phase1-s1/r3_cloudcompare__s1_2x4_lean0.000_axnone.png)
 
 ### Rank 3 `s1_2x4_lean0.150_ax+X`
 
-Stage 0 bars: `fail`. Paint: yellow x7.
+Untuned scorecard in the table above: `fail`, several face planes. The PNG is the tuned one-box pass (doc 21). Paint: yellow x1.
 
 ![CloudCompare RANSAC-SD / CloudComPy s1_2x4_lean0.150_ax+X](images/phase1-s1/r3_cloudcompare__s1_2x4_lean0.150_axpX.png)
 
 ### Rank 3 `s1_2x4_lean4.000_ax+Y`
 
-Stage 0 bars: `fail`. Paint: yellow x6.
+Untuned scorecard in the table above: `fail`, several face planes. The PNG is the tuned one-box pass (doc 21). Paint: yellow x1.
 
 ![CloudCompare RANSAC-SD / CloudComPy s1_2x4_lean4.000_ax+Y](images/phase1-s1/r3_cloudcompare__s1_2x4_lean4.000_axpY.png)
 
