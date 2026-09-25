@@ -125,10 +125,10 @@ def main(argv: list[str] | None = None) -> int:
         failures.extend(scene_failures)
         finished.append((scene, card, scene_failures, scorecard_name))
 
-    pcl_main(["--out", str(args.out_dir / "pcl_stub.json")])
-    cc_main(["--out", str(args.out_dir / "cloudcompare_stub.json")])
-    pt_main(["--out", str(args.out_dir / "pointcept_stub.json")])
-    ml_main(["--out", str(args.out_dir / "open3d_ml_stub.json")])
+    pcl_main(["--stub", "--out", str(args.out_dir / "pcl_stub.json")])
+    cc_main(["--stub", "--out", str(args.out_dir / "cloudcompare_stub.json")])
+    pt_main(["--stub", "--out", str(args.out_dir / "pointcept_stub.json")])
+    ml_main(["--stub", "--out", str(args.out_dir / "open3d_ml_stub.json")])
 
     stub_notes = {
         "pcl": "Stub. PCL was not executed. Metrics left null.",

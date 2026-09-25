@@ -1,0 +1,98 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A5",
+  "algorithm": "Open3D-ML RandLA-Net or KPConv, S3DIS weights (control only)",
+  "rank": 5,
+  "stage": 0,
+  "status": "blocked_install",
+  "epsilon_locked": false,
+  "metrics_are_measurements": false,
+  "measurement_scope": "not measured; the stack did not segment this cloud",
+  "scene": {
+    "name": "stage0_2x4_lean0.050",
+    "stage": 0,
+    "nominal": "2x4",
+    "lean_deg": 0.05,
+    "seed": 2,
+    "spacing_m": 0.005,
+    "noise_std_m": 0.001,
+    "n_points": 25666,
+    "length_m": 2.4383999999999997,
+    "section_m": [
+      0.038099999999999995,
+      0.08889999999999999
+    ],
+    "reference": "gravity_z_no_floor_plane",
+    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "description": "Synthetic single stud. Generator gravity is +Z."
+  },
+  "attempt": {
+    "cloud_loaded": true,
+    "n_points": 25666,
+    "open3d_ml_torch_probe": "ModuleNotFoundError: No module named 'torch'",
+    "ml_torch_imported": false,
+    "weights_downloaded": false,
+    "forward_pass": false,
+    "label_histogram": null
+  },
+  "blocker": "Open3D-ML S3DIS control did not run a forward pass. Import probe: ModuleNotFoundError: No module named 'torch'. S3DIS RandLA-Net and KPConv weights were not downloaded. There is no NVIDIA GPU. The open3d pin stays 0.20.0; a separate ML extra was not installed over it. The stage 0 cloud was loaded in-process (25666 points). No label histogram was produced, and no stud box was fit from an office class. S3DIS mIoU is not copied here. Metrics are null.",
+  "blocker_short": "Open3D-ML weights not loaded and no forward pass. Cloud loaded. Metrics null.",
+  "detection": {
+    "n_true": null,
+    "n_pred": null,
+    "true_positives": null,
+    "false_positives": null,
+    "false_negatives": null,
+    "precision": null,
+    "recall": null,
+    "note": "Open3D-ML S3DIS control did not run a forward pass. Import probe: ModuleNotFoundError: No module named 'torch'. S3DIS RandLA-Net and KPConv weights were not downloaded. There is no NVIDIA GPU. The open3d pin stays 0.20.0; a separate ML extra was not installed over it. The stage 0 cloud was loaded in-process (25666 points). No label histogram was produced, and no stud box was fit from an office class. S3DIS mIoU is not copied here. Metrics are null."
+  },
+  "geometry": {
+    "max_section_error_mm": null,
+    "max_length_error_mm": null,
+    "per_stud": [],
+    "note": "Open3D-ML S3DIS control did not run a forward pass. Import probe: ModuleNotFoundError: No module named 'torch'. S3DIS RandLA-Net and KPConv weights were not downloaded. There is no NVIDIA GPU. The open3d pin stays 0.20.0; a separate ML extra was not installed over it. The stage 0 cloud was loaded in-process (25666 points). No label histogram was produced, and no stud box was fit from an office class. S3DIS mIoU is not copied here. Metrics are null."
+  },
+  "angle": {
+    "mae_deg": null,
+    "pct_in_band": null,
+    "band_deg": null,
+    "per_stud": [],
+    "note": "Open3D-ML S3DIS control did not run a forward pass. Import probe: ModuleNotFoundError: No module named 'torch'. S3DIS RandLA-Net and KPConv weights were not downloaded. There is no NVIDIA GPU. The open3d pin stays 0.20.0; a separate ML extra was not installed over it. The stage 0 cloud was loaded in-process (25666 points). No label histogram was produced, and no stud box was fit from an office class. S3DIS mIoU is not copied here. Metrics are null."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "production_colors": [],
+    "hypothetical_placeholder_epsilon_deg": null,
+    "hypothetical_colors": [],
+    "note": "Open3D-ML S3DIS control did not run a forward pass. Import probe: ModuleNotFoundError: No module named 'torch'. S3DIS RandLA-Net and KPConv weights were not downloaded. There is no NVIDIA GPU. The open3d pin stays 0.20.0; a separate ML extra was not installed over it. The stage 0 cloud was loaded in-process (25666 points). No label histogram was produced, and no stud box was fit from an office class. S3DIS mIoU is not copied here. Metrics are null."
+  },
+  "cost": {
+    "runtime_s": null,
+    "license": "Open3D-ML MIT; upstream RandLA-Net repo is CC BY-NC-SA 4.0",
+    "hardware": "GPU typical for the zoo models; no NVIDIA device in this VM",
+    "failure_modes": [
+      "S3DIS classes are finished office scenes, not a bare 2x4.",
+      "Semantic labels are not stud instances.",
+      "Weights were not downloaded, so there is no histogram to record.",
+      "S3DIS mIoU is not a stud score."
+    ],
+    "note": "Open3D-ML S3DIS control did not run a forward pass. Import probe: ModuleNotFoundError: No module named 'torch'. S3DIS RandLA-Net and KPConv weights were not downloaded. There is no NVIDIA GPU. The open3d pin stays 0.20.0; a separate ML extra was not installed over it. The stage 0 cloud was loaded in-process (25666 points). No label histogram was produced, and no stud box was fit from an office class. S3DIS mIoU is not copied here. Metrics are null."
+  },
+  "notes": [
+    "Open3D-ML S3DIS control did not run a forward pass. Import probe: ModuleNotFoundError: No module named 'torch'. S3DIS RandLA-Net and KPConv weights were not downloaded. There is no NVIDIA GPU. The open3d pin stays 0.20.0; a separate ML extra was not installed over it. The stage 0 cloud was loaded in-process (25666 points). No label histogram was produced, and no stud box was fit from an office class. S3DIS mIoU is not copied here. Metrics are null."
+  ],
+  "stage0_pass_fail": "blocked_install",
+  "stage0_bar_failures": [],
+  "stage0_bars": {
+    "detection": "precision = 1 and recall = 1",
+    "section_mm": 10.0,
+    "length_mm": 25.0,
+    "max_abs_angle_deg": 0.05,
+    "paint": "every production color yellow",
+    "scope": "synthetic stage 0 bring-up, not a field test"
+  },
+  "scorecard_name": "one_stud_open3d_ml.json",
+  "figure": "docs/research/images/one-stud-five-finders/05-open3d-ml.png"
+}
