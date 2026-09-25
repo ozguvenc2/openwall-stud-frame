@@ -83,6 +83,13 @@ def apply_verdict(card: dict[str, Any]) -> str:
         card["stage0_bar_failures"] = []
         card["stage0_bars"] = _bars_record()
         return "blocked_install"
+    if status == "ran" and card.get("stud_metrics_scored") is False:
+        card["stage0_pass_fail"] = "control"
+        card["stage0_bar_failures"] = [
+            "No stud class in the forward-pass vocabulary, so stud bars were not scored."
+        ]
+        card["stage0_bars"] = _bars_record()
+        return "control"
     if status != "ran":
         card["stage0_pass_fail"] = "not_run"
         card["stage0_bar_failures"] = []
@@ -98,6 +105,13 @@ def day_notes(card: dict[str, Any], scorecard_name: str) -> str:
     if card.get("status") == "blocked_install":
         short = card.get("blocker_short") or "See the scorecard blocker."
         return f"Blocked install. Metrics left null. {short} Scorecard: {scorecard_name}."
+    if card.get("status") == "ran" and card.get("stud_metrics_scored") is False:
+        short = card.get("implementation_short") or card.get("algorithm") or ""
+        return (
+            "Control forward pass on the synthetic stage 0 stud. "
+            "Stud precision, recall, section, length, angle, and paint were left null. "
+            f"{short} Scorecard: {scorecard_name}."
+        )
     short = card.get("implementation_short") or card.get("algorithm") or ""
     verdict = card.get("stage0_pass_fail") or ""
     return (
@@ -113,6 +127,19 @@ def figure_lines(card: dict[str, Any]) -> list[str]:
             "Scaffold. No oriented box was fit, so none is drawn.",
             str(card.get("blocker_short") or ""),
             "Synthetic 2x4, lean 0.05 deg, seed 2. Not a field cloud.",
+        ]
+    if card.get("stud_metrics_scored") is False:
+        hist = (card.get("control") or {}).get("label_histogram") or []
+        ranked = sorted(hist, key=lambda item: int(item.get("count") or 0), reverse=True)
+        top = ", ".join(
+            f"{item.get('name')} {item.get('count')}" for item in ranked[:4] if item.get("count")
+        )
+        cost = card.get("cost") or {}
+        return [
+            "Control forward pass. No stud class, so no oriented box was fit.",
+            f"Top labels: {top or 'none'}",
+            f"runtime {cost.get('runtime_s')} s    stud bars: not scored",
+            "Synthetic 2x4, lean 0.05 deg, seed 2, reference +Z. Not a field measurement.",
         ]
     det = card.get("detection") or {}
     geom = card.get("geometry") or {}

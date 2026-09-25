@@ -1,6 +1,6 @@
 # One synthetic stud, five finders
 
-Date (America/Los_Angeles): **2026-09-25**. This note records one Stage 0 cloud through the five ranked finders, then rank 6 (pyRANSAC-3D sequential cuboid, the doc 17 add), then stops. It is a synthetic bring-up. It is not a field measurement, not a phone-LiDAR result, and not a stage 2, stage 3, or lean-sweep result. Ranks 1–5 are the PR #15 numbers and were not re-rolled. Rank 6 was appended with `python -m openwall_stud.contenders.pyransac3d_cuboid` on that same cloud.
+Date (America/Los_Angeles): **2026-09-25**. This note records one Stage 0 cloud through the five ranked finders, then rank 6 (pyRANSAC-3D sequential cuboid, the doc 17 add), then stops. It is a synthetic bring-up. It is not a field measurement, not a phone-LiDAR result, and not a stage 2, stage 3, or lean-sweep result. Ranks 1–5 below are the PR #15 numbers from the Linux VM and were not re-rolled here. Rank 6 was appended with `python -m openwall_stud.contenders.pyransac3d_cuboid` on that same cloud. Ranks 4 and 5 were later attempted on Oz_PC; that pass is [18-ozpc-ranks4-5-run.md](18-ozpc-ranks4-5-run.md), and the 2026-09-25 day-table rows for `pointcept` and `open3d_ml` follow that later pass.
 
 Machine-readable twin: [16-one-stud-five-finder-run.json](16-one-stud-five-finder-run.json).
 

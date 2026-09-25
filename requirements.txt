@@ -5,5 +5,7 @@
 open3d==0.20.0
 numpy>=1.26
 matplotlib>=3.8
+# ZoneInfo("America/Los_Angeles") on Windows. The Linux base image already has tzdata.
+tzdata
 # Apache-2.0 sequential cuboid (bake-off rank 6). Concept DOI 10.5281/zenodo.7212567.
 pyransac3d==0.7.0

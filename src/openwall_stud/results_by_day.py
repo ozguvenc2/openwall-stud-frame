@@ -229,7 +229,7 @@ Dates are **America/Los_Angeles**. This page is regenerated from [`../../artifac
 
 One row is one algorithm on one scene that day, compared with that scene’s ground truth. `python scripts/run_stage0_baseline.py` upserts rows when a run finishes: the same date, stage, scene, and algorithm is updated; a later date is appended. The one-stud finder commands upsert the same way, including `pyransac3d` for bake-off rank 6. Hand-added CSV rows are kept. Refresh this page with `python -m openwall_stud.results_by_day` from the repo root (`PYTHONPATH=src`).
 
-`paint_correct_pct` is the share of studs whose production color matches the paint rule. While `device_eps_deg` is empty, the rule is yellow on every stud, so the percentage is that check only. It is not a green/red score against a level. `pass_fail` is `pass` or `fail` against that scene's bars when a stack was scored, `blocked_install` when the cloud was loaded but the stack could not segment (metrics left empty), and `not_run` for a stub that did not attempt the cloud. A later `not_run` stub does not replace a same-day `pass`, `fail`, or `blocked_install` row. Empty cells were not measured.
+`paint_correct_pct` is the share of studs whose production color matches the paint rule. While `device_eps_deg` is empty, the rule is yellow on every stud, so the percentage is that check only. It is not a green/red score against a level. `pass_fail` is `pass` or `fail` against that scene's bars when a stack was scored, `control` when a forward pass ran but the vocabulary has no stud class (stud cells left empty; the histogram is on the scorecard), `blocked_install` when the cloud was loaded but the stack could not segment (metrics left empty), and `not_run` for a stub that did not attempt the cloud. A later `not_run` stub does not replace a same-day `pass`, `fail`, `blocked_install`, or `control` row. Empty cells were not measured.
 
 Ground-truth sources intended for later rows: `synthetic`, `skil`, `total_station`, `hand_label`. Do not type a field number that was not measured.
 
@@ -258,8 +258,11 @@ def append_day_row(
     root: Path | None = None,
 ) -> dict[str, Any]:
     """Insert or replace one day-row and rewrite CSV, JSON, and markdown."""
-    if pass_fail not in {"pass", "fail", "not_run", "blocked_install"}:
-        raise ValueError(f"pass_fail must be pass, fail, not_run, or blocked_install, got {pass_fail!r}")
+    if pass_fail not in {"pass", "fail", "not_run", "blocked_install", "control"}:
+        raise ValueError(
+            "pass_fail must be pass, fail, not_run, blocked_install, or control, "
+            f"got {pass_fail!r}"
+        )
     if pass_fail in {"pass", "fail"} and card is None:
         raise ValueError("a measured row needs the scorecard that produced it")
     row = row_from_card(
@@ -278,7 +281,12 @@ def append_day_row(
     # not wipe a same-day pass, fail, or blocked_install from the one-stud run.
     if pass_fail == "not_run":
         for existing in rows:
-            if _key(existing) == key and existing.get("pass_fail") in {"pass", "fail", "blocked_install"}:
+            if _key(existing) == key and existing.get("pass_fail") in {
+                "pass",
+                "fail",
+                "blocked_install",
+                "control",
+            }:
                 return existing
     replaced = False
     for index, existing in enumerate(rows):

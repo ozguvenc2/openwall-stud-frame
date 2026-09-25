@@ -22,6 +22,7 @@ def publish_attempt(
     figure: Path | None,
     write_day_row: bool = True,
 ) -> dict[str, Any]:
+    point_colors = card.pop("_point_colors", None)
     verdict = apply_verdict(card)
     card["scorecard_name"] = out.name
     write_scorecard(out, card)
@@ -31,6 +32,8 @@ def publish_attempt(
         segments = [item.segments_m for item in detections]
         if card.get("status") != "ran":
             banner = "BLOCKED INSTALL"
+        elif card.get("stud_metrics_scored") is False:
+            banner = "CONTROL — NO STUD BOX"
         elif not segments:
             banner = "RAN, NO BOX"
         else:
@@ -43,11 +46,12 @@ def publish_attempt(
             title=title,
             lines=figure_lines(card),
             banner=banner,
+            point_colors=point_colors,
         )
         try:
-            card["figure"] = str(figure.resolve().relative_to(repo_root()))
+            card["figure"] = str(figure.resolve().relative_to(repo_root())).replace("\\", "/")
         except ValueError:
-            card["figure"] = str(figure)
+            card["figure"] = str(figure).replace("\\", "/")
         write_scorecard(out, card)
     if write_day_row:
         from openwall_stud.results_by_day import repo_root

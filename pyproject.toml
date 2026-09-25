@@ -8,6 +8,7 @@ dependencies = [
   "open3d==0.20.0",
   "numpy>=1.26",
   "matplotlib>=3.8",
+  "tzdata",
   "pyransac3d==0.7.0",
 ]
 
