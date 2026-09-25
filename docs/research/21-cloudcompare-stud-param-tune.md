@@ -74,6 +74,26 @@ Scorecards: `artifacts/scorecards/phase1_s1_cc_tuned/r3_cloudcompare__*.json`. S
 
 Binary: `C:\Program Files\CloudCompare\CloudCompare.exe`, version 2.14.beta (Aug 29 2026). Separate process. GPL sources were not copied into this repo.
 
+## Command line on this build
+
+`-H` is not a command in CloudCompare 2.14.beta. Passing it opens the command-line window with `Unknown or misplaced command: '-H'`. That probe is not part of the stud fit. The 25 scorecards never used it.
+
+Help on this install is `-HELP`, and only after silent mode is already on:
+
+```
+CloudCompare.exe -SILENT -NO_TIMESTAMP -HELP
+```
+
+That listing (exit 0) includes `-RANSAC`, `-O`, `-AUTO_SAVE`, `-C_EXPORT_FMT`, `-PLY_EXPORT_FMT`, and `-NO_TIMESTAMP`. It does not include `-H`. `-SILENT` is an early switch, not one of the registered commands. `-H_EXPORT_FMT` is a different command (hierarchy export format).
+
+The stud launch stays:
+
+```
+CloudCompare.exe -SILENT -NO_TIMESTAMP -AUTO_SAVE OFF -C_EXPORT_FMT PLY -PLY_EXPORT_FMT ASCII -O <ply> -RANSAC ...
+```
+
+`-SILENT` is the first argument so a later bad token cannot open a dialog. The process is started with no console window. A repeat of the upright scene after this check still returned one box.
+
 ## Representative views
 
 Section view looks along generator Z. One yellow box. ε is unlocked.

@@ -27,6 +27,11 @@ Entrypoint
     ``--smoke`` launches ``CloudCompare -SILENT -NO_TIMESTAMP`` once and writes
     ``artifacts/scorecards/cloudcompare_smoke.json``.
 
+    This 2.14.beta build has no ``-H`` switch. That token is
+    ``Unknown or misplaced command: '-H'`` and opens the command-line window.
+    The stud command always starts with ``-SILENT -NO_TIMESTAMP``. Listing
+    commands, when needed, is ``-SILENT -NO_TIMESTAMP -HELP``.
+
 Do not
     Do not link CloudComPy into a closed-source app.
     Do not treat a cylinder fit on a 2x4 as a stud instance.
@@ -534,6 +539,36 @@ def _subprocess_kwargs() -> dict[str, Any]:
     return {}
 
 
+# Exact tokens. -HELP and -H_EXPORT_FMT are real commands and are not this set.
+# -H is not a command on CloudCompare 2.14.beta. It opens an error dialog.
+_REJECTED_COMMANDS = {"-H", "-h"}
+
+
+def _guard_cloudcompare_command(command: list[str]) -> None:
+    """Refuse flags that pop a dialog on this build, and require silent mode.
+
+    ``-SILENT`` has to be the first argument. If it comes later, an unknown
+    token is reported in the command-line window before silent mode is on.
+    """
+    rejected = [token for token in command if token in _REJECTED_COMMANDS]
+    if rejected:
+        raise ValueError(
+            f"{rejected[0]} is not a CloudCompare 2.14.beta command. "
+            "The build reports Unknown or misplaced command and opens a dialog. "
+            "Start with -SILENT -NO_TIMESTAMP. List commands with -HELP after that."
+        )
+    if len(command) < 2 or command[1] != "-SILENT":
+        raise ValueError(
+            "CloudCompare must be started with -SILENT so command-line errors "
+            "stay off the desktop. -H is not a help flag on this build."
+        )
+
+
+def _run_cloudcompare(command: list[str], **kwargs: Any) -> subprocess.CompletedProcess[str]:
+    _guard_cloudcompare_command(command)
+    return subprocess.run(command, **kwargs)
+
+
 def build_stub_card() -> dict:
     return stub_card(
         algorithm_id="A3",
@@ -625,7 +660,7 @@ def run_one_stud(
     ]
     env = _process_env()
     started = time.perf_counter()
-    proc = subprocess.run(
+    proc = _run_cloudcompare(
         command,
         check=False,
         capture_output=True,
@@ -839,7 +874,9 @@ def smoke_test() -> dict[str, Any]:
         return record
     command = [binary, "-SILENT", "-NO_TIMESTAMP"]
     record["command"] = command
-    proc = subprocess.run(
+    record["help_command"] = [binary, "-SILENT", "-NO_TIMESTAMP", "-HELP"]
+    record["rejected_flag"] = "-H"
+    proc = _run_cloudcompare(
         command,
         check=False,
         capture_output=True,
