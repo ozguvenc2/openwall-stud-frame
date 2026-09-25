@@ -1,0 +1,102 @@
+{
+  "stack": "control_randlanet",
+  "role": "office vocabulary control",
+  "vocabulary": [
+    "ceiling",
+    "floor",
+    "wall",
+    "beam",
+    "column",
+    "window",
+    "door",
+    "table",
+    "chair",
+    "sofa",
+    "bookcase",
+    "board",
+    "clutter"
+  ],
+  "wall_class_ids": [
+    2
+  ],
+  "histogram": [
+    {
+      "id": 0,
+      "name": "ceiling",
+      "count": 0
+    },
+    {
+      "id": 1,
+      "name": "floor",
+      "count": 11315
+    },
+    {
+      "id": 2,
+      "name": "wall",
+      "count": 0
+    },
+    {
+      "id": 3,
+      "name": "beam",
+      "count": 0
+    },
+    {
+      "id": 4,
+      "name": "column",
+      "count": 0
+    },
+    {
+      "id": 5,
+      "name": "window",
+      "count": 0
+    },
+    {
+      "id": 6,
+      "name": "door",
+      "count": 0
+    },
+    {
+      "id": 7,
+      "name": "table",
+      "count": 0
+    },
+    {
+      "id": 8,
+      "name": "chair",
+      "count": 0
+    },
+    {
+      "id": 9,
+      "name": "sofa",
+      "count": 0
+    },
+    {
+      "id": 10,
+      "name": "bookcase",
+      "count": 194
+    },
+    {
+      "id": 11,
+      "name": "board",
+      "count": 0
+    },
+    {
+      "id": 12,
+      "name": "clutter",
+      "count": 149934
+    }
+  ],
+  "runtime_s": 1.0598,
+  "wall_clock_s": 3.471,
+  "recovered_vertical_planes": [],
+  "two_faces": false,
+  "lean_vs_planted": null,
+  "named_face_iou": null,
+  "note": "S3DIS has one wall class, not wall_a and wall_b. RGB channels were zeros. Not a stud score.",
+  "scene": "phase2_corner_skil_means",
+  "n_points": 161443,
+  "class_F": false,
+  "stud_detection": "not_claimed",
+  "production_paint": "yellow",
+  "epsilon_locked": false
+}

@@ -1,0 +1,148 @@
+{
+  "stack": "corner_pointcept",
+  "role": "3-class corner head, canonical scene held out of that train",
+  "vocabulary": [
+    "floor",
+    "wall_a",
+    "wall_b"
+  ],
+  "histogram": [
+    {
+      "id": 0,
+      "name": "floor",
+      "count": 6165
+    },
+    {
+      "id": 1,
+      "name": "wall_a",
+      "count": 148238
+    },
+    {
+      "id": 2,
+      "name": "wall_b",
+      "count": 7040
+    }
+  ],
+  "class_scores": {
+    "floor": {
+      "tp": 6148,
+      "fp": 17,
+      "fn": 413,
+      "precision": 0.997242497972425,
+      "recall": 0.9370522786160647,
+      "iou": 0.9346305868044998
+    },
+    "wall_a": {
+      "tp": 77441,
+      "fp": 70797,
+      "fn": 0,
+      "precision": 0.5224099083905611,
+      "recall": 1.0,
+      "iou": 0.5224099083905611
+    },
+    "wall_b": {
+      "tp": 7030,
+      "fp": 10,
+      "fn": 70411,
+      "precision": 0.9985795454545454,
+      "recall": 0.09077878643096035,
+      "iou": 0.09076706562859098
+    }
+  },
+  "faces": {
+    "planes": {
+      "wall_a": {
+        "points": 148238,
+        "lean_from_vertical_deg": 0.18200335633149922,
+        "rmse_mm": 165.3195032068938,
+        "normal_xyz": [
+          0.7283843423087684,
+          0.6851614111972403,
+          0.003176552475481355
+        ],
+        "vertical": true,
+        "abs_error_vs_planted_deg": 0.20132997700183408,
+        "normal_angle_vs_planted_deg": 43.252022068564045
+      },
+      "wall_b": {
+        "points": 7040,
+        "lean_from_vertical_deg": 0.25111671051844703,
+        "rmse_mm": 1.971256486210867,
+        "normal_xyz": [
+          7.775832970896489e-05,
+          0.9999903924654936,
+          0.004382799373721769
+        ],
+        "vertical": true,
+        "abs_error_vs_planted_deg": 0.0011167105184470283,
+        "normal_angle_vs_planted_deg": 0.004593045364665086
+      },
+      "floor": {
+        "points": 6165,
+        "lean_from_vertical_deg": 89.99800960916077,
+        "rmse_mm": 2.0181724558730223,
+        "normal_xyz": [
+          -3.234451702992272e-05,
+          1.2673663250950084e-05,
+          0.9999999993966053
+        ],
+        "vertical": false
+      }
+    },
+    "face_detected": {
+      "wall_a": false,
+      "wall_b": true
+    },
+    "bring_up_bar": "lean within 0.5\u00b0, normal within 20\u00b0, RMSE within 15 mm",
+    "bring_up_bar_note": "Synthetic check only. Not \u03c4, not \u03b5, not a paint call."
+  },
+  "two_faces": false,
+  "checkpoint": "C:\\Repos\\openwall-stud-frame-phase2\\artifacts\\weights\\finetune\\pointcept_corner_3class.pth",
+  "checkpoint_meta": {
+    "epoch": 11,
+    "epochs": 12,
+    "decoder_epochs": 2,
+    "decoder_losses": [
+      0.3537139557301998,
+      0.1674925135448575
+    ],
+    "decoder_trainable_count": 180,
+    "losses": [
+      1.0685995742678642,
+      0.9137440025806427,
+      0.80040243268013,
+      0.7345034182071686,
+      0.6910838857293129,
+      0.6717929914593697,
+      0.6510241404175758,
+      0.6359648182988167,
+      0.6267673149704933,
+      0.6131080314517021,
+      0.6109755411744118,
+      0.5938223749399185
+    ],
+    "runtime_s": 19.062,
+    "classes": [
+      "floor",
+      "wall_a",
+      "wall_b"
+    ],
+    "held_out": "phase2_corner_skil_means seed 25",
+    "backbone_copied": 486,
+    "trainable": [
+      "seg_head.0.weight",
+      "seg_head.0.bias",
+      "seg_head.3.weight",
+      "seg_head.3.bias"
+    ],
+    "not_studs": true
+  },
+  "runtime_s": 8.105,
+  "production_paint": "yellow",
+  "epsilon_locked": false,
+  "note": "Labels are floor, wall_a, wall_b. Not studs. A face flag also requires the normal and a 15 mm RMSE, so a blended plane cannot pass on lean alone. The 0.5\u00b0 flag is a synthetic bring-up check.",
+  "scene": "phase2_corner_skil_means",
+  "n_points": 161443,
+  "class_F": false,
+  "stud_detection": "not_claimed"
+}

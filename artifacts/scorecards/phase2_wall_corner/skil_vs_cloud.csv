@@ -1,0 +1,17 @@
+source,height,display_deg,lean_from_vertical_deg,notes
+SKIL Face A,top,89.95,0.05,doorway / hall side
+SKIL Face A,mid,89.75,0.25,doorway / hall side
+SKIL Face A,bottom,89.15,0.85,doorway / hall side
+SKIL Face A mean,mean,,0.3833,mean of three leans
+SKIL Face B,top,89.85,0.15,cat-tree / plant side
+SKIL Face B,mid,89.95,0.05,cat-tree / plant side
+SKIL Face B,bottom,89.45,0.55,cat-tree / plant side
+SKIL Face B mean,mean,,0.2500,mean of three leans
+plane_1,global_plane,,1.003417,not registered to a SKIL face
+plane_1,bottom,,0.369275,z -1.241 to -0.468 m
+plane_1,mid,,1.441439,z -0.468 to 0.546 m
+plane_1,top,,0.080365,z 0.546 to 1.246 m
+plane_2,global_plane,,0.763264,not registered to a SKIL face
+plane_2,bottom,,1.044340,z -1.237 to -0.498 m
+plane_2,mid,,0.865219,z -0.498 to 0.264 m
+plane_2,top,,0.422646,z 0.264 to 1.247 m

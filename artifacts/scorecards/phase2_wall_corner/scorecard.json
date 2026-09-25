@@ -1,0 +1,285 @@
+{
+  "study": "TruePlank",
+  "suite": "OpenWall",
+  "app": "TruePlank",
+  "phase": 2,
+  "name": "painted_outside_wall_corner_plumb_pilot",
+  "date": "2026-09-25",
+  "timezone": "America/Los_Angeles",
+  "machine": "Oz_PC",
+  "class": "wall_plumb_pilot",
+  "class_F_stud_qa": false,
+  "stud_detection": "not_claimed",
+  "production_paint": "yellow",
+  "epsilon_locked": false,
+  "epsilon_deg": null,
+  "open3d": "0.20.0",
+  "numpy": "2.5.3",
+  "vertical_axis": "export_+Z",
+  "vertical_axis_note": "Lot62 loft exports sit on Z (floor near z=0, ceiling near 2.45 m). This corner's long axis is the same Z, span about 2.50 m, plan extent under 0.9 m. Wall lean is the angle between the fitted plane and +Z. It is not an IMU pair and it is not a stud-axis angle.",
+  "cloud": {
+    "path": "data/raw/polycam/wall_corner_2026-09-25.ply",
+    "gitignored": true,
+    "points": 2560150,
+    "bytes": 69124261,
+    "extent_m": [
+      0.8339390803131854,
+      0.8732775940250299,
+      2.4970669532060845
+    ],
+    "min_xyz_m": [
+      -0.41703096071027407,
+      -0.4364157872131539,
+      -1.248508883061053
+    ],
+    "max_xyz_m": [
+      0.4169081196029114,
+      0.436861806811876,
+      1.2485580701450316
+    ]
+  },
+  "fit": {
+    "voxel_m": 0.004,
+    "ransac_distance_m": 0.01,
+    "refit_distance_m": 0.01,
+    "ransac_iterations": 2500,
+    "refit": "svd_on_full_resolution_inliers"
+  },
+  "walls": [
+    {
+      "slot": "plane_1",
+      "kind": "vertical_wall",
+      "inliers": 943764,
+      "lean_from_vertical_deg": 1.0034165420161407,
+      "rmse_mm": 5.007090605547376,
+      "normal_xyz": [
+        -0.9997906431197776,
+        0.010582950079458744,
+        0.017512027231510883
+      ],
+      "center_xyz_m": [
+        -0.10492035643423968,
+        -0.13359335799594965,
+        0.025744363089070712
+      ],
+      "z_min_m": -1.2407442237442161,
+      "z_max_m": 1.2457438268044374,
+      "height_bins": [
+        {
+          "height": "bottom",
+          "z_lo_m": -1.2407442237442161,
+          "z_hi_m": -0.46799424660562977,
+          "points": 314588,
+          "lean_from_vertical_deg": 0.36927450712158133,
+          "rmse_mm": 2.54926233072463
+        },
+        {
+          "height": "mid",
+          "z_lo_m": -0.46799424660562977,
+          "z_hi_m": 0.5463595926644089,
+          "points": 314588,
+          "lean_from_vertical_deg": 1.4414389164812547,
+          "rmse_mm": 4.859951081400168
+        },
+        {
+          "height": "top",
+          "z_lo_m": 0.5463595926644089,
+          "z_hi_m": 1.2457438268044374,
+          "points": 314588,
+          "lean_from_vertical_deg": 0.08036547107336064,
+          "rmse_mm": 2.570585335199475
+        }
+      ],
+      "skil_face_id": null,
+      "lean_vs_floor_normal_deg": 1.7866172733821744
+    },
+    {
+      "slot": "plane_2",
+      "kind": "vertical_wall",
+      "inliers": 849543,
+      "lean_from_vertical_deg": 0.7632639327102935,
+      "rmse_mm": 3.40468543359316,
+      "normal_xyz": [
+        0.007304708577982953,
+        0.9998845884410268,
+        0.013321074682979717
+      ],
+      "center_xyz_m": [
+        0.09209691399518564,
+        0.0762311504288128,
+        -0.10751029200250399
+      ],
+      "z_min_m": -1.2372180641531587,
+      "z_max_m": 1.247266812728722,
+      "height_bins": [
+        {
+          "height": "bottom",
+          "z_lo_m": -1.2372180641531587,
+          "z_hi_m": -0.49810753468588637,
+          "points": 283181,
+          "lean_from_vertical_deg": 1.0443396176333466,
+          "rmse_mm": 1.9196300462744318
+        },
+        {
+          "height": "mid",
+          "z_lo_m": -0.49810753468588637,
+          "z_hi_m": 0.2635143027472795,
+          "points": 283181,
+          "lean_from_vertical_deg": 0.8652189920371485,
+          "rmse_mm": 3.9970056486647554
+        },
+        {
+          "height": "top",
+          "z_lo_m": 0.2635143027472795,
+          "z_hi_m": 1.247266812728722,
+          "points": 283181,
+          "lean_from_vertical_deg": 0.422646391966921,
+          "rmse_mm": 3.396869052092207
+        }
+      ],
+      "skil_face_id": null,
+      "lean_vs_floor_normal_deg": 1.1096437377468196
+    }
+  ],
+  "floor": {
+    "slot": "floor",
+    "kind": "horizontal_floor_candidate",
+    "inliers": 203967,
+    "lean_from_vertical_deg": 89.14460366012368,
+    "tilt_from_horizontal_deg": 0.8553963398763216,
+    "rmse_mm": 1.9607418237632674,
+    "normal_xyz": [
+      -0.013605028293155557,
+      0.006146226049785555,
+      0.9998885573455111
+    ],
+    "center_xyz_m": [
+      -0.07750037531271167,
+      0.13440205209004666,
+      -1.2319268051809715
+    ],
+    "z_min_m": -1.2432012527094738,
+    "z_max_m": -1.2180417805817885,
+    "note": "Optional. A floor normal is not the plumb reference for this pilot. Export +Z is the vertical used for wall lean. Lean versus this normal is a sensitivity only."
+  },
+  "dihedral_between_wall_normals_deg": 89.79878663954875,
+  "corner_edge_angle_from_plus_z_deg": 1.258640041263062,
+  "corner_edge_xyz": [
+    0.017369136979354986,
+    -0.013446288996264417,
+    0.9997587260898608
+  ],
+  "skil": {
+    "instrument": "SKIL digital level",
+    "display_convention": "about 90 degrees on the display is plumb; lean from vertical is abs(90 - reading)",
+    "display_step_deg": 0.05,
+    "faces": {
+      "A": {
+        "where": "doorway / hall side",
+        "readings": [
+          {
+            "height": "top",
+            "display_deg": 89.95,
+            "lean_deg": 0.05
+          },
+          {
+            "height": "mid",
+            "display_deg": 89.75,
+            "lean_deg": 0.25
+          },
+          {
+            "height": "bottom",
+            "display_deg": 89.15,
+            "lean_deg": 0.85
+          }
+        ]
+      },
+      "B": {
+        "where": "cat-tree / plant side",
+        "readings": [
+          {
+            "height": "top",
+            "display_deg": 89.85,
+            "lean_deg": 0.15
+          },
+          {
+            "height": "mid",
+            "display_deg": 89.95,
+            "lean_deg": 0.05
+          },
+          {
+            "height": "bottom",
+            "display_deg": 89.45,
+            "lean_deg": 0.55
+          }
+        ]
+      }
+    }
+  },
+  "skil_face_mean_lean_deg": {
+    "A": 0.3833333333333333,
+    "B": 0.25
+  },
+  "pairing": {
+    "registered": false,
+    "reason": "The close cloud is an outside corner patch. It does not contain the doorway or the cat tree, so plane 1 and plane 2 are not assigned to Face A or Face B.",
+    "sorted_abs_delta_deg": [
+      0.5132639327102935,
+      0.6200832086828074
+    ],
+    "sorted_cloud_lean_deg": [
+      0.7632639327102935,
+      1.0034165420161407
+    ],
+    "sorted_skil_mean_lean_deg": [
+      0.25,
+      0.3833333333333333
+    ]
+  },
+  "density_ladder": [
+    {
+      "capture": "Lot62 Loft Medium",
+      "file": "room_2026-09-25.ply",
+      "points": 3940,
+      "bytes": 106588,
+      "queries": 3940,
+      "nn_p50_mm": 102.33709458697602,
+      "nn_p90_mm": 158.33030139956776,
+      "nn_mean_mm": 101.10551460303215,
+      "occupied_4mm_voxels": null,
+      "note": "Space/room export. Filename in data/raw/polycam is room_2026-09-25.ply."
+    },
+    {
+      "capture": "Lot62 Loft High",
+      "file": "lot62_loft_2026-09-25_high.ply",
+      "points": 9850,
+      "bytes": 266158,
+      "queries": 9850,
+      "nn_p50_mm": 65.45882288551405,
+      "nn_p90_mm": 111.27231411704977,
+      "nn_mean_mm": 67.95753776100563,
+      "occupied_4mm_voxels": null,
+      "note": "Space/room export, higher density."
+    },
+    {
+      "capture": "WallCorner Custom close",
+      "file": "wall_corner_2026-09-25.ply",
+      "points": 2560150,
+      "bytes": 69124261,
+      "queries": 12000,
+      "nn_p50_mm": 0.4885159377623551,
+      "nn_p90_mm": 0.8682553658409936,
+      "nn_mean_mm": 0.5135649574439327,
+      "occupied_4mm_voxels": 180814,
+      "note": "Close Custom capture of a painted outside corner. Not exposed studs."
+    }
+  ],
+  "limits": [
+    "Painted drywall is not stud wood.",
+    "One global plane cannot reproduce three SKIL heights when the face bows.",
+    "Export +Z is the vertical used here. It is not a surveyed gravity vector paired to the level.",
+    "No stud instance, no oriented stud box, no class-F score.",
+    "\u03b5 stays unlocked. Production paint stays yellow."
+  ],
+  "runtime_s": 3.965
+}

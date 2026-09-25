@@ -20,9 +20,10 @@ See ../Makefile. This file is the draft of record.
 
 | Class | Meaning | In this draft |
 | --- | --- | --- |
-| S | Synthetic bring-up against the generator | Every number in Section 5 |
+| S | Synthetic bring-up against the generator | Sections 5.1–5.4 |
 | R | A sensor model applied to generator geometry | Not defined in the design documents |
-| F | A level, a total station, or a hand label | No rows |
+| F | A level on bare lumber, a total station, or a hand label of studs | No rows. Section 5.5 stays empty |
+| — | Phase-2 painted outside-corner plumb pilot | Section 5.6. Not class F. Not a stud |
 
 ε, the device-plus-software half-width on the lean angle, is unlocked. Production paint is yellow.
 
@@ -30,7 +31,7 @@ See ../Makefile. This file is the draft of record.
 
 Light-frame wood studs are checked in the field with a level and a finish guideline. WoodWorks states that the International Building Code and the American Wood Council’s National Design Specification do not set a light-frame wood construction tolerance, and it summarizes a Handbook tightening to 1/4 inch in 10 feet when finishes such as gypsum wallboard are used. That figure converts to a working angle τ ≈ 0.1194°. Scan-to-BIM systems and historic-timber cuboid pipelines answer a modeling or roof-completeness question. They do not publish one oriented box per bare 2×4, a long-axis angle against a named reference, and a paint rule that stays yellow until a measured instrument band exists.
 
-This paper describes that conjunction as implemented in TruePlank, an OpenWall app. The cloud stays in its capture frame (Z-up in the generator). Each finder returns stud points. A shared step fits one minimal oriented bounding box, measures θ between the long axis and a stored reference, and paints yellow while ε is unknown. Six finders share that post-step. On a class-S protocol of 25 synthetic dressed 2×4 clouds (no floor; leans of 0°, 0.05°, 0.12°, 0.15°, 0.30°, 1°, and 4° about ±X and ±Y), Open3D, a NumPy region-grow cuboid, and sequential pyRANSAC-3D cuboids met the synthetic stage-0 bars on 25 of 25 scenes. CloudCompare RANSAC shape detection, with plane and cylinder enabled and one box per primitive, returned a lean on 25 of 25 scenes and failed those bars on all 25, because each stud became 4–8 face primitives. A stud-only tune of that plugin (plane only, then a merge of the four long faces) passed the same bars on 25 of 25 scenes and returned one box per scene. Office-vocabulary controls (a BIMStruct3D Point Transformer V3 and an S3DIS RandLA-Net) contain no stud class. A later synthetic fine-tune, head-only for the transformer (about 98 s) and a new 2-class layer for RandLA-Net (about 237 s), placed a stud box on 25 of 25 phase-1 clouds. Those clouds have no floor, and both models labeled every point as stud. No jobsite cloud, no level reading, and no measured ε are reported.
+This paper describes that conjunction as implemented in TruePlank, an OpenWall app. The cloud stays in its capture frame (Z-up in the generator). Each finder returns stud points. A shared step fits one minimal oriented bounding box, measures θ between the long axis and a stored reference, and paints yellow while ε is unknown. Six finders share that post-step. On a class-S protocol of 25 synthetic dressed 2×4 clouds (no floor; leans of 0°, 0.05°, 0.12°, 0.15°, 0.30°, 1°, and 4° about ±X and ±Y), Open3D, a NumPy region-grow cuboid, and sequential pyRANSAC-3D cuboids met the synthetic stage-0 bars on 25 of 25 scenes. CloudCompare RANSAC shape detection, with plane and cylinder enabled and one box per primitive, returned a lean on 25 of 25 scenes and failed those bars on all 25, because each stud became 4–8 face primitives. A stud-only tune of that plugin (plane only, then a merge of the four long faces) passed the same bars on 25 of 25 scenes and returned one box per scene. Office-vocabulary controls (a BIMStruct3D Point Transformer V3 and an S3DIS RandLA-Net) contain no stud class. A later synthetic fine-tune, head-only for the transformer (about 98 s) and a new 2-class layer for RandLA-Net (about 237 s), placed a stud box on 25 of 25 phase-1 clouds. Those clouds have no floor, and both models labeled every point as stud. A phase-2 pilot, which is not a class-F stud test, holds a SKIL digital level on a painted residential outside corner and fits two vertical planes to a close Polycam cloud of that corner. SKIL face-mean leans are 0.383° and 0.250°. The planes lean 1.003° and 0.763° from export +Z, and the faces were not registered to each other. Room exports of the same loft stay sparse (nearest-neighbor medians 102 mm and 65 mm). The close export’s raw neighbor median is 0.49 mm, on paint. A synthetic corner with those same SKIL means as planted leans (0.383° and 0.250°) is the neural prep. Office-vocabulary controls and the phase-1 stud heads do not name the two faces. A 12-epoch 3-class head plus two decoder epochs finds the floor and does not recover both walls. ε is still unlocked, and the production paint stays yellow.
 
 ## Keywords
 
@@ -49,7 +50,7 @@ TruePlank’s target, on a bare frame with no drywall and no sheathing, is narro
 
 ε is unknown. The honest production paint is yellow on every stud.
 
-The implementation that exists today is a synthetic bring-up. It covers one classical Open3D stack on curriculum stages 0, 2, and 3 [zhou2018open3d, open3dSoftware], a six-finder pass on one synthetic stud, a 25-scene lean sweep (phase 1, S1), office-vocabulary controls on a GPU workstation, and a synthetic fine-tune of those two networks. No jobsite cloud is in the repository. Section 5 is entirely class S.
+The implementation that exists today is a synthetic bring-up plus one painted-corner pilot. It covers one classical Open3D stack on curriculum stages 0, 2, and 3 [zhou2018open3d, open3dSoftware], a six-finder pass on one synthetic stud, a 25-scene lean sweep (phase 1, S1), office-vocabulary controls on a GPU workstation, and a synthetic fine-tune of those two networks. Phase 2 fits planes to a gitignored Polycam cloud of a painted outside corner and sets those leans beside a SKIL level. That cloud is not in git. It is not a stud. Sections 5.1–5.4 are class S. Section 5.5, class F, is still empty. Section 5.6 is the pilot.
 
 ### 1.1 Gap
 
@@ -67,9 +68,9 @@ C1–C5 were candidates. The status column is what the repository supports on 20
 | --- | --- | --- |
 | C1 | A light-frame stud can be an instance: one tight box, plates peeled, a merged bay counted as a miss, then a long-axis angle against a stored reference. | **Illustrated on class S.** The seven-scene Open3D bring-up (including a four-stud mini-wall) and the 25-scene S1 sweep produce one box and a θ against generator +Z or a fitted floor normal. No independent count on a real bare frame. |
 | C2 | Lean QA stays yellow until a measured device-plus-algorithm band ε exists. | **Implemented, not measured.** Every production color in the scorecards is yellow. The 0.05° placeholder remains an illustration. |
-| C3 | Floor-normal angle and gravity plumb are different references. Replacing the vector repaints the same boxes. | **Specified, not paired.** Stage 0 and S1 use generator +Z. Stages 2 and 3 use a floor normal. No inclinometer or IMU pair exists. |
+| C3 | Floor-normal angle and gravity plumb are different references. Replacing the vector repaints the same boxes. | **Specified, not paired.** Stage 0 and S1 use generator +Z. Stages 2 and 3 use a floor normal. Phase 2 compares a level on paint with a plane angle against export +Z. That is not an inclinometer paired to a stud axis. |
 | C4 | Historic-roof cuboid completeness, Schnabel primitives, indoor mIoU, and a single-stud pose error are the wrong score for 2×4 lean. | **Exercised on class S as a disagreement check.** Untuned Schnabel primitives fail the one-stud bar by returning several faces. A plane-only command plus a four-face merge then meets the stage-0 bars on these 25 clouds, and that merge keeps one box per scene. Office histograms have no stud class. A synthetic fine-tune can emit a box and still is not a field lean. The shared-cloud field bake-off is still open. |
-| C5 | An end-to-end budget (level, LiDAR, algorithm) can sit beside the paint, with empty terms left empty. | **Form still mostly empty.** Algorithm residuals on the generator are recorded in Section 5. Level and LiDAR terms are unfilled. They are not ε. |
+| C5 | An end-to-end budget (level, LiDAR, algorithm) can sit beside the paint, with empty terms left empty. | **Stud budget still empty.** Algorithm residuals on the generator are recorded in Section 5. Phase 2 fills a level protocol and a phone-LiDAR plane lean on painted drywall. Those terms are not a stud budget and they are not ε. |
 
 Drop a candidate if a later experiment does not support it.
 
@@ -165,13 +166,13 @@ Stage-0 bars used as bring-up checks, not as a field acceptance test: precision 
 
 Three terms are reserved. Level and LiDAR are unfilled. Algorithm cells below are class S and are not ε.
 
-- **Level.** Identity of the reference (floor normal, generator +Z, or a later gravity vector). For a standing field stud, three level readings (bottom, middle, top) on one face, the printed resolution, and the sign. Disagreement beyond that resolution yields yellow and no angle MAE. No readings are in the repository.
+- **Level.** Identity of the reference (floor normal, generator +Z, or a later gravity vector). For a standing field stud, three level readings (bottom, middle, top) on one face, the printed resolution, and the sign. Disagreement beyond that resolution yields yellow and no angle MAE. Phase 2 records that protocol on painted drywall (Section 5.6), not on a stud. The three readings on each painted face disagree by more than the 0.05° display step, so a stud-style angle MAE against the level is not published. The readings are not ε.
 - **LiDAR.** Sensor class and export. Phone and Mid-360 may support detection. A green/red session waits on a survey scanner, and even then the brochure is not the stud-axis error.
 - **Algorithm.** Peel, cluster, and box. On the synthetic mini-wall the peel shortens studs by about 19–22 mm. Section residuals of about 7–8 mm on the generator match the note’s account of Gaussian tails on the face extrema.
 
 ## 4. Experiments
 
-The ledger of what ran is [`EXPERIMENTS.md`](../EXPERIMENTS.md). All executed rows are class S. Class F is empty.
+The ledger of what ran is [`EXPERIMENTS.md`](../EXPERIMENTS.md). Executed rows through E-cc-tune are class S. Class F is empty. E-P2 is the phase-2 painted-corner pilot and is not class F.
 
 **Generator.** Dressed 2×4 at 38.1 × 88.9 mm, length 2438.4 mm, surface spacing 5 mm, isotropic Gaussian noise. Phase-1 S1 uses 1 mm standard deviation and seed 2 on every scene, 25,666 points, no floor. The long axis is +Z before a right-hand lean. Lean 0 runs once. Nonzero leans use +X, −X, +Y, and −Y. Magnitudes are 0°, 0.05°, 0.12°, 0.15°, 0.30°, 1.0°, and 4.0° (25 clouds). The 1 mm noise is a bring-up perturbation. It is not a phone, Mid-360, or TLS model.
 
@@ -187,13 +188,15 @@ The ledger of what ran is [`EXPERIMENTS.md`](../EXPERIMENTS.md). All executed ro
 
 **E-cc-tune (2026-09-25, Oz_PC).** Rank 3 only, same 25 clouds, CPU. CloudCompare still has no cuboid. The tuned command enables `PLANE` only (epsilon 0.006 m, bitmap epsilon 0.012 m, support 800, max normal deviation 25°, overlook probability 0.01) and merges the four long faces into one minimal oriented box. Ranks 1, 2, 4, 5, and 6 were not re-run. Write-up: `docs/research/21-cloudcompare-stud-param-tune.md` on branch `cursor/cc-stud-param-tune-78b7` (PR #22). Scorecards: `artifacts/scorecards/phase1_s1_cc_tuned/` on that branch. This paper quotes that note and those cards. It does not reprint the 25 tuned rows.
 
-**Not executed.** SAM 2. Any real capture. Native PCL on the 25-scene matrix. A multi-stud test of the CloudCompare face merge (the tuned scorer keeps one box per scene). Stages 4–7. Class R.
+**E-P2 (2026-09-25, Oz_PC).** Painted outside wall corner, not a stud. SKIL digital level, three heights on each face. Open3D 0.20.0 planes on `data/raw/polycam/wall_corner_2026-09-25.ply` (gitignored; 2,560,150 points). Write-up: `docs/research/22-phase2-wall-corner-field.md`. Scorecard: `artifacts/scorecards/phase2_wall_corner/`. Python 3.12.10. This row does not run the six finders and does not claim a stud.
 
-**Intended field protocol, still empty.** Record sensor, export format, whether Z is gravity, and the floor normal if one was fit. On a standing stud, record the level model and bottom / middle / top. Do not publish an angle MAE when the three readings disagree by more than the printed resolution.
+**Not executed.** SAM 2. A bare stud. Native PCL on the 25-scene matrix. A multi-stud test of the CloudCompare face merge (the tuned scorer keeps one box per scene). Stages 4–7. Class R. Class F.
+
+**Intended stud protocol, still empty.** Record sensor, export format, whether Z is gravity, and the floor normal if one was fit. On a standing stud, record the level model and bottom / middle / top. Do not publish an angle MAE when the three readings disagree by more than the printed resolution. Phase 2 followed the three-height pattern on paint and withheld that MAE. It did not fill this protocol.
 
 ## 5. Results
 
-Every table in this section is class S. `device_eps_deg` is empty. Production paint is yellow wherever a box exists. Percent-in-band and hypothetical colors at 0.05° are not a QA call.
+Tables in Sections 5.1–5.4 are class S. `device_eps_deg` is empty. Production paint is yellow wherever a box exists. Percent-in-band and hypothetical colors at 0.05° are not a QA call. Section 5.6 is a painted-corner pilot. It is not class F, and it does not paint green or red.
 
 ### 5.1 Seven-scene Open3D bring-up (2026-09-24)
 
@@ -287,9 +290,64 @@ The untuned CloudCompare row can be 100% in band and still fail stage 0. The mat
 
 The fine-tune rows are not a second classical pass. On these floorless clouds the stud label covers every point, so the lean is that cloud’s minimal oriented box. The fine-tune geometry note calls it the same box the classical finders use. Rank 2’s published angle range still reaches 0.01569°, so these rows are not a copy of every finder. The control rows are the vocabulary check: a forward pass with no stud class. Table 7 is the first place the two fine-tunes disagree, and it is not part of the 25-scene matrix.
 
-### 5.5 Field
+### 5.5 Field (class F)
 
-No class F numbers exist. ε is null. The one-stud protocol with a level has not been run on lumber.
+No class F numbers exist. ε is null. The one-stud protocol with a level has not been run on lumber. The painted-corner pilot in Section 5.6 is not this section.
+
+### 5.6 Phase 2 — painted wall-corner plumb pilot
+
+This section is not class S and not class F. The object is a residential painted outside corner. No finder ran. No stud box was fit. ε stays unlocked, so there is no production color other than the standing yellow rule. The write-up is `docs/research/22-phase2-wall-corner-field.md`. The card is `artifacts/scorecards/phase2_wall_corner/scorecard.json`.
+
+The level is a SKIL digital level, held vertical. Lean from plumb is `|90 − display|`. Face A is the doorway / hall side. Face B is the cat-tree side. Face A reads 0.05°, 0.25°, and 0.85° (mean 0.383°). Face B reads 0.15°, 0.05°, and 0.55° (mean 0.250°). Each face spans more than the 0.05° display step (0.80° and 0.50°), so the design-plan rule withholds an angle MAE against the level.
+
+The cloud is a Polycam Custom close export, Z-up in the same sense as the Lot62 loft exports (floor near the bottom of Z). Open3D plane RANSAC on a 4 mm voxel downsample, distance 10 mm, then an SVD refit within 10 mm on the full cloud, returns two vertical planes and a floor patch. Lean is the angle between the plane and export +Z. Plane 1 leans 1.003° (943,764 inliers, RMSE 5.0 mm). Plane 2 leans 0.763° (849,543 inliers, RMSE 3.4 mm). The angle between the normals is 89.80°. The corner edge is 1.259° from +Z. A floor candidate of 203,967 points sits 0.855° from horizontal and is not the reference. The same normals against that floor normal lean 1.787° and 1.110°, which is farther from the SKIL means, and those angles are not the result.
+
+Equal-count thirds along Z are not the level’s contact points. Plane 1 reads 0.369° (bottom), 1.441° (mid), and 0.080° (top). Plane 2 reads 1.044°, 0.865°, and 0.423°. The cloud does not reproduce the SKIL top-to-bottom pattern. The close capture does not show the doorway or the cat tree, so the planes are not assigned to Face A or Face B. Sorting the two plane leans against the two face means gives unpaired absolute gaps of 0.513° and 0.620°. Both cloud leans are larger than both SKIL means. That gap is several times τ ≈ 0.119° and several times the display step. It is not a QA call.
+
+**Table 9. Point-cloud size ladder (2026-09-25, Oz_PC).** Polycam. Files are gitignored under `data/raw/polycam/`. Nearest neighbor is the 1st-neighbor distance (every point on the loft exports; 12,000 queries against the full WallCorner tree).
+
+| Capture | Points | File | Measured nn p50 |
+| --- | ---: | --- | ---: |
+| Lot62 Loft Medium | 3940 | 106,588 bytes (~105 KB), `room_2026-09-25.ply` | 102 mm |
+| Lot62 Loft High | 9850 | 266,158 bytes (~266 KB), `lot62_loft_2026-09-25_high.ply` | 65 mm |
+| WallCorner Custom close | 2,560,150 | 69,124,261 bytes (~66 MB), `wall_corner_2026-09-25.ply` | 0.49 mm |
+
+Space and room exports stay sparse. The medium loft is about 10 cm at the median, and its 90th percentile is 158 mm, which is the band the intake note called tens of centimeters. The high loft median is 65 mm. The close Custom export’s raw neighbor median is 0.49 mm. That cloud occupies 180,814 cells of a 4 mm voxel grid, which is the scale of the ~4 mm planning figure: many samples fall inside one 4 mm cell. Millimeter spacing on this capture is real. The surface is finished paint. Paint is not stud wood.
+
+**Table 10. SKIL versus cloud lean (phase-2 pilot, not class F).** Cloud columns are height thirds along export Z, plus the global plane. They are not registered to the SKIL faces.
+
+| Source | Top | Mid | Bottom | Mean or global plane |
+| --- | ---: | ---: | ---: | ---: |
+| SKIL Face A, doorway / hall | 0.05° | 0.25° | 0.85° | 0.383° |
+| SKIL Face B, cat-tree side | 0.15° | 0.05° | 0.55° | 0.250° |
+| Cloud plane 1 | 0.080° | 1.441° | 0.369° | 1.003° |
+| Cloud plane 2 | 0.423° | 0.865° | 1.044° | 0.763° |
+
+Offline views are `preview_views.png`, `skil_vs_cloud_lean.png`, and `height_thirds.png` in the same scorecard directory. Open3D plane RANSAC is unseeded. A repeat can move the third decimal of a degree. Quote the committed card.
+
+### 5.7 Synthetic corner, neural ranks
+
+The field cloud has no face labels and no registered SKIL identity, so it cannot teach wall A from wall B. This section is a generator with planted leans, built so ranks 4 and 5 have a corner to score. It is not the Polycam capture and it is not a stud. Write-up: `docs/research/23-phase2-corner-neural.md`. Script: `scripts/build_phase2_corner_synth.py`.
+
+Wall A is a YZ face rotated about +Y by the SKIL Face A mean, 0.383°. Wall B is an XZ face rotated about +X by the SKIL Face B mean, 0.250°. The shared edge stays on +Z. The planted dihedral is 89.998°. Each face is 0.80 m by 2.40 m at 5 mm spacing. The floor patch is 10 mm spacing. Noise is 2 mm, seed 25. The cloud has 161,443 points. Labels are `floor`, `wall_a`, and `wall_b`. An SVD on each noisy class recovers 0.384° and 0.250° at 2.0 mm RMSE, which is the generator noise floor.
+
+**Table 11. Neural passes on the held-out synthetic corner (not class F).** Oz_PC, RTX 4080 SUPER. Office rows use the phase-1 control checkpoints. Stud rows use the phase-1 2-class heads. The corner row is a new 3-class head. Paint stays yellow. ε stays unlocked.
+
+| Stack | What the labels can name | Held-out result |
+| --- | --- | --- |
+| BIMStruct3D PTv3, office control | clutter, floor, ceiling, wall, column, door, window, stairs, railing, lights. No wall_a / wall_b | 161,443 / 161,443 clutter. Wall count 0. Two faces not recovered. 53.6 s |
+| RandLA-Net, S3DIS control | 13 office classes. One `wall`, not two faces | clutter 149,934, floor 11,315, bookcase 194, wall 0. Two faces not recovered. 1.06 s |
+| PTv3, phase-1 stud head | clutter, stud | 139,945 false stud labels (86.7%). Ground truth has 0 studs. 13.4 s |
+| RandLA-Net, phase-1 stud head | clutter, stud | 161,100 false stud labels (99.8%). 0.76 s |
+| PTv3, 3-class corner head | floor, wall_a, wall_b | Floor IoU 0.935. Wall A IoU 0.522. Wall B IoU 0.091. Two faces not recovered. Train 19.1 s, infer 8.1 s |
+
+The 3-class train is eight other corners (seeds 101–108), twelve frozen-backbone epochs, then two decoder epochs. The seed-25 scene is held out. Checkpoint: `artifacts/weights/finetune/pointcept_corner_3class.pth`. On that held-out scene the floor plane is clean (RMSE 2.0 mm). Predicted wall A is a blend (RMSE 165 mm, normal 43° off the planted normal). Predicted wall B is a clean 7,040-point subset of the true face (lean error 0.001°, normal error 0.005°, RMSE 2.0 mm) and misses 91% of that face. A face flag requires the lean, the normal, and a 15 mm RMSE together. One clean subset is not two faces.
+
+A 3-class RandLA-Net corner layer was not trained. The rank-5 row above is the existing stud head.
+
+### 5.8 Phase-2b / open stud (pending Oz SKIL on wood)
+
+Class F is still empty. The next field object is one bare stud. Oz will bring SKIL readings on the wood, bottom, middle, and top. Until those readings are in a note, this section has no angle, no finder score, and no color other than the standing yellow rule. ε stays unlocked. The painted corner in Section 5.6 and the generator in Section 5.7 do not fill this stub.
 
 ## 6. Discussion
 
@@ -305,15 +363,19 @@ Ranks 4 and 5, before fine-tuning, show the vocabulary failure C4 names: a forwa
 
 Yellow paint is the result that should survive contact with a real cloud. A placeholder ε of 0.05° would have painted several of the early synthetic leans red or green. Those colors are stored so the rule can be inspected. They are not evidence that a sensor can support them.
 
+Phase 2 is that contact, on the wrong object for a stud claim. A painted corner with a level and two planes is a plumb pilot. The level faces are not straight (spreads 0.80° and 0.50°). The planes lean 1.003° and 0.763° from export +Z and are not tied to a named face. The unpaired gaps, 0.513° and 0.620°, sit well outside τ and outside the 0.05° display step. Density is the other lesson. A room export at 102 mm or 65 mm nearest-neighbor median is not a stud surface. A close Custom export at 0.49 mm raw median, or about 4 mm if the cloud is read as occupied 4 mm cells (180,814 of them), is dense enough to sample a face and still is not the wood behind the paint. ε stays unlocked.
+
 The validity threats in [`THREATS_TO_VALIDITY.md`](../THREATS_TO_VALIDITY.md) remain part of the discussion: construct (floor versus gravity, τ versus the 0.15° alternate versus code), internal (generator circularity, one threshold loop, peel shortening, NumPy region growing standing in for PCL, fine-tune batch-norm statistics), and external (no openings, no sensor model, no public LOT-62 cloud). The citation collision on the Bassier DOI is a documentation threat, and it is corrected in the bibliography.
 
-What would change the claim is class F: one real stud, the finders on that cloud, a level protocol with the resolution written down, and ε still unlocked.
+What would change the claim is class F: one real stud, the finders on that cloud, a level protocol with the resolution written down, and ε still unlocked. Phase 2 does not change it. The corner is paint. The synthetic corner in Section 5.7 gives the neural ranks a planted answer, and they do not return both faces. Section 5.8 waits on SKIL readings on bare wood.
 
 ## 7. Conclusion
 
 TruePlank, an app in the OpenWall suite, instance-segments vertical studs, fits a minimal oriented box, and reports lean against an explicit Z-up reference. The paint rule refuses green and red while the device band is unknown. On synthetic dressed studs, Open3D, a NumPy region-grow cuboid, pyRANSAC-3D, and a stud-only CloudCompare tune (one merged box per scene) meet the stage-0 bars on a 25-scene lean sweep. The untuned CloudCompare command measures a lean and fails the one-stud bar by splitting the member into faces. Office-vocabulary networks do not name a stud until they are fine-tuned, and a synthetic fine-tune that labels an entire floorless cloud as stud is a bring-up, not a field detector.
 
-Future work, in the order the design plan already uses: a real stud and a level (ε still unlocked, so the color stays yellow); bow with the ends held (S1b); a multi-stud wall with plates, which the tuned CloudCompare merge does not claim to segment; native PCL if the binary is built; SAM 2 only when a capture already has a registered image. Stages 4–7 wait on that lumber. No class-F number is implied by the tables above.
+Phase 2 adds a painted-corner plumb pilot and a synthetic corner for the neural ranks, not a stud result. A SKIL level on two finished faces (means 0.383° and 0.250°) and two Open3D planes on a close cloud (1.003° and 0.763° from export +Z) do not match, and the faces were not registered. Room-scale exports of the same loft remain sparse. The close export is millimeter-class on paint. Paint is not a stud, class F is still empty, and the color stays yellow while ε is unlocked.
+
+Future work, in the order the design plan already uses: a real stud and a level on the wood (ε still unlocked, so the color stays yellow); bow with the ends held (S1b); a multi-stud wall with plates, which the tuned CloudCompare merge does not claim to segment; native PCL if the binary is built; SAM 2 only when a capture already has a registered image. Stages 4–7 wait on that lumber. No class-F number is implied by the tables above, including Table 9 and Table 10.
 
 ## Data and code
 
@@ -324,17 +386,19 @@ Repository code: `src/openwall_stud/`. Scorecards on this branch: `artifacts/sco
 - `docs/research/18-ozpc-ranks4-5-run.md`
 - `docs/research/19-phase1-s1-lean-sweep.md`
 - `docs/research/20-synthetic-stud-finetune.md`
+- `docs/research/22-phase2-wall-corner-field.md` (phase-2 painted-corner pilot; scorecards in `artifacts/scorecards/phase2_wall_corner/`; script `scripts/run_phase2_wall_corner.py`)
+- `docs/research/23-phase2-corner-neural.md` (synthetic corner, office controls, stud heads, 3-class head; `artifacts/scorecards/phase2_corner_neural/`)
 - Design notes: `docs/research/12-stud-seg-design-plan.md`, `docs/research/11-stud-segmentation-algorithm-ranking.md`, `docs/tolerances.md`
 
 Notes that are not on this branch, cited above by branch path: house-alike hunt on `cursor/house-alike-cloud-hunt-0474`; methods shortlist on `cursor/methods-beat-shortlist-e9dc`; CloudCompare stud-only tune on `cursor/cc-stud-param-tune-78b7` (`docs/research/21-cloudcompare-stud-param-tune.md`, scorecards in `artifacts/scorecards/phase1_s1_cc_tuned/`). The day table was not rewritten by that tune, so `docs/research/13-stud-seg-results-by-day.md` still shows the untuned rank-3 rows.
 
-No point-cloud files of real buildings are stored in git. BIMStruct3D `model_best.pth` and the S3DIS zoo checkpoint are gitignored. The two fine-tune weight files named in Section 5.3 are in `artifacts/weights/finetune/`.
+No point-cloud files of real buildings are stored in git. The phase-2 Polycam PLY files were read from `data/raw/polycam/` on Oz_PC and left gitignored. BIMStruct3D `model_best.pth` and the S3DIS zoo checkpoint are gitignored. The two fine-tune weight files named in Section 5.3 are in `artifacts/weights/finetune/`.
 
 A re-run that changes a quoted number needs a new dated row, not a silent edit of Section 5.
 
 ## Ethics
 
-Jobsite and residential scans can identify people and addresses. None are included. A color on a stud can be misread as a code or safety decision. τ is a derived finish guideline, the 0.15° figure is a second derived guideline from a summary that was not opened as a PDF, and ε is unlocked. License constraints for later stacks (CloudCompare GPL-3.0 if linked, CC BY-NC-SA 4.0 on the BIMStruct3D checkpoint, AGPL-3.0 on Ultralytics YOLO) are not a license to ship those components inside a closed application.
+Jobsite and residential scans can identify people and addresses. The phase-2 corner was processed on Oz_PC. The cloud, the fieldwork photographs, and any background figure in those photographs are not in git. A color on a stud can be misread as a code or safety decision. τ is a derived finish guideline, the 0.15° figure is a second derived guideline from a summary that was not opened as a PDF, and ε is unlocked. License constraints for later stacks (CloudCompare GPL-3.0 if linked, CC BY-NC-SA 4.0 on the BIMStruct3D checkpoint, AGPL-3.0 on Ultralytics YOLO) are not a license to ship those components inside a closed application.
 
 ## References
 
