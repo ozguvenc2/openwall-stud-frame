@@ -1,0 +1,14 @@
+diff --git a/papers/trueplank-stud-lean-qa/draft/paper.md b/papers/trueplank-stud-lean-qa/draft/paper.md
+--- a/papers/trueplank-stud-lean-qa/draft/paper.md
++++ b/papers/trueplank-stud-lean-qa/draft/paper.md
+@@ -291,6 +291,10 @@
+ 
+ No class F numbers exist. ε is null. The one-stud protocol with a level has not been run on lumber.
+ 
++### 5.6 Synthetic outside corner (class S, not a stud)
++
++Source: `docs/research/23-phase2-neural-corner.md`. Two planes and an optional floor, 5 mm spacing, planted leans 0.383 and 0.250 degrees (the recorded SKIL face means, not a level session, and not the painted field cloud). On the 2 mm floor cloud, the BIMStruct3D control wall class plus a 15 mm inlier plane returns 0.3813 and 0.2500 degrees (absolute errors 0.00173 and 0.00005 degrees, 54.18 s). The S3DIS RandLA-Net control calls those faces clutter and returns no lean (2.45 s). The phase-1 stud heads label the faces stud and are not a corner measurement. A 25-epoch 3-class RandLA-Net head (31.7 s train) then matches the planted leans on that cloud to 0.00069 and 0.00055 degrees after the same inlier plane; least squares on every predicted point does not (errors 0.297 and 0.029 degrees). At 5 mm noise the BIMStruct3D wall subset is nearly plumb (errors 0.356 and 0.305 degrees). This subsection is class S. It is not a stud score.
++
+ ## 6. Discussion
+ 
+ The synthetic passes show that the peel, a density cluster or a cuboid fit, the minimal box, and the yellow paint are connected on generator geometry with a clear gap and 1 mm noise. Perfect detection on that geometry is the bring-up the bars were written to enforce. The cloud was sampled from the same dressed boxes the fitter expects, and the Open3D `eps` threshold was adjusted after a failure on this generator (`eps` 20 mm, `min_points` 80 had marked the stud as noise).

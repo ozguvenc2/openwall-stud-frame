@@ -68,27 +68,27 @@ def _transform():
     )
 
 
-def _replace_head(model):
+def _replace_head(model, num_classes: int = NUM_CLASSES):
     import torch.nn as nn
 
     model.seg_head = nn.Sequential(
         nn.Linear(BACKBONE_OUT, BACKBONE_OUT),
         nn.ReLU(inplace=True),
         nn.Dropout(0.1),
-        nn.Linear(BACKBONE_OUT, NUM_CLASSES),
+        nn.Linear(BACKBONE_OUT, num_classes),
     )
     return model
 
 
-def build_model(device: str = "cuda"):
+def build_model(device: str = "cuda", num_classes: int = NUM_CLASSES):
     _, _, build_model_fn, _, Config = _import_pointcept()
     cfg = Config.fromfile(str(cache_root() / "configs" / "model_config.py"))
-    cfg.model.num_classes = NUM_CLASSES
+    cfg.model.num_classes = num_classes
     cfg.model.criteria = [
         dict(type="CrossEntropyLoss", loss_weight=1.0, ignore_index=-1),
     ]
     model = build_model_fn(cfg.model)
-    _replace_head(model)
+    _replace_head(model, num_classes)
     model.to(device)
     return model
 

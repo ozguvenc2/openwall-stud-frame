@@ -1,0 +1,174 @@
+{
+  "generator": "scripts/gen_wall_corner.py",
+  "module": "openwall_stud.wall_corner",
+  "what": "synthetic outside wall corner, two planes plus optional floor",
+  "not": [
+    "not a stud box",
+    "not a dressed 2x4",
+    "not the painted Polycam field cloud",
+    "not a SKIL session; the leans are planted at the recorded means"
+  ],
+  "gravity": "+Z",
+  "interior_quadrant": "+X+Y",
+  "labels": {
+    "0": "floor",
+    "1": "face_a",
+    "2": "face_b"
+  },
+  "face_a": "exterior plane along +X, outward lean is +rotation about +X",
+  "face_b": "exterior plane along +Y, outward lean is -rotation about +Y",
+  "planted_face_a_lean_deg": 0.383,
+  "planted_face_b_lean_deg": 0.25,
+  "planted_from": "SKIL Face A mean 0.383 deg and Face B mean 0.250 deg, classical phase-2 note",
+  "ply_note": "PLY bytes are gitignored (*.ply and data/cache/). Rebuild with scripts/gen_wall_corner.py.",
+  "scenes": [
+    {
+      "name": "corner_skil_means_floor_n2",
+      "ply": "data/cache/wall-corner/corner_skil_means_floor_n2.ply",
+      "sha256": "c37bcec725e043ee6152482698aa7cfcdaf4b90037706562eae10c0f4e79d3d2",
+      "floor": true,
+      "seed": 23,
+      "noise_std_mm": 2.0,
+      "spacing_mm": 5.0,
+      "height_m": 2.4384,
+      "length_m": 1.2192,
+      "gt_face_a_lean_deg": 0.383,
+      "gt_face_b_lean_deg": 0.25,
+      "gt_normal_a": [
+        0.0,
+        -0.9999776580708486,
+        -0.006684561252695415
+      ],
+      "gt_normal_b": [
+        -0.9999904807207345,
+        0.0,
+        -0.004363309284746571
+      ],
+      "interior_xyz_m": [
+        0.6096,
+        0.6096,
+        1.2192
+      ],
+      "face_a_refit_lean_deg": 0.3828395087264,
+      "face_b_refit_lean_deg": 0.24890042470841575,
+      "face_a_abs_error_deg": 0.00016049127360001636,
+      "face_b_abs_error_deg": 0.0010995752915842483,
+      "corner_angle_deg": 89.99832886498928,
+      "n_face_a": 119805,
+      "n_face_b": 119804,
+      "n_floor": 59536,
+      "n_points": 299145
+    },
+    {
+      "name": "corner_skil_means_nofloor_n2",
+      "ply": "data/cache/wall-corner/corner_skil_means_nofloor_n2.ply",
+      "sha256": "bf4a5742c1ee763d37a09c684f091be448a6bd5fcc5f93e955947b45b64c44c5",
+      "floor": false,
+      "seed": 23,
+      "noise_std_mm": 2.0,
+      "spacing_mm": 5.0,
+      "height_m": 2.4384,
+      "length_m": 1.2192,
+      "gt_face_a_lean_deg": 0.383,
+      "gt_face_b_lean_deg": 0.25,
+      "gt_normal_a": [
+        0.0,
+        -0.9999776580708486,
+        -0.006684561252695415
+      ],
+      "gt_normal_b": [
+        -0.9999904807207345,
+        0.0,
+        -0.004363309284746571
+      ],
+      "interior_xyz_m": [
+        0.6096,
+        0.6096,
+        1.2192
+      ],
+      "face_a_refit_lean_deg": 0.3828395087264,
+      "face_b_refit_lean_deg": 0.24890042470841575,
+      "face_a_abs_error_deg": 0.00016049127360001636,
+      "face_b_abs_error_deg": 0.0010995752915842483,
+      "corner_angle_deg": 89.99832886498928,
+      "n_face_a": 119805,
+      "n_face_b": 119804,
+      "n_floor": 0,
+      "n_points": 239609
+    },
+    {
+      "name": "corner_skil_means_floor_n1",
+      "ply": "data/cache/wall-corner/corner_skil_means_floor_n1.ply",
+      "sha256": "b8b0b45aaef7401df68961996a93d093127a3444904dde26f128cf6f06436683",
+      "floor": true,
+      "seed": 23,
+      "noise_std_mm": 1.0,
+      "spacing_mm": 5.0,
+      "height_m": 2.4384,
+      "length_m": 1.2192,
+      "gt_face_a_lean_deg": 0.383,
+      "gt_face_b_lean_deg": 0.25,
+      "gt_normal_a": [
+        0.0,
+        -0.9999776580708486,
+        -0.006684561252695415
+      ],
+      "gt_normal_b": [
+        -0.9999904807207345,
+        0.0,
+        -0.004363309284746571
+      ],
+      "interior_xyz_m": [
+        0.6096,
+        0.6096,
+        1.2192
+      ],
+      "face_a_refit_lean_deg": 0.3829194205961756,
+      "face_b_refit_lean_deg": 0.24945021245026866,
+      "face_a_abs_error_deg": 8.057940382438789e-05,
+      "face_b_abs_error_deg": 0.0005497875497313398,
+      "corner_angle_deg": 89.99832886498928,
+      "n_face_a": 119805,
+      "n_face_b": 119804,
+      "n_floor": 59536,
+      "n_points": 299145
+    },
+    {
+      "name": "corner_skil_means_floor_n5",
+      "ply": "data/cache/wall-corner/corner_skil_means_floor_n5.ply",
+      "sha256": "854060b3ce29eca2591e9cbd5448dee2d18342ead71fba8bb70a72b36d59ad9c",
+      "floor": true,
+      "seed": 29,
+      "noise_std_mm": 5.0,
+      "spacing_mm": 5.0,
+      "height_m": 2.4384,
+      "length_m": 1.2192,
+      "gt_face_a_lean_deg": 0.383,
+      "gt_face_b_lean_deg": 0.25,
+      "gt_normal_a": [
+        0.0,
+        -0.9999776580708486,
+        -0.006684561252695415
+      ],
+      "gt_normal_b": [
+        -0.9999904807207345,
+        0.0,
+        -0.004363309284746571
+      ],
+      "interior_xyz_m": [
+        0.6096,
+        0.6096,
+        1.2192
+      ],
+      "face_a_refit_lean_deg": 0.3828290773990572,
+      "face_b_refit_lean_deg": 0.24940298595478266,
+      "face_a_abs_error_deg": 0.0001709226009428133,
+      "face_b_abs_error_deg": 0.0005970140452173367,
+      "corner_angle_deg": 89.99832886498928,
+      "n_face_a": 119805,
+      "n_face_b": 119804,
+      "n_floor": 59536,
+      "n_points": 299145
+    }
+  ]
+}

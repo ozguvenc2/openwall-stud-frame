@@ -32,7 +32,7 @@ def s3dis_path() -> Path:
     return repo_root() / "data" / "cache" / "open3d-ml" / S3DIS_NAME
 
 
-def build_model(device: str = "cuda"):
+def build_model(device: str = "cuda", num_classes: int = NUM_CLASSES):
     import open3d.ml.torch as ml3d
 
     model = ml3d.models.RandLANet(
@@ -40,7 +40,7 @@ def build_model(device: str = "cuda"):
         num_neighbors=16,
         num_layers=5,
         num_points=NUM_POINTS,
-        num_classes=NUM_CLASSES,
+        num_classes=num_classes,
         ignored_label_inds=[],
         sub_sampling_ratio=[4, 4, 4, 4, 2],
         in_channels=6,
@@ -134,7 +134,8 @@ def train_step(model, optimizer, points: np.ndarray, labels: np.ndarray, class_w
     optimizer.zero_grad(set_to_none=True)
     logits = model(batch)
     target = batch["labels"].to(logits.device).long()
-    loss = F.cross_entropy(logits.reshape(-1, NUM_CLASSES), target.reshape(-1), weight=class_weight)
+    n_classes = int(logits.shape[-1])
+    loss = F.cross_entropy(logits.reshape(-1, n_classes), target.reshape(-1), weight=class_weight)
     loss.backward()
     torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
     optimizer.step()
