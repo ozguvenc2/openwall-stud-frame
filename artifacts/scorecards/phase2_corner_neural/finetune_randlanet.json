@@ -1,0 +1,35 @@
+{
+  "stack": "finetune_randlanet",
+  "role": "existing stud/clutter head on a stud-free corner",
+  "vocabulary": [
+    "clutter",
+    "stud"
+  ],
+  "histogram": [
+    {
+      "id": 0,
+      "name": "clutter",
+      "count": 343
+    },
+    {
+      "id": 1,
+      "name": "stud",
+      "count": 161100
+    }
+  ],
+  "stud_points": 161100,
+  "stud_fraction": 0.9978754111358188,
+  "gt_stud_points": 0,
+  "false_stud_points": 161100,
+  "inference_s": 0.7634517999831587,
+  "runtime_s": 3.54,
+  "named_face_iou": null,
+  "two_faces": false,
+  "note": "This head cannot name wall_a, wall_b, or floor. predict_labels uses per-cloud batch-norm stats. Every stud label is false.",
+  "scene": "phase2_corner_skil_means",
+  "n_points": 161443,
+  "class_F": false,
+  "stud_detection": "not_claimed",
+  "production_paint": "yellow",
+  "epsilon_locked": false
+}

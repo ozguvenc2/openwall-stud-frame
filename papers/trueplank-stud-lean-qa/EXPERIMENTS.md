@@ -13,6 +13,8 @@ Curriculum stages match [`METHODS.md`](METHODS.md). This file says what has been
 | E-ft | Synthetic fine-tune, ranks 4 and 5. 386 train clouds. 25 phase-1 cards held out | S | **Run** 2026-09-25, Oz_PC. Rank 4 train 98.1 s, infer 0.050 s, phase-1 stud boxes 25/25. Rank 5 train 237.5 s, infer 0.149 s, phase-1 stud boxes 25/25. Floorless clouds labeled entirely stud. `docs/research/20-synthetic-stud-finetune.md` |
 | E-cc-tune | Stud-only CloudCompare parameter tune. Plane only, then a four-face merge | S | **Run** 2026-09-25, Oz_PC, CPU, rank 3 only. Stage-0 pass 25/25, one box per scene. Note and scorecards are on `cursor/cc-stud-param-tune-78b7` (PR #22), not in this tree. Quoted in Table 8 of the draft |
 | E-P2 | Painted outside wall corner. SKIL on two faces. Two Open3D planes. Not a stud | wall plumb pilot | **Run** 2026-09-25, Oz_PC. Not class F. `docs/research/22-phase2-wall-corner-field.md`. Scorecards `artifacts/scorecards/phase2_wall_corner/`. PLY gitignored |
+| E-P2-neural | Synthetic outside corner, planted at the SKIL means. Office controls, stud heads, 3-class PTv3 head | wall plumb pilot | **Run** 2026-09-25, Oz_PC, RTX 4080 SUPER. Not class F. Two faces not recovered. `docs/research/23-phase2-corner-neural.md` |
+| E-P2b | One bare stud, SKIL on the wood | F | **Pending.** Oz brings the wood readings. Section 5.8 of the draft is the stub |
 | E3 | One real stud, finders, SKIL if standing | F | **Planned.** No stud cloud in git. E-P2 does not fill this row |
 | E4–E7 | Wall, room, story, complex frame | F | **Planned.** After a real capture |
 | ER | Realisticized generator | R | **Not specified** |

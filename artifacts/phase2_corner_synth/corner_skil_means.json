@@ -1,0 +1,77 @@
+{
+  "name": "phase2_corner_skil_means",
+  "class_names": [
+    "floor",
+    "wall_a",
+    "wall_b"
+  ],
+  "label_ids": {
+    "floor": 0,
+    "wall_a": 1,
+    "wall_b": 2
+  },
+  "not_studs": true,
+  "seed": 25,
+  "spacing_m": 0.005,
+  "floor_spacing_m": 0.01,
+  "noise_std_m": 0.002,
+  "width_m": 0.8,
+  "height_m": 2.4,
+  "include_floor": true,
+  "planted": {
+    "wall_a_lean_deg": 0.3833333333333333,
+    "wall_b_lean_deg": 0.25,
+    "wall_a_rotation": "right-hand about +Y, YZ face",
+    "wall_b_rotation": "right-hand about +X, XZ face",
+    "normal_a_xyz": [
+      0.9999776191647248,
+      0.0,
+      -0.006690378886775498
+    ],
+    "normal_b_xyz": [
+      0.0,
+      0.9999904807207345,
+      0.004363309284746571
+    ],
+    "dihedral_deg": 89.99832741058538,
+    "vertical": "export_+Z",
+    "source": "SKIL face means 2026-09-25 unless overridden"
+  },
+  "svd_on_noisy_labels": {
+    "wall_a": {
+      "points": 77441,
+      "lean_from_vertical_deg": 0.3840297387481963,
+      "rmse_mm": 2.000966803396935,
+      "normal_xyz": [
+        -0.9999775377438596,
+        -7.528388189573937e-06,
+        0.006702533181669707
+      ]
+    },
+    "wall_b": {
+      "points": 77441,
+      "lean_from_vertical_deg": 0.2502025054581098,
+      "rmse_mm": 2.002944334409442,
+      "normal_xyz": [
+        -1.3786523642723261e-05,
+        0.99999046519783,
+        0.004366843638071769
+      ]
+    },
+    "floor": {
+      "points": 6561,
+      "lean_from_vertical_deg": 89.99896947964733,
+      "rmse_mm": 2.019760033435875,
+      "normal_xyz": [
+        -1.8150962056310263e-06,
+        -1.7894155027980977e-05,
+        0.9999999998382524
+      ]
+    }
+  },
+  "n_points": 161443,
+  "npz": "artifacts/phase2_corner_synth/corner_skil_means.npz",
+  "ply": "artifacts/phase2_corner_synth/corner_skil_means.ply",
+  "ply_gitignored": true,
+  "note": "Synthetic outside corner. Labels are floor, wall_a, wall_b. Not studs. Planted leans are the SKIL face means. svd_on_noisy_labels is the plane fit on the noisy points of each class."
+}

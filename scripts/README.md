@@ -12,4 +12,6 @@
 
 `run_phase2_wall_corner.py` fits two vertical planes on the gitignored WallCorner PLY and writes `artifacts/scorecards/phase2_wall_corner/`. The note is `docs/research/22-phase2-wall-corner-field.md`. It is a painted-corner plumb pilot. It does not detect studs. The interpreter is `C:\Repos\openwall-stud-frame\.venv` (Open3D 0.20.0). The script reads PLY files from that primary checkout’s `data/raw/polycam/`, including when it is launched from a worktree.
 
+`build_phase2_corner_synth.py` writes the synthetic outside corner (planted SKIL-mean leans, labels floor / wall_a / wall_b). `train_phase2_corner_head.py` is the short 3-class Pointcept head. `run_phase2_corner_neural.py --stack` scores one of `control_pointcept`, `control_randlanet`, `finetune_pointcept`, `finetune_randlanet`, or `corner_pointcept`. The note is `docs/research/23-phase2-corner-neural.md`. Pointcept uses the torch 2.7 checkout. RandLA-Net uses the torch 2.13 Open3D-ML checkout. Neither stack is a stud detector on this corner.
+
 Dataset download helpers are not here yet. Large clouds stay linked from `docs/research/`.

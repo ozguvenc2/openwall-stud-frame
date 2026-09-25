@@ -1,0 +1,36 @@
+{
+  "stack": "finetune_pointcept",
+  "role": "existing stud/clutter head on a stud-free corner",
+  "vocabulary": [
+    "clutter",
+    "stud"
+  ],
+  "histogram": [
+    {
+      "id": 0,
+      "name": "clutter",
+      "count": 21498
+    },
+    {
+      "id": 1,
+      "name": "stud",
+      "count": 139945
+    }
+  ],
+  "stud_points": 139945,
+  "stud_fraction": 0.8668384507225461,
+  "gt_stud_points": 0,
+  "false_stud_points": 139945,
+  "backbone_copied": 486,
+  "checkpoint_meta_epoch": null,
+  "runtime_s": 13.426,
+  "named_face_iou": null,
+  "two_faces": false,
+  "note": "This head cannot name wall_a, wall_b, or floor. Every stud label is false. No stud box is fit.",
+  "scene": "phase2_corner_skil_means",
+  "n_points": 161443,
+  "class_F": false,
+  "stud_detection": "not_claimed",
+  "production_paint": "yellow",
+  "epsilon_locked": false
+}

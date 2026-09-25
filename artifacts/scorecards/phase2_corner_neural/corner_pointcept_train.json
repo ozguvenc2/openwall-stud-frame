@@ -1,0 +1,39 @@
+{
+  "epoch": 11,
+  "epochs": 12,
+  "decoder_epochs": 2,
+  "decoder_losses": [
+    0.3537139557301998,
+    0.1674925135448575
+  ],
+  "decoder_trainable_count": 180,
+  "losses": [
+    1.0685995742678642,
+    0.9137440025806427,
+    0.80040243268013,
+    0.7345034182071686,
+    0.6910838857293129,
+    0.6717929914593697,
+    0.6510241404175758,
+    0.6359648182988167,
+    0.6267673149704933,
+    0.6131080314517021,
+    0.6109755411744118,
+    0.5938223749399185
+  ],
+  "runtime_s": 19.062,
+  "classes": [
+    "floor",
+    "wall_a",
+    "wall_b"
+  ],
+  "held_out": "phase2_corner_skil_means seed 25",
+  "backbone_copied": 486,
+  "trainable": [
+    "seg_head.0.weight",
+    "seg_head.0.bias",
+    "seg_head.3.weight",
+    "seg_head.3.bias"
+  ],
+  "not_studs": true
+}

@@ -40,6 +40,7 @@ Source notes for the numbers, in-tree on this branch:
 - `docs/research/19-phase1-s1-lean-sweep.md`
 - `docs/research/20-synthetic-stud-finetune.md`
 - `docs/research/22-phase2-wall-corner-field.md`
+- `docs/research/23-phase2-corner-neural.md`
 
 Cited by branch because they are not in this tree: house-alike hunt on `cursor/house-alike-cloud-hunt-0474` (PR #12); methods shortlist on `cursor/methods-beat-shortlist-e9dc` (PR #14); CloudCompare stud-only tune on `cursor/cc-stud-param-tune-78b7` (PR #22), `docs/research/21-cloudcompare-stud-param-tune.md` and `artifacts/scorecards/phase1_s1_cc_tuned/`.
 
@@ -55,6 +56,8 @@ Cited by branch because they are not in this tree: house-alike hunt on `cursor/h
 | Synthetic fine-tune, ranks 4 and 5 | **Quoted** from doc 20, control and fine-tune both in Table 8. Train about 98 s and 237 s. Phase-1 stud boxes 25/25. Floorless limitation stated |
 | Class F, ε, SAM 2, native PCL on the 25-scene matrix | **Empty or not run** |
 | Phase 2 painted wall corner | **Quoted** from doc 22. Wall-plumb pilot, not class F. Table 9 is the density ladder. Table 10 is SKIL versus cloud lean. ε stays unlocked |
+| Phase 2 synthetic corner, neural ranks | **Quoted** from doc 23. Table 11. Office controls and stud heads do not name two faces. 3-class head does not recover both walls |
+| Phase 2b open stud | **Stub.** Section 5.8. Waiting on SKIL readings on bare wood |
 | Bibliography | **Usable draft.** NAHB, UFGS, DBSCAN pagination, RoomPlan, and ARKit remain marked unverified |
 
 ## Contribution candidates
