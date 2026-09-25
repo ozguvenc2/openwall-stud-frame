@@ -278,7 +278,10 @@ def run_group(group: str, *, resume: bool) -> int:
     specs = assert_s1_matrix()
     print(f"Matrix ok: {len(specs)} scenes, {specs[0]['n_points']} points each, seed {SEED}")
     runners = _runners()
-    selected = [item for item in FINDERS if item["group"] == group]
+    if group == "classical":
+        selected = [item for item in FINDERS if item["group"] == "classical"]
+    else:
+        selected = [item for item in FINDERS if item["key"] == group]
     if not selected:
         raise SystemExit(f"unknown group {group}")
     _write_meta(group)
