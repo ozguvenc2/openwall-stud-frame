@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "binary": "C:\\Program Files\\CloudCompare\\CloudCompare.exe",
+  "binary_source": "env",
+  "env": "CLOUDCOMPARE_EXE",
+  "default_windows_path": "C:\\Program Files\\CloudCompare\\CloudCompare.exe",
+  "version": "2.14.beta (Aug 29 2026)",
+  "returncode": 0,
+  "plugin_seen": true,
+  "processed_finished": true,
+  "evidence_lines": [
+    "[14:03:19] \tPlugin found: RANSAC Shape Detection (QRANSAC_SD_PLUGIN.dll)",
+    "[14:03:19] Processed finished in 0.00 s."
+  ],
+  "command": [
+    "C:\\Program Files\\CloudCompare\\CloudCompare.exe",
+    "-SILENT",
+    "-NO_TIMESTAMP"
+  ]
+}
