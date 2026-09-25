@@ -107,14 +107,14 @@ Empty cells stay empty. Class-S residuals are not ε.
 | Term | Plan | Filled? |
 | --- | --- | --- |
 | Reference identity | Floor normal in the product phase; generator +Z on stage 0 and S1; gravity later, converted into the Z-up frame. The cloud is not rotated onto the floor | Rule written. No paired readings |
-| SKIL (or other digital level) | BOT / MID / TOP. If the spread exceeds the printed resolution, yellow and no MAE | No readings |
+| SKIL (or other digital level) | BOT / MID / TOP. If the spread exceeds the printed resolution, yellow and no MAE | Painted-corner readings in the draft, Section 5.6. Spread exceeds 0.05°, so no MAE. No stud readings |
 | Floor versus gravity | A stud square to a tilted slab is a different call from a stud plumb to gravity | Unquantified |
 
 ### LiDAR
 
 | Term | Plan | Filled? |
 | --- | --- | --- |
-| Phone LiDAR / Polycam | Allowed for detection. Not the green/red instrument | No capture in git |
+| Phone LiDAR / Polycam | Allowed for detection. Not the green/red instrument | Phase-2 corner processed on Oz_PC and gitignored. Not a stud capture. No PLY in git |
 | Livox Mid-360 | Denser cloud when needed. Brochure angular figure < 0.15° is a ray spec, not a fitted axis and not the UFGS alternate | No capture |
 | Survey TLS | The class whose published specifications sit near τ in the sensing note | No capture |
 

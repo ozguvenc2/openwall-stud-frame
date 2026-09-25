@@ -1,0 +1,4 @@
+capture,file,points,bytes,nn_p50_mm,nn_p90_mm,nn_mean_mm,queries,occupied_4mm_voxels,note
+Lot62 Loft Medium,room_2026-09-25.ply,3940,106588,102.33709458697602,158.33030139956776,101.10551460303215,3940,,Space/room export. Filename in data/raw/polycam is room_2026-09-25.ply.
+Lot62 Loft High,lot62_loft_2026-09-25_high.ply,9850,266158,65.45882288551405,111.27231411704977,67.95753776100563,9850,,"Space/room export, higher density."
+WallCorner Custom close,wall_corner_2026-09-25.ply,2560150,69124261,0.4885159377623551,0.8682553658409936,0.5135649574439327,12000,180814,Close Custom capture of a painted outside corner. Not exposed studs.

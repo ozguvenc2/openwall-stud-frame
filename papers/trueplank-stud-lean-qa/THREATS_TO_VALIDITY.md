@@ -22,7 +22,7 @@ Written for the draft in [`draft/paper.md`](draft/paper.md). Items already reali
 
 **Open. Length error is partly the peeler.** The stage-3 bar is 30 mm because the plate peel shortens the stud. A reader who compares length to an uncut 8 ft stick without that sentence will call a designed shortening a failure, or will miss it.
 
-**Later. SKIL agreement rule is untested.** The protocol says to withhold MAE when BOT / MID / TOP differ by more than the printed resolution. No session has shown whether that rule is too strict or too loose. The sentence stands until a session exists.
+**Open. SKIL agreement rule, first session is paint.** The protocol says to withhold MAE when bottom / middle / top differ by more than the printed resolution. Phase 2 is that session on painted drywall, not on a stud. Both faces span more than the 0.05° display step, so no angle MAE against the level is published. The rule’s strictness on lumber is still untested.
 
 **Later. ε double-counts or omits a term.** If ε is filled from a brochure range specification alone, the paint interval ignores registration, peel, and box fit. If the same noise is both in the points and again in ε, the interval is conservative for a reason that should be written down. The budget form in [`METHODS.md`](METHODS.md) is empty so those choices stay visible.
 
@@ -34,7 +34,9 @@ Written for the draft in [`draft/paper.md`](draft/paper.md). Items already reali
 
 **Open. Scene mismatch.** Stages 4–7 (openings, a room, a story, a complex frame) have no clouds. IntCDC, cited in the ranking as a negative control, is heavy timber with members that touch, and file Z is not documented there as gravity. It was not re-run for this draft.
 
-**Later. One stud is not a wall.** E3, when it exists, estimates detection and angle on a single isolated member. Bays, plates, and openings arrive at E4. Generalizing E3 to a house is a separate claim.
+**Open. A painted corner is not a stud.** Phase 2 measures two finished faces. Export +Z is not a gravity vector paired to the level. The planes are not registered to the SKIL faces. Open3D plane RANSAC is unseeded, so the third decimal of a degree can move. None of that is class F.
+
+**Later. One stud is not a wall.** E3, when it exists, estimates detection and angle on a single isolated member. Bays, plates, and openings arrive at E4. Generalizing E3 to a house is a separate claim. Phase 2 does not start that ladder.
 
 **Later. Operator and site.** Level placement, scanner height, and how wet or warped the stud is are not in the generator. A single jobsite will not represent a framing crew.
 

@@ -10,4 +10,6 @@
 
 `build_finetune_synth.py` writes `data/finetune/synthetic_stud_manifest.json` and caches labeled clouds under `data/cache/finetune-synth/` (gitignored). `train_randlanet_stud.py` is the Open3D-ML interpreter (torch 2.13). `train_pointcept_stud.py` is the Pointcept interpreter (torch 2.7). `infer_finetune_phase1.py --stack randlanet|pointcept` scores the 25 phase-1 S1 clouds into `artifacts/scorecards/phase1_s1_finetune/`. The note is `docs/research/20-synthetic-stud-finetune.md`. Synthetic only.
 
+`run_phase2_wall_corner.py` fits two vertical planes on the gitignored WallCorner PLY and writes `artifacts/scorecards/phase2_wall_corner/`. The note is `docs/research/22-phase2-wall-corner-field.md`. It is a painted-corner plumb pilot. It does not detect studs. The interpreter is `C:\Repos\openwall-stud-frame\.venv` (Open3D 0.20.0). The script reads PLY files from that primary checkout’s `data/raw/polycam/`, including when it is launched from a worktree.
+
 Dataset download helpers are not here yet. Large clouds stay linked from `docs/research/`.

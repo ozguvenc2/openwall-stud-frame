@@ -15,9 +15,9 @@ Status date: **2026-09-25**.
 | **BeamWeaver** | An OpenWall app. |
 | **TruePlank** | An OpenWall app: find each vertical stud, fit a tight box, report lean, paint yellow until a device band exists. This paper is that app’s draft. |
 
-Live draft: [`draft/paper.md`](draft/paper.md). On this branch that file is [https://github.com/ozguvenc2/openwall-stud-frame/blob/cursor/trueplank-paper-draft-20c5/papers/trueplank-stud-lean-qa/draft/paper.md](https://github.com/ozguvenc2/openwall-stud-frame/blob/cursor/trueplank-paper-draft-20c5/papers/trueplank-stud-lean-qa/draft/paper.md).
+Live draft: [`draft/paper.md`](draft/paper.md). This branch is `cursor/trueplank-phase2-wall-corner-fdf2`, cut from `cursor/trueplank-paper-draft-20c5`.
 
-Pull request: [https://github.com/ozguvenc2/openwall-stud-frame/pull/21](https://github.com/ozguvenc2/openwall-stud-frame/pull/21) (branch `cursor/trueplank-paper-draft-20c5`).
+Parent draft: [https://github.com/ozguvenc2/openwall-stud-frame/pull/21](https://github.com/ozguvenc2/openwall-stud-frame/pull/21) (branch `cursor/trueplank-paper-draft-20c5`). Phase 2 is the pull request opened from this branch onto that paper branch.
 
 Pandoc metadata: [`draft/header.yaml`](draft/header.yaml). Optional PDF note: [`Makefile`](Makefile) (`make note`). No journal class is bundled. This folder is not an arXiv upload and not a publisher submission.
 
@@ -39,6 +39,7 @@ Source notes for the numbers, in-tree on this branch:
 - `docs/research/18-ozpc-ranks4-5-run.md`
 - `docs/research/19-phase1-s1-lean-sweep.md`
 - `docs/research/20-synthetic-stud-finetune.md`
+- `docs/research/22-phase2-wall-corner-field.md`
 
 Cited by branch because they are not in this tree: house-alike hunt on `cursor/house-alike-cloud-hunt-0474` (PR #12); methods shortlist on `cursor/methods-beat-shortlist-e9dc` (PR #14); CloudCompare stud-only tune on `cursor/cc-stud-param-tune-78b7` (PR #22), `docs/research/21-cloudcompare-stud-param-tune.md` and `artifacts/scorecards/phase1_s1_cc_tuned/`.
 
@@ -46,13 +47,14 @@ Cited by branch because they are not in this tree: house-alike hunt on `cursor/h
 
 | Piece | State |
 | --- | --- |
-| Title and abstract | **Drafted** from class-S results. Synthetic-only caveat is in the abstract |
+| Title and abstract | **Drafted.** Class-S caveat stays. The abstract also names the phase-2 painted-corner pilot and keeps ε unlocked |
 | Authors | **Placeholders** (Oz, Gwench). Legal names unassigned |
 | E0 Open3D, seven scenes | **Quoted**, class S, 2026-09-24 |
 | Phase 1 S1, 25 × 6 | **Quoted** from doc 19. Ranks 1, 2, 6 pass 25/25. Rank 3 untuned: lean 25/25, stage-0 bars 0/25. Ranks 4 and 5 are controls. Final comparison is Table 8 of the draft |
 | CloudCompare stud-only parameter tune | **Quoted** from PR #22. Stage-0 pass 25/25, one box per scene. Untuned row kept |
 | Synthetic fine-tune, ranks 4 and 5 | **Quoted** from doc 20, control and fine-tune both in Table 8. Train about 98 s and 237 s. Phase-1 stud boxes 25/25. Floorless limitation stated |
 | Class F, ε, SAM 2, native PCL on the 25-scene matrix | **Empty or not run** |
+| Phase 2 painted wall corner | **Quoted** from doc 22. Wall-plumb pilot, not class F. Table 9 is the density ladder. Table 10 is SKIL versus cloud lean. ε stays unlocked |
 | Bibliography | **Usable draft.** NAHB, UFGS, DBSCAN pagination, RoomPlan, and ARKit remain marked unverified |
 
 ## Contribution candidates
@@ -83,7 +85,7 @@ CRediT, affiliations, acknowledgements, and funding stay blank until Oz assigns 
 ## Ethics
 
 - Production paint stays yellow while ε is unlocked. τ ≈ 0.12° is a derived finish guideline. The ≈ 0.15° figure is a second derivation from WoodWorks’s UFGS summary, not a code clause and not the paint band.
-- This draft contains no jobsite scan.
+- This draft contains no committed scan and no photograph. The phase-2 cloud stayed gitignored.
 - Synthetic tables keep the class-S label.
 - CloudCompare is GPL-3.0 if linked. BIMStruct3D weights are CC BY-NC-SA 4.0. Ultralytics YOLO is AGPL-3.0 in the citation file this bibliography checked. None of those licenses is a reason to ship the component inside a closed application by default.
 
