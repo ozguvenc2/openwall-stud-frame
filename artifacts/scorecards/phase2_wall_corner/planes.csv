@@ -1,4 +1,4 @@
-slot,kind,inliers,lean_from_vertical_deg,rmse_mm,nx,ny,nz
-plane_1,vertical_wall,943764,1.003417,5.0071,-0.999791,0.010583,0.017512
-plane_2,vertical_wall,849543,0.763264,3.4047,0.007305,0.999885,0.013321
-floor,horizontal_floor_candidate,203967,89.144604,1.9607,-0.013605,0.006146,0.999889
+slot,kind,inliers,lean_from_export_plus_z_deg,lean_from_floor_normal_deg,rmse_mm,nx,ny,nz
+plane_1,vertical_wall,941452,1.005288,1.685037,4.9909,-0.999775,0.011887,0.017545
+plane_2,vertical_wall,848857,0.763046,0.976311,3.4120,0.007258,0.999885,0.013317
+floor,lower_horizontal_slab,201263,,,1.6254,-0.011819,0.003809,0.999923

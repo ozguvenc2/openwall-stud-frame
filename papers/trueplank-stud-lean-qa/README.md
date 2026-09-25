@@ -55,7 +55,7 @@ Cited by branch because they are not in this tree: house-alike hunt on `cursor/h
 | CloudCompare stud-only parameter tune | **Quoted** from PR #22. Stage-0 pass 25/25, one box per scene. Untuned row kept |
 | Synthetic fine-tune, ranks 4 and 5 | **Quoted** from doc 20, control and fine-tune both in Table 8. Train about 98 s and 237 s. Phase-1 stud boxes 25/25. Floorless limitation stated |
 | Class F, ε, SAM 2, native PCL on the 25-scene matrix | **Empty or not run** |
-| Phase 2 painted wall corner | **Quoted** from doc 22. Wall-plumb pilot, not class F. Table 9 is the density ladder. Table 10 is SKIL versus cloud lean. ε stays unlocked |
+| Phase 2 painted wall corner | **Quoted** from doc 22. Wall-plumb pilot, not class F. Table 9 is the density ladder. Table 10 is SKIL versus lean from the floor normal. Table 10b is export +Z versus that floor normal. ε stays unlocked |
 | Phase 2 synthetic corner, neural ranks | **Quoted** from doc 23. Table 11. Office controls and stud heads do not name two faces. 3-class head does not recover both walls |
 | Phase 2b open stud | **Stub.** Section 5.8. Waiting on SKIL readings on bare wood |
 | Bibliography | **Usable draft.** NAHB, UFGS, DBSCAN pagination, RoomPlan, and ARKit remain marked unverified |

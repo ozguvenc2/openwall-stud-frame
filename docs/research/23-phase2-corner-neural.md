@@ -71,6 +71,6 @@ RandLA-Net was not given a 3-class corner layer in this pass. The stud head abov
 
 ## What this does not say
 
-- The painted field corner and this generator are different clouds. The field planes leaned 1.003° and 0.763°. This generator was planted at 0.383° and 0.250° so the network would have a known answer. Matching the generator is not matching the level.
+- The painted field corner and this generator are different clouds. On the field card the planes lean 1.005° and 0.763° from export +Z, and 1.685° and 0.976° from the floor normal used as up. This generator was planted at 0.383° and 0.250° so the network would have a known answer. Matching the generator is not matching the level.
 - Paint on the field cloud is not wood. This generator is not wood either. It is two planes and a floor.
 - Class F waits on a bare stud and SKIL readings on that wood. That stub is phase 2b in the draft.

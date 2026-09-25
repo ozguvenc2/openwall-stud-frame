@@ -15,8 +15,10 @@
   "epsilon_deg": null,
   "open3d": "0.20.0",
   "numpy": "2.5.3",
-  "vertical_axis": "export_+Z",
-  "vertical_axis_note": "Lot62 loft exports sit on Z (floor near z=0, ceiling near 2.45 m). This corner's long axis is the same Z, span about 2.50 m, plan extent under 0.9 m. Wall lean is the angle between the fitted plane and +Z. It is not an IMU pair and it is not a stud-axis angle.",
+  "vertical_axis": "floor_plane_normal",
+  "vertical_axis_before": "export_+Z",
+  "lean_definition": "arcsin(|n_wall \u00b7 u|) in degrees. u is export +Z before, and the floor normal after. Zero means the wall normal lies in the horizontal plane of u, so the plumb line lies in the wall. The same number is the angle between the wall normal and that horizontal plane.",
+  "vertical_axis_note": "Lot62 loft exports sit on Z (floor near z=0, ceiling near 2.45 m). This corner's long axis is the same Z. The plumb proxy for this pilot is the normal of a floor plane fit to the lower horizontal points, flipped into the room. Export +Z remains the before column on the same wall planes. Neither vector is an IMU, and neither angle is a stud-axis angle. A floor that is not level is not gravity.",
   "cloud": {
     "path": "data/raw/polycam/wall_corner_2026-09-25.ply",
     "gitignored": true,
@@ -39,135 +41,336 @@
     ]
   },
   "fit": {
-    "voxel_m": 0.004,
-    "ransac_distance_m": 0.01,
-    "refit_distance_m": 0.01,
-    "ransac_iterations": 2500,
-    "refit": "svd_on_full_resolution_inliers"
+    "walls": {
+      "voxel_m": 0.004,
+      "ransac_distance_m": 0.01,
+      "refit_distance_m": 0.01,
+      "ransac_iterations": 2500,
+      "refit": "svd_on_full_resolution_inliers"
+    },
+    "floor": {
+      "band_above_zmin_m": 0.08,
+      "voxel_m": 0.004,
+      "normal_radius_m": 0.03,
+      "horizontal_min_abs_nz": 0.94,
+      "group_gap_m": 0.02,
+      "ransac_distance_m": 0.005,
+      "refit_distance_m": 0.005,
+      "ransac_iterations": 4000,
+      "wall_inliers_excluded": true,
+      "refit": "svd_on_full_resolution_inliers_of_the_lowest_horizontal_slab"
+    }
   },
   "walls": [
     {
       "slot": "plane_1",
       "kind": "vertical_wall",
-      "inliers": 943764,
-      "lean_from_vertical_deg": 1.0034165420161407,
-      "rmse_mm": 5.007090605547376,
+      "inliers": 941452,
+      "lean_from_export_plus_z_deg": 1.005287504914171,
+      "lean_from_floor_normal_deg": 1.6850370278469329,
+      "rmse_mm": 4.990911022133343,
       "normal_xyz": [
-        -0.9997906431197776,
-        0.010582950079458744,
-        0.017512027231510883
+        -0.9997754212232879,
+        0.011886607509348423,
+        0.01754467667744779
       ],
       "center_xyz_m": [
-        -0.10492035643423968,
-        -0.13359335799594965,
-        0.025744363089070712
+        -0.10474104427962597,
+        -0.13431832259735957,
+        0.027835088648743893
       ],
-      "z_min_m": -1.2407442237442161,
+      "z_min_m": -1.240758550655403,
       "z_max_m": 1.2457438268044374,
-      "height_bins": [
+      "height_bins_export_z": [
         {
           "height": "bottom",
-          "z_lo_m": -1.2407442237442161,
-          "z_hi_m": -0.46799424660562977,
-          "points": 314588,
-          "lean_from_vertical_deg": 0.36927450712158133,
-          "rmse_mm": 2.54926233072463
+          "axis": "export_+Z",
+          "s_lo_m": -1.240758550655403,
+          "s_hi_m": -0.47017434247246565,
+          "points": 313817,
+          "lean_from_export_plus_z_deg": 0.36698608328760973,
+          "lean_from_floor_normal_deg": 1.043338898992011,
+          "rmse_mm": 2.5685971868319526,
+          "normal_xyz": [
+            -0.9999719255171392,
+            -0.0038888603068898296,
+            0.006405071666941667
+          ]
         },
         {
           "height": "mid",
-          "z_lo_m": -0.46799424660562977,
-          "z_hi_m": 0.5463595926644089,
-          "points": 314588,
-          "lean_from_vertical_deg": 1.4414389164812547,
-          "rmse_mm": 4.859951081400168
+          "axis": "export_+Z",
+          "s_lo_m": -0.47017434247246565,
+          "s_hi_m": 0.5522191483509925,
+          "points": 313817,
+          "lean_from_export_plus_z_deg": 1.483511543996569,
+          "lean_from_floor_normal_deg": 2.1621125731132884,
+          "rmse_mm": 4.960885788894894,
+          "normal_xyz": [
+            -0.9996437721483924,
+            0.006486494241571502,
+            0.025889267996357927
+          ]
         },
         {
           "height": "top",
-          "z_lo_m": 0.5463595926644089,
-          "z_hi_m": 1.2457438268044374,
-          "points": 314588,
-          "lean_from_vertical_deg": 0.08036547107336064,
-          "rmse_mm": 2.570585335199475
+          "axis": "export_+Z",
+          "s_lo_m": 0.5522191483509925,
+          "s_hi_m": 1.2457438268044374,
+          "points": 313818,
+          "lean_from_export_plus_z_deg": 0.08047540043100841,
+          "lean_from_floor_normal_deg": 0.7625606675806468,
+          "rmse_mm": 2.550713645609217,
+          "normal_xyz": [
+            -0.9997304186389401,
+            0.023175790354045066,
+            0.0014045602425646066
+          ]
         }
       ],
-      "skil_face_id": null,
-      "lean_vs_floor_normal_deg": 1.7866172733821744
+      "height_bins_floor_up": [
+        {
+          "height": "bottom",
+          "axis": "floor_normal",
+          "s_lo_m": -1.2381371466424846,
+          "s_hi_m": -0.4693798392605035,
+          "points": 313817,
+          "lean_from_export_plus_z_deg": 0.36682640692773766,
+          "lean_from_floor_normal_deg": 1.043179851168891,
+          "rmse_mm": 2.568030845986531,
+          "normal_xyz": [
+            -0.9999719544033802,
+            -0.003886020514182455,
+            0.006402284845865777
+          ]
+        },
+        {
+          "height": "mid",
+          "axis": "floor_normal",
+          "s_lo_m": -0.4693798392605035,
+          "s_hi_m": 0.5525655468569544,
+          "points": 313817,
+          "lean_from_export_plus_z_deg": 1.4830127548122356,
+          "lean_from_floor_normal_deg": 2.161617333004882,
+          "rmse_mm": 4.959128582313324,
+          "normal_xyz": [
+            -0.9996438898358208,
+            0.006503064546604494,
+            0.02588056539977958
+          ]
+        },
+        {
+          "height": "top",
+          "axis": "floor_normal",
+          "s_lo_m": 0.5525655468569544,
+          "s_hi_m": 1.2471253430674178,
+          "points": 313818,
+          "lean_from_export_plus_z_deg": 0.07996941031847365,
+          "lean_from_floor_normal_deg": 0.762053811840248,
+          "rmse_mm": 2.5490813343395793,
+          "normal_xyz": [
+            -0.9997305304200965,
+            0.023171501598946244,
+            0.0013957290577747295
+          ]
+        }
+      ],
+      "skil_face_id": null
     },
     {
       "slot": "plane_2",
       "kind": "vertical_wall",
-      "inliers": 849543,
-      "lean_from_vertical_deg": 0.7632639327102935,
-      "rmse_mm": 3.40468543359316,
+      "inliers": 848857,
+      "lean_from_export_plus_z_deg": 0.7630463866125105,
+      "lean_from_floor_normal_deg": 0.9763114555627933,
+      "rmse_mm": 3.4120269514496124,
       "normal_xyz": [
-        0.007304708577982953,
-        0.9998845884410268,
-        0.013321074682979717
+        0.0072579439501212865,
+        0.9998849795616406,
+        0.013317278124098999
       ],
       "center_xyz_m": [
-        0.09209691399518564,
-        0.0762311504288128,
-        -0.10751029200250399
+        0.09226264271908832,
+        0.07623596979382957,
+        -0.10768988907645775
       ],
       "z_min_m": -1.2372180641531587,
       "z_max_m": 1.247266812728722,
-      "height_bins": [
+      "height_bins_export_z": [
         {
           "height": "bottom",
-          "z_lo_m": -1.2372180641531587,
-          "z_hi_m": -0.49810753468588637,
-          "points": 283181,
-          "lean_from_vertical_deg": 1.0443396176333466,
-          "rmse_mm": 1.9196300462744318
+          "axis": "export_+Z",
+          "s_lo_m": -1.2372180641531587,
+          "s_hi_m": -0.49765825081793685,
+          "points": 282952,
+          "lean_from_export_plus_z_deg": 1.0455297495928284,
+          "lean_from_floor_normal_deg": 1.2611276514534635,
+          "rmse_mm": 1.9233968656854736,
+          "normal_xyz": [
+            0.003790255737494457,
+            0.9998263267844755,
+            0.018246923853292296
+          ]
         },
         {
           "height": "mid",
-          "z_lo_m": -0.49810753468588637,
-          "z_hi_m": 0.2635143027472795,
-          "points": 283181,
-          "lean_from_vertical_deg": 0.8652189920371485,
-          "rmse_mm": 3.9970056486647554
+          "axis": "export_+Z",
+          "s_lo_m": -0.49765825081793685,
+          "s_hi_m": 0.2627820051241109,
+          "points": 282952,
+          "lean_from_export_plus_z_deg": 0.8590614329916377,
+          "lean_from_floor_normal_deg": 1.0727275336973856,
+          "rmse_mm": 4.009255488230111,
+          "normal_xyz": [
+            0.006657075141101912,
+            0.9998654392658208,
+            0.014992888725418037
+          ]
         },
         {
           "height": "top",
-          "z_lo_m": 0.2635143027472795,
-          "z_hi_m": 1.247266812728722,
-          "points": 283181,
-          "lean_from_vertical_deg": 0.422646391966921,
-          "rmse_mm": 3.396869052092207
+          "axis": "export_+Z",
+          "s_lo_m": 0.2627820051241109,
+          "s_hi_m": 1.247266812728722,
+          "points": 282953,
+          "lean_from_export_plus_z_deg": 0.4250884694690401,
+          "lean_from_floor_normal_deg": 0.6355473528158528,
+          "rmse_mm": 3.40550540342596,
+          "normal_xyz": [
+            0.011424459413376269,
+            0.9999072148486051,
+            0.007419125340472512
+          ]
         }
       ],
-      "skil_face_id": null,
-      "lean_vs_floor_normal_deg": 1.1096437377468196
+      "height_bins_floor_up": [
+        {
+          "height": "bottom",
+          "axis": "floor_normal",
+          "s_lo_m": -1.2320624896011612,
+          "s_hi_m": -0.4985461657258033,
+          "points": 282952,
+          "lean_from_export_plus_z_deg": 1.0448349440159808,
+          "lean_from_floor_normal_deg": 1.260450325405932,
+          "rmse_mm": 1.92471255734727,
+          "normal_xyz": [
+            0.0037645542599117087,
+            0.9998266450882445,
+            0.018234799225926416
+          ]
+        },
+        {
+          "height": "mid",
+          "axis": "floor_normal",
+          "s_lo_m": -0.4985461657258033,
+          "s_hi_m": 0.26173001045714883,
+          "points": 282952,
+          "lean_from_export_plus_z_deg": 0.8611680304479384,
+          "lean_from_floor_normal_deg": 1.0748067648350015,
+          "rmse_mm": 4.009372437978662,
+          "normal_xyz": [
+            0.0066971711690203255,
+            0.9998646195709617,
+            0.015029651644296819
+          ]
+        },
+        {
+          "height": "top",
+          "axis": "floor_normal",
+          "s_lo_m": 0.26173001045714883,
+          "s_hi_m": 1.2491141685729419,
+          "points": 282953,
+          "lean_from_export_plus_z_deg": 0.42783042016316336,
+          "lean_from_floor_normal_deg": 0.6382930442023386,
+          "rmse_mm": 3.4090596331128564,
+          "normal_xyz": [
+            0.011418668286653796,
+            0.999906924780006,
+            0.007466980082399431
+          ]
+        }
+      ],
+      "skil_face_id": null
     }
   ],
   "floor": {
     "slot": "floor",
-    "kind": "horizontal_floor_candidate",
-    "inliers": 203967,
-    "lean_from_vertical_deg": 89.14460366012368,
-    "tilt_from_horizontal_deg": 0.8553963398763216,
-    "rmse_mm": 1.9607418237632674,
+    "kind": "lower_horizontal_slab",
+    "role": "plumb_reference",
+    "inliers": 201263,
+    "rmse_mm": 1.6254413585849754,
+    "tilt_from_export_horizontal_deg": 0.7115094583588616,
     "normal_xyz": [
-      -0.013605028293155557,
-      0.006146226049785555,
-      0.9998885573455111
+      -0.01181925931319341,
+      0.0038089951651542123,
+      0.9999228953599969
     ],
     "center_xyz_m": [
-      -0.07750037531271167,
-      0.13440205209004666,
-      -1.2319268051809715
+      -0.0772730267813504,
+      0.131957899143154,
+      -1.2318357925712018
     ],
-    "z_min_m": -1.2432012527094738,
-    "z_max_m": -1.2180417805817885,
-    "note": "Optional. A floor normal is not the plumb reference for this pilot. Export +Z is the vertical used for wall lean. Lean versus this normal is a sensitivity only."
+    "points_into_room": true,
+    "orient": "Flipped so the normal points from the floor center toward the mean of the two wall centers (into the room, away from the floor). On this Z-up export that normal has positive z.",
+    "slab_z_lo_m": -1.2422104955661362,
+    "slab_z_hi_m": -1.2240740110336195,
+    "band_z_hi_m": -1.1685088830610528,
+    "down_horizontal": 14676,
+    "down_ransac_inliers": 14465,
+    "xyz_extent_m": [
+      0.7601422109895497,
+      0.6590013838792441,
+      0.016474008849334698
+    ],
+    "inplane_extent_m": [
+      0.7601848451995054,
+      0.6589935039588077
+    ],
+    "z_min_m": -1.2399470614149855,
+    "z_max_m": -1.2234730525656508,
+    "note": "Up for the wall-lean result. Not a surveyed gravity vector. Carpet, baseboard, and a short corner patch can tilt it."
   },
-  "dihedral_between_wall_normals_deg": 89.79878663954875,
-  "corner_edge_angle_from_plus_z_deg": 1.258640041263062,
+  "floor_sensitivities": [
+    {
+      "name": "sequential_ransac_10mm",
+      "note": "Third dominant plane from the wall pass (10 mm). The previous card used this patch only as a sensitivity, and its leans are not the result.",
+      "inliers": 207531,
+      "rmse_mm": 1.9870735470123875,
+      "tilt_from_export_horizontal_deg": 0.8487539353922837,
+      "normal_xyz": [
+        -0.013555039915157108,
+        0.005973786618923522,
+        0.9998902813640755
+      ],
+      "wall_lean_deg": [
+        1.78595545263922,
+        1.0996041485856587
+      ]
+    },
+    {
+      "name": "primary_eroded_50mm_from_walls",
+      "note": "Same primary inliers, then points within 50 mm of either wall plane are dropped and the plane is refit. A check for baseboard and carpet piled against the wall.",
+      "inliers": 149747,
+      "rmse_mm": 1.3971879887143253,
+      "tilt_from_export_horizontal_deg": 0.8238490359047762,
+      "normal_xyz": [
+        -0.013400079256178301,
+        0.005213038102065432,
+        0.9998966257117156
+      ],
+      "wall_lean_deg": [
+        1.7765625839405041,
+        1.0560830623614335
+      ]
+    }
+  ],
+  "dihedral_between_wall_normals_deg": 89.72139395289229,
+  "corner_edge_angle_from_plus_z_deg": 1.2591814768754468,
+  "corner_edge_angle_from_floor_normal_deg": 1.9434929467401532,
   "corner_edge_xyz": [
-    0.017369136979354986,
-    -0.013446288996264417,
-    0.9997587260898608
+    0.017384566949869985,
+    -0.013441784539918303,
+    0.9997585184735102
   ],
   "skil": {
     "instrument": "SKIL digital level",
@@ -220,21 +423,37 @@
     "A": 0.3833333333333333,
     "B": 0.25
   },
-  "pairing": {
+  "pairing_export_plus_z": {
     "registered": false,
-    "reason": "The close cloud is an outside corner patch. It does not contain the doorway or the cat tree, so plane 1 and plane 2 are not assigned to Face A or Face B.",
     "sorted_abs_delta_deg": [
-      0.5132639327102935,
-      0.6200832086828074
+      0.5130463866125105,
+      0.6219541715808377
     ],
     "sorted_cloud_lean_deg": [
-      0.7632639327102935,
-      1.0034165420161407
+      0.7630463866125105,
+      1.005287504914171
     ],
     "sorted_skil_mean_lean_deg": [
       0.25,
       0.3833333333333333
-    ]
+    ],
+    "reason": "The close cloud is an outside corner patch. It does not contain the doorway or the cat tree, so plane 1 and plane 2 are not assigned to Face A or Face B. This column uses export +Z."
+  },
+  "pairing_floor_normal": {
+    "registered": false,
+    "sorted_abs_delta_deg": [
+      0.7263114555627933,
+      1.3017036945135996
+    ],
+    "sorted_cloud_lean_deg": [
+      0.9763114555627933,
+      1.6850370278469329
+    ],
+    "sorted_skil_mean_lean_deg": [
+      0.25,
+      0.3833333333333333
+    ],
+    "reason": "Same unpaired sort as the export-+Z column. This column uses the floor normal as up."
   },
   "density_ladder": [
     {
@@ -277,9 +496,10 @@
   "limits": [
     "Painted drywall is not stud wood.",
     "One global plane cannot reproduce three SKIL heights when the face bows.",
-    "Export +Z is the vertical used here. It is not a surveyed gravity vector paired to the level.",
+    "The floor normal is the up proxy. It is not a surveyed gravity vector. Carpet, baseboard, and a short corner patch can tilt it, and the floor itself may not be level.",
+    "Faces are not registered. Sorting the two leans against the two SKIL means is an unpaired magnitude check.",
     "No stud instance, no oriented stud box, no class-F score.",
     "\u03b5 stays unlocked. Production paint stays yellow."
   ],
-  "runtime_s": 3.965
+  "runtime_s": 4.341
 }

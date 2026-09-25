@@ -1,0 +1,133 @@
+{
+  "study": "TruePlank",
+  "suite": "OpenWall",
+  "app": "TruePlank",
+  "phase": 2,
+  "name": "wall_corner_floor_gravity",
+  "date": "2026-09-25",
+  "stud_detection": "not_claimed",
+  "class_F_stud_qa": false,
+  "epsilon_locked": false,
+  "production_paint": "yellow",
+  "lean_definition": "arcsin(|n_wall \u00b7 u|) in degrees. u is export +Z before, and the floor normal after. Zero means the wall normal lies in the horizontal plane of u, so the plumb line lies in the wall. The same number is the angle between the wall normal and that horizontal plane.",
+  "up_before": "export_+Z",
+  "up_after": "floor_plane_normal",
+  "faces_registered": false,
+  "skil_face_mean_lean_deg": {
+    "A": 0.3833333333333333,
+    "B": 0.25
+  },
+  "walls": [
+    {
+      "slot": "plane_1",
+      "lean_from_export_plus_z_deg": 1.005287504914171,
+      "lean_from_floor_normal_deg": 1.6850370278469329,
+      "height_thirds_along_floor_up_deg": {
+        "bottom": 1.043179851168891,
+        "mid": 2.161617333004882,
+        "top": 0.762053811840248
+      }
+    },
+    {
+      "slot": "plane_2",
+      "lean_from_export_plus_z_deg": 0.7630463866125105,
+      "lean_from_floor_normal_deg": 0.9763114555627933,
+      "height_thirds_along_floor_up_deg": {
+        "bottom": 1.260450325405932,
+        "mid": 1.0748067648350015,
+        "top": 0.6382930442023386
+      }
+    }
+  ],
+  "floor": {
+    "inliers": 201263,
+    "rmse_mm": 1.6254413585849754,
+    "tilt_from_export_horizontal_deg": 0.7115094583588616,
+    "normal_xyz": [
+      -0.01181925931319341,
+      0.0038089951651542123,
+      0.9999228953599969
+    ],
+    "inplane_extent_m": [
+      0.7601848451995054,
+      0.6589935039588077
+    ],
+    "orient": "Flipped so the normal points from the floor center toward the mean of the two wall centers (into the room, away from the floor). On this Z-up export that normal has positive z."
+  },
+  "pairing_export_plus_z": {
+    "registered": false,
+    "sorted_abs_delta_deg": [
+      0.5130463866125105,
+      0.6219541715808377
+    ],
+    "sorted_cloud_lean_deg": [
+      0.7630463866125105,
+      1.005287504914171
+    ],
+    "sorted_skil_mean_lean_deg": [
+      0.25,
+      0.3833333333333333
+    ],
+    "reason": "The close cloud is an outside corner patch. It does not contain the doorway or the cat tree, so plane 1 and plane 2 are not assigned to Face A or Face B. This column uses export +Z."
+  },
+  "pairing_floor_normal": {
+    "registered": false,
+    "sorted_abs_delta_deg": [
+      0.7263114555627933,
+      1.3017036945135996
+    ],
+    "sorted_cloud_lean_deg": [
+      0.9763114555627933,
+      1.6850370278469329
+    ],
+    "sorted_skil_mean_lean_deg": [
+      0.25,
+      0.3833333333333333
+    ],
+    "reason": "Same unpaired sort as the export-+Z column. This column uses the floor normal as up."
+  },
+  "corner_edge_angle_from_plus_z_deg": 1.2591814768754468,
+  "corner_edge_angle_from_floor_normal_deg": 1.9434929467401532,
+  "sensitivities": [
+    {
+      "name": "sequential_ransac_10mm",
+      "note": "Third dominant plane from the wall pass (10 mm). The previous card used this patch only as a sensitivity, and its leans are not the result.",
+      "inliers": 207531,
+      "rmse_mm": 1.9870735470123875,
+      "tilt_from_export_horizontal_deg": 0.8487539353922837,
+      "normal_xyz": [
+        -0.013555039915157108,
+        0.005973786618923522,
+        0.9998902813640755
+      ],
+      "wall_lean_deg": [
+        1.78595545263922,
+        1.0996041485856587
+      ]
+    },
+    {
+      "name": "primary_eroded_50mm_from_walls",
+      "note": "Same primary inliers, then points within 50 mm of either wall plane are dropped and the plane is refit. A check for baseboard and carpet piled against the wall.",
+      "inliers": 149747,
+      "rmse_mm": 1.3971879887143253,
+      "tilt_from_export_horizontal_deg": 0.8238490359047762,
+      "normal_xyz": [
+        -0.013400079256178301,
+        0.005213038102065432,
+        0.9998966257117156
+      ],
+      "wall_lean_deg": [
+        1.7765625839405041,
+        1.0560830623614335
+      ]
+    }
+  ],
+  "limits": [
+    "Painted drywall is not stud wood.",
+    "One global plane cannot reproduce three SKIL heights when the face bows.",
+    "The floor normal is the up proxy. It is not a surveyed gravity vector. Carpet, baseboard, and a short corner patch can tilt it, and the floor itself may not be level.",
+    "Faces are not registered. Sorting the two leans against the two SKIL means is an unpaired magnitude check.",
+    "No stud instance, no oriented stud box, no class-F score.",
+    "\u03b5 stays unlocked. Production paint stays yellow."
+  ]
+}
