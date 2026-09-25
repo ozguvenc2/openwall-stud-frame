@@ -15,9 +15,11 @@ Status date: **2026-09-25**.
 | **TruePlank** | Stud QA module: find each vertical stud, fit a tight box, report lean, paint yellow until a device band exists. |
 | **OpenWall** | Engineering name of this repository and of the pipeline under `src/openwall_stud/`. |
 
-Live draft: [`draft/paper.md`](draft/paper.md). Pandoc metadata: [`draft/header.yaml`](draft/header.yaml). Optional PDF note: [`Makefile`](Makefile) (`make note`). No journal class is bundled.
+Live draft: [`draft/paper.md`](draft/paper.md). On this branch that file is [https://github.com/ozguvenc2/openwall-stud-frame/blob/cursor/trueplank-paper-draft-20c5/papers/trueplank-stud-lean-qa/draft/paper.md](https://github.com/ozguvenc2/openwall-stud-frame/blob/cursor/trueplank-paper-draft-20c5/papers/trueplank-stud-lean-qa/draft/paper.md).
 
-This folder is venue-agnostic. It is not uploaded to arXiv and not sent to a publisher. The pull request that carries this revision is opened from branch `cursor/trueplank-paper-draft-20c5`. The PR URL is recorded in that pull request; this file points at the draft path in the repository.
+Pull request: [https://github.com/ozguvenc2/openwall-stud-frame/pull/21](https://github.com/ozguvenc2/openwall-stud-frame/pull/21) (branch `cursor/trueplank-paper-draft-20c5`).
+
+Pandoc metadata: [`draft/header.yaml`](draft/header.yaml). Optional PDF note: [`Makefile`](Makefile) (`make note`). No journal class is bundled. This folder is not an arXiv upload and not a publisher submission.
 
 ## What to read
 
