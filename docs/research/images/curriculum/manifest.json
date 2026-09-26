@@ -1,0 +1,114 @@
+{
+  "epsilon_locked": false,
+  "paint": "yellow",
+  "rank": 1,
+  "stages_6_and_7": "stub_not_run_no_figure",
+  "rows": [
+    {
+      "level": "Stage 0 one-stud",
+      "studs": 1,
+      "image": "docs/research/images/curriculum/01-stage0-one-stud.png",
+      "pass_fail": "pass",
+      "scene": "stage0_2x4_lean0.150",
+      "n_pred": 1,
+      "n_true": 1,
+      "reasons": [],
+      "title": "Stage 0 one-stud \u2014 1 stud"
+    },
+    {
+      "level": "Stage 2 one-stud harder",
+      "studs": 1,
+      "image": "docs/research/images/curriculum/02-stage2-one-stud-harder.png",
+      "pass_fail": "pass",
+      "scene": "stage2_2x4_lean1.000",
+      "n_pred": 1,
+      "n_true": 1,
+      "reasons": [],
+      "title": "Stage 2 one-stud harder \u2014 1 stud"
+    },
+    {
+      "level": "Stage 3 mini wall 3",
+      "studs": 3,
+      "image": "docs/research/images/curriculum/03-stage3-mini-wall-3.png",
+      "pass_fail": "pass",
+      "scene": "stage3_mini_wall_3",
+      "n_pred": 3,
+      "n_true": 3,
+      "reasons": [],
+      "title": "Stage 3 mini wall 3 \u2014 3 studs"
+    },
+    {
+      "level": "Stage 3 mini wall 4",
+      "studs": 4,
+      "image": "docs/research/images/curriculum/04-stage3-mini-wall-4.png",
+      "pass_fail": "pass",
+      "scene": "stage3_mini_wall_4_leanmild",
+      "n_pred": 4,
+      "n_true": 4,
+      "reasons": [],
+      "title": "Stage 3 mini wall 4 \u2014 4 studs"
+    },
+    {
+      "level": "Stage 3 mini wall 5",
+      "studs": 5,
+      "image": "docs/research/images/curriculum/05-stage3-mini-wall-5.png",
+      "pass_fail": "pass",
+      "scene": "stage3_mini_wall_5",
+      "n_pred": 5,
+      "n_true": 5,
+      "reasons": [],
+      "title": "Stage 3 mini wall 5 \u2014 5 studs"
+    },
+    {
+      "level": "Stage 3 probe 2 mm noise",
+      "studs": 4,
+      "image": "docs/research/images/curriculum/06-stage3-probe-2mm-noise.png",
+      "pass_fail": "fail",
+      "scene": "stage3_mini_wall_4_noise2mm",
+      "n_pred": 1,
+      "n_true": 4,
+      "reasons": [
+        "detection P=1.0 R=0.25",
+        "section"
+      ],
+      "title": "Stage 3 probe 2 mm noise \u2014 4 studs"
+    },
+    {
+      "level": "S1b bow single",
+      "studs": 1,
+      "image": "docs/research/images/curriculum/07-s1b-bow-single.png",
+      "pass_fail": "fail",
+      "scene": "s1b_bow_2x4_amp6.35mm_lean0.000",
+      "n_pred": 1,
+      "n_true": 1,
+      "reasons": [
+        "section"
+      ],
+      "title": "S1b bow single \u2014 1 stud"
+    },
+    {
+      "level": "S1b bow wall",
+      "studs": 3,
+      "image": "docs/research/images/curriculum/08-s1b-bow-wall.png",
+      "pass_fail": "fail",
+      "scene": "s1b_bow_wall_3",
+      "n_pred": 3,
+      "n_true": 3,
+      "reasons": [
+        "section"
+      ],
+      "title": "S1b bow wall \u2014 3 studs"
+    },
+    {
+      "level": "Stage 5 room bay lot62 look",
+      "studs": 26,
+      "image": "docs/research/images/curriculum/09-stage5-room-bay-lot62-look.png",
+      "pass_fail": "pass",
+      "scene": "stage5_room_bay_lot62_look",
+      "n_pred": 26,
+      "n_true": 26,
+      "reasons": [],
+      "title": "Stage 5 room bay lot62 look \u2014 26 studs"
+    }
+  ]
+}
