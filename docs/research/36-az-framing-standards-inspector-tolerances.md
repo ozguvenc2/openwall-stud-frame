@@ -218,7 +218,70 @@ Imprecise framing **can** pass. The imprecision that passes is the kind with no 
 
 ---
 
-## 7. Structural integrity versus a wavy wall
+## 7. Seasonal and climate effects, greater Phoenix metro
+
+This section is the valley floor of the Sonoran Desert: Phoenix and the production cities around it (Mesa, Chandler, Gilbert, Glendale, Goodyear, Buckeye, Surprise, Queen Creek, San Tan Valley, and the City of Maricopa on the Pinal fringe). The climate station is **Phoenix Sky Harbor** (NOAA/NCEI `USW00023183`, elevation 1,107 ft). Numbers below are the **1991–2020 monthly normals** pulled from NCEI this pass. A lot in Casa Grande or the far Buckeye fringe is not this station. Air temperature changes less across that fringe than the soil does. Tucson’s monsoon is wetter; this section is not Tucson. Doc 35 already has the wood-moisture path. This section only places four framing months on that path and then asks what the slab does under the wall.
+
+Outdoor equilibrium moisture content is Wood Handbook Table 13-1 (FPL-GTR-282, chapter 13), Phoenix, normals through 2010: January **8.9%**, March **7.4%**, June **4.4%**, October **6.9%**. The same row is July **6.2%**, August **6.8%**, December **9.0%** (the high for the year). The handbook builds those cells from long-term NOAA temperature and relative humidity (morning and afternoon averages). Rain or condensation can put the **surface** above the cell. Doc 35’s mill target is still about **15% average, 19% maximum**. Every month in this table is drier than that stamp.
+
+| Month | Mean high / low / average (°F) | Day–night span (**derived**, high minus low) | Normal rain (inches) | Outdoor EMC |
+| --- | --- | --- | --- | --- |
+| **January** | 67.6 / 46.0 / 56.8 | 21.6 | 0.87 | 8.9% |
+| **March** | 78.1 / 54.5 / 66.3 | 23.6 | 0.83 | 7.4% |
+| **June** | 104.2 / 78.6 / 91.4 | 25.6 | 0.02 | 4.4% |
+| **October** | 89.2 / 65.6 / 77.4 | 23.6 | 0.56 | 6.9% |
+
+Temperature and rain: [NCEI monthly normals, USW00023183](https://www.ncei.noaa.gov/access/services/data/v1?dataset=normals-monthly-1991-2020&stations=USW00023183&dataTypes=MLY-TMAX-NORMAL,MLY-TMIN-NORMAL,MLY-TAVG-NORMAL,MLY-PRCP-NORMAL&format=json). EMC: Wood Handbook chapter 13 PDF, Table 13-1, Phoenix row, opened this pass. The code frost line on the valley floor is **0** (Phoenix and Pinal tables in section 2). January’s mean low of 46°F is why. This is not a frost-heave climate.
+
+**Monsoon is not June.** National Weather Service offices in Arizona fixed the season at **15 June through 30 September** (NWS Phoenix newsletter, May 2011, stating the statewide date rule). Sky Harbor’s June rain normal is **0.02 inch**. July is **0.91**, August **0.93**, September **0.57**. Those three months sum to **2.41 inches** (**derived**). The twelve monthly normals sum to **7.22 inches** (**derived**), so July–September is about a third of the year’s rain, delivered in short storms rather than a soak. June is the heat and the driest air. The moisture pulse that hits an open frame is July through September. October’s 0.56 inch is after the official end date. EMC follows with a lag: June **4.4%**, July **6.2%**, August **6.8%**, then October **6.9%** on the way back toward December’s **9.0%**.
+
+A same-day temperature swing does not imitate a plumb error. Along the grain, wood’s thermal expansion is a few millionths per degree Fahrenheit. Using **3×10⁻⁶ /°F** as an order-of-magnitude coefficient (not a species test opened this pass), a 26°F swing on a 96 inch stud changes length by about **0.007 inch** (**derived**). That is far under the 1/4 inch finish line and under the NAHB 3/8 inch in 32 inches. The movement that shows up between a morning framing check and a drywall check is **moisture and sun on one face** (doc 35), or the slab under the plate, not the afternoon air temperature.
+
+### January
+
+Cool, dry-winter rain, the higher outdoor EMC of the four months. Mean high is the upper 60s. Crews can work a full day. An open bundle is closer to desert EMC than it will be in June, and still about 6 to 10 points below a 15–19% mill stamp (**derived** from 15 and 19 minus 8.9). Winter rain (under an inch in a normal January, but one storm can exceed the monthly normal) wets the top of a broken bundle and the sill. Doc 35’s point stands: uneven rewet, then sun, crooks and checks the piece. The IRC plumb sentence does not change because January is mild. Anchor bolts, treated plates, and the termite certificate are the same checks as in June. Frost heave of the slab is not the valley failure mode; the published frost line is zero.
+
+### March
+
+The busy framing month. Highs in the upper 70s, rain still on the winter pattern (0.83 inch), EMC already down to 7.4% and falling toward May and June. Lumber delivered in March and stood in the wall will keep drying for the next three months. A stud crowned straight on the plate can take on crook before drywall if one edge faces the sun (doc 35; Oregon State EM 8612, cited there). The crook cap in doc 35 is on the order of **1/4 inch in 8 feet** for Stud grade. That midspan offset is the shape NAHB’s bow guideline measures (**1/2 inch in 8 feet** is the warranty line, twice the grade cap). It is not the chord angle. A March wall can pass the Phoenix checklist, sit inside 0.12° of chord plumb, and still wave 1/4 inch at mid-height by June. Inspectors are not required to come back for that wave.
+
+### June
+
+Extreme heat and the annual EMC low (**4.4%**). Mean high **104°F**, and the nights stay in the upper 70s, so lumber stacked in the open does not recover overnight the way it would in a humid climate. This is the month a KD stud is farthest from the air. Warp, end checks, and twist show up fastest on a broken bundle in direct sun. The official monsoon has started on the calendar (15 June) and has not started in the rain gauge (0.02 inch). Treating June as “monsoon-wet framing” is the wrong picture. The wet framing months are July and August, which are hotter still (mean highs **106.5°F** and **105.1°F**) and carry the rain. A July storm on an open frame, then a return to baking sun, is the check-and-crook cycle doc 35 describes. Cave Creek’s only moisture line — “no significant moisture remaining” — has no percent. A framer who calls for pre-drywall the day after a storm can be turned away for wet wood. A framer who calls in a dry June is not failed for heat. Neither call is a plumb call.
+
+Hot-weather concrete is a slab problem (plastic shrinkage, curing), not a stud-angle problem. It is mentioned so a crack in a June pour is not read as a framing lean.
+
+### October
+
+The second comfortable window. Mean high about 89°F, EMC **6.9%**, up 2.5 points from June (**derived**). The monsoon season has ended. Lumber that sat through July and August may still be wetter than a June delivery, then dries again toward December’s higher EMC and toward the next June low. A wall closed in during October locks in whatever crook the summer made. Grade stamps were applied at the mill, not after the monsoon.
+
+Soils are the other October story. Summer rain and irrigation have wet the slab edge. As the surface dries, expansive clay that swelled can shrink. Doors and drywall that move in October are often this cycle, or wood shrinkage, or both. The framing inspection, if it already passed in June or July, does not remeasure plumb in October.
+
+### Caliche, expansive clay, and the slab under the wall
+
+These are three different ground problems. Production marketing often says “caliche” for all of them.
+
+| Material | What it is | What the season does | What the frame does |
+| --- | --- | --- | --- |
+| **Caliche** | Carbonate-cemented hardpan (calcrete). USDA Agricultural Research Service: a shallow cemented layer common in the arid Southwest, including Arizona; the cement is usually calcium carbonate; the layer blocks drainage. [ARS note](https://aglab.ars.usda.gov/let-s-get-to-work/plant-growth-and-root-development-resource-material). | It does not swell like a clay. It sheds or perches water. A monsoon storm or irrigation can sit on the hardpan instead of draining. | Excavation and drainage. A perched wet layer can then swell a clay above the hardpan, or collapse a loose dry soil. The hardpan itself is not a racking engine. |
+| **Expansive clay** | IRC treats soil as expansive when the plasticity index is **15 or greater** (with the fines criteria) or the expansion index is **greater than 20** (ASTM D4829). Foundations and slabs then go to IBC 1808.6 (IRC **R403.1.8**), unless the building official accepts a local system that has performed. Phoenix UpCodes text of that section, opened this pass. | Wetting swells it (monsoon, irrigation). Drying shrinks it (May–June). The cycle is the edge of the slab, not the center of a wide house, which stays covered. | Edge lift or edge drop. Doors stick, drywall cracks, a corner goes out of level. The studs can still be straight relative to a plate that has tilted. |
+| **Collapsible soil** | Dry, low-density soil that densifies when wetted. Phoenix’s geotechnical interpretation names this beside expansive clay as the local concern, and says the concern is **not** a lack of ordinary bearing pressure. [TRT/DOC/00878](https://www.phoenix.gov/content/dam/phoenix/pddsite/documents/trt/external/dsd_trt_pdf_00878.pdf), rev. 05/26. | The first good wetting — often a monsoon or the first heavy irrigation — is the drop. Later seasons move it less if the collapse already happened. | A sudden settlement, usually at a wet edge or a poorly compacted fill. Again a slab and bearing problem, then a racked wall. |
+
+Phoenix practice for the houses in this note:
+
+- **New subdivisions always require a geotechnical investigation report** (same TRT document). That is the production-builder case. Presumptive bearing without a report is for minor work that meets a list of limits, not for a subdivision.
+- A **structural post-tensioned slab** needs that report, and the drawings have to carry the PTI soil parameters, including **e<sub>m</sub>** and **y<sub>m</sub>** where the soil is expansive (Phoenix Building Code section **1803.5.13**, UpCodes text opened this pass). Phoenix’s plan-review policy asks for the soils firm on the sheet and a sealed letter when a standard plan moves to a new subdivision ([post-tension slab policy](https://www.phoenix.gov/pddsite/Documents/TRT/dsd_trt_pdf_00111.pdf)). The final inspection checklist already asks for a post-tension certificate.
+- Houston, Dye, Zapata, Walsh, and Houston, *Journal of Performance of Constructed Facilities* **25**(1), 2011: Phoenix-area forensic files they mapped sat mostly on clays labeled **high to moderately high** expansion potential, with a few in medium. Site **drainage** mattered more than whether the landscape was turf or desert. [ASU record](https://asu.elsevierpure.com/en/publications/study-of-expansive-soils-and-residential-foundations-on-expansive/). That is a serviceability and litigation literature, not a collapse census.
+
+**Severity, kept separate from stud plumb.** A slab edge that rises or settles by a fraction of an inch can rack a wall through the NAHB gauge (3/8 inch in 32 inches, about 0.67°) at one corner and leave the IRC nail schedule untouched. The framing inspection does not have a sentence for that rack. The distress people live with — cracked drywall, a door that scrapes, a tile crack — is the common outcome on a slab that was designed for the soils report and then watered at the edge. It is real, and it is usually not a loss of the gravity load path.
+
+The case that is a structural problem is narrower: high-expansion clay or collapsible fill, water held against the footing by bad drainage or by caliche, and a foundation that was not built to the soils report. Then a corner can drop or heave enough to crack a stem, open a sill connection, or lean a braced-wall panel as a unit. That lean is a rigid tilt of a straight wall, which a chord measurement will see, and it is still uncommon next to the drywall cracks. This pass did not find a Phoenix series in which seasonal slab movement collapsed a one- or two-story wood house. Houston and the city’s own geotechnical note describe damage, repairs, and drainage, not a valley-wide failure rate. Do not read “caliche” on a listing as a prediction that the frame will fail. Read the soils report’s expansion index and the drainage at the stem.
+
+**What this does to the tolerances in this paper.** No month rewrites the IRC. A June crook of 1/4 inch is a grade-scale warp (doc 35) and a drywall-plane problem (1/8 inch between adjacent faces). It can pass pre-drywall. A January or July rain wets the lumber; the checklist that mentions moisture does so without a number. A slab-driven rack can look like “the wall is out of plumb” and be the plate, not the stud. TruePlank’s chord angle cannot tell those apart by itself.
+
+---
+
+## 8. Structural integrity versus a wavy wall
 
 **Cosmetic and code-tolerance lean is not a collapse mechanism** on a sheathed one- or two-story house. **A missed load path is.** Those are different errors, and they do not occur equally often. The national correction list is almost entirely the second kind. The plumb debate is almost entirely the first kind.
 
@@ -245,7 +308,7 @@ Crook, as doc 35 defines it, puts a midspan offset between plumb plates. The sam
 
 ---
 
-## 8. What this means for TruePlank
+## 9. What this means for TruePlank
 
 Doc 33 fits a minimal OBB and reports a **chord** angle. Doc 35 separates that chord from **crook, bow, and twist**, and records that Arizona sun moves the piece after the grade stamp. This note adds the enforcement layer, and it does not add a metric.
 
@@ -257,7 +320,7 @@ Doc 33 fits a minimal OBB and reports a **chord** angle. Doc 35 separates that c
 | What would a later field display be allowed to say? | Three labeled comparisons, if the numbers are computed: chord lean against the Handbook 0.119° sketch; midspan offset against the doc 35 grade crook and the NAHB 1/2 inch bow; and a separate, non-angle list for things the inspector actually cites. The third list is not a lean color. |
 | Human level error (doc 33’s future TrueLevel source) | The level in the warranty booklet is a **32-inch or shortened 4-foot** spirit level. That is the human instrument. It is coarse next to 0.12°, and it is still finer than “eyeball,” which no checklist in this pass defined. |
 
-Stage0 paint stays yellow while device ε is unlocked. Minimal OBB stays the shared box. Arizona inspectors are not running that box.
+Stage0 paint stays yellow while device ε is unlocked. Minimal OBB stays the shared box. Arizona inspectors are not running that box. A June crook or an October slab-edge rack (section 7) can move the chord or the midspan number without being an inspection fail, and without being a reason to repaint Stage0.
 
 ---
 
@@ -283,6 +346,13 @@ Stage0 paint stays yellow while device ε is unlocked. Minimal OBB stays the sha
 | 160 psi illustration for a 1/4 inch eccentricity | **derived**. Not a design result |
 | Production builders pass near-tolerance lean and get cited on connections | Lean half is an **inference** from checklists and the absence of a code sentence (`surveyed` inputs, rate `unverified`). Connection half matches the survey and the checklists (`surveyed`) |
 | KB Home or any named builder’s plumb fail rate | **Not found.** Not claimed |
+| Phoenix Sky Harbor 1991–2020 normals for January, March, June, October, and the July–September rain sum | Temperature and rain `surveyed` (NCEI). Diurnal spans and 2.41 / 7.22 inch sums **derived** |
+| Wood Handbook Phoenix EMC: Jan 8.9%, Mar 7.4%, Jun 4.4%, Oct 6.9%; June is the low, December 9.0% is the high | `surveyed` (FPL-GTR-282 Table 13-1). Same cells as doc 35 |
+| Monsoon dates 15 June–30 September; June rain normal is 0.02 inch | `surveyed` (NWS Phoenix newsletter; NCEI June precip) |
+| Caliche is cemented hardpan, not swell clay. Expansive soil is the IRC PI / expansion-index test. Phoenix: subdivisions need a soils report; local concern stated as expansive or collapsible soil | `surveyed` (USDA ARS caliche note; IRC R403.1.8; Phoenix TRT/DOC/00878) |
+| Forensic Phoenix cases clustered on high to moderately high expansion clays; drainage dominated landscape type | `surveyed` (Houston et al. 2011, abstract) |
+| Seasonal slab movement usually shows as cracks, doors, and a racked corner, not house collapse | Inference from those sources. No Phoenix collapse series found. Rate `unverified` |
+| Along-grain length change ~0.007 inch for a 26°F swing on 96 inches | **derived** from an order-of-magnitude coefficient (3×10⁻⁶ /°F), not a species test |
 | Paint, ε, minimal OBB, docs 31–34 locks | Unchanged |
 
-**Bottom line.** In Pinal, Maricopa, and Pima, a one- or two-story stick-frame house is inspected under whichever IRC edition the city or the unincorporated county has adopted, almost always with wind near 105–115 mph, Seismic Design Category B, no frost on the valley floor, and a real termite rule. The framing sentences an inspector can enforce with a tape are notches, nails, anchors, fireblocking, grade stamps, headers, braced-wall panels, and uplift hardware. None of those sentences is a stud angle. The 1/4 inch in 10 feet figure (~0.12°) is a finish guideline. The figure a warranty booklet will actually argue about is 3/8 inch in 32 inches (~0.67°), checked with a short level. Out-of-plumb inside those gauges is a drywall and door problem, not a collapse mechanism, on a sheathed house. The errors that change strength are missed nails, cut studs, missing hardware, a bad header, and, in this climate, termites at the sill. TruePlank’s chord angle can inform the first problem and cannot see the second. It should not be painted as if it were the inspection.
+**Bottom line.** In Pinal, Maricopa, and Pima, a one- or two-story stick-frame house is inspected under whichever IRC edition the city or the unincorporated county has adopted, almost always with wind near 105–115 mph, Seismic Design Category B, no frost on the valley floor, and a real termite rule. The framing sentences an inspector can enforce with a tape are notches, nails, anchors, fireblocking, grade stamps, headers, braced-wall panels, and uplift hardware. None of those sentences is a stud angle. The 1/4 inch in 10 feet figure (~0.12°) is a finish guideline. The figure a warranty booklet will actually argue about is 3/8 inch in 32 inches (~0.67°), checked with a short level. Out-of-plumb inside those gauges is a drywall and door problem, not a collapse mechanism, on a sheathed house. The errors that change strength are missed nails, cut studs, missing hardware, a bad header, and, in this climate, termites at the sill. TruePlank’s chord angle can inform the first problem and cannot see the second. It should not be painted as if it were the inspection. On the Phoenix valley floor, June is the dry, hot crook month (outdoor EMC about 4.4%) and the monsoon’s rain arrives in July–September, not in the June normal. January and March are mild framing weather with winter rain; October is the dry-down after that rain. Caliche is a drainage hardpan. Expansive clay and collapsible soil move the slab edge with water, which racks finishes and, on a bad drainage detail, a corner. That movement is a serviceability problem far more often than a collapse.
