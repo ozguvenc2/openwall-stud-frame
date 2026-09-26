@@ -25,6 +25,7 @@ from openwall_stud.finetune_randlanet import (  # noqa: E402
     point_metrics,
     predict_labels,
     save_checkpoint,
+    save_weight_path,
     s3dis_path,
     train_step,
     weight_path,
@@ -153,9 +154,10 @@ def main(argv: list[str] | None = None) -> int:
         score = val["selection_score"] if val["selection_score"] is not None else -1.0
         if score >= best:
             best = score
+            dest = save_weight_path()
             save_checkpoint(
                 model,
-                weight_path(),
+                dest,
                 {
                     "epoch": epoch,
                     "selection_score": score,
@@ -165,10 +167,12 @@ def main(argv: list[str] | None = None) -> int:
                     "init": "Open3D-ML RandLA-Net S3DIS encoder, new 2-class head",
                     "classes": ["clutter", "stud"],
                     "synthetic_only": True,
+                    "not_full_bakeoff_train": True,
                 },
             )
-            print(f"saved {weight_path()}", flush=True)
+            print(f"saved {dest}", flush=True)
     wall_s = round(time.perf_counter() - wall_start, 1)
+    dest = save_weight_path()
     log = {
         "wall_s": wall_s,
         "epochs": args.epochs,
@@ -177,9 +181,10 @@ def main(argv: list[str] | None = None) -> int:
         "history": history,
         "s3dis_skipped": loaded["skipped"],
         "num_classes": NUM_CLASSES,
-        "weight": str(weight_path()),
+        "weight": str(dest),
+        "not_full_bakeoff_train": True,
     }
-    log_path = weight_path().with_name("randlanet_train_log.json")
+    log_path = dest.with_name("randlanet_train_log.json")
     log_path.write_text(json.dumps(log, indent=2) + "\n", encoding="utf-8")
     print(f"RandLA-Net train wall_s={wall_s} log={log_path}")
     return 0

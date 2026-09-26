@@ -29,20 +29,20 @@
     "description": "Synthetic single stud. Generator gravity is +Z."
   },
   "implementation": {
-    "weight": "C:\\Repos\\openwall-stud-frame\\artifacts\\weights\\finetune\\randlanet_stud_2class.pth",
+    "weight": "C:\\Repos\\openwall-stud-frame\\artifacts\\checkpoints\\stud-heads\\randlanet_stud_2class.pth",
     "meta": {
       "epoch": 3,
-      "selection_score": 0.5884899344127023,
+      "selection_score": 0.9898267976191374,
       "val": {
         "n": 33,
-        "stud_recall_stud_scenes": 0.9998659705446894,
-        "stud_iou_floor_scenes": 0.7473180145509546,
-        "clutter_iou_floor_scenes": 0.01828581814246278,
-        "mean_runtime_s": 0.20071366060768592,
-        "selection_score": 0.5884899344127023,
+        "stud_recall_stud_scenes": 1.0,
+        "stud_iou_floor_scenes": 0.9920487242748068,
+        "clutter_iou_floor_scenes": 0.9774316685826054,
+        "mean_runtime_s": 0.2073828818190095,
+        "selection_score": 0.9898267976191374,
         "epoch": 3,
-        "train_loss": 0.015346170387143252,
-        "epoch_s": 47.6
+        "train_loss": 0.013705904817439489,
+        "epoch_s": 47.7
       },
       "torch": "2.13.0+cu126",
       "cuda": "12.6",
@@ -51,7 +51,8 @@
         "clutter",
         "stud"
       ],
-      "synthetic_only": true
+      "synthetic_only": true,
+      "not_full_bakeoff_train": true
     }
   },
   "implementation_short": "RandLA-Net S3DIS encoder, 2-class head, minimal OBB on stud points.",
@@ -130,7 +131,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.1777,
+    "runtime_s": 0.1453,
     "license": "Open3D-ML MIT; upstream RandLA-Net repo is CC BY-NC-SA 4.0",
     "hardware": "cuda; torch 2.13.0+cu126",
     "bbox_kind": "minimal_oriented",

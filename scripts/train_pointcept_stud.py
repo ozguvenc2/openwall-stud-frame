@@ -25,6 +25,7 @@ from openwall_stud.finetune_pointcept import (  # noqa: E402
     load_finetuned,
     predict_full,
     save_checkpoint,
+    save_weight_path,
     set_trainable,
     train_step,
     weight_path,
@@ -139,9 +140,10 @@ def _run_epochs(model, rows, val_rows, *, epochs: int, train_decoder: bool, hist
         if score >= best["score"]:
             best["score"] = score
             best["trained_decoder"] = train_decoder
+            dest = save_weight_path()
             save_checkpoint(
                 model,
-                weight_path(),
+                dest,
                 {
                     "selection_score": score,
                     "val": val,
@@ -151,10 +153,11 @@ def _run_epochs(model, rows, val_rows, *, epochs: int, train_decoder: bool, hist
                     "init": "BIMStruct3D PT-v3m1 backbone, new 2-class MLP head",
                     "classes": ["clutter", "stud"],
                     "synthetic_only": True,
+                    "not_full_bakeoff_train": True,
                 },
                 names,
             )
-            print(f"saved {weight_path()} score={score:.4f}", flush=True)
+            print(f"saved {dest} score={score:.4f}", flush=True)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -225,15 +228,18 @@ def main(argv: list[str] | None = None) -> int:
         "weight": str(weight_path()),
         "copied_backbone_tensors": loaded["copied"],
     }
-    log_path = weight_path().with_name("pointcept_train_log.json")
+    dest = save_weight_path()
+    log["weight"] = str(dest)
+    log["not_full_bakeoff_train"] = True
+    log_path = dest.with_name("pointcept_train_log.json")
     log_path.write_text(json.dumps(log, indent=2) + "\n", encoding="utf-8")
-    print(f"Pointcept train wall_s={wall_s} log={log_path} weight={weight_path()}")
+    print(f"Pointcept train wall_s={wall_s} log={log_path} weight={dest}")
     # Touch the loader so a bad checkpoint fails before the long inference pass.
     model.cpu()
     torch.cuda.empty_cache()
     reloaded = build_model("cuda")
     load_bimstruct_backbone(reloaded)
-    load_finetuned(reloaded, weight_path())
+    load_finetuned(reloaded, dest)
     print("reloaded fine-tuned head onto a fresh BIMStruct backbone", flush=True)
     return 0
 

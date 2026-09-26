@@ -1,13 +1,13 @@
 {
   "schema": "openwall.stud_scorecard.v1",
-  "algorithm_id": "A4",
-  "algorithm": "Pointcept PTv3 fine-tuned stud/clutter (synthetic)",
-  "rank": 4,
+  "algorithm_id": "F3",
+  "algorithm": "OpenMask3D class-agnostic mask module (no CLIP)",
+  "rank": 10,
   "stage": 0,
   "status": "ran",
   "epsilon_locked": false,
   "metrics_are_measurements": true,
-  "measurement_scope": "synthetic fine-tune inference; stud box is the minimal OBB of points labeled stud",
+  "measurement_scope": "foundation zero-shot / promptable mask \u2192 stud labels \u2192 minimal OBB; synthetic scene only; not a field accuracy",
   "scene": {
     "name": "stage0_2x4_lean0.000",
     "stage": 0,
@@ -29,34 +29,16 @@
     "description": "Synthetic single stud. Generator gravity is +Z."
   },
   "implementation": {
-    "weight": "C:\\Repos\\openwall-stud-frame\\artifacts\\checkpoints\\stud-heads\\pointcept_stud_2class.pth",
-    "meta": {
-      "selection_score": 0.9903513490627605,
-      "val": {
-        "n": 33,
-        "stud_recall_stud_scenes": 1.0,
-        "stud_iou_floor_scenes": 0.9924681554152092,
-        "clutter_iou_floor_scenes": 0.9785858917730721,
-        "selection_score": 0.9903513490627605,
-        "epoch": 2,
-        "train_decoder": false,
-        "train_loss": 0.000994065761520905,
-        "epoch_s": 29.2,
-        "n_trainable": 4
-      },
-      "trained_decoder": false,
-      "torch": "2.7.0+cu126",
-      "cuda": "12.6",
-      "init": "BIMStruct3D PT-v3m1 backbone, new 2-class MLP head",
-      "classes": [
-        "clutter",
-        "stud"
-      ],
-      "synthetic_only": true,
-      "not_full_bakeoff_train": true
-    }
+    "mask_path": "/mnt/c/Repos/openwall-stud-frame/artifacts/phase_neg1/openmask3d_masks/stage0_2x4_lean0_masks.pt",
+    "mask_shape": [
+      25666,
+      100
+    ],
+    "mask_index": 86,
+    "mask_sum": 21488.0,
+    "clip_stage": "blocked_no_posed_rgbd"
   },
-  "implementation_short": "PTv3 backbone plus a 2-class head, minimal OBB on stud points.",
+  "implementation_short": "OpenMask3D mask module best instance \u2192 stud labels. CLIP skipped.",
   "detection": {
     "n_true": 1,
     "n_pred": 1,
@@ -67,10 +49,10 @@
     "recall": 1.0,
     "match_radius_m": 0.15,
     "scope": "synthetic_scene_only",
-    "note": "25666 points labeled stud (class 1) of 25666. A box is fit when that count is at least 50. Counts are this synthetic scene, not a field accuracy."
+    "note": "21488 points labeled stud (class 1) of 25666. A box is fit when that count is at least 50. Counts are this synthetic scene, not a field accuracy."
   },
   "geometry": {
-    "max_section_error_mm": 7.86,
+    "max_section_error_mm": 7.21,
     "max_length_error_mm": 6.24,
     "per_stud": [
       {
@@ -82,12 +64,12 @@
           88.9
         ],
         "section_measured_mm": [
-          45.96,
-          96.06
+          45.31,
+          96.05
         ],
         "section_error_mm": [
-          7.86,
-          7.16
+          7.21,
+          7.15
         ],
         "length_true_mm": 2438.4,
         "length_measured_mm": 2444.64,
@@ -98,8 +80,8 @@
     "note": "Section and length are the minimal OBB of the stud-labeled points versus the dressed generator stud. Same box as the classical finders."
   },
   "angle": {
-    "mae_deg": 0.03084,
-    "max_abs_error_deg": 0.03084,
+    "mae_deg": 0.03019,
+    "max_abs_error_deg": 0.03019,
     "pct_in_band": 100.0,
     "band_deg": 0.11937,
     "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
@@ -108,8 +90,8 @@
       {
         "stud_id": "S1",
         "true_deg": 0.0,
-        "measured_deg": 0.03084,
-        "abs_error_deg": 0.03084,
+        "measured_deg": 0.03019,
+        "abs_error_deg": 0.03019,
         "production_color": "yellow",
         "hypothetical_color": "green"
       }
@@ -132,15 +114,16 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.0771,
-    "license": "MIT code; BIMStruct3D weights CC BY-NC-SA 4.0, not committed",
-    "hardware": "cuda",
+    "runtime_s": 0.0254,
+    "license": "OpenMask3D upstream; mask_module_arbitrary.ckpt; not a stud-trained head",
+    "hardware": "cpu score of prior CUDA mask-module forward",
     "bbox_kind": "minimal_oriented",
     "failure_modes": [
-      "Trained on synthetic dressed studs only.",
-      "Color features are zeros."
+      "CLIP / posed RGB-D open-vocab stage blocked: synth scene has no posed RGB-D.",
+      "Class-agnostic mask only; no semantic class scores.",
+      "Zero-shot foundation mask, not a stud-class train."
     ],
-    "n_stud_points": 25666,
+    "n_stud_points": 21488,
     "stud_min_points": 50,
     "note": "Runtime is this inference on this scene, after weights were already loaded."
   },
@@ -156,16 +139,16 @@
       {
         "id": 0,
         "name": "clutter",
-        "count": 0
+        "count": 4178
       },
       {
         "id": 1,
         "name": "stud",
-        "count": 25666
+        "count": 21488
       }
     ],
-    "n_stud_points": 25666,
-    "stud_fraction": 1.0,
+    "n_stud_points": 21488,
+    "stud_fraction": 0.8372,
     "stud_box": true,
     "synthetic_only": true
   },
@@ -179,5 +162,5 @@
     "scope": "synthetic stage 0 bring-up, not a field test"
   },
   "stage0_pass_fail": "pass",
-  "scorecard_name": "pointcept_finetune_stage0_stage0_2x4_lean0.000.json"
+  "scorecard_name": "openmask3d_stage0_stage0_2x4_lean0.000.json"
 }

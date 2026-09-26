@@ -1,0 +1,46 @@
+{
+  "wall_s": 58.6,
+  "history": [
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 1.0,
+      "stud_iou_floor_scenes": 0.9891299382181895,
+      "clutter_iou_floor_scenes": 0.9693908976346661,
+      "selection_score": 0.9861736119509518,
+      "epoch": 1,
+      "train_decoder": false,
+      "train_loss": 0.03350066192882116,
+      "epoch_s": 29.4,
+      "n_trainable": 4
+    },
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 1.0,
+      "stud_iou_floor_scenes": 0.9924681554152092,
+      "clutter_iou_floor_scenes": 0.9785858917730721,
+      "selection_score": 0.9903513490627605,
+      "epoch": 2,
+      "train_decoder": false,
+      "train_loss": 0.000994065761520905,
+      "epoch_s": 29.2,
+      "n_trainable": 4
+    }
+  ],
+  "best_row": {
+    "n": 33,
+    "stud_recall_stud_scenes": 1.0,
+    "stud_iou_floor_scenes": 0.9924681554152092,
+    "clutter_iou_floor_scenes": 0.9785858917730721,
+    "selection_score": 0.9903513490627605,
+    "epoch": 2,
+    "train_decoder": false,
+    "train_loss": 0.000994065761520905,
+    "epoch_s": 29.2,
+    "n_trainable": 4
+  },
+  "trained_decoder": false,
+  "best_selection_score": 0.9903513490627605,
+  "weight": "C:\\Repos\\openwall-stud-frame\\artifacts\\checkpoints\\stud-heads\\pointcept_stud_2class.pth",
+  "copied_backbone_tensors": 486,
+  "not_full_bakeoff_train": true
+}

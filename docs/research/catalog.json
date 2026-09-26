@@ -27,7 +27,10 @@
     "bakeoff_rank_7": "SAM 2 (not master-table row 7)",
     "curriculum_doc": "docs/research/24-sam2-rank7-and-curriculum.md",
     "four_way_lock": "docs/research/27-four-way-tool-classification.md",
-    "four_way_note": "2026-09-26. Live buckets replace the reading of ranks 1-7 as one automated finder list. Geometry-first automated: Open3D, PCL/NumPy region-grow cuboid, pyRANSAC-3D. Supervised: Pointcept/PTv3, Open3D-ML RandLA-Net. Promptable foundation: Point-SAM, SAM3D, OpenMask3D, Segment3D. Interactive GUI: CloudCompare (former bake-off rank 3). SAM 2 stays adjacent (image-prompted, not native 3D). The top5_names array above is the 2026-09-24 shortlist and is not rewritten."
+    "four_way_note": "2026-09-26. Live buckets replace the reading of ranks 1-7 as one automated finder list. Geometry-first automated: Open3D, PCL/NumPy region-grow cuboid, pyRANSAC-3D. Supervised: Pointcept/PTv3, Open3D-ML RandLA-Net. Promptable foundation: Point-SAM, SAM3D, OpenMask3D, Segment3D. Interactive GUI: CloudCompare (former bake-off rank 3). SAM 2 stays adjacent (image-prompted, not native 3D). The top5_names array above is the 2026-09-24 shortlist and is not rewritten.",
+    "phase_neg1_install": "docs/research/28-phase-neg1-nine-tool-install.md",
+    "train_all9_stage0": "docs/research/29-train-all9-stage0.md",
+    "train_all9_stage0_table": "artifacts/phase_neg1/all_nine_stage0.json"
   },
   "stud_segmentation_design_plan": {
     "doc": "docs/research/12-stud-seg-design-plan.md",

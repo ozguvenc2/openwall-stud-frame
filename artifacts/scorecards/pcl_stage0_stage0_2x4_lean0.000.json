@@ -140,7 +140,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 3.2854,
+    "runtime_s": 3.3391,
     "license": "BSD",
     "license_url": "https://raw.githubusercontent.com/PointCloudLibrary/pcl/master/LICENSE.txt",
     "hardware": "CPU",

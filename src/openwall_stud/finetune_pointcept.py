@@ -16,7 +16,10 @@ import numpy as np
 
 from openwall_stud.finetune_synth import CLASS_NAMES, repo_root
 
-WEIGHT_DIR = repo_root() / "artifacts" / "weights" / "finetune"
+# Stud-head checkpoints live here. Published BIMStruct3D semantic weights stay
+# in the gitignored cache and are never rewritten by this path.
+WEIGHT_DIR = repo_root() / "artifacts" / "checkpoints" / "stud-heads"
+LEGACY_WEIGHT_DIR = repo_root() / "artifacts" / "weights" / "finetune"
 WEIGHT_NAME = "pointcept_stud_2class.pth"
 GRID_SIZE = 0.02
 NUM_CLASSES = 2
@@ -28,6 +31,19 @@ def cache_root() -> Path:
 
 
 def weight_path() -> Path:
+    """Prefer the stud-heads checkpoint; fall back to the older finetune path."""
+    primary = WEIGHT_DIR / WEIGHT_NAME
+    if primary.is_file():
+        return primary
+    legacy = LEGACY_WEIGHT_DIR / WEIGHT_NAME
+    if legacy.is_file():
+        return legacy
+    return primary
+
+
+def save_weight_path() -> Path:
+    """Always write new stud heads under artifacts/checkpoints/stud-heads/."""
+    WEIGHT_DIR.mkdir(parents=True, exist_ok=True)
     return WEIGHT_DIR / WEIGHT_NAME
 
 

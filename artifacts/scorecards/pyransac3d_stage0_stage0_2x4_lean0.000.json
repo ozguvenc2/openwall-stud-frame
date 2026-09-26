@@ -155,7 +155,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 1.1904,
+    "runtime_s": 1.2443,
     "license": "Apache-2.0",
     "license_url": "https://github.com/leomariga/pyRANSAC-3D/blob/v0.7.0/LICENSE",
     "hardware": "CPU",

@@ -1,0 +1,28 @@
+[
+  {
+    "algorithm": "open3d_ml",
+    "scorecard": "open3d_ml_stage0_stage0_2x4_lean0.000.json",
+    "status": "ran",
+    "pass_fail": "control",
+    "precision": null,
+    "recall": null,
+    "section_mm": null,
+    "length_mm": null,
+    "angle_mae_deg": null,
+    "runtime_s": 0.5142,
+    "stud_metrics_scored": false
+  },
+  {
+    "algorithm": "open3d_ml_finetune",
+    "scorecard": "open3d_ml_finetune_stage0_stage0_2x4_lean0.000.json",
+    "status": "ran",
+    "pass_fail": "pass",
+    "precision": 1.0,
+    "recall": 1.0,
+    "section_mm": 7.86,
+    "length_mm": 6.24,
+    "angle_mae_deg": 0.03084,
+    "runtime_s": 0.1453,
+    "stud_metrics_scored": true
+  }
+]
