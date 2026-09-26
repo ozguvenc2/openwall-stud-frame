@@ -12,4 +12,6 @@
 
 `run_curriculum_through_room.py` links the existing stage-0, stage-2, and stage-3 Open3D cards, adds straight-stud scenes at 1 mm noise, probes a 2 mm wall and S1b bows, scores rank 1 on a synthetic 26-stud room, writes `not_run` cards for ranks 2–7 on that room and for stages 6 and 7, and scaffolds SAM 2 without inventing a mask. Scorecards: `artifacts/scorecards/curriculum/`. Note: `docs/research/24-sam2-rank7-and-curriculum.md`. Device ε stays unlocked.
 
+`score_experiment1_dual_pass.py` colors the all-nine stage0 one-beam scene (Experiment 1: one stud, no floor, no ceiling, planted lean 0°) from stored `angle_mae_deg`. It does not retrain or re-run a finder. Output: `artifacts/phase_neg1/experiment1_dual_pass.json`. The matrix is in `docs/research/31-four-stage-error-table.md`.
+
 Dataset download helpers are not here yet. Large clouds stay linked from `docs/research/`.

@@ -1,6 +1,6 @@
 ﻿# Tolerances
 
-Research date: 2026-09-23. These are **published framing or finish guidelines**, not a sensor error budget and not a pass/fail threshold implemented in this repo. Red/green paint should not ship until a measurement-error term is measured on the capture path.
+Research date: 2026-09-23. These are **published framing or finish guidelines**, not a sensor error budget. Production red/green paint stays off while the device band is unlocked: every stud is yellow. A reported dual-pass in [research/31-four-stage-error-table.md](research/31-four-stage-error-table.md) colors model error against the Handbook 1/4 inch in 10 feet gauge and the NAHB 3/8 inch in 32 inches warranty gauge. That report is not a field call and not an AHJ number.
 
 Sources and the sensing comparison: [research/01-sensing-modalities.md](research/01-sensing-modalities.md).
 
