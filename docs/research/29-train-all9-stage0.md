@@ -29,8 +29,8 @@ Coherent runner: `scripts/phase_neg1_all_nine_stage0.py`. Table JSON: `artifacts
 | 4 | Pointcept stud head | supervised | **pass** | 0.077 | New 2-class head; all points labeled stud. Published BIMStruct control stays `control` (~42 s). |
 | 5 | Open3D-ML stud head | supervised | **pass** | 0.145 | New 2-class head; all points labeled stud. Published S3DIS control stays `control` (~0.51 s). |
 | 6 | Point-SAM | promptable foundation | **pass** | 0.314 | Zero-shot point prompt; best IoU mask → stud labels (349 stud pts). Not a stud-trained head. |
-| 7 | SAM3D (Yang et al.) | promptable foundation | **fail** | 0.243 | ViT-H scaffold pinhole lift only (ScanNet multi-frame not run). Bars: length 1427.98 mm > 25; angle 0.06871° > 0.05. |
-| 8 | OpenMask3D | promptable foundation | **pass** | 0.025 | Class-agnostic **mask module** scored. CLIP / posed RGB-D open-vocab stage **blocked** (synth has no posed RGB-D). |
+| 7 | SAM3D (Yang et al.) | promptable foundation | **fail** | 0.243 | ViT-H scaffold pinhole lift only (ScanNet multi-frame not run). Bars: length 1427.98 mm > 25; angle 0.06871° > 0.05. **Superseded by doc 30** (full-stud multi-view → pass). |
+| 8 | OpenMask3D | promptable foundation | **pass** | 0.025 | Class-agnostic **mask module** scored. CLIP / posed RGB-D open-vocab stage **blocked** (synth has no posed RGB-D). **Superseded by doc 30** (synth posed RGB-D + CLIP → pass, CLIP unblocked). |
 | 9 | Segment3D | promptable foundation | **pass** | 0.552 | Zero-shot Mask3D best query → points via inverse_map. cuML demo postprocess not run. |
 
 Scorecards: `artifacts/scorecards/{open3d,pcl,pyransac3d,pointcept,pointcept_finetune,open3d_ml,open3d_ml_finetune,pointsam,sam3d,openmask3d,segment3d}_stage0_stage0_2x4_lean0.000.json`.

@@ -9,7 +9,7 @@
     "section_mm": 7.86,
     "length_mm": 6.24,
     "angle_mae_deg": 0.03084,
-    "runtime_s": 0.0543,
+    "runtime_s": 0.0546,
     "stud_metrics_scored": true
   },
   {
@@ -22,7 +22,7 @@
     "section_mm": 7.86,
     "length_mm": 6.24,
     "angle_mae_deg": 0.03084,
-    "runtime_s": 3.3391,
+    "runtime_s": 2.3064,
     "stud_metrics_scored": true
   },
   {
@@ -35,7 +35,7 @@
     "section_mm": 7.86,
     "length_mm": 6.24,
     "angle_mae_deg": 0.03084,
-    "runtime_s": 1.2443,
+    "runtime_s": 1.2024,
     "stud_metrics_scored": true
   }
 ]

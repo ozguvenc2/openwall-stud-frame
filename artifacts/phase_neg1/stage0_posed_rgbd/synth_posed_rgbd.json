@@ -1,0 +1,50 @@
+{
+  "scene": "stage0_2x4_lean0.000",
+  "n_points": 25666,
+  "n_views": 2,
+  "depth_scale": 1000.0,
+  "intrinsic_resolution": [
+    480,
+    640
+  ],
+  "images_ext": ".jpg",
+  "depths_ext": ".png",
+  "ply": "C:\\Repos\\openwall-stud-frame\\artifacts\\phase_neg1\\stage0_posed_rgbd\\stage0_2x4_lean0.ply",
+  "views": [
+    {
+      "index": 0,
+      "eye_m": [
+        1.6,
+        -3.4,
+        1.22
+      ],
+      "target_m": [
+        0.0,
+        0.0,
+        1.22
+      ],
+      "fov_y_deg": 50.0,
+      "width": 640,
+      "height": 480,
+      "n_occupied": 3689
+    },
+    {
+      "index": 1,
+      "eye_m": [
+        -1.6,
+        3.4,
+        1.22
+      ],
+      "target_m": [
+        0.0,
+        0.0,
+        1.22
+      ],
+      "fov_y_deg": 50.0,
+      "width": 640,
+      "height": 480,
+      "n_occupied": 3697
+    }
+  ],
+  "note": "Synthetic posed RGB-D for OpenMask3D CLIP. Wood-colored silhouette renders; not a real capture. OpenCV c2w poses."
+}

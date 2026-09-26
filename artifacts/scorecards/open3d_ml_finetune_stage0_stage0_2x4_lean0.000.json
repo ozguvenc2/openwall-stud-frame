@@ -131,7 +131,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.1453,
+    "runtime_s": 0.1965,
     "license": "Open3D-ML MIT; upstream RandLA-Net repo is CC BY-NC-SA 4.0",
     "hardware": "cuda; torch 2.13.0+cu126",
     "bbox_kind": "minimal_oriented",

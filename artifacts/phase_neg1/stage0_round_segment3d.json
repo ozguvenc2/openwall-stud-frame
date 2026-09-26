@@ -9,10 +9,10 @@
     "section_mm": 7.88,
     "length_mm": 6.04,
     "angle_mae_deg": 0.02398,
-    "runtime_s": 0.5518,
+    "runtime_s": 0.4658,
     "stud_metrics_scored": true,
     "n_stud_points": 17282,
-    "gpu_ms": 550.7599487304688,
+    "gpu_ms": 465.2345886230469,
     "reason": "zero-shot Mask3D forward; cuML postprocess not run"
   }
 ]

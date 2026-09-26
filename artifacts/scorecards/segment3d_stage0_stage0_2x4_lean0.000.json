@@ -42,7 +42,7 @@
       2722,
       100
     ],
-    "gpu_ms": 550.7599487304688,
+    "gpu_ms": 465.2345886230469,
     "n_stud_points": 17282
   },
   "implementation_short": "Segment3D Mask3D best query mask \u2192 stud labels. No cuML.",
@@ -121,7 +121,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.5518,
+    "runtime_s": 0.4658,
     "license": "Segment3D upstream; segment3d.ckpt; not a stud-trained head",
     "hardware": "cuda; torch 2.14.0+cu126; NVIDIA GeForce RTX 4080 SUPER",
     "bbox_kind": "minimal_oriented",

@@ -134,87 +134,122 @@ def run_pointsam() -> dict:
 
 
 def run_sam3d() -> dict:
-    """Yang et al. SAM3D path: ViT-H on the stud pinhole, lift mask to points."""
+    """Yang et al. SAM3D path: ViT-H on full-stud pinholes, union lift to points.
+
+    The old scaffold ``default_stud_camera`` FOV-crops the 8 ft stud to ~1.0 m and
+    fails the stage0 length bar. Stage0 uses ``full_stud_cameras`` (front+back).
+    """
     import torch
     from segment_anything import SamPredictor, sam_model_registry
 
     from openwall_stud.contenders.sam2_mask import (
         _prompt_on_stud_pixels,
         _rgb_from_occupied,
-        default_stud_camera,
+        full_stud_cameras,
         lift_mask_winners,
         raster_nearest,
     )
 
     cloud = scene()
-    camera = default_stud_camera()
-    raster = raster_nearest(cloud.points_m, cloud.part, camera)
-    rgb, _ = _rgb_from_occupied(raster["part_image"])
-    prompt = _prompt_on_stud_pixels(raster["part_image"])
-    if prompt is None:
-        return blocked_row("sam3d", "stud pixels did not project into the scaffold pinhole")
+    cameras = full_stud_cameras()
     weight = ROOT / "data" / "cache" / "phase_neg1" / "sam" / "sam_vit_h_4b8939.pth"
     sam = sam_model_registry["vit_h"](checkpoint=str(weight))
     sam.to(device="cuda")
     predictor = SamPredictor(sam)
-    predictor.set_image(rgb)
-    x_px, y_px = prompt
 
-    def _forward():
-        return predictor.predict(
-            point_coords=np.array([[x_px, y_px]], dtype=np.float32),
-            point_labels=np.array([1], dtype=np.int32),
-            multimask_output=True,
+    union = np.zeros(cloud.n_points, dtype=bool)
+    view_records: list[dict] = []
+    wall_acc = 0.0
+    gpu_acc = 0.0
+
+    for view_i, camera in enumerate(cameras):
+        raster = raster_nearest(cloud.points_m, cloud.part, camera)
+        rgb, _ = _rgb_from_occupied(raster["part_image"])
+        prompt = _prompt_on_stud_pixels(raster["part_image"])
+        if prompt is None:
+            view_records.append({"view": view_i, "status": "no_stud_pixels"})
+            continue
+        predictor.set_image(rgb)
+        x_px, y_px = prompt
+
+        def _forward(predictor=predictor, x_px=x_px, y_px=y_px):
+            return predictor.predict(
+                point_coords=np.array([[x_px, y_px]], dtype=np.float32),
+                point_labels=np.array([1], dtype=np.int32),
+                multimask_output=True,
+            )
+
+        (masks, scores, _logits), wall_s, gpu_ms = _cuda_event_time(_forward)
+        wall_acc += float(wall_s)
+        if gpu_ms is not None:
+            gpu_acc += float(gpu_ms)
+        best = int(np.argmax(scores))
+        indices = lift_mask_winners(raster, masks[best].astype(bool))
+        if indices.size:
+            union[indices] = True
+        view_records.append(
+            {
+                "view": view_i,
+                "eye_m": list(camera.eye_m),
+                "prompt_px": [float(x_px), float(y_px)],
+                "best_score": float(scores[best]),
+                "n_lifted": int(indices.size),
+            }
         )
 
-    (masks, scores, _logits), wall_s, gpu_ms = _cuda_event_time(_forward)
-    best = int(np.argmax(scores))
-    indices = lift_mask_winners(raster, masks[best].astype(bool))
-    mask = np.zeros(cloud.n_points, dtype=bool)
-    if indices.size:
-        mask[indices] = True
-    labels = labels_from_mask(mask, cloud.n_points)
+    if not union.any():
+        return blocked_row("sam3d", "no points lifted from full-stud pinholes")
+
+    labels = labels_from_mask(union, cloud.n_points)
     dest = OUT / f"sam3d_stage0_{cloud.name}.json"
     card = write_foundation_card(
         cloud,
         labels,
         algorithm_id="F2",
-        algorithm="SAM3D (Yang et al.) ViT-H pinhole lift",
+        algorithm="SAM3D (Yang et al.) ViT-H full-stud multi-view lift",
         rank=9,
-        runtime_s=wall_s,
+        runtime_s=wall_acc,
         dest=dest,
         license_name="segment-anything Apache-2.0; SAM3D upstream; not a stud-trained head",
         hardware=f"cuda; torch {torch.__version__}; {torch.cuda.get_device_name(0)}",
         failure_modes=[
-            "ScanNet multi-frame SAM3D path not used; single synthetic pinhole only.",
-            "Occluded points are not lifted.",
+            "ScanNet multi-frame SAM3D path not used; two synthetic full-stud pinholes.",
+            "Occluded points behind each pinhole are not lifted (union of winners only).",
             "Zero-shot image mask, not a stud-class train.",
         ],
         implementation={
             "identity": "Pointcept/SegmentAnything3D yang2023sam3d",
             "weight": str(weight),
-            "prompt_px": [float(x_px), float(y_px)],
-            "best_score": float(scores[best]),
-            "n_lifted": int(indices.size),
-            "gpu_ms": gpu_ms,
-            "note": "2D SAM ViT-H + z-buffer lift. pointops knn is install smoke only.",
+            "cameras": "full_stud_cameras front+back",
+            "views": view_records,
+            "n_lifted": int(union.sum()),
+            "gpu_ms": gpu_acc if gpu_acc else None,
+            "note": (
+                "2D SAM ViT-H on full-stud pinholes + z-buffer lift union. "
+                "Replaces FOV-cropped default_stud_camera that truncated length to ~1 m."
+            ),
         },
-        implementation_short="SAM ViT-H on scaffold pinhole, best mask lifted to points → stud labels.",
+        implementation_short=(
+            "SAM ViT-H on full-stud front+back pinholes, mask union lifted → stud labels."
+        ),
         day_algorithm="sam3d",
     )
     row = summary_row("sam3d", card)
-    row["gpu_ms"] = gpu_ms
+    row["gpu_ms"] = gpu_acc if gpu_acc else None
     fails = card.get("stage0_bar_failures") or []
     row["reason"] = (
-        "ViT-H pinhole lift; ScanNet multi-frame path not run"
+        "ViT-H full-stud multi-view lift; ScanNet multi-frame path not run"
         + (f"; bars: {'; '.join(fails)}" if fails else "")
     )
     return row
 
 
 def run_openmask3d() -> dict:
-    """Class-agnostic mask module only. CLIP / posed RGB-D stays blocked."""
+    """Mask module + synth posed RGB-D CLIP text query → stud labels."""
     import torch
+
+    from openwall_stud.openmask3d_clip_stage0 import score_masks_with_clip
+    from openwall_stud.synth_posed_rgbd import write_posed_rgbd_scene
 
     cloud = scene()
     mask_path = PHASE / "openmask3d_masks" / "stage0_2x4_lean0_masks.pt"
@@ -223,9 +258,16 @@ def run_openmask3d() -> dict:
             "openmask3d",
             "mask module output missing; run scripts/phase_neg1_openmask3d_smoke.sh first",
         )
-    # Full OpenMask3D open-vocab needs posed RGB-D + CLIP. This synth PLY has none.
-    # We still score the class-agnostic mask module that already smoked.
+    posed_dir = PHASE / "stage0_posed_rgbd"
+    meta_path = posed_dir / "synth_posed_rgbd.json"
+    if not meta_path.is_file() or not (posed_dir / "color" / "0.jpg").is_file():
+        write_posed_rgbd_scene(cloud, posed_dir)
+
     started = time.perf_counter()
+    try:
+        clip_info = score_masks_with_clip(cloud, mask_path, posed_dir)
+    except Exception as exc:  # noqa: BLE001
+        return blocked_row("openmask3d", f"CLIP/posed-RGB-D stage failed: {type(exc).__name__}: {exc}")
     masks = torch.load(mask_path, map_location="cpu", weights_only=False)
     if torch.is_tensor(masks):
         arr = masks.detach().cpu().numpy()
@@ -236,8 +278,7 @@ def run_openmask3d() -> dict:
             "openmask3d",
             f"mask rows {arr.shape[0]} != cloud {cloud.n_points}",
         )
-    scores = arr.astype(np.float64).sum(axis=0)
-    best = int(np.argmax(scores))
+    best = int(clip_info["best_mask_index"])
     mask = arr[:, best] > 0.0
     wall_s = time.perf_counter() - started
     labels = labels_from_mask(mask, cloud.n_points)
@@ -246,30 +287,36 @@ def run_openmask3d() -> dict:
         cloud,
         labels,
         algorithm_id="F3",
-        algorithm="OpenMask3D class-agnostic mask module (no CLIP)",
+        algorithm="OpenMask3D mask module + synth posed RGB-D CLIP",
         rank=10,
         runtime_s=wall_s,
         dest=dest,
-        license_name="OpenMask3D upstream; mask_module_arbitrary.ckpt; not a stud-trained head",
-        hardware="cpu score of prior CUDA mask-module forward",
+        license_name="OpenMask3D upstream; openai-clip; not a stud-trained head",
+        hardware=f"clip device {clip_info.get('device')}; prior CUDA mask-module forward",
         failure_modes=[
-            "CLIP / posed RGB-D open-vocab stage blocked: synth scene has no posed RGB-D.",
-            "Class-agnostic mask only; no semantic class scores.",
-            "Zero-shot foundation mask, not a stud-class train.",
+            "Posed RGB-D is synthetic (full-stud pinholes), not a real capture.",
+            "CLIP uses bbox crops of projected mask points; upstream SAM multi-round crop refiner not run.",
+            "Zero-shot foundation mask + open-vocab text, not a stud-class train.",
         ],
         implementation={
             "mask_path": str(mask_path),
             "mask_shape": list(arr.shape),
             "mask_index": best,
-            "mask_sum": float(scores[best]),
-            "clip_stage": "blocked_no_posed_rgbd",
+            "mask_sum": float(arr[:, best].sum()),
+            "posed_rgbd": str(posed_dir),
+            "clip_stage": "ran_synth_posed_rgbd",
+            "clip": clip_info,
         },
-        implementation_short="OpenMask3D mask module best instance → stud labels. CLIP skipped.",
+        implementation_short=(
+            "OpenMask3D masks + synth posed RGB-D CLIP text query → stud labels."
+        ),
         day_algorithm="openmask3d",
     )
     row = summary_row("openmask3d", card)
+    fails = card.get("stage0_bar_failures") or []
     row["reason"] = (
-        "mask-module scored; CLIP/posed RGB-D open-vocab stage blocked (no RGB-D on synth)"
+        "mask-module + synth posed RGB-D CLIP open-vocab"
+        + (f"; bars: {'; '.join(fails)}" if fails else "")
     )
     return row
 

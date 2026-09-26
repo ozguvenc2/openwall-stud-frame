@@ -1,7 +1,7 @@
 {
   "schema": "openwall.stud_scorecard.v1",
   "algorithm_id": "F3",
-  "algorithm": "OpenMask3D class-agnostic mask module (no CLIP)",
+  "algorithm": "OpenMask3D mask module + synth posed RGB-D CLIP",
   "rank": 10,
   "stage": 0,
   "status": "ran",
@@ -36,9 +36,272 @@
     ],
     "mask_index": 86,
     "mask_sum": 21488.0,
-    "clip_stage": "blocked_no_posed_rgbd"
+    "posed_rgbd": "/mnt/c/Repos/openwall-stud-frame/artifacts/phase_neg1/stage0_posed_rgbd",
+    "clip_stage": "ran_synth_posed_rgbd",
+    "clip": {
+      "best_mask_index": 86,
+      "best_score": 0.07418202161788941,
+      "n_candidates": 24,
+      "clip_model": "ViT-B/32",
+      "device": "cuda",
+      "stud_queries": [
+        "a wooden stud",
+        "a vertical wooden framing stud",
+        "a wood 2x4 stud beam"
+      ],
+      "neg_queries": [
+        "clutter",
+        "empty background",
+        "floor"
+      ],
+      "size_prior_weight": 0.05,
+      "per_mask": [
+        {
+          "mask_index": 86,
+          "n_points": 21488,
+          "n_crops": 2,
+          "stud_sim": 0.28453248739242554,
+          "neg_sim": 0.26035046577453613,
+          "clip_score": 0.024182021617889404,
+          "size_prior": 1.0,
+          "score": 0.07418202161788941
+        },
+        {
+          "mask_index": 83,
+          "n_points": 19737,
+          "n_crops": 2,
+          "stud_sim": 0.28453248739242554,
+          "neg_sim": 0.26035046577453613,
+          "clip_score": 0.024182021617889404,
+          "size_prior": 0.9185126582278481,
+          "score": 0.0701076545292818
+        },
+        {
+          "mask_index": 92,
+          "n_points": 16935,
+          "n_crops": 2,
+          "stud_sim": 0.2841886579990387,
+          "neg_sim": 0.2576957941055298,
+          "clip_score": 0.02649286389350891,
+          "size_prior": 0.788114296351452,
+          "score": 0.06589857871108151
+        },
+        {
+          "mask_index": 96,
+          "n_points": 16935,
+          "n_crops": 2,
+          "stud_sim": 0.2841886579990387,
+          "neg_sim": 0.2576957941055298,
+          "clip_score": 0.02649286389350891,
+          "size_prior": 0.788114296351452,
+          "score": 0.06589857871108151
+        },
+        {
+          "mask_index": 95,
+          "n_points": 18036,
+          "n_crops": 2,
+          "stud_sim": 0.28139162063598633,
+          "neg_sim": 0.25839129090309143,
+          "clip_score": 0.023000329732894897,
+          "size_prior": 0.8393521965748325,
+          "score": 0.06496793956163652
+        },
+        {
+          "mask_index": 89,
+          "n_points": 18036,
+          "n_crops": 2,
+          "stud_sim": 0.28139162063598633,
+          "neg_sim": 0.25839129090309143,
+          "clip_score": 0.023000329732894897,
+          "size_prior": 0.8393521965748325,
+          "score": 0.06496793956163652
+        },
+        {
+          "mask_index": 98,
+          "n_points": 17981,
+          "n_crops": 2,
+          "stud_sim": 0.28139162063598633,
+          "neg_sim": 0.25839129090309143,
+          "clip_score": 0.023000329732894897,
+          "size_prior": 0.8367926284437825,
+          "score": 0.06483996115508403
+        },
+        {
+          "mask_index": 93,
+          "n_points": 17854,
+          "n_crops": 2,
+          "stud_sim": 0.28139162063598633,
+          "neg_sim": 0.25839129090309143,
+          "clip_score": 0.023000329732894897,
+          "size_prior": 0.8308823529411765,
+          "score": 0.06454444737995373
+        },
+        {
+          "mask_index": 36,
+          "n_points": 16250,
+          "n_crops": 2,
+          "stud_sim": 0.2855703830718994,
+          "neg_sim": 0.2596800923347473,
+          "clip_score": 0.0258902907371521,
+          "size_prior": 0.7562360387192851,
+          "score": 0.06370209267311636
+        },
+        {
+          "mask_index": 85,
+          "n_points": 17829,
+          "n_crops": 2,
+          "stud_sim": 0.27932965755462646,
+          "neg_sim": 0.25782355666160583,
+          "clip_score": 0.02150610089302063,
+          "size_prior": 0.8297189128816084,
+          "score": 0.06299204653710105
+        },
+        {
+          "mask_index": 94,
+          "n_points": 17687,
+          "n_crops": 2,
+          "stud_sim": 0.27932965755462646,
+          "neg_sim": 0.25782355666160583,
+          "clip_score": 0.02150610089302063,
+          "size_prior": 0.8231105733432613,
+          "score": 0.0626616295601837
+        },
+        {
+          "mask_index": 82,
+          "n_points": 15758,
+          "n_crops": 2,
+          "stud_sim": 0.28068476915359497,
+          "neg_sim": 0.2579379081726074,
+          "clip_score": 0.02274686098098755,
+          "size_prior": 0.7333395383469844,
+          "score": 0.05941383789833677
+        },
+        {
+          "mask_index": 4,
+          "n_points": 13733,
+          "n_crops": 2,
+          "stud_sim": 0.28286802768707275,
+          "neg_sim": 0.2599618136882782,
+          "clip_score": 0.022906213998794556,
+          "size_prior": 0.6391008935219658,
+          "score": 0.054861258674892846
+        },
+        {
+          "mask_index": 0,
+          "n_points": 13733,
+          "n_crops": 2,
+          "stud_sim": 0.28286802768707275,
+          "neg_sim": 0.2599618136882782,
+          "clip_score": 0.022906213998794556,
+          "size_prior": 0.6391008935219658,
+          "score": 0.054861258674892846
+        },
+        {
+          "mask_index": 2,
+          "n_points": 13733,
+          "n_crops": 2,
+          "stud_sim": 0.28286802768707275,
+          "neg_sim": 0.2599618136882782,
+          "clip_score": 0.022906213998794556,
+          "size_prior": 0.6391008935219658,
+          "score": 0.054861258674892846
+        },
+        {
+          "mask_index": 1,
+          "n_points": 13733,
+          "n_crops": 2,
+          "stud_sim": 0.28286802768707275,
+          "neg_sim": 0.2599618136882782,
+          "clip_score": 0.022906213998794556,
+          "size_prior": 0.6391008935219658,
+          "score": 0.054861258674892846
+        },
+        {
+          "mask_index": 16,
+          "n_points": 13733,
+          "n_crops": 2,
+          "stud_sim": 0.28286802768707275,
+          "neg_sim": 0.2599618136882782,
+          "clip_score": 0.022906213998794556,
+          "size_prior": 0.6391008935219658,
+          "score": 0.054861258674892846
+        },
+        {
+          "mask_index": 17,
+          "n_points": 13733,
+          "n_crops": 2,
+          "stud_sim": 0.28286802768707275,
+          "neg_sim": 0.2599618136882782,
+          "clip_score": 0.022906213998794556,
+          "size_prior": 0.6391008935219658,
+          "score": 0.054861258674892846
+        },
+        {
+          "mask_index": 18,
+          "n_points": 13733,
+          "n_crops": 2,
+          "stud_sim": 0.28286802768707275,
+          "neg_sim": 0.2599618136882782,
+          "clip_score": 0.022906213998794556,
+          "size_prior": 0.6391008935219658,
+          "score": 0.054861258674892846
+        },
+        {
+          "mask_index": 19,
+          "n_points": 13733,
+          "n_crops": 2,
+          "stud_sim": 0.28286802768707275,
+          "neg_sim": 0.2599618136882782,
+          "clip_score": 0.022906213998794556,
+          "size_prior": 0.6391008935219658,
+          "score": 0.054861258674892846
+        },
+        {
+          "mask_index": 20,
+          "n_points": 13733,
+          "n_crops": 2,
+          "stud_sim": 0.28286802768707275,
+          "neg_sim": 0.2599618136882782,
+          "clip_score": 0.022906213998794556,
+          "size_prior": 0.6391008935219658,
+          "score": 0.054861258674892846
+        },
+        {
+          "mask_index": 5,
+          "n_points": 13733,
+          "n_crops": 2,
+          "stud_sim": 0.28286802768707275,
+          "neg_sim": 0.2599618136882782,
+          "clip_score": 0.022906213998794556,
+          "size_prior": 0.6391008935219658,
+          "score": 0.054861258674892846
+        },
+        {
+          "mask_index": 6,
+          "n_points": 13733,
+          "n_crops": 2,
+          "stud_sim": 0.28286802768707275,
+          "neg_sim": 0.2599618136882782,
+          "clip_score": 0.022906213998794556,
+          "size_prior": 0.6391008935219658,
+          "score": 0.054861258674892846
+        },
+        {
+          "mask_index": 3,
+          "n_points": 13733,
+          "n_crops": 2,
+          "stud_sim": 0.28286802768707275,
+          "neg_sim": 0.2599618136882782,
+          "clip_score": 0.022906213998794556,
+          "size_prior": 0.6391008935219658,
+          "score": 0.054861258674892846
+        }
+      ],
+      "path": "synth_posed_rgbd_clip_bbox_crops",
+      "note": "CLIP on synthetic posed RGB-D bbox crops of OpenMask3D mask-module instances. Score = (stud\u2212neg) CLIP margin + 0.05\u00d7size prior. SAM multi-round crop refiner not run."
+    }
   },
-  "implementation_short": "OpenMask3D mask module best instance \u2192 stud labels. CLIP skipped.",
+  "implementation_short": "OpenMask3D masks + synth posed RGB-D CLIP text query \u2192 stud labels.",
   "detection": {
     "n_true": 1,
     "n_pred": 1,
@@ -114,14 +377,14 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.0254,
-    "license": "OpenMask3D upstream; mask_module_arbitrary.ckpt; not a stud-trained head",
-    "hardware": "cpu score of prior CUDA mask-module forward",
+    "runtime_s": 3.2926,
+    "license": "OpenMask3D upstream; openai-clip; not a stud-trained head",
+    "hardware": "clip device cuda; prior CUDA mask-module forward",
     "bbox_kind": "minimal_oriented",
     "failure_modes": [
-      "CLIP / posed RGB-D open-vocab stage blocked: synth scene has no posed RGB-D.",
-      "Class-agnostic mask only; no semantic class scores.",
-      "Zero-shot foundation mask, not a stud-class train."
+      "Posed RGB-D is synthetic (full-stud pinholes), not a real capture.",
+      "CLIP uses bbox crops of projected mask points; upstream SAM multi-round crop refiner not run.",
+      "Zero-shot foundation mask + open-vocab text, not a stud-class train."
     ],
     "n_stud_points": 21488,
     "stud_min_points": 50,
