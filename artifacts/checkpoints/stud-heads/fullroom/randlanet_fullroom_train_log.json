@@ -1,0 +1,111 @@
+{
+  "wall_s": 332.5,
+  "epochs": 8,
+  "train_rooms": 48,
+  "best_selection_score": 0.891798593097672,
+  "history": [
+    {
+      "n": 8,
+      "stud_iou": 0.917325900570205,
+      "clutter_iou": 0.6550451456423801,
+      "stud_recall": 0.9322337281785176,
+      "mean_runtime_s": 2.8095819125046546,
+      "rooms_with_both_classes": 8,
+      "selection_score": 0.7861855231062926,
+      "epoch": 1,
+      "train_loss": 0.6365668003757795,
+      "epoch_s": 82.1
+    },
+    {
+      "n": 8,
+      "stud_iou": 0.9401093040151587,
+      "clutter_iou": 0.7345584494038776,
+      "stud_recall": 0.9482200881977486,
+      "mean_runtime_s": 2.6694310499951825,
+      "rooms_with_both_classes": 8,
+      "selection_score": 0.8373338767095182,
+      "epoch": 2,
+      "train_loss": 0.4396935099114974,
+      "epoch_s": 36.3
+    },
+    {
+      "n": 8,
+      "stud_iou": 0.9560408530579677,
+      "clutter_iou": 0.7929143438922462,
+      "stud_recall": 0.9615727942273579,
+      "mean_runtime_s": 2.6064336374984123,
+      "rooms_with_both_classes": 8,
+      "selection_score": 0.874477598475107,
+      "epoch": 3,
+      "train_loss": 0.3281488937015335,
+      "epoch_s": 35.4
+    },
+    {
+      "n": 8,
+      "stud_iou": 0.956692449176487,
+      "clutter_iou": 0.7977619668782558,
+      "stud_recall": 0.9597934523118752,
+      "mean_runtime_s": 2.593932087504072,
+      "rooms_with_both_classes": 8,
+      "selection_score": 0.8772272080273714,
+      "epoch": 4,
+      "train_loss": 0.2891655204196771,
+      "epoch_s": 35.4
+    },
+    {
+      "n": 8,
+      "stud_iou": 0.9564507697083331,
+      "clutter_iou": 0.7965862528556114,
+      "stud_recall": 0.959915718927701,
+      "mean_runtime_s": 2.635921662506007,
+      "rooms_with_both_classes": 8,
+      "selection_score": 0.8765185112819722,
+      "epoch": 5,
+      "train_loss": 0.25956633081659675,
+      "epoch_s": 35.6
+    },
+    {
+      "n": 8,
+      "stud_iou": 0.9607746499179455,
+      "clutter_iou": 0.8136947941880106,
+      "stud_recall": 0.9634995295843765,
+      "mean_runtime_s": 2.6390580750085064,
+      "rooms_with_both_classes": 8,
+      "selection_score": 0.887234722052978,
+      "epoch": 6,
+      "train_loss": 0.2662146060417096,
+      "epoch_s": 35.6
+    },
+    {
+      "n": 8,
+      "stud_iou": 0.9625712174990197,
+      "clutter_iou": 0.821025968696324,
+      "stud_recall": 0.9650568746995143,
+      "mean_runtime_s": 2.673994849996234,
+      "rooms_with_both_classes": 8,
+      "selection_score": 0.891798593097672,
+      "epoch": 7,
+      "train_loss": 0.18024054045478502,
+      "epoch_s": 36.0
+    },
+    {
+      "n": 8,
+      "stud_iou": 0.9613666141396151,
+      "clutter_iou": 0.8169494107105029,
+      "stud_recall": 0.9631316935791376,
+      "mean_runtime_s": 2.6688832249856205,
+      "rooms_with_both_classes": 8,
+      "selection_score": 0.889158012425059,
+      "epoch": 8,
+      "train_loss": 0.14589406487842402,
+      "epoch_s": 35.9
+    }
+  ],
+  "s3dis_skipped": [
+    "fc1.3.conv.weight",
+    "fc1.3.conv.bias"
+  ],
+  "num_classes": 2,
+  "weight": "artifacts\\checkpoints\\stud-heads\\fullroom\\randlanet_stud_2class_fullroom.pth",
+  "recipe": "fullroom_28"
+}

@@ -14,6 +14,10 @@ S1b is a bowed stud: ends stay on the chord, the midspan moves. It is not a
 stage gate. Stage 5 is a synthetic room or bay with a LOT-62 look (a framed
 bay you can walk). It is not the Polycam loft on the parallel corner track,
 and it is not a real capture. Stages 6 and 7 are not generated here.
+
+``full_room_28`` is the 28-stud train and experiment room: the same four-wall
+layout with the south door left in place so all 28 centers stay. It does not
+replace ``stage5_room_bay``.
 """
 
 from __future__ import annotations
@@ -845,6 +849,159 @@ def stage5_room_bay(
             "plate_spacing_m": float(plate_spacing_m),
             "floor_spacing_m": float(floor_spacing_m),
             "training_gate": False,
+            "stage_gate": False,
+        },
+    )
+
+
+FULL_ROOM_N_ALONG = 7
+FULL_ROOM_N_STUDS = FULL_ROOM_N_ALONG * 4
+
+
+def full_room_28(
+    *,
+    leans_deg: tuple[float, ...] | list[float],
+    lean_axes: tuple[str, ...] | list[str],
+    nominal: str = "2x4",
+    seed: int = 1101,
+    spacing_m: float = 0.006,
+    plate_spacing_m: float = 0.01,
+    floor_spacing_m: float = 0.02,
+    noise_std_m: float = 0.001,
+    length_m: float = STUD_LENGTH_8FT_M,
+    corner_gap_m: float = 0.10,
+    name: str | None = None,
+) -> Scene:
+    """Four walls, seven studs each, plates, and a floor. Exactly 28 studs.
+
+    Wall order is south, west, north, east. ``stage5_room_bay`` uses this
+    plan and then drops two south studs for a door. This function keeps every
+    center. Corner air gap and the 40 mm plan-gap check match that bay.
+    ``lean_axes`` entries are ``+X``, ``-X``, ``+Y``, ``-Y``, or ``none``
+    (a zero lean is stored as ``none`` and is not rotated).
+    """
+    if nominal not in DRESSED_SECTION_M:
+        raise ValueError(f"nominal must be one of {sorted(DRESSED_SECTION_M)}")
+    if corner_gap_m < 0.05:
+        raise ValueError("corner gap must stay above the 25 mm DBSCAN eps with margin")
+    leans = [float(value) for value in leans_deg]
+    axes = [str(value) for value in lean_axes]
+    if len(leans) != FULL_ROOM_N_STUDS or len(axes) != FULL_ROOM_N_STUDS:
+        raise ValueError(f"full_room_28 wants {FULL_ROOM_N_STUDS} leans and axes")
+    for axis, lean in zip(axes, leans):
+        if lean == 0.0:
+            if axis != "none":
+                raise ValueError("a 0° stud uses lean axis 'none'")
+        elif axis not in LEAN_AXES:
+            raise ValueError(f"lean axis must be one of {LEAN_AXES} or 'none', got {axis!r}")
+    thickness, width = DRESSED_SECTION_M[nominal]
+    plate_h = thickness
+    rng = np.random.default_rng(seed)
+    along = [index * OC_16_IN_M for index in range(FULL_ROOM_N_ALONG)]
+    x_w = -thickness / 2.0 - corner_gap_m - width / 2.0
+    y0 = width / 2.0 + corner_gap_m + thickness / 2.0
+    y_along = [y0 + index * OC_16_IN_M for index in range(FULL_ROOM_N_ALONG)]
+    y_n = y_along[-1] + thickness / 2.0 + corner_gap_m + width / 2.0
+    x_e = along[-1] + thickness / 2.0 + corner_gap_m + width / 2.0
+    walls: list[tuple[tuple[float, float], float]] = []
+    for x_center in along:
+        walls.append(((x_center, 0.0), 0.0))
+    for y_center in y_along:
+        walls.append(((x_w, y_center), 90.0))
+    for x_center in along:
+        walls.append(((x_center, y_n), 0.0))
+    for y_center in y_along:
+        walls.append(((x_e, y_center), 90.0))
+    if len(walls) != FULL_ROOM_N_STUDS:
+        raise RuntimeError(f"full room layout is {len(walls)} studs, want {FULL_ROOM_N_STUDS}")
+
+    boxes = []
+    for (origin_xy, yaw_deg), lean in zip(walls, leans):
+        tip = float(length_m * np.tan(np.deg2rad(abs(lean))))
+        boxes.append(_section_aabb_xy(origin_xy, yaw_deg, thickness, width, inflate_m=tip))
+    min_gap = None
+    for i in range(len(boxes)):
+        for j in range(i + 1, len(boxes)):
+            gap = _plan_gap_m(boxes[i], boxes[j])
+            min_gap = gap if min_gap is None else min(min_gap, gap)
+    if min_gap is None or min_gap < 0.04:
+        raise RuntimeError(f"full-room studs are closer than 40 mm after lean inflation: {min_gap}")
+
+    chunks: list[tuple[np.ndarray, int, int]] = []
+    studs: list[StudTruth] = []
+    floor = _floor_points(x_w - 0.40, x_e + 0.40, -0.40, y_n + 0.40, floor_spacing_m)
+    chunks.append((floor, 0, -1))
+
+    def _plate(x0: float, x1: float, y0p: float, y1p: float, z0: float, z1: float) -> np.ndarray:
+        return _box_surface(x0, x1, y0p, y1p, z0, z1, plate_spacing_m)
+
+    top_z = plate_h + length_m
+    plate_spans = [
+        (along[0] - thickness / 2.0, along[-1] + thickness / 2.0, -width / 2.0, width / 2.0),
+        (x_w - width / 2.0, x_w + width / 2.0, y_along[0] - thickness / 2.0, y_along[-1] + thickness / 2.0),
+        (along[0] - thickness / 2.0, along[-1] + thickness / 2.0, y_n - width / 2.0, y_n + width / 2.0),
+        (x_e - width / 2.0, x_e + width / 2.0, y_along[0] - thickness / 2.0, y_along[-1] + thickness / 2.0),
+    ]
+    for x0, x1, y0p, y1p in plate_spans:
+        chunks.append((_plate(x0, x1, y0p, y1p, 0.0, plate_h), 1, -1))
+        chunks.append((_plate(x0, x1, y0p, y1p, top_z, top_z + plate_h), 1, -1))
+
+    for slot, ((origin_xy, yaw_deg), lean, axis) in enumerate(zip(walls, leans, axes)):
+        sample_axis = "+X" if axis == "none" else axis
+        points, truth, _ = _sample_stud(
+            nominal=nominal,
+            lean_deg=lean,
+            origin_xy=origin_xy,
+            z_base=plate_h,
+            length_m=length_m,
+            spacing_m=spacing_m,
+            lean_axis=sample_axis,
+            yaw_deg=yaw_deg,
+        )
+        if axis == "none":
+            truth = StudTruth(
+                stud_id=truth.stud_id,
+                nominal=truth.nominal,
+                lean_deg=truth.lean_deg,
+                length_m=truth.length_m,
+                section_m=truth.section_m,
+                center_m=truth.center_m,
+                long_axis=truth.long_axis,
+                lean_axis="none",
+                bow_m=truth.bow_m,
+            )
+        chunks.append((points, 2, slot))
+        studs.append(truth)
+
+    return _pack(
+        name=name or f"fullroom_28_seed{seed}",
+        stage=5,
+        chunks=chunks,
+        studs=studs,
+        seed=seed,
+        spacing_m=spacing_m,
+        noise_std_m=noise_std_m,
+        description=(
+            "Synthetic four-wall room, 28 dressed 2x4 studs at 16 inch centers, "
+            f"corner air gap {corner_gap_m:.2f} m, plates and floor, no door, no header. "
+            "Train and full-room experiment generator. Not stage5_room_bay."
+        ),
+        rng=rng,
+        meta={
+            "curriculum_class": "fullroom_28",
+            "n_studs": FULL_ROOM_N_STUDS,
+            "wall_order": ["south", "west", "north", "east"],
+            "studs_per_wall": FULL_ROOM_N_ALONG,
+            "corner_gap_m": float(corner_gap_m),
+            "min_plan_gap_after_lean_tip_m": float(min_gap),
+            "header": "omitted",
+            "door": "omitted so the stud count stays 28",
+            "leans_deg": leans,
+            "lean_axes": axes,
+            "stud_spacing_m": float(spacing_m),
+            "plate_spacing_m": float(plate_spacing_m),
+            "floor_spacing_m": float(floor_spacing_m),
+            "training_gate": True,
             "stage_gate": False,
         },
     )

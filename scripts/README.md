@@ -14,4 +14,6 @@
 
 `score_experiment1_dual_pass.py` colors the all-nine stage0 one-beam scene (Experiment 1: one stud, no floor, no ceiling, planted lean 0°) from stored `angle_mae_deg`. It does not retrain or re-run a finder. Output: `artifacts/phase_neg1/experiment1_dual_pass.json`. The matrix is in `docs/research/31-four-stage-error-table.md`.
 
+`build_fullroom_manifest.py` writes `data/finetune/fullroom_28_manifest.json` (48 train rooms, 8 val rooms, 28 studs each). `train_randlanet_fullroom.py` and `train_pointcept_fullroom.py` save new heads under `artifacts/checkpoints/stud-heads/fullroom/`. They do not overwrite the Experiment 1 checkpoints. `smoke_fullroom_phase1.py --role geometry|pointcept|randlanet` checks that those heads load and that Open3D, PCL, and pyRANSAC-3D still run. Decision: `docs/research/37-fullroom-training-decision.md`.
+
 Dataset download helpers are not here yet. Large clouds stay linked from `docs/research/`.

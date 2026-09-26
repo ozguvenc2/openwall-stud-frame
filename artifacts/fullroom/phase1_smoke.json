@@ -1,0 +1,73 @@
+{
+  "geometry": {
+    "role": "geometry",
+    "scene_id": "val_0000",
+    "seed": 1201,
+    "n_studs": 28,
+    "n_points": 566769,
+    "open3d": {
+      "runnable": true,
+      "runtime_s": 0.942,
+      "n_detections": 28
+    },
+    "pyransac3d": {
+      "runnable": true,
+      "runtime_s": 0.792,
+      "scope": "first stud points only, existing Cuboid.fit thresholds",
+      "n_inliers": 17234,
+      "n_stud_points": 17234
+    },
+    "pcl": {
+      "runnable": true,
+      "runtime_s": 6.904,
+      "native_pcl_region_growing": true,
+      "provenance_keys": [
+        "binary",
+        "build_log",
+        "build_returncode",
+        "curvature_threshold",
+        "implementation",
+        "library",
+        "min_cluster",
+        "native_pcl_region_growing",
+        "neighbours",
+        "returncode",
+        "smoothness_deg",
+        "stderr",
+        "stdout",
+        "viewpoint",
+        "viewpoint_note"
+      ]
+    },
+    "experiment1_sha256_unchanged": true
+  },
+  "pointcept": {
+    "role": "pointcept",
+    "weight": "artifacts\\checkpoints\\stud-heads\\fullroom\\pointcept_stud_2class_fullroom.pth",
+    "scene_id": "val_0000",
+    "runtime_s": 1.077,
+    "classes": [
+      0,
+      1
+    ],
+    "n_points": 566769,
+    "n_stud_pred": 469390,
+    "n_clutter_pred": 97379,
+    "experiment1_sha256_unchanged": true
+  },
+  "randlanet": {
+    "role": "randlanet",
+    "weight": "artifacts\\checkpoints\\stud-heads\\fullroom\\randlanet_stud_2class_fullroom.pth",
+    "scene_id": "val_0000",
+    "runtime_s": 2.472,
+    "load_to_predict_s": 2.478,
+    "classes": [
+      0,
+      1
+    ],
+    "n_points": 566769,
+    "n_stud_pred": 468287,
+    "n_clutter_pred": 98482,
+    "experiment1_sha256_unchanged": true
+  }
+}
