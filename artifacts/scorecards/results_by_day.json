@@ -5169,6 +5169,48 @@
       "runtime_s": null,
       "notes": "Stage 7 needs a real two-story or complex capture. Metrics left null. Not a shortcut past stages 3\u20135. Scorecard: curriculum/sam2_stage7_not_run.json.",
       "pass_fail": "not_run"
+    },
+    {
+      "date": "2026-09-26",
+      "stage": 0,
+      "scene": "stage0_2x4_lean0.000",
+      "algorithm": "openmask3d",
+      "ground_truth_source": "synthetic",
+      "notes": "Synthetic stage 0, stage0_2x4_lean0.000, lean 0.0 deg, seed 1, reference gravity_z_no_floor_plane. Device epsilon unlocked. OpenMask3D masks + synth posed RGB-D CLIP text query \u2192 stud labels. Stage 0 bars: pass. Scorecard: openmask3d_stage0_stage0_2x4_lean0.000.json.",
+      "pass_fail": "pass",
+      "detection_precision": 1.0,
+      "detection_recall": 1.0,
+      "detection_tp": 1,
+      "detection_fp": 0,
+      "detection_fn": 0,
+      "geometry_section_err_mm": 7.21,
+      "geometry_length_err_mm": 6.24,
+      "angle_mae_deg": 0.03019,
+      "angle_pct_in_band": 100.0,
+      "paint_correct_pct": 100.0,
+      "device_eps_deg": null,
+      "runtime_s": 3.7886
+    },
+    {
+      "date": "2026-09-26",
+      "stage": 0,
+      "scene": "stage0_2x4_lean0.000",
+      "algorithm": "sam3d",
+      "ground_truth_source": "synthetic",
+      "detection_precision": 1.0,
+      "detection_recall": 1.0,
+      "detection_tp": 1,
+      "detection_fp": 0,
+      "detection_fn": 0,
+      "geometry_section_err_mm": 7.83,
+      "geometry_length_err_mm": 4.3,
+      "angle_mae_deg": 0.03177,
+      "angle_pct_in_band": 100.0,
+      "paint_correct_pct": 100.0,
+      "device_eps_deg": null,
+      "runtime_s": 0.2688,
+      "notes": "Synthetic stage 0, stage0_2x4_lean0.000, lean 0.0 deg, seed 1, reference gravity_z_no_floor_plane. Device epsilon unlocked. SAM ViT-H on full-stud front+back pinholes, mask union lifted \u2192 stud labels. Stage 0 bars: pass. Scorecard: sam3d_stage0_stage0_2x4_lean0.000.json.",
+      "pass_fail": "pass"
     }
   ]
 }

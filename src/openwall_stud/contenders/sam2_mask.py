@@ -64,7 +64,12 @@ class Pinhole:
 
 
 def default_stud_camera() -> Pinhole:
-    """Three-quarter view of a stud at the origin, 8 ft tall."""
+    """Three-quarter view of a stud at the origin, 8 ft tall.
+
+    FOV crops the 8 ft stud to roughly the middle metre. Keep this camera for
+    the SAM 2 rank-7 scaffold and for controls that document the crop. Stage0
+    SAM3D stud-bar scoring uses ``full_stud_camera`` / ``full_stud_cameras``.
+    """
     return Pinhole(
         eye_m=(0.55, -1.15, 1.15),
         target_m=(0.0, 0.0, 1.22),
@@ -73,6 +78,36 @@ def default_stud_camera() -> Pinhole:
         width=640,
         height=480,
     )
+
+
+def full_stud_camera() -> Pinhole:
+    """Pulled-back pinhole that keeps the full 8 ft stud inside a 640×480 frame.
+
+    The default scaffold camera crops length to ~1.0 m and fails the stage0
+    length bar (≤ 25 mm). This view is the SAM3D / posed-RGB-D stage0 camera.
+    """
+    return Pinhole(
+        eye_m=(1.6, -3.4, 1.22),
+        target_m=(0.0, 0.0, 1.22),
+        up=(0.0, 0.0, 1.0),
+        fov_y_deg=50.0,
+        width=640,
+        height=480,
+    )
+
+
+def full_stud_cameras() -> tuple[Pinhole, ...]:
+    """Front and back full-stud pinholes for multi-view lift / posed RGB-D."""
+    front = full_stud_camera()
+    back = Pinhole(
+        eye_m=(-1.6, 3.4, 1.22),
+        target_m=(0.0, 0.0, 1.22),
+        up=(0.0, 0.0, 1.0),
+        fov_y_deg=50.0,
+        width=640,
+        height=480,
+    )
+    return (front, back)
 
 
 def _basis(camera: Pinhole) -> tuple[np.ndarray, np.ndarray, np.ndarray]:

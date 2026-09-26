@@ -3,16 +3,16 @@
     "algorithm": "sam3d",
     "scorecard": "sam3d_stage0_stage0_2x4_lean0.000.json",
     "status": "ran",
-    "pass_fail": "fail",
+    "pass_fail": "pass",
     "precision": 1.0,
     "recall": 1.0,
-    "section_mm": 6.83,
-    "length_mm": 1427.98,
-    "angle_mae_deg": 0.06871,
-    "runtime_s": 0.2426,
+    "section_mm": 7.83,
+    "length_mm": 4.3,
+    "angle_mae_deg": 0.03177,
+    "runtime_s": 0.2688,
     "stud_metrics_scored": true,
-    "n_stud_points": 8311,
-    "gpu_ms": 242.54010009765625,
-    "reason": "ViT-H pinhole lift; ScanNet multi-frame path not run; bars: length error 1427.98 mm > 25.0; angle error 0.06871 deg > 0.05"
+    "n_stud_points": 7188,
+    "gpu_ms": 268.6456708908081,
+    "reason": "ViT-H full-stud multi-view lift; ScanNet multi-frame path not run"
   }
 ]
