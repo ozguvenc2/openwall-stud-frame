@@ -1,6 +1,9 @@
 % Bibliography for the TruePlank / OpenWall stud-lean paper.
 % Records below were checked on 2026-09-25 against Crossref, a publisher
 % page, or a CVPR/arXiv landing page, except where a note says otherwise.
+% The promptable / foundation 3D block at the end of this file was checked
+% on 2026-09-26. Each of those notes names the live source. A field that
+% could not be opened is marked UNVERIFIED THIS PASS.
 % Do not copy a DOI from the engineering notes without re-resolving it.
 % The Sensors DOI 10.3390/s23041924 in the ranking note does not resolve
 % to Bassier; see ntiyakunze2023sensors.
@@ -293,4 +296,111 @@
   title = {{UFGS} 06 10 00, Rough Carpentry},
   year = {unknown},
   note = {UNVERIFIED PLACEHOLDER. WoodWorks names "The United Facilities Guide Specification, Section 06 10 00" and summarizes 1/4 inch in 8 feet for stud plumb when wallboard, plaster, or mortar-bed ceramic tile is used, and 1/8 inch in 8 feet for tighter tile finishes. The specification PDF was not opened. The official series name used here is Unified Facilities Guide Specifications; confirm the WoodWorks wording against the PDF before camera-ready.}
+}
+
+% Promptable / foundation 3D segmentation peers. Checked 2026-09-26.
+% ScanNet and S3DIS scores from these papers are not copied into this file.
+
+@inproceedings{zhou2025pointsam,
+  author = {Zhou, Yuchen and Gu, Jiayuan and Chiang, Tung Yen and Xiang, Fanbo and Su, Hao},
+  title = {Point-{SAM}: Promptable {3D} Segmentation Model for Point Clouds},
+  booktitle = {The Thirteenth International Conference on Learning Representations},
+  year = {2025},
+  url = {https://openreview.net/forum?id=yXCTDhZDh6},
+  note = {Key, authors, title, booktitle, year, and OpenReview URL taken from the citation block in the README of https://github.com/zyc00/Point-SAM on 2026-09-26. The same five authors and the same title match the arXiv:2406.17741 atom record (published 2024-06-25, updated 2024-12-02); that record had no journal\_ref and no DOI. A Crossref query the same day did not return an ICLR proceedings record, so no DOI and no pages are entered. UNVERIFIED THIS PASS: a live fetch of the OpenReview forum page returned HTTP 403. GitHub API license for zyc00/Point-SAM: MIT. Hugging Face API model yuchen0187/Point-SAM, cardData.license apache-2.0, 311042732 F32 parameters, file model.safetensors. That model card's own citation is an arXiv misc entry dated 2024, which this record does not copy.}
+}
+
+@misc{yang2023sam3d,
+  author = {Yang, Yunhan and Wu, Xiaoyang and He, Tong and Zhao, Hengshuang and Liu, Xihui},
+  title = {{SAM3D}: Segment Anything in {3D} Scenes},
+  year = {2023},
+  howpublished = {arXiv:2306.03908},
+  url = {https://arxiv.org/abs/2306.03908},
+  note = {Official citation block in the README of https://github.com/Pointcept/SegmentAnything3D is a misc entry with this key, these authors, and eprint 2306.03908. The arXiv atom record (2026-09-26) matches the authors and title and comments "Technical Report". GitHub API license: MIT. The repository description string says "[ICCV'23 Workshop]". A Crossref bibliographic query the same day did not return a proceedings record for these authors (other works titled SAM3D are different papers). No workshop booktitle and no DOI are entered. UNVERIFIED THIS PASS: the ICCV 2023 Workshop label, as a proceedings venue.}
+}
+
+@inproceedings{takmaz2023openmask3d,
+  author = {Takmaz, Ay{\c{c}}a and Fedele, Elisabetta and Sumner, Robert W. and Pollefeys, Marc and Tombari, Federico and Engelmann, Francis},
+  title = {{OpenMask3D}: Open-Vocabulary {3D} Instance Segmentation},
+  booktitle = {Advances in Neural Information Processing Systems 36},
+  year = {2023},
+  pages = {68367--68390},
+  publisher = {Neural Information Processing Systems Foundation, Inc. (NeurIPS)},
+  doi = {10.52202/075280-2989},
+  url = {https://doi.org/10.52202/075280-2989},
+  note = {Authors, accent, middle initial, title, and key taken from the citation block in the README of https://github.com/OpenMask3D/openmask3d on 2026-09-26. That block names NeurIPS and omits pages and a DOI. Pages 68367--68390, the container title with volume 36, the publisher, and the DOI are the Crossref record fetched the same day. Crossref prints the given names Ayca and Robert Sumner. arXiv:2306.13631 journal\_ref is "NeurIPS 2023". GitHub API license: MIT.}
+}
+
+@inproceedings{huang2024segment3d,
+  author = {Huang, Rui and Peng, Songyou and Takmaz, Ay{\c{c}}a and Tombari, Federico and Pollefeys, Marc and Song, Shiji and Huang, Gao and Engelmann, Francis},
+  title = {{Segment3D}: Learning Fine-Grained Class-Agnostic {3D} Segmentation Without Manual Labels},
+  booktitle = {Computer Vision -- ECCV 2024},
+  series = {Lecture Notes in Computer Science},
+  year = {2024},
+  pages = {278--295},
+  publisher = {Springer Nature Switzerland},
+  doi = {10.1007/978-3-031-72754-2_16},
+  url = {https://doi.org/10.1007/978-3-031-72754-2_16},
+  note = {Authors, title, pages, series, publisher, and DOI from Crossref on 2026-09-26. Crossref type is book-chapter. The parent book 10.1007/978-3-031-72754-2 has subtitle "18th European Conference, Milan, Italy, September 29--October 4, 2024, Proceedings, Part XXXIV" and no volume field, so no LNCS volume number is entered. published-print on that chapter is 2025; the year field is the 2024 online issue date. arXiv:2312.17232 matches these authors and comments only a project page. The project page http://segment3d.github.io bibtex uses key Huang2023Segment3D, type article, and spells Takmaz as Ayca. The first author on both live records is Rui Huang. A key yan2023segment3d is not used. UNVERIFIED THIS PASS: a code repository URL and its license. The project-page text fetched that day did not include one.}
+}
+
+@inproceedings{schult2023mask3d,
+  author = {Schult, Jonas and Engelmann, Francis and Hermans, Alexander and Litany, Or and Tang, Siyu and Leibe, Bastian},
+  title = {{Mask3D}: Mask Transformer for {3D} Semantic Instance Segmentation},
+  booktitle = {2023 IEEE International Conference on Robotics and Automation (ICRA)},
+  year = {2023},
+  month = may,
+  pages = {8216--8223},
+  doi = {10.1109/icra48891.2023.10160590},
+  url = {https://doi.org/10.1109/icra48891.2023.10160590},
+  note = {Authors, title, booktitle, pages, and DOI from Crossref on 2026-09-26. Crossref issued date 2023-05-29; the event field says London, 2023-05-29 through 2023-06-02. arXiv:2210.03105 comment is "ICRA 2023 camera-ready version" and the author line matches. This is the ICRA paper. It is not a CVPR or WACV record. GitHub API license for https://github.com/JonasSchult/Mask3D: MIT.}
+}
+
+@inproceedings{vu2022softgroup,
+  author = {Vu, Thang and Kim, Kookhoi and Luu, Tung M. and Nguyen, Thanh and Yoo, Chang D.},
+  title = {{SoftGroup} for {3D} Instance Segmentation on Point Clouds},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year = {2022},
+  month = jun,
+  pages = {2698--2707},
+  doi = {10.1109/cvpr52688.2022.00273},
+  url = {https://doi.org/10.1109/cvpr52688.2022.00273},
+  note = {Authors, title, pages 2698--2707, and DOI from Crossref on 2026-09-26. The CVF 2022 open-access page fetched the same day prints the same authors and its bibtex prints pages 2708--2717. That page says the final published version is on IEEE Xplore, so the pages entered here are the Crossref pages. The arXiv:2203.01509 atom author line says Xuan Thanh Nguyen; Crossref and the CVF bibtex both print Thanh Nguyen. GitHub API license for https://github.com/thangvubk/SoftGroup: MIT. A later TPAMI article (DOI 10.1109/tpami.2023.3326189) is a different version and is not this entry.}
+}
+
+@inproceedings{ngo2023isbnet,
+  author = {Ngo, Tuan Duc and Hua, Binh-Son and Nguyen, Khoi},
+  title = {{ISBNet}: A {3D} Point Cloud Instance Segmentation Network With Instance-Aware Sampling and Box-Aware Dynamic Convolution},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year = {2023},
+  month = jun,
+  pages = {13550--13559},
+  doi = {10.1109/cvpr52729.2023.01302},
+  url = {https://doi.org/10.1109/cvpr52729.2023.01302},
+  note = {Pages 13550--13559 and these authors agree on the CVF 2023 open-access bibtex and on Crossref, both fetched 2026-09-26. Title capitalization follows that open-access bibtex. The DOI is the Crossref DOI. arXiv:2303.00246 comment is "Accepted to CVPR 2023". GitHub API license for https://github.com/VinAIResearch/ISBNet: BSD-3-Clause.}
+}
+
+@inproceedings{nguyen2025any3dis,
+  author = {Nguyen, Phuc and Luu, Minh and Tran, Anh and Pham, Cuong and Nguyen, Khoi},
+  title = {{Any3DIS}: Class-Agnostic {3D} Instance Segmentation by {2D} Mask Tracking},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year = {2025},
+  month = jun,
+  pages = {3636--3645},
+  doi = {10.1109/cvpr52734.2025.00344},
+  url = {https://doi.org/10.1109/cvpr52734.2025.00344},
+  note = {Authors, title, pages 3636--3645, and DOI from Crossref on 2026-09-26. The project-page bibtex at https://any3dis.github.io/ uses the same key, authors, year, and pages, with a lowercased title. arXiv:2411.16183 matches the authors and title. Crossref issued date 2025-06-10. UNVERIFIED THIS PASS: an official code license. That project page's bibtex has no code URL. A GitHub search the same day returned PhucNDA/Any3DIS\_unofficial with a null license; that unofficial tree is not cited as the code.}
+}
+
+@inproceedings{he2024segpoint,
+  author = {He, Shuting and Ding, Henghui and Jiang, Xudong and Wen, Bihan},
+  title = {{SegPoint}: Segment Any Point Cloud via Large Language Model},
+  booktitle = {Computer Vision -- ECCV 2024},
+  series = {Lecture Notes in Computer Science},
+  year = {2024},
+  pages = {349--367},
+  publisher = {Springer Nature Switzerland},
+  doi = {10.1007/978-3-031-72670-5_20},
+  url = {https://doi.org/10.1007/978-3-031-72670-5_20},
+  note = {Authors, title, pages, series, publisher, and DOI from Crossref on 2026-09-26. Crossref type is book-chapter. The parent book 10.1007/978-3-031-72670-5 has subtitle "Proceedings, Part XXII" and no volume field, so no LNCS volume number is entered. published-print is 2025; the year field is the online issue date 2024-09-30. arXiv:2407.13761 and the project page https://heshuting555.github.io/SegPoint match these authors and this title. arXiv comment says ECCV 2024. UNVERIFIED THIS PASS: a code repository URL and its license. The project-page text fetched that day did not include one.}
 }
