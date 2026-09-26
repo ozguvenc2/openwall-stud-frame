@@ -152,8 +152,8 @@ def day_notes(card: dict[str, Any], scorecard_name: str) -> str:
         return f"{prefix}Blocked install. Metrics left null. {short} Scorecard: {scorecard_name}."
     if card.get("status") == "ran" and card.get("stud_metrics_scored") is False:
         short = card.get("implementation_short") or card.get("algorithm") or ""
-        lead = prefix or "Control forward pass on the synthetic stage 0 stud. "
-        control_lead = "Control forward pass. " if prefix else ""
+        lead = prefix or _stage0_lead(card)
+        control_lead = "Control forward pass. "
         return (
             f"{lead}{control_lead}"
             "Stud precision, recall, section, length, angle, and paint were left null. "
@@ -164,9 +164,26 @@ def day_notes(card: dict[str, Any], scorecard_name: str) -> str:
     if prefix:
         return f"{prefix}{short} Stage 0 bars: {verdict}. Scorecard: {scorecard_name}."
     return (
+        f"{_stage0_lead(card)}"
+        f"{short} Stage 0 bars: {verdict}. Scorecard: {scorecard_name}."
+    )
+
+
+def _stage0_lead(card: dict[str, Any]) -> str:
+    """Scene sentence for a stage 0 card. Uses the card's own lean and seed."""
+    scene = card.get("scene") or {}
+    name = scene.get("name")
+    lean = scene.get("lean_deg")
+    seed = scene.get("seed")
+    reference = scene.get("reference") or "+Z"
+    if name and lean is not None and seed is not None:
+        return (
+            f"Synthetic stage 0, {name}, lean {lean} deg, seed {seed}, "
+            f"reference {reference}. Device epsilon unlocked. "
+        )
+    return (
         "Synthetic stage 0, 2x4 lean 0.05 deg, seed 2, reference +Z. "
         "Device epsilon unlocked. "
-        f"{short} Stage 0 bars: {verdict}. Scorecard: {scorecard_name}."
     )
 
 

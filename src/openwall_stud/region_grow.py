@@ -11,7 +11,9 @@ minimal OBB axis from the shared post-step. It is not forced to Z.
 
 from __future__ import annotations
 
+import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -35,6 +37,11 @@ def grow_labels(points: np.ndarray, work: Path) -> tuple[np.ndarray, dict]:
     native_labels, native_info = _native_labels(points, work)
     if native_labels is not None:
         return native_labels, native_info
+    if sys.platform == "win32" and shutil.which("wsl"):
+        wsl_labels, wsl_info = _wsl_labels(points, work, native_info)
+        if wsl_labels is not None:
+            return wsl_labels, wsl_info
+        native_info = wsl_info
     labels = _numpy_labels(points)
     native_info["implementation"] = "numpy_smoothness_region_grow"
     native_info["native_pcl_region_growing"] = False
@@ -173,6 +180,55 @@ def _ensure_binary(info: dict) -> Path | None:
         info["error"] = "could not build artifacts/bin/pcl_region_grow"
         return None
     return binary
+
+
+def _windows_to_wsl(path: Path) -> str:
+    text = str(path.resolve())
+    if len(text) >= 2 and text[1] == ":":
+        return "/mnt/" + text[0].lower() + text[2:].replace("\\", "/")
+    return text.replace("\\", "/")
+
+
+def _wsl_labels(points: np.ndarray, work: Path, info: dict) -> tuple[np.ndarray | None, dict]:
+    """Run the user-space PCL 1.14 binary built by tools/wsl_build_pcl_1_14.sh."""
+    info = dict(info)
+    info["implementation"] = "pcl::RegionGrowing"
+    xyz_path = work / "stud.xyz"
+    label_path = work / "stud.labels"
+    _write_xyz(xyz_path, points)
+    xyz_wsl = _windows_to_wsl(xyz_path)
+    label_wsl = _windows_to_wsl(label_path)
+    command = (
+        'export LD_LIBRARY_PATH="$HOME/src/pcl-1.14.1-build/lib:$HOME/pclenv/lib'
+        '${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"; '
+        'BIN="$HOME/bin/pcl_region_grow"; '
+        'test -x "$BIN" || exit 127; '
+        f'"$BIN" "{xyz_wsl}" "{label_wsl}" '
+        f"{SMOOTHNESS_DEG} {CURVATURE_THRESHOLD} {NEIGHBOURS} {MIN_CLUSTER}"
+    )
+    proc = subprocess.run(
+        ["wsl", "-e", "bash", "-lc", command],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    info["binary"] = "wsl:$HOME/bin/pcl_region_grow"
+    info["returncode"] = proc.returncode
+    info["stdout"] = (proc.stdout or "")[-500:]
+    info["stderr"] = (proc.stderr or "")[-2000:]
+    if proc.returncode != 0 or not label_path.exists():
+        info["error"] = f"wsl pcl_region_grow exited {proc.returncode}"
+        return None, info
+    labels = np.loadtxt(label_path, dtype=np.int32)
+    if labels.ndim == 0:
+        labels = np.array([int(labels)], dtype=np.int32)
+    if len(labels) != len(points):
+        info["error"] = f"label count {len(labels)} != point count {len(points)}"
+        return None, info
+    info["native_pcl_region_growing"] = True
+    info["library"] = "libpcl_segmentation.so.1.14"
+    info.pop("error", None)
+    return labels, info
 
 
 def _write_xyz(path: Path, points: np.ndarray) -> None:

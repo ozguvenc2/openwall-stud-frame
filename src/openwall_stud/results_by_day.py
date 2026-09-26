@@ -233,6 +233,8 @@ One row is one algorithm on one scene that day, compared with that scene’s gro
 
 Ground-truth sources intended for later rows: `synthetic`, `skil`, `total_station`, `hand_label`. Do not type a field number that was not measured.
 
+**Archive note (2026-09-26).** Rows in this table are not reclassified in place. Live buckets are [27-four-way-tool-classification.md](27-four-way-tool-classification.md). Rows whose algorithm is `cloudcompare` stay, including the 2026-09-24 `not_run` stubs and the 2026-09-25 measurements. Former bake-off rank 3 = CloudCompare, now bucket 4 (interactive GUI). Those rows are archive measurements. They are no longer counted as a geometry-first automated finder. The CSV and the JSON mirror are not rewritten by that lock.
+
 {table}
 """
 
