@@ -2,7 +2,7 @@
 
 Date (America/Los_Angeles): **2026-09-26**. Writer: **Other**. Survey pass only — no new scorecard, no fabricated metrics, no fake URLs. Confidence is marked per row. Years and venues that were not re-checked against Crossref / official docs on this pass are labeled `surveyed; uncertain`.
 
-Companion docs: [27-four-way-tool-classification.md](27-four-way-tool-classification.md) (live buckets), [30-fix-sam3d-openmask3d-stage0.md](30-fix-sam3d-openmask3d-stage0.md) (shared OBB after mask), [31-four-stage-error-table.md](31-four-stage-error-table.md) (Stage2 noise on minimal OBB), [32-pipeline-master-diagram.md](32-pipeline-master-diagram.md) (MASK → SAME shared minimal-OBB → Stage4). S1b bow probes: [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md), generator `s1b_bowed_stud` / `s1b_bow_wall` in `src/openwall_stud/synthetic.py`.
+Companion docs: [27-four-way-tool-classification.md](27-four-way-tool-classification.md) (live buckets), [30-fix-sam3d-openmask3d-stage0.md](30-fix-sam3d-openmask3d-stage0.md) (shared OBB after mask), [31-four-stage-error-table.md](31-four-stage-error-table.md) (Stage2 noise on minimal OBB), [34-pipeline-master-v2.md](34-pipeline-master-v2.md) (canonical L→R master chart: AxiomForge → CloudSmith → TrueLevel → pipes → BoxFit → scorecard; Mermaid source [diagrams/34-pipeline-master-v2.mmd](diagrams/34-pipeline-master-v2.mmd); supersedes [32-pipeline-master-diagram.md](32-pipeline-master-diagram.md)). S1b bow probes: [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md), generator `s1b_bowed_stud` / `s1b_bow_wall` in `src/openwall_stud/synthetic.py`.
 
 ## Current path (Stage0 default)
 
@@ -113,7 +113,28 @@ open3d_baseline._obb_segments
 long axis → lean vs +Z or floor_normal → paint (yellow if ε unlocked)
 ```
 
-Doc 32 draws this as **MASK → SAME shared minimal-OBB fitter → Stage4 scorecard**. Track A alternatives are candidate swaps for that shared node. Track B sits **after** (or beside) it and does not remove lean paint.
+Doc 34 draws this as **MASK → Stage4 BoxFit (shared minimal OBB) → scorecard** (v2 of the doc 32 chart). Track A alternatives are candidate swaps for that shared node. Track B sits **after** (or beside) it and does not remove lean paint.
+
+---
+
+## Future error sources to simulate
+
+Not injected into stage0 today. Distinct from the generator’s Stage2 sampling Gaussian (`noise_std_m=0.001` in `synthetic.py`). For later TrueLevel / curriculum stages only:
+
+1. **Human placement error** when using a level tool (operator mis-seat / tip contact), separate from the Skil-class device band itself.
+2. **Real lumber surface imperfections** (cup, wane, saw marks, moisture warp) versus the perfect dressed mesh AxiomForge plants.
+3. **LiDAR sensor noise** as a capture model distinct from the current 1 mm isotropic Gaussian sampling noise on mesh surface points.
+
+---
+
+## CloudSmith dials (future stage sweeps)
+
+Stage2 **CloudSmith** exposes two experiment parameters to sweep later. Map them to existing Stage2-style generator knobs; **do not change the Stage0 lock** (`spacing_m=0.005`, `noise_std_m=0.001`, bake-off 25,666-pt cloud) until a dedicated stage asks for it:
+
+| Dial | Generator knob | Stage0 default |
+| --- | --- | --- |
+| **Point density / count** | `spacing_m` | `0.005` m |
+| **Noise sigma** | `noise_std_m` | `0.001` m (1 mm Gaussian) |
 
 ---
 

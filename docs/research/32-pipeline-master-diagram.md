@@ -1,5 +1,7 @@
 # Bake-off master pipeline diagram
 
+> **Superseded** by [34-pipeline-master-v2.md](34-pipeline-master-v2.md) (named stages AxiomForge / CloudSmith / TrueLevel / BoxFit, CloudSmith dials, TrueLevel error-source honesty). Keep this file as the PR #36 archive; new links should point at doc 34.
+
 Date (America/Los_Angeles): **2026-09-26**. Companion chart for the all-nine stage0 bake-off. Buckets: [27-four-way-tool-classification.md](27-four-way-tool-classification.md). Stage0 re-run: [30-fix-sam3d-openmask3d-stage0.md](30-fix-sam3d-openmask3d-stage0.md). Four-stage error table: [31-four-stage-error-table.md](31-four-stage-error-table.md). Scorecard table: [`artifacts/phase_neg1/all_nine_stage0.json`](../../artifacts/phase_neg1/all_nine_stage0.json). CloudCompare stays **out**. No fabricated metrics.
 
 One left-to-right flow: planted absolute truth → sampling noise → realisticized GT → three class pipes (geometry-first ×3, supervised ×2, foundation/zero-shot ×4) → stud masks → shared minimal OBB → scorecard (Stage4). Paint yellow while device ε is unlocked; placeholder ε=0.05° column only; industry τ≈0.12° is not paint.
