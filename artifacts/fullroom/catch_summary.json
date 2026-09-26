@@ -1,0 +1,4083 @@
+{
+  "status": "ok",
+  "experiment": "fullroom_phase4",
+  "catch_definition": "Caught red means the stud was matched within 0.15 m and the measured lean from the floor normal colors red on that gauge and column. Expected red is the planted-lean plumb call. The error call is stored on each result JSON and is not this rate.",
+  "scenes": [
+    {
+      "letter": "A",
+      "models": {
+        "open3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            }
+          },
+          "n_matched": 28,
+          "runtime_s": 0.94
+        },
+        "pointcept": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 26,
+                "n_studs": 28,
+                "n_matched": 26
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 24,
+                "n_studs": 28,
+                "n_matched": 26
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 26,
+                "n_studs": 28,
+                "n_matched": 26
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 26,
+                "n_studs": 28,
+                "n_matched": 26
+              }
+            }
+          },
+          "n_matched": 26,
+          "runtime_s": 0.984
+        },
+        "open3d_ml": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 13,
+                "n_studs": 28,
+                "n_matched": 14
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 12,
+                "n_studs": 28,
+                "n_matched": 14
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 14,
+                "n_studs": 28,
+                "n_matched": 14
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 14,
+                "n_studs": 28,
+                "n_matched": 14
+              }
+            }
+          },
+          "n_matched": 14,
+          "runtime_s": 2.591
+        },
+        "pcl": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 7.03
+        },
+        "pyransac3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 19.267
+        },
+        "pointsam": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "sam3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "openmask3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "segment3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        }
+      }
+    },
+    {
+      "letter": "B",
+      "models": {
+        "open3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 2,
+                "n_caught_red": 2,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 2,
+                "n_caught_red": 2,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            }
+          },
+          "n_matched": 28,
+          "runtime_s": 0.968
+        },
+        "pointcept": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 2,
+                "n_caught_red": 1,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.5,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 25,
+                "n_studs": 28,
+                "n_matched": 25
+              },
+              "sensor": {
+                "n_expected_red": 2,
+                "n_caught_red": 1,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.5,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 24,
+                "n_studs": 28,
+                "n_matched": 25
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 25,
+                "n_studs": 28,
+                "n_matched": 25
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 25,
+                "n_studs": 28,
+                "n_matched": 25
+              }
+            }
+          },
+          "n_matched": 25,
+          "runtime_s": 0.995
+        },
+        "open3d_ml": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 2,
+                "n_caught_red": 1,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.5,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 4,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 8,
+                "n_studs": 28,
+                "n_matched": 12
+              },
+              "sensor": {
+                "n_expected_red": 2,
+                "n_caught_red": 1,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.5,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 4,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 7,
+                "n_studs": 28,
+                "n_matched": 12
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 12,
+                "n_studs": 28,
+                "n_matched": 12
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 12,
+                "n_studs": 28,
+                "n_matched": 12
+              }
+            }
+          },
+          "n_matched": 12,
+          "runtime_s": 2.703
+        },
+        "pcl": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 2,
+                "n_caught_red": 0,
+                "n_missed_red": 2,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 2,
+                "n_caught_red": 0,
+                "n_missed_red": 2,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 4.488
+        },
+        "pyransac3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 2,
+                "n_caught_red": 0,
+                "n_missed_red": 2,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 2,
+                "n_caught_red": 0,
+                "n_missed_red": 2,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 19.996
+        },
+        "pointsam": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "sam3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "openmask3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "segment3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        }
+      }
+    },
+    {
+      "letter": "C",
+      "models": {
+        "open3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 4,
+                "n_caught_red": 4,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 4,
+                "n_caught_red": 4,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            }
+          },
+          "n_matched": 28,
+          "runtime_s": 0.937
+        },
+        "pointcept": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 4,
+                "n_caught_red": 4,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 26,
+                "n_studs": 28,
+                "n_matched": 26
+              },
+              "sensor": {
+                "n_expected_red": 4,
+                "n_caught_red": 4,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 26,
+                "n_studs": 28,
+                "n_matched": 26
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 26,
+                "n_studs": 28,
+                "n_matched": 26
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 26,
+                "n_studs": 28,
+                "n_matched": 26
+              }
+            }
+          },
+          "n_matched": 26,
+          "runtime_s": 1.008
+        },
+        "open3d_ml": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 4,
+                "n_caught_red": 1,
+                "n_missed_red": 3,
+                "catch_rate_red": 0.25,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 4,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 9,
+                "n_studs": 28,
+                "n_matched": 13
+              },
+              "sensor": {
+                "n_expected_red": 4,
+                "n_caught_red": 1,
+                "n_missed_red": 3,
+                "catch_rate_red": 0.25,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 3,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 8,
+                "n_studs": 28,
+                "n_matched": 13
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 13,
+                "n_studs": 28,
+                "n_matched": 13
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 13,
+                "n_studs": 28,
+                "n_matched": 13
+              }
+            }
+          },
+          "n_matched": 13,
+          "runtime_s": 2.704
+        },
+        "pcl": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 4,
+                "n_caught_red": 0,
+                "n_missed_red": 4,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 4,
+                "n_caught_red": 0,
+                "n_missed_red": 4,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 4.333
+        },
+        "pyransac3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 4,
+                "n_caught_red": 0,
+                "n_missed_red": 4,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 4,
+                "n_caught_red": 0,
+                "n_missed_red": 4,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 19.523
+        },
+        "pointsam": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "sam3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "openmask3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "segment3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        }
+      }
+    },
+    {
+      "letter": "D",
+      "models": {
+        "open3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 6,
+                "n_caught_red": 6,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 6,
+                "n_caught_red": 6,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            }
+          },
+          "n_matched": 28,
+          "runtime_s": 0.968
+        },
+        "pointcept": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 6,
+                "n_caught_red": 4,
+                "n_missed_red": 2,
+                "catch_rate_red": 0.6667,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 20,
+                "n_studs": 28,
+                "n_matched": 21
+              },
+              "sensor": {
+                "n_expected_red": 6,
+                "n_caught_red": 4,
+                "n_missed_red": 2,
+                "catch_rate_red": 0.6667,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 19,
+                "n_studs": 28,
+                "n_matched": 21
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 21,
+                "n_studs": 28,
+                "n_matched": 21
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 21,
+                "n_studs": 28,
+                "n_matched": 21
+              }
+            }
+          },
+          "n_matched": 21,
+          "runtime_s": 0.982
+        },
+        "open3d_ml": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 6,
+                "n_caught_red": 3,
+                "n_missed_red": 3,
+                "catch_rate_red": 0.5,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 3,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 10,
+                "n_studs": 28,
+                "n_matched": 13
+              },
+              "sensor": {
+                "n_expected_red": 6,
+                "n_caught_red": 3,
+                "n_missed_red": 3,
+                "catch_rate_red": 0.5,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 2,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 9,
+                "n_studs": 28,
+                "n_matched": 13
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 13,
+                "n_studs": 28,
+                "n_matched": 13
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 13,
+                "n_studs": 28,
+                "n_matched": 13
+              }
+            }
+          },
+          "n_matched": 13,
+          "runtime_s": 2.722
+        },
+        "pcl": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 6,
+                "n_caught_red": 0,
+                "n_missed_red": 6,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 6,
+                "n_caught_red": 0,
+                "n_missed_red": 6,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 4.949
+        },
+        "pyransac3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 6,
+                "n_caught_red": 0,
+                "n_missed_red": 6,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 6,
+                "n_caught_red": 0,
+                "n_missed_red": 6,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 19.444
+        },
+        "pointsam": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "sam3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "openmask3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "segment3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        }
+      }
+    },
+    {
+      "letter": "E",
+      "models": {
+        "open3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 8,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 8,
+                "n_caught_red": 8,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            }
+          },
+          "n_matched": 28,
+          "runtime_s": 0.963
+        },
+        "pointcept": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 8,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 2,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 26,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 8,
+                "n_caught_red": 8,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 26,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            }
+          },
+          "n_matched": 28,
+          "runtime_s": 0.983
+        },
+        "open3d_ml": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 5,
+                "n_missed_red": 3,
+                "catch_rate_red": 0.625,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 2,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 8,
+                "n_studs": 28,
+                "n_matched": 10
+              },
+              "sensor": {
+                "n_expected_red": 8,
+                "n_caught_red": 5,
+                "n_missed_red": 3,
+                "catch_rate_red": 0.625,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 2,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 7,
+                "n_studs": 28,
+                "n_matched": 10
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 10,
+                "n_studs": 28,
+                "n_matched": 10
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 10,
+                "n_studs": 28,
+                "n_matched": 10
+              }
+            }
+          },
+          "n_matched": 10,
+          "runtime_s": 2.756
+        },
+        "pcl": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 0,
+                "n_missed_red": 8,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 8,
+                "n_caught_red": 0,
+                "n_missed_red": 8,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 4.396
+        },
+        "pyransac3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 0,
+                "n_missed_red": 8,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 8,
+                "n_caught_red": 0,
+                "n_missed_red": 8,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 19.561
+        },
+        "pointsam": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "sam3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "openmask3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "segment3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        }
+      }
+    },
+    {
+      "letter": "F",
+      "models": {
+        "open3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 10,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 10,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            }
+          },
+          "n_matched": 28,
+          "runtime_s": 0.98
+        },
+        "pointcept": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 10,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 2,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 23,
+                "n_studs": 28,
+                "n_matched": 25
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 10,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 2,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 23,
+                "n_studs": 28,
+                "n_matched": 25
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 25,
+                "n_studs": 28,
+                "n_matched": 25
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 25,
+                "n_studs": 28,
+                "n_matched": 25
+              }
+            }
+          },
+          "n_matched": 25,
+          "runtime_s": 0.976
+        },
+        "open3d_ml": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 4,
+                "n_missed_red": 6,
+                "catch_rate_red": 0.4,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 2,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 10,
+                "n_studs": 28,
+                "n_matched": 12
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 4,
+                "n_missed_red": 6,
+                "catch_rate_red": 0.4,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 9,
+                "n_studs": 28,
+                "n_matched": 12
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 12,
+                "n_studs": 28,
+                "n_matched": 12
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 12,
+                "n_studs": 28,
+                "n_matched": 12
+              }
+            }
+          },
+          "n_matched": 12,
+          "runtime_s": 2.757
+        },
+        "pcl": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 0,
+                "n_missed_red": 10,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 0,
+                "n_missed_red": 10,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 4.099
+        },
+        "pyransac3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 0,
+                "n_missed_red": 10,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 0,
+                "n_missed_red": 10,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 19.807
+        },
+        "pointsam": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "sam3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "openmask3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "segment3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        }
+      }
+    },
+    {
+      "letter": "G",
+      "models": {
+        "open3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            }
+          },
+          "n_matched": 28,
+          "runtime_s": 0.958
+        },
+        "pointcept": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 2,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 22,
+                "n_studs": 28,
+                "n_matched": 24
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 22,
+                "n_studs": 28,
+                "n_matched": 24
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 24,
+                "n_studs": 28,
+                "n_matched": 24
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 24,
+                "n_studs": 28,
+                "n_matched": 24
+              }
+            }
+          },
+          "n_matched": 24,
+          "runtime_s": 0.974
+        },
+        "open3d_ml": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 10,
+                "n_studs": 28,
+                "n_matched": 11
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 10,
+                "n_studs": 28,
+                "n_matched": 11
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 11,
+                "n_studs": 28,
+                "n_matched": 11
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 1,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 11,
+                "n_studs": 28,
+                "n_matched": 11
+              }
+            }
+          },
+          "n_matched": 11,
+          "runtime_s": 2.845
+        },
+        "pcl": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 4.172
+        },
+        "pyransac3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 1,
+                "n_caught_red": 0,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 19.844
+        },
+        "pointsam": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "sam3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "openmask3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "segment3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        }
+      }
+    },
+    {
+      "letter": "H",
+      "models": {
+        "open3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 10,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 10,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 10,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 10,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            }
+          },
+          "n_matched": 28,
+          "runtime_s": 0.979
+        },
+        "pointcept": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 9,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.9,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 25,
+                "n_studs": 28,
+                "n_matched": 26
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 9,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.9,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 25,
+                "n_studs": 28,
+                "n_matched": 26
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 9,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.9,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 26,
+                "n_studs": 28,
+                "n_matched": 26
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 9,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.9,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 26,
+                "n_studs": 28,
+                "n_matched": 26
+              }
+            }
+          },
+          "n_matched": 26,
+          "runtime_s": 1.091
+        },
+        "open3d_ml": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 6,
+                "n_missed_red": 4,
+                "catch_rate_red": 0.6,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 3,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 11,
+                "n_studs": 28,
+                "n_matched": 14
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 6,
+                "n_missed_red": 4,
+                "catch_rate_red": 0.6,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 2,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 10,
+                "n_studs": 28,
+                "n_matched": 14
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 6,
+                "n_missed_red": 4,
+                "catch_rate_red": 0.6,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 14,
+                "n_studs": 28,
+                "n_matched": 14
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 6,
+                "n_missed_red": 4,
+                "catch_rate_red": 0.6,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 14,
+                "n_studs": 28,
+                "n_matched": 14
+              }
+            }
+          },
+          "n_matched": 14,
+          "runtime_s": 2.831
+        },
+        "pcl": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 0,
+                "n_missed_red": 10,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 0,
+                "n_missed_red": 10,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 0,
+                "n_missed_red": 10,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 0,
+                "n_missed_red": 10,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 6.737
+        },
+        "pyransac3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 0,
+                "n_missed_red": 10,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 0,
+                "n_missed_red": 10,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 10,
+                "n_caught_red": 0,
+                "n_missed_red": 10,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 10,
+                "n_caught_red": 0,
+                "n_missed_red": 10,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 19.419
+        },
+        "pointsam": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "sam3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "openmask3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "segment3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        }
+      }
+    },
+    {
+      "letter": "I",
+      "models": {
+        "open3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 8,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 27,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 4,
+                "n_caught_red": 4,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 12,
+                "n_caught_yellow": 10,
+                "n_false_red_matched": 2,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 26,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            }
+          },
+          "n_matched": 28,
+          "runtime_s": 0.987
+        },
+        "pointcept": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 6,
+                "n_missed_red": 2,
+                "catch_rate_red": 0.75,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 17,
+                "n_studs": 28,
+                "n_matched": 17
+              },
+              "sensor": {
+                "n_expected_red": 4,
+                "n_caught_red": 2,
+                "n_missed_red": 2,
+                "catch_rate_red": 0.5,
+                "n_expected_yellow": 12,
+                "n_caught_yellow": 7,
+                "n_false_red_matched": 2,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 15,
+                "n_studs": 28,
+                "n_matched": 17
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 17,
+                "n_studs": 28,
+                "n_matched": 17
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 17,
+                "n_studs": 28,
+                "n_matched": 17
+              }
+            }
+          },
+          "n_matched": 17,
+          "runtime_s": 1.024
+        },
+        "open3d_ml": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 2,
+                "n_missed_red": 6,
+                "catch_rate_red": 0.25,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 15,
+                "n_studs": 28,
+                "n_matched": 16
+              },
+              "sensor": {
+                "n_expected_red": 4,
+                "n_caught_red": 1,
+                "n_missed_red": 3,
+                "catch_rate_red": 0.25,
+                "n_expected_yellow": 12,
+                "n_caught_yellow": 5,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 14,
+                "n_studs": 28,
+                "n_matched": 16
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 16,
+                "n_studs": 28,
+                "n_matched": 16
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 16,
+                "n_studs": 28,
+                "n_matched": 16
+              }
+            }
+          },
+          "n_matched": 16,
+          "runtime_s": 2.696
+        },
+        "pcl": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 0,
+                "n_missed_red": 8,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 4,
+                "n_caught_red": 0,
+                "n_missed_red": 4,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 12,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 4.235
+        },
+        "pyransac3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 0,
+                "n_missed_red": 8,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 4,
+                "n_caught_red": 0,
+                "n_missed_red": 4,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 12,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 0,
+                "n_caught_red": 0,
+                "n_missed_red": 0,
+                "catch_rate_red": null,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 19.46
+        },
+        "pointsam": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "sam3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "openmask3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "segment3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        }
+      }
+    },
+    {
+      "letter": "J",
+      "models": {
+        "open3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 8,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 8,
+                "n_caught_red": 8,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 2,
+                "n_caught_red": 2,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 27,
+                "n_studs": 28,
+                "n_matched": 28
+              },
+              "sensor": {
+                "n_expected_red": 2,
+                "n_caught_red": 2,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 6,
+                "n_caught_yellow": 6,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 28,
+                "n_studs": 28,
+                "n_matched": 28
+              }
+            }
+          },
+          "n_matched": 28,
+          "runtime_s": 0.955
+        },
+        "pointcept": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 7,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.875,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 23,
+                "n_studs": 28,
+                "n_matched": 24
+              },
+              "sensor": {
+                "n_expected_red": 8,
+                "n_caught_red": 7,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.875,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 23,
+                "n_studs": 28,
+                "n_matched": 24
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 2,
+                "n_caught_red": 2,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 23,
+                "n_studs": 28,
+                "n_matched": 24
+              },
+              "sensor": {
+                "n_expected_red": 2,
+                "n_caught_red": 2,
+                "n_missed_red": 0,
+                "catch_rate_red": 1.0,
+                "n_expected_yellow": 6,
+                "n_caught_yellow": 5,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 24,
+                "n_studs": 28,
+                "n_matched": 24
+              }
+            }
+          },
+          "n_matched": 24,
+          "runtime_s": 0.995
+        },
+        "open3d_ml": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 2,
+                "n_missed_red": 6,
+                "catch_rate_red": 0.25,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 8,
+                "n_studs": 28,
+                "n_matched": 9
+              },
+              "sensor": {
+                "n_expected_red": 8,
+                "n_caught_red": 2,
+                "n_missed_red": 6,
+                "catch_rate_red": 0.25,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 7,
+                "n_studs": 28,
+                "n_matched": 9
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 2,
+                "n_caught_red": 1,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.5,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 1,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 8,
+                "n_studs": 28,
+                "n_matched": 9
+              },
+              "sensor": {
+                "n_expected_red": 2,
+                "n_caught_red": 1,
+                "n_missed_red": 1,
+                "catch_rate_red": 0.5,
+                "n_expected_yellow": 6,
+                "n_caught_yellow": 1,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 9,
+                "n_studs": 28,
+                "n_matched": 9
+              }
+            }
+          },
+          "n_matched": 9,
+          "runtime_s": 2.578
+        },
+        "pcl": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 0,
+                "n_missed_red": 8,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 8,
+                "n_caught_red": 0,
+                "n_missed_red": 8,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 2,
+                "n_caught_red": 0,
+                "n_missed_red": 2,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 2,
+                "n_caught_red": 0,
+                "n_missed_red": 2,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 6,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 4.29
+        },
+        "pyransac3d": {
+          "status": "ok",
+          "catch": {
+            "handbook_finish_plumb": {
+              "absolute": {
+                "n_expected_red": 8,
+                "n_caught_red": 0,
+                "n_missed_red": 8,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 8,
+                "n_caught_red": 0,
+                "n_missed_red": 8,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            },
+            "nahb_warranty_gauge": {
+              "absolute": {
+                "n_expected_red": 2,
+                "n_caught_red": 0,
+                "n_missed_red": 2,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 0,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              },
+              "sensor": {
+                "n_expected_red": 2,
+                "n_caught_red": 0,
+                "n_missed_red": 2,
+                "catch_rate_red": 0.0,
+                "n_expected_yellow": 6,
+                "n_caught_yellow": 0,
+                "n_false_red_matched": 0,
+                "n_false_red_unmatched_detections": 0,
+                "n_exact_color": 0,
+                "n_studs": 28,
+                "n_matched": 0
+              }
+            }
+          },
+          "n_matched": 0,
+          "runtime_s": 19.821
+        },
+        "pointsam": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "sam3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "openmask3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        },
+        "segment3d": {
+          "status": "not_adapted",
+          "catch": null,
+          "n_matched": null,
+          "runtime_s": null
+        }
+      }
+    }
+  ],
+  "calibration_deltas": [
+    {
+      "letter": "A",
+      "model": "open3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "A",
+      "model": "pointcept",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "A",
+      "model": "open3d_ml",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "A",
+      "model": "pcl",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "A",
+      "model": "pyransac3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "A",
+      "model": "pointsam",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "A",
+      "model": "sam3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "A",
+      "model": "openmask3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "A",
+      "model": "segment3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "B",
+      "model": "open3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "B",
+      "model": "pointcept",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "B",
+      "model": "open3d_ml",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "B",
+      "model": "pcl",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "B",
+      "model": "pyransac3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "B",
+      "model": "pointsam",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "B",
+      "model": "sam3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "B",
+      "model": "openmask3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "B",
+      "model": "segment3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "C",
+      "model": "open3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "C",
+      "model": "pointcept",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "C",
+      "model": "open3d_ml",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "C",
+      "model": "pcl",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "C",
+      "model": "pyransac3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "C",
+      "model": "pointsam",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "C",
+      "model": "sam3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "C",
+      "model": "openmask3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "C",
+      "model": "segment3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "D",
+      "model": "open3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "D",
+      "model": "pointcept",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "D",
+      "model": "open3d_ml",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "D",
+      "model": "pcl",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "D",
+      "model": "pyransac3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "D",
+      "model": "pointsam",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "D",
+      "model": "sam3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "D",
+      "model": "openmask3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "D",
+      "model": "segment3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "E",
+      "model": "open3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "E",
+      "model": "pointcept",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "E",
+      "model": "open3d_ml",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "E",
+      "model": "pcl",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "E",
+      "model": "pyransac3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "E",
+      "model": "pointsam",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "E",
+      "model": "sam3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "E",
+      "model": "openmask3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "E",
+      "model": "segment3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "F",
+      "model": "open3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "F",
+      "model": "pointcept",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "F",
+      "model": "open3d_ml",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "F",
+      "model": "pcl",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "F",
+      "model": "pyransac3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "F",
+      "model": "pointsam",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "F",
+      "model": "sam3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "F",
+      "model": "openmask3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "F",
+      "model": "segment3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "G",
+      "model": "open3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "G",
+      "model": "pointcept",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "G",
+      "model": "open3d_ml",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "G",
+      "model": "pcl",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "G",
+      "model": "pyransac3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "G",
+      "model": "pointsam",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "G",
+      "model": "sam3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "G",
+      "model": "openmask3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "G",
+      "model": "segment3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "H",
+      "model": "open3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "H",
+      "model": "pointcept",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "H",
+      "model": "open3d_ml",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "H",
+      "model": "pcl",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "H",
+      "model": "pyransac3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "H",
+      "model": "pointsam",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "H",
+      "model": "sam3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "H",
+      "model": "openmask3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "H",
+      "model": "segment3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "I",
+      "model": "open3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "I",
+      "model": "pointcept",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "I",
+      "model": "open3d_ml",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "I",
+      "model": "pcl",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "I",
+      "model": "pyransac3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "I",
+      "model": "pointsam",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "I",
+      "model": "sam3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "I",
+      "model": "openmask3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "I",
+      "model": "segment3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "J",
+      "model": "open3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "J",
+      "model": "pointcept",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "J",
+      "model": "open3d_ml",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "J",
+      "model": "pcl",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "J",
+      "model": "pyransac3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "J",
+      "model": "pointsam",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "J",
+      "model": "sam3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "J",
+      "model": "openmask3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    },
+    {
+      "letter": "J",
+      "model": "segment3d",
+      "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+      "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+      "improvement": "none"
+    }
+  ],
+  "calibration_improvement": [
+    "none"
+  ],
+  "n_result_files": 90
+}

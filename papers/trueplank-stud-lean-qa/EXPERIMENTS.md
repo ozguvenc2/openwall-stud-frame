@@ -19,6 +19,7 @@ Curriculum stages match [`METHODS.md`](METHODS.md). This file says what has been
 | ER | Realisticized generator | R | **Not specified** |
 | E-sam | SAM 2 mask lifted onto points | S scaffold | **Blocked.** 2026-09-25, this CPU. No torch, no `sam2`, no checkpoint. Projection of one stud recorded. Stud metrics null. `docs/research/24-sam2-rank7-and-curriculum.md` |
 | E-room | Ranks 1–7 on a synthetic 26-stud room, plus stage 2/3 expansions and S1b | S | **Run** 2026-09-25. Rank 1 recall 1, yellow, floor normal. Ranks 2, 3, 6, and 7 fail the one-box-per-stud check. Ranks 4 and 5 are controls. Stages 6–7 stub. Same note |
+| E-fullroom | Scenes A–J, 28 studs, seeds 1301–1310, dual Handbook / NAHB plumb catch | S | **Run** 2026-09-26, Oz_PC. Open3D Handbook absolute red catch is 1.0 on every scene, including F 10/10 and G 1/1. Pointcept F 10/10, G 1/1, H 9/10. Open3D-ML F 4/10, G 1/1, H 6/10. Native PCL and pyRANSAC-3D catch 0 (one merged member; wall-swallow). Foundation tools `not_adapted`. `docs/research/41-fullroom-catch-tables.md` |
 | E3 | One real stud, finders, SKIL if standing | F | **Planned.** No cloud in git. Unchanged by E-room |
 
 The one-stud protocol in the design plan is the field arm (E3). E-one is the synthetic stand-in and must stay labeled class S.

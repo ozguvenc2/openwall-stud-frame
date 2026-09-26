@@ -1,0 +1,16 @@
+{
+  "letter": "B",
+  "model": "pyransac3d",
+  "assert_paint_rules": "passed",
+  "handbook_threshold_deg": 0.11936603462520555,
+  "nahb_threshold_deg": 0.6714041828499762,
+  "display_handbook_deg": 0.11937,
+  "display_nahb_deg": 0.6714,
+  "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+  "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+  "absolute_epsilon_deg": 0.0,
+  "sensor_epsilon_deg": 0.05,
+  "improvement": "none",
+  "policy": "locked",
+  "note": "Display figures 0.11937\u00b0 and 0.67140\u00b0 are rounded atan values. The delta is that rounding. Thresholds were not changed."
+}

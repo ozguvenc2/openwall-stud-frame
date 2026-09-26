@@ -209,6 +209,8 @@ The ledger of what ran is [`EXPERIMENTS.md`](../EXPERIMENTS.md). All executed ro
 
 **E-cc-tune (2026-09-25, Oz_PC).** Rank 3 only, same 25 clouds, CPU. CloudCompare still has no cuboid. The tuned command enables `PLANE` only (epsilon 0.006 m, bitmap epsilon 0.012 m, support 800, max normal deviation 25°, overlook probability 0.01) and merges the four long faces into one minimal oriented box. Ranks 1, 2, 4, 5, and 6 were not re-run. Write-up: `docs/research/21-cloudcompare-stud-param-tune.md` on branch `cursor/cc-stud-param-tune-78b7` (PR #22). Scorecards: `artifacts/scorecards/phase1_s1_cc_tuned/` on that branch. This paper quotes that note and those cards. It does not reprint the 25 tuned rows.
 
+**E-fullroom (2026-09-26, Oz_PC).** Ten synthetic 28-stud rooms, seeds 1301–1310, scenes A–J. Catch rate is the plumb call on the planted lean, not the Experiment 1 error on |measured − truth|. Open3D, Pointcept, Open3D-ML RandLA-Net, native PCL, and pyRANSAC-3D ran through `scripts/experiment_queue_runner.py`. Point-SAM, SAM3D, OpenMask3D, and Segment3D are `not_adapted` (stage-0 writers only). Calibration improvement is none. Full tables: `docs/research/41-fullroom-catch-tables.md`. Experiment 1 is not re-scored here.
+
 **Not executed.** Any real capture. Native PCL on the 25-scene matrix and on the synthetic room (the room rank-2 card is the NumPy port). A multi-stud test of the CloudCompare face merge (the tuned scorer keeps one box per scene; the room rank-3 card is the untuned primitive split). Stages 4, 6, and 7 as real captures. Class R. The synthetic room in Section 5.6 is not those stages. SAM 2 on a registered field image is still not run. The Oz_PC room view in Section 5.6 is one synthetic pinhole.
 
 **Intended field protocol, still empty.** Record sensor, export format, whether Z is gravity, and the floor normal if one was fit. On a standing stud, record the level model and bottom / middle / top. Do not publish an angle MAE when the three readings disagree by more than the printed resolution.
@@ -353,6 +355,16 @@ Rank 7 is one south-looking pinhole (768 × 512, 60°). The mask covers 1,184 pi
 The curriculum VM still has a separate rank-7 card at `blocked_install`: PyTorch and the `sam2` package were absent there, and `SAM2_CHECKPOINT` was unset. A pinhole of the seed-2 stud (640 × 480, 42° vertical field, eye at (0.55, −1.15, 1.15) m) put 10,214 points inside the image and occupied 8,269 pixels. Those counts are not a mask IoU. A control that lifted the generator’s own stud pixels (8,269 points) kept zero boxes. The visible minimal box is 44.78 × 95.73 × 1010.1 mm, angle 0.07649° against +Z, and the length is under the 1.2 m keep gate because the camera does not see the stud ends. That control is not a SAM 2 result.
 
 Stages 6 and 7 remain stub cards with null metrics. They need a real whole-frame capture. Corner phase-2 (PRs #23, #24, and #25) is parallel and is not a gate.
+
+### 5.7 Full-room scenes A–J (2026-09-26, class S)
+
+Ten rooms, 28 studs, seeds 1301–1310, held out of the full-room stud-head train. The catch rate colors the measured lean from the floor normal and compares it with the planted-lean color. |measured − planted| is stored as the error call and is not the supposed-red count. Production paint stays yellow. `assert_paint_rules()` passed before every scenario. The only calibration delta is display rounding of the Handbook and NAHB atan values. No threshold was edited.
+
+Open3D matched 28/28 studs on every scene and caught every Handbook absolute red: scene F (10 supposed-red at 0.30°) 10/10, scene G (1 stud at 2.00°, red on both gauges) 1/1, scene H (10 studs at 1.00°, red on both gauges) 10/10. Those three are also 10/10, 1/1, and 10/10 on the Handbook sensor column. Scene F stays NAHB-green (0 expected red). Scene G and scene H NAHB absolute catches are 1/1 and 10/10. Scene I Handbook sensor yellow is 10/12. Scene J NAHB sensor yellow is 6/6.
+
+Pointcept Handbook absolute catches on those three questions are F 10/10, G 1/1, H 9/10. Open3D-ML RandLA-Net is F 4/10, G 1/1, H 6/10, with fewer than 28 matches on every scene. Native PCL region growing returned one member and zero detections after the existing stud gate, so every catch is 0. pyRANSAC-3D stopped on the existing wall-swallow check and accepted zero cuboids, so every catch is 0. Those limits were not raised. Point-SAM, SAM3D, OpenMask3D, and Segment3D have no full-room adapter; the table says `not adapted` and does not invent a rate.
+
+The scene-by-scene matrix, sensor columns, and calibration note are `docs/research/41-fullroom-catch-tables.md`. Experiment 1 on `stage0_2x4_lean0.000` is unchanged.
 
 ## 6. Discussion
 

@@ -1,0 +1,548 @@
+{
+  "status": "ok",
+  "letter": "I",
+  "seed": 1309,
+  "title": "Mixed Handbook: 0.10\u00b0 sensor-yellow, 0.15\u00b0 absolute-red sensor-yellow, 0.30\u00b0 red",
+  "model": "pyransac3d",
+  "n_points": 566769,
+  "calibration": {
+    "letter": "I",
+    "model": "pyransac3d",
+    "assert_paint_rules": "passed",
+    "handbook_threshold_deg": 0.11936603462520555,
+    "nahb_threshold_deg": 0.6714041828499762,
+    "display_handbook_deg": 0.11937,
+    "display_nahb_deg": 0.6714,
+    "display_rounding_delta_handbook_deg": -3.965374794454024e-06,
+    "display_rounding_delta_nahb_deg": 4.182849976164249e-06,
+    "absolute_epsilon_deg": 0.0,
+    "sensor_epsilon_deg": 0.05,
+    "improvement": "none",
+    "policy": "locked",
+    "note": "Display figures 0.11937\u00b0 and 0.67140\u00b0 are rounded atan values. The delta is that rounding. Thresholds were not changed."
+  },
+  "model_extra": {
+    "runtime_s": 19.46,
+    "max_cuboids": 4,
+    "stopped": "wall_swallow",
+    "n_accepted": 0,
+    "note": "Existing sequential cuboid stops at MAX_CUBOIDS (4) or on a wall-swallow. Those limits were not raised for this room."
+  },
+  "catch": {
+    "reference": "floor_normal",
+    "n_detections": 0,
+    "n_matched": 0,
+    "tallies": {
+      "handbook_finish_plumb": {
+        "absolute": {
+          "n_expected_red": 8,
+          "n_caught_red": 0,
+          "n_missed_red": 8,
+          "catch_rate_red": 0.0,
+          "n_expected_yellow": 0,
+          "n_caught_yellow": 0,
+          "n_false_red_matched": 0,
+          "n_false_red_unmatched_detections": 0,
+          "n_exact_color": 0,
+          "n_studs": 28,
+          "n_matched": 0
+        },
+        "sensor": {
+          "n_expected_red": 4,
+          "n_caught_red": 0,
+          "n_missed_red": 4,
+          "catch_rate_red": 0.0,
+          "n_expected_yellow": 12,
+          "n_caught_yellow": 0,
+          "n_false_red_matched": 0,
+          "n_false_red_unmatched_detections": 0,
+          "n_exact_color": 0,
+          "n_studs": 28,
+          "n_matched": 0
+        }
+      },
+      "nahb_warranty_gauge": {
+        "absolute": {
+          "n_expected_red": 0,
+          "n_caught_red": 0,
+          "n_missed_red": 0,
+          "catch_rate_red": null,
+          "n_expected_yellow": 0,
+          "n_caught_yellow": 0,
+          "n_false_red_matched": 0,
+          "n_false_red_unmatched_detections": 0,
+          "n_exact_color": 0,
+          "n_studs": 28,
+          "n_matched": 0
+        },
+        "sensor": {
+          "n_expected_red": 0,
+          "n_caught_red": 0,
+          "n_missed_red": 0,
+          "catch_rate_red": null,
+          "n_expected_yellow": 0,
+          "n_caught_yellow": 0,
+          "n_false_red_matched": 0,
+          "n_false_red_unmatched_detections": 0,
+          "n_exact_color": 0,
+          "n_studs": 28,
+          "n_matched": 0
+        }
+      }
+    },
+    "per_stud": [
+      {
+        "stud_id": "S1",
+        "slot": 0,
+        "planted_lean_deg": 0.0,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "green"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S2",
+        "slot": 1,
+        "planted_lean_deg": 0.1,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "yellow"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S3",
+        "slot": 2,
+        "planted_lean_deg": 0.1,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "yellow"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S4",
+        "slot": 3,
+        "planted_lean_deg": 0.1,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "yellow"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S5",
+        "slot": 4,
+        "planted_lean_deg": 0.1,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "yellow"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S6",
+        "slot": 5,
+        "planted_lean_deg": 0.1,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "yellow"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S7",
+        "slot": 6,
+        "planted_lean_deg": 0.0,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "green"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S8",
+        "slot": 7,
+        "planted_lean_deg": 0.0,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "green"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S9",
+        "slot": 8,
+        "planted_lean_deg": 0.1,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "yellow"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S10",
+        "slot": 9,
+        "planted_lean_deg": 0.1,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "yellow"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S11",
+        "slot": 10,
+        "planted_lean_deg": 0.1,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "yellow"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S12",
+        "slot": 11,
+        "planted_lean_deg": 0.15,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "red",
+            "sensor": "yellow"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S13",
+        "slot": 12,
+        "planted_lean_deg": 0.15,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "red",
+            "sensor": "yellow"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S14",
+        "slot": 13,
+        "planted_lean_deg": 0.0,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "green"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S15",
+        "slot": 14,
+        "planted_lean_deg": 0.0,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "green"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S16",
+        "slot": 15,
+        "planted_lean_deg": 0.15,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "red",
+            "sensor": "yellow"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S17",
+        "slot": 16,
+        "planted_lean_deg": 0.15,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "red",
+            "sensor": "yellow"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S18",
+        "slot": 17,
+        "planted_lean_deg": 0.3,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "red",
+            "sensor": "red"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S19",
+        "slot": 18,
+        "planted_lean_deg": 0.3,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "red",
+            "sensor": "red"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S20",
+        "slot": 19,
+        "planted_lean_deg": 0.3,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "red",
+            "sensor": "red"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S21",
+        "slot": 20,
+        "planted_lean_deg": 0.0,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "green"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S22",
+        "slot": 21,
+        "planted_lean_deg": 0.0,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "green"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S23",
+        "slot": 22,
+        "planted_lean_deg": 0.3,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "red",
+            "sensor": "red"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S24",
+        "slot": 23,
+        "planted_lean_deg": 0.0,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "green"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S25",
+        "slot": 24,
+        "planted_lean_deg": 0.0,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "green"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S26",
+        "slot": 25,
+        "planted_lean_deg": 0.0,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "green"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S27",
+        "slot": 26,
+        "planted_lean_deg": 0.0,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "green"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      },
+      {
+        "stud_id": "S28",
+        "slot": 27,
+        "planted_lean_deg": 0.0,
+        "expected_plumb": {
+          "handbook_finish_plumb": {
+            "absolute": "green",
+            "sensor": "green"
+          },
+          "nahb_warranty_gauge": {
+            "absolute": "green",
+            "sensor": "green"
+          }
+        },
+        "matched": false
+      }
+    ],
+    "plumb_call": "Expected color is dual_standard_passes on the planted |lean| from vertical. Catch rate compares that color to the color of the measured lean from the same reference.",
+    "measurement_error_call": "Experiment 1 colors |measured \u2212 planted|. Phase 4 records that per stud as well. It is not the supposed-red count."
+  },
+  "experiment1_sha256_unchanged": true,
+  "production_paint": "yellow while epsilon is unlocked"
+}
