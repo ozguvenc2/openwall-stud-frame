@@ -162,7 +162,29 @@ Rank 7 is one pinhole south of the bay (768 × 512, 60° vertical field, eye nea
 
 ### Stages 6 and 7
 
-Stub cards only, one per rank, metrics null. Stage 6 needs a real single-story capture. Stage 7 needs a real two-story or complex frame. The synthetic room is not either stage.
+Stub cards only, one per rank, metrics null. Stage 6 needs a real single-story capture. Stage 7 needs a real two-story or complex frame. The synthetic room is not either stage. No figure is drawn for either stub.
+
+### Ladder figures
+
+Added **2026-09-26**. One picture per step from a single stud to the synthetic room. Rank 1 wires are this process’s Open3D baseline. Yellow is production paint. ε is unlocked. A dashed wire on the 2 mm probe is a cluster the baseline did not keep. It is not red paint.
+
+Regenerate with `python scripts/render_curriculum_figures.py`. The manifest is `docs/research/images/curriculum/manifest.json`. Index: [images/curriculum/INDEX.md](images/curriculum/INDEX.md).
+
+Pass/fail uses the same day-row rule as `scripts/run_curriculum_through_room.py`. Stage 0 in this set is one 2×4 at 0.15° about +X (seed 8). That lean is not one of the earlier stage-0 cards. The other eight scenes are the ones already scored above, and this pass/fail matched those rank-1 rows. This table does not add a section, length, or angle.
+
+Stage 5 still has no numeric bar. Pass on that row means one yellow box per generator stud.
+
+| Level | Studs | Image path | Pass/fail (rank 1) |
+| --- | ---: | --- | --- |
+| Stage 0 one-stud | 1 | [docs/research/images/curriculum/01-stage0-one-stud.png](images/curriculum/01-stage0-one-stud.png) | pass |
+| Stage 2 one-stud harder | 1 | [docs/research/images/curriculum/02-stage2-one-stud-harder.png](images/curriculum/02-stage2-one-stud-harder.png) | pass |
+| Stage 3 mini wall 3 | 3 | [docs/research/images/curriculum/03-stage3-mini-wall-3.png](images/curriculum/03-stage3-mini-wall-3.png) | pass |
+| Stage 3 mini wall 4 | 4 | [docs/research/images/curriculum/04-stage3-mini-wall-4.png](images/curriculum/04-stage3-mini-wall-4.png) | pass |
+| Stage 3 mini wall 5 | 5 | [docs/research/images/curriculum/05-stage3-mini-wall-5.png](images/curriculum/05-stage3-mini-wall-5.png) | pass |
+| Stage 3 probe 2 mm noise | 4 | [docs/research/images/curriculum/06-stage3-probe-2mm-noise.png](images/curriculum/06-stage3-probe-2mm-noise.png) | fail |
+| S1b bow single | 1 | [docs/research/images/curriculum/07-s1b-bow-single.png](images/curriculum/07-s1b-bow-single.png) | fail |
+| S1b bow wall | 3 | [docs/research/images/curriculum/08-s1b-bow-wall.png](images/curriculum/08-s1b-bow-wall.png) | fail |
+| Stage 5 room bay lot62 look | 26 | [docs/research/images/curriculum/09-stage5-room-bay-lot62-look.png](images/curriculum/09-stage5-room-bay-lot62-look.png) | pass |
 
 ## What this note refuses
 
