@@ -54,7 +54,7 @@ Once a finder returns stud points:
 1. Peel horizontal slabs when the scene has them. Bands within one plate thickness are removed together.
 2. One point set per physical stud. A merged bay is a miss.
 3. Minimal oriented bounding box. Keep a cluster whose section is near a 2×4 or 2×6 (gate 15 mm) and whose long axis is within 20° of the reference, with length between 1.2 m and 3.3 m.
-4. θ is the angle between that long axis and the reference. The reference is the floor normal when a slab was peeled, otherwise generator +Z. The cloud is not leveled onto the floor. The generator vertical is +Z.
+4. θ is the angle between that long axis and the reference. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. The cloud is not leveled onto the floor. The generator vertical is +Z. Field and class F may still use a SKIL when wood readings exist.
 5. Paint with `openwall_stud.paint`.
 
 Rank 1’s instance step is DBSCAN, `eps` 25 mm, `min_points` 20. An earlier setting (`eps` 20 mm, `min_points` 80) labeled the synthetic stud as noise. That edit is class S.

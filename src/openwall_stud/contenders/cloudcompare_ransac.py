@@ -273,7 +273,7 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
             "Section and length are the minimal OBB of one primitive's points versus the dressed stud. "
             "A plane on one face is expected to miss the stud section."
         ),
-        angle_note="Truth is the generator lean against +Z. Not a SKIL reading. A face plane's long axis may still lie along the stud.",
+        angle_extra="A face plane's long axis may still lie along the stud.",
         cost={
             "runtime_s": round(runtime_s, 4),
             "license": "GPL-3.0",

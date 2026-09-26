@@ -23,6 +23,11 @@ from dataclasses import dataclass, field
 import numpy as np
 import open3d as o3d
 
+from openwall_stud.angle_reference import (
+    lock_synthetic_reference,
+    scene_has_floor,
+    synthetic_angle_note,
+)
 from openwall_stud.lumber import DRESSED_SECTION_M, TOLERANCE_DEG
 from openwall_stud.paint import PLACEHOLDER_EPSILON_DEG, hypothetical_placeholder, paint_stud
 from openwall_stud.synthetic import Scene
@@ -192,8 +197,10 @@ def run_baseline(
     started = time.perf_counter()
     points = scene.points_m
     keep, floor_normal, intervals = peel_horizontal_slabs(points)
-    reference_vec = np.array([0.0, 0.0, 1.0]) if floor_normal is None else floor_normal
-    reference_name = "gravity_z_no_floor_plane" if floor_normal is None else "floor_normal"
+    reference_name, reference_vec = lock_synthetic_reference(
+        floor_normal,
+        has_floor=scene_has_floor(scene),
+    )
     labels_full = np.full(len(points), -2, dtype=int)
     detections: list[Detection] = []
     kept_idx = np.flatnonzero(keep)
@@ -372,7 +379,7 @@ def score_run(scene: Scene, run: BaselineRun, *, match_radius_m: float = 0.15) -
             "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
             "reference": run.reference,
             "per_stud": per_angle,
-            "note": "Truth is the generator lean against the same reference vector the pipeline used. Not a SKIL reading.",
+            "note": synthetic_angle_note(run.reference),
         },
         "paint": {
             "epsilon_locked": False,

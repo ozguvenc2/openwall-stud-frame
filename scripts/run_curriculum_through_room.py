@@ -32,6 +32,11 @@ from openwall_stud.contenders.sam2_mask import (
     raster_nearest,
     save_part_png,
 )
+from openwall_stud.angle_reference import (
+    REFERENCE_FLOOR,
+    REFERENCE_GENERATOR_Z,
+    scene_has_floor,
+)
 from openwall_stud.lumber import TOLERANCE_DEG
 from openwall_stud.open3d_baseline import run_baseline, score_run
 from openwall_stud.paint import assert_paint_rules
@@ -158,6 +163,12 @@ def _run_open3d(scene, out_dir: Path, *, gate: bool) -> tuple[dict, list[str]]:
     print(f"running {scene.name} stage {scene.stage} points {scene.n_points} studs {len(scene.studs)}", flush=True)
     run = run_baseline(scene)
     sections = score_run(scene, run)
+    expected = REFERENCE_FLOOR if scene_has_floor(scene) else REFERENCE_GENERATOR_Z
+    if run.reference != expected or sections["angle"]["reference"] != expected:
+        raise SystemExit(
+            f"{scene.name}: synthetic angle_reference {run.reference!r} / "
+            f"{sections['angle']['reference']!r}, expected {expected!r}"
+        )
     card = _open3d_card(scene, run, sections)
     dest = out_dir / f"open3d_{scene.name}.json"
     write_scorecard(dest, card)
@@ -221,6 +232,10 @@ def _link_existing(score_dir: Path) -> list[dict]:
         for name in names:
             path = score_dir / name
             card = read_scorecard(path)
+            expected = REFERENCE_FLOOR if stage >= 2 else REFERENCE_GENERATOR_Z
+            got = (card.get("angle") or {}).get("reference")
+            if got != expected:
+                raise SystemExit(f"{name}: linked synthetic reference {got!r}, expected {expected!r}")
             failures = _failures(stage, card, name)
             linked.append(
                 {

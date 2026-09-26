@@ -19,6 +19,8 @@
     ],
     "reference_now": "floor_normal",
     "reference_later": "imu_or_inclinometer_gravity",
+    "synthetic_angle_reference": "floor_normal when the scene has a floor or slab; generator +Z only when it does not. No SKIL or other level reading on synthetic clouds.",
+    "field_level": "Class F and phase-2b may use SKIL when wood readings exist. Separate from synthetic tests.",
     "floor_is_not_gravity": true,
     "color_rule": {
       "theta": "Angle between stud OBB long axis and floor normal. 0 deg means perpendicular to the floor.",

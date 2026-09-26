@@ -21,6 +21,11 @@ from openwall_stud.contenders.cloudcompare_ransac import main as cc_main
 from openwall_stud.contenders.open3d_ml_s3dis import main as ml_main
 from openwall_stud.contenders.pcl_region_grow import main as pcl_main
 from openwall_stud.contenders.pointcept_ptv3 import main as pt_main
+from openwall_stud.angle_reference import (
+    REFERENCE_FLOOR,
+    REFERENCE_GENERATOR_Z,
+    scene_has_floor,
+)
 from openwall_stud.lumber import TOLERANCE_DEG
 from openwall_stud.open3d_baseline import run_baseline, score_run
 from openwall_stud.paint import assert_paint_rules
@@ -85,6 +90,12 @@ def _check(stage: int, sections: dict, label: str) -> list[str]:
 def _run_scene(scene, out_dir: Path) -> tuple[dict, list[str], str]:
     run = run_baseline(scene)
     sections = score_run(scene, run)
+    expected = REFERENCE_FLOOR if scene_has_floor(scene) else REFERENCE_GENERATOR_Z
+    if run.reference != expected or sections["angle"]["reference"] != expected:
+        raise SystemExit(
+            f"{scene.name}: synthetic angle_reference {run.reference!r} / "
+            f"{sections['angle']['reference']!r}, expected {expected!r}"
+        )
     card = _card(scene, run, sections)
     dest = out_dir / f"open3d_stage{scene.stage}_{scene.name}.json"
     write_scorecard(dest, card)

@@ -9,7 +9,7 @@
   "measurement_scope": "synthetic generator, this process",
   "scene": {
     "name": "stage3_mini_wall_4",
-    "description": "Synthetic mini wall, 4 2x4 studs at 16 inch centers, bottom and top plates, floor slab, 1 mm noise. First product-shaped scene.",
+    "description": "Synthetic mini wall, 4 2x4 studs at 16 inch centers, leans 0.000, 0.300, 0.800, 1.500 deg about +X, bottom and top plates, floor slab, 1.0 mm noise. First product-shaped scene.",
     "seed": 7,
     "spacing_m": 0.005,
     "noise_std_m": 0.001,
@@ -169,7 +169,7 @@
         "hypothetical_color": "red"
       }
     ],
-    "note": "Truth is the generator lean against the same reference vector the pipeline used. Not a SKIL reading."
+    "note": "Truth is the generator axis against the fitted floor normal. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading."
   },
   "paint": {
     "epsilon_locked": false,
@@ -193,7 +193,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.3512,
+    "runtime_s": 0.2156,
     "dbscan_eps_m": 0.025,
     "dbscan_min_points": 20,
     "bbox_kind": "minimal_oriented",

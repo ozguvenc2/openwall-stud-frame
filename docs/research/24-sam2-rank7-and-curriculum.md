@@ -4,6 +4,8 @@ Date: **2026-09-25**. TruePlank is the app. OpenWall is the suite. The package i
 
 This note does two things. It adds **SAM 2 as bake-off rank 7**, separate from ranks 1–6. It records a class-S continuation of the stage ladder in [12-stud-seg-design-plan.md](12-stud-seg-design-plan.md) through a synthetic room. It does not rewrite the corner experiment into that ladder.
 
+Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading.
+
 Machine-readable scorecards: `artifacts/scorecards/curriculum/`. Summary: `artifacts/scorecards/curriculum/summary.json`. The day table picked up the new rows.
 
 ## Parallel, not a gate
@@ -15,7 +17,7 @@ The painted-corner pilot and the synthetic neural corner stay beside this ladder
 | [#23](https://github.com/ozguvenc2/openwall-stud-frame/pull/23) | Synthetic outside corner for ranks 4 and 5. Planes, not studs. | Not stage 5. Not a pass bar for the room. |
 | [#24](https://github.com/ozguvenc2/openwall-stud-frame/pull/24) | Phase-2 field corner (Polycam) plus a synthetic corner. Includes a Lot 62 loft density ladder. | Not this generator. Not class-F stud QA. |
 
-Those branches are not merged here. A synthetic room does not close them, and they do not block stages 0–5.
+Those branches are not merged here. A synthetic room does not close them, and they do not block stages 0–5. PR [#25](https://github.com/ozguvenc2/openwall-stud-frame/pull/25) stays a parallel field note: floor-up widened the SKIL gap on that painted corner. This note does not tell the field protocol to ignore that finding. The synthetic room still uses the fitted floor normal.
 
 ## Bake-off rank 7 is SAM 2
 
@@ -83,7 +85,7 @@ The section would have been called a 2×4. The camera never sees the stud ends, 
 
 ## Curriculum
 
-Stage 0 and the original stage-2 and stage-3 Open3D cards were linked and checked against the existing bars. They still pass. They were not re-measured. Paths:
+Stage 0 and the original stage-2 and stage-3 Open3D cards were linked and checked against the existing bars. They still pass. The floor-normal lock re-run kept their angle, section, and length. Paths:
 
 - `artifacts/scorecards/open3d_stage0_stage0_2x4_lean0.000.json`
 - `artifacts/scorecards/open3d_stage0_stage0_2x4_lean0.050.json`
@@ -99,7 +101,7 @@ New scenes were generated and scored with rank 1 only (Open3D 0.20, CPU). Script
 
 ### Gates that passed
 
-Reference is the floor normal. Paint is yellow. ε is unlocked. Percent in band is 100 on each of these rows (band τ ≈ 0.11937°).
+Reference is the floor normal. Paint is yellow. ε is unlocked. Percent in band is 100 on each of these rows (band τ ≈ 0.11937°). A later pass locked that reference in the scorer and rewrote the JSON. Angle, section, and length in this table did not move. `runtime_s` in the scorecard is that later process.
 
 | Scene | Studs | P / R | Section (mm) | Length (mm) | MAE (°) | Max (°) | Runtime (s) |
 | --- | ---: | --- | ---: | ---: | ---: | ---: | ---: |
@@ -144,7 +146,7 @@ This is not the Lot 62 Polycam loft. That file, and its density ladder, stay on 
 | Percent in band | 100 |
 | Reference | Floor normal. The cloud was not rotated. |
 | Paint | Yellow on all 26. ε unlocked. |
-| Runtime | 1.9151 s, CPU, this process |
+| Runtime | 1.9151 s on the first write-up. The lock re-run kept the angle, section, and length and stored 0.9466 s in the scorecard JSON. |
 
 Compared with the stage-3 bring-up checks (section ≤ 10 mm, length ≤ 30 mm, angle ≤ 0.10°, recall 1), these figures sit inside those checks. The design plan still has **no numeric bar for stage 5**. The synthetic room does not unlock Pointcept training. Training still waits on a real capture with stud labels. Card: `artifacts/scorecards/curriculum/open3d_stage5_room_bay_lot62_look.json`.
 

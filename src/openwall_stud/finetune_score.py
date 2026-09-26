@@ -60,7 +60,7 @@ def score_stud_labels(
             "Section and length are the minimal OBB of the stud-labeled points "
             "versus the dressed generator stud. Same box as the classical finders."
         ),
-        angle_note="Truth is the generator lean against +Z. Not a SKIL reading.",
+        angle_extra="",
         cost={
             "runtime_s": round(float(runtime_s), 4),
             "license": license_name,

@@ -53,6 +53,22 @@
     "png": "sam2_projection_stage0_partids.png",
     "png_colors": "part ids (floor, plate, stud). Not green/yellow/red paint."
   },
+  "visible_box": {
+    "extent_sorted_mm": [
+      44.78,
+      95.73,
+      1010.1
+    ],
+    "theta_vs_plus_z_deg": 0.07649,
+    "z_min_m": 0.7286,
+    "z_max_m": 1.7386,
+    "nominal_guess": "2x4",
+    "kept_by_stud_gate": false,
+    "drop_reasons": [
+      "length 1.010 m outside 1.2\u20133.3 m"
+    ],
+    "note": "Minimal oriented box of the lifted visible points. Not a SAM 2 output. A failed gate leaves detection null on this card."
+  },
   "detection": {
     "n_true": 1,
     "n_pred": 0,
@@ -80,7 +96,7 @@
     "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
     "reference": "gravity_z_no_floor_plane",
     "per_stud": [],
-    "note": "Truth is the generator lean against the same reference vector the pipeline used. Not a SKIL reading."
+    "note": "Truth is the generator axis against +Z. This scene has no floor. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading."
   },
   "paint": {
     "epsilon_locked": false,
@@ -94,7 +110,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.0416,
+    "runtime_s": 0.0297,
     "dbscan_eps_m": 0.025,
     "dbscan_min_points": 20,
     "bbox_kind": "minimal_oriented",
@@ -117,21 +133,5 @@
     "The mask is the generator part id on the z-buffer. SAM 2 did not produce it.",
     "Occluded points are not lifted. On this camera the visible length is below the 1.2 m keep gate, so detection stays empty. See visible_box.",
     "Device epsilon is unlocked. Production paint on any box from this control is yellow."
-  ],
-  "visible_box": {
-    "extent_sorted_mm": [
-      44.78,
-      95.73,
-      1010.1
-    ],
-    "theta_vs_plus_z_deg": 0.07649,
-    "z_min_m": 0.7286,
-    "z_max_m": 1.7386,
-    "nominal_guess": "2x4",
-    "kept_by_stud_gate": false,
-    "drop_reasons": [
-      "length 1.010 m outside 1.2\u20133.3 m"
-    ],
-    "note": "Minimal oriented box of the lifted visible points. Not a SAM 2 output. A failed gate leaves detection null on this card."
-  }
+  ]
 }

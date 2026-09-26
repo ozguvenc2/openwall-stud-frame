@@ -355,6 +355,9 @@ def visible_box_record(points: np.ndarray) -> dict[str, Any] | None:
 
     The scorecard detection stays empty when the length or the section gate
     rejects the cluster. This record is that measurement, not a SAM 2 score.
+    ``theta_vs_plus_z_deg`` is a generator-+Z diagnostic of the visible span.
+    It is not the scorecard angle reference. A scene with a floor uses the
+    fitted floor normal for that reference.
     """
     if len(points) < 20:
         return None
@@ -662,8 +665,11 @@ def measure_rank7(
             "One SAM 2 mask on the scaffold camera, lifted through the z-buffer. "
             "Counts are this synthetic render, not a field accuracy."
         )
-        sections["angle"]["note"] = (
-            "Truth is the generator chord. The network does not emit the angle. The shared box does. Not a SKIL reading."
+        from openwall_stud.angle_reference import synthetic_angle_note
+
+        sections["angle"]["note"] = synthetic_angle_note(
+            sections["angle"]["reference"],
+            extra="The network does not emit the angle. The shared box does.",
         )
     generator_stud = raster["part_image"] == 2
     intersection = int(np.count_nonzero(generator_stud & mask))

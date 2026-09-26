@@ -10,6 +10,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from openwall_stud.angle_reference import assert_synthetic_scorecard_reference
+
 SECTION_KEYS = ("detection", "geometry", "angle", "paint", "cost")
 
 REQUIRED_KEYS = (
@@ -77,6 +79,7 @@ def validate_scorecard(card: dict[str, Any]) -> None:
     for key in SECTION_KEYS:
         if not isinstance(card[key], dict):
             raise ValueError(f"scorecard section {key} must be an object")
+    assert_synthetic_scorecard_reference(card)
 
 
 def write_scorecard(path: str | Path, card: dict[str, Any]) -> Path:

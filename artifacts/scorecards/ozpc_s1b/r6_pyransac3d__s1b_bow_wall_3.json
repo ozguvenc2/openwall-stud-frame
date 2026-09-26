@@ -3,7 +3,7 @@
   "algorithm_id": "A6",
   "algorithm": "pyRANSAC-3D sequential cuboid",
   "rank": 6,
-  "stage": 0,
+  "stage": 3,
   "status": "ran",
   "epsilon_locked": false,
   "metrics_are_measurements": true,
@@ -23,8 +23,9 @@
       0.038099999999999995,
       0.08889999999999999
     ],
-    "reference": "gravity_z_no_floor_plane",
-    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "has_floor": true,
+    "reference": "floor_normal",
+    "reference_meaning": "This synthetic scene has a floor or slab. Lean is measured against the fitted floor normal. The cloud is not rotated. A SKIL or other level reading is not the reference.",
     "description": "S1b synthetic wall, 3 2x4 studs. Stud slot 1 bows 6.35 mm at midspan along local Y. Ends held. Plates and floor are context. Not a stage-3 gate.",
     "n_studs": 3,
     "bow_m": 0.00635,
@@ -55,7 +56,8 @@
           2.52406041781917
         ]
       ],
-      "note": "Same horizontal-slab peel as rank 1. Stage 0 has no floor and no plate, so a stud cloud is kept whole. The cloud is not rotated. The angle reference stays generator +Z."
+      "reference": "floor_normal",
+      "note": "Same horizontal-slab peel as rank 1. Angle reference for this cloud is floor_normal. The cloud is not rotated. A level reading is not the synthetic reference."
     },
     "wall_swallow": {
       "triggered": true,
@@ -109,9 +111,9 @@
     "pct_in_band": null,
     "band_deg": 0.11937,
     "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
-    "reference": "gravity_z_no_floor_plane",
+    "reference": "floor_normal",
     "per_stud": [],
-    "note": "Truth is the generator lean against +Z. Stage 0 has no floor. Not a SKIL reading."
+    "note": "Truth is the generator axis against the fitted floor normal. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. The long axis is not forced to Z."
   },
   "paint": {
     "epsilon_locked": false,
@@ -125,7 +127,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 3.9181,
+    "runtime_s": 3.9511,
     "license": "Apache-2.0",
     "license_url": "https://github.com/leomariga/pyRANSAC-3D/blob/v0.7.0/LICENSE",
     "hardware": "CPU",

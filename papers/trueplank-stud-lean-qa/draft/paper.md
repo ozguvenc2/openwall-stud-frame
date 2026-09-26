@@ -44,7 +44,7 @@ TruePlank’s target, on a bare frame with no drywall and no sheathing, is narro
 
 1. Instance-segment each vertical stud. Plates are geometry to remove, not a QA class. King, jack, and cripple names are not required.
 2. Fit one tight oriented box per stud. A merged bay is a miss.
-3. Measure θ, the angle between the box’s long axis and a stored reference. In the current product phase the reference is the floor normal, and the cloud is not rotated onto the floor. Stage 0 and the phase-1 S1 matrix have no floor, so the synthetic generator’s +Z is the reference. A later inclinometer or IMU replaces the vector and repaints the same boxes. A floor is not gravity. The generator axis is Z-up. An ARKit gravity session is Y-up and, if used later, is converted into this Z-up frame before it replaces the reference [appleArkitGravity].
+3. Measure θ, the angle between the box’s long axis and a stored reference. In the current product phase the reference is the floor normal, and the cloud is not rotated onto the floor. Stage 0 and the phase-1 S1 matrix have no floor, so the synthetic generator’s +Z is the reference. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. A later inclinometer or IMU replaces the vector and repaints the same boxes. A floor is not gravity. The generator axis is Z-up. An ARKit gravity session is Y-up and, if used later, is converted into this Z-up frame before it replaces the reference [appleArkitGravity].
 4. Paint green only when the whole interval [θ − ε, θ + ε] lies inside τ, red only when the whole interval lies outside τ, and yellow when the interval overlaps τ or when ε is unknown.
 
 ε is unknown. The honest production paint is yellow on every stud.
@@ -122,7 +122,7 @@ One cloud, then five steps. Ranks 1–6 differ in the instance step. Rank 7, if 
 1. **Peel.** Remove near-horizontal slabs (floor and plates). Bands within one plate thickness go together so a plate’s vertical side faces do not bridge bays. Vertical stud faces stay.
 2. **Instance.** On the remainder, form one point set per physical stud. The seven bake-off ranks are listed in Table 1. A merged bay is a miss. Rank 7 is an image mask and is empty until a view exists.
 3. **Box.** Fit one minimal oriented bounding box. Keep clusters whose section is near a dressed 2×4 or 2×6, whose length is between 1.2 m and 3.3 m, and whose long axis is within 20° of the reference.
-4. **Angle.** θ is the angle between that long axis and the stored reference. Zero means aligned with the reference. Stage 0 and phase-1 S1 use generator +Z (`gravity_z_no_floor_plane`). Stages 2 and 3 use the floor normal from the lowest peeled slab. A later gravity vector replaces the reference and repaints the same boxes.
+4. **Angle.** θ is the angle between that long axis and the stored reference. Zero means aligned with the reference. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. A later field gravity vector can replace the reference and repaint the same boxes. Class F may still use a SKIL when wood readings exist. That protocol is not the synthetic reference.
 5. **Paint.** Green when θ + ε ≤ τ, red when θ − ε > τ, yellow when the interval overlaps τ or when ε is unknown. ε is unknown, so production paint is yellow.
 
 ### 3.2 Tolerance
@@ -294,9 +294,9 @@ No class F numbers exist. ε is null. The one-stud protocol with a level has not
 
 ### 5.6 Curriculum continuation and SAM 2 (class S)
 
-This subsection is the 2026-09-25 continuation. The source note is `docs/research/24-sam2-rank7-and-curriculum.md`. Scorecards are `artifacts/scorecards/curriculum/`. ε is unlocked. Production paint is yellow. PRs #23 and #24 (synthetic neural corner, and the painted-corner field pilot) stay parallel. They are not a row in this table and they are not a gate on the stage ladder.
+This subsection is the 2026-09-25 continuation. The source note is `docs/research/24-sam2-rank7-and-curriculum.md`. Scorecards are `artifacts/scorecards/curriculum/`. ε is unlocked. Production paint is yellow. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. PRs #23 and #24 (synthetic neural corner, and the painted-corner field pilot) stay parallel. PR #25 stays a parallel field note that floor-up widened the SKIL gap on that corner; this subsection does not withdraw that finding. They are not a row in this table and they are not a gate on the stage ladder.
 
-Stage 0 and the original stage-2 and stage-3 Open3D cards were linked and still meet the bring-up bars. They were not re-measured. New rank-1 scenes at 1 mm noise also meet those bars.
+Stage 0 and the original stage-2 and stage-3 Open3D cards still meet the bring-up bars. The floor-normal lock re-run kept their angle, section, and length. New rank-1 scenes at 1 mm noise also meet those bars. Runtime in Table 9 is the first write-up. The scorecard JSON holds the later `runtime_s`.
 
 **Table 9. Rank 1 on added straight-stud scenes (class S).** Floor normal. Percent in band is 100 on every row. Paint is yellow.
 
@@ -322,7 +322,7 @@ Probes, same rank, not gates. A four-stud wall at 2 mm noise has recall 0.25 (on
 | Percent in band | 100 |
 | Reference | Floor normal. Cloud not rotated |
 | Paint | Yellow, 26 studs. ε unlocked |
-| Runtime | 1.9151 s, CPU |
+| Runtime | 1.9151 s on the first write-up. The floor-normal lock re-run kept the angle, section, and length and stored 0.9466 s in the scorecard JSON. |
 
 The design plan has no numeric bar for stage 5. These figures sit inside the stage-3 bring-up checks and are not adopted as a new bar. The room does not unlock training of ranks 4 and 5. Ranks 2–7 on this cloud are `not_run` (null metrics). Ranks 4 and 5 had no forward pass on this VM, so they are not `control` rows. Stages 6 and 7 are stub cards with null metrics. They need a real capture.
 

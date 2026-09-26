@@ -3,7 +3,7 @@
   "algorithm_id": "A2",
   "algorithm": "PCL region-grow + cuboid (Ozkan/Pochtrager, no Bassier merge)",
   "rank": 2,
-  "stage": 0,
+  "stage": 3,
   "status": "ran",
   "epsilon_locked": false,
   "metrics_are_measurements": true,
@@ -23,8 +23,9 @@
       0.038099999999999995,
       0.08889999999999999
     ],
-    "reference": "gravity_z_no_floor_plane",
-    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "has_floor": true,
+    "reference": "floor_normal",
+    "reference_meaning": "This synthetic scene has a floor or slab. Lean is measured against the fitted floor normal. The cloud is not rotated. A SKIL or other level reading is not the reference.",
     "description": "S1b synthetic wall, 3 2x4 studs. Stud slot 1 bows 6.35 mm at midspan along local Y. Ends held. Plates and floor are context. Not a stage-3 gate.",
     "n_studs": 3,
     "bow_m": 0.00635,
@@ -106,23 +107,23 @@
     "note": "Section and length are the minimal OBB of each adjacency member versus the dressed generator size. The long axis is not forced to Z."
   },
   "angle": {
-    "mae_deg": 0.09337,
-    "max_abs_error_deg": 0.09337,
+    "mae_deg": 0.08964,
+    "max_abs_error_deg": 0.08964,
     "pct_in_band": 100.0,
     "band_deg": 0.11937,
     "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
-    "reference": "gravity_z_no_floor_plane",
+    "reference": "floor_normal",
     "per_stud": [
       {
         "stud_id": "S2",
-        "true_deg": 0.0,
-        "measured_deg": 0.09337,
-        "abs_error_deg": 0.09337,
+        "true_deg": 0.00433,
+        "measured_deg": 0.09397,
+        "abs_error_deg": 0.08964,
         "production_color": "yellow",
         "hypothetical_color": "yellow"
       }
     ],
-    "note": "Truth is the generator lean against +Z. Not a SKIL reading."
+    "note": "Truth is the generator axis against the fitted floor normal. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. The long axis is not forced to Z."
   },
   "paint": {
     "epsilon_locked": false,
@@ -140,7 +141,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 2.0844,
+    "runtime_s": 2.1097,
     "license": "BSD",
     "license_url": "https://raw.githubusercontent.com/PointCloudLibrary/pcl/master/LICENSE.txt",
     "hardware": "CPU",

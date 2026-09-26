@@ -33,6 +33,8 @@ A floor is not gravity. A slab can be out of level. A stud that is square to a t
 
 When the inclinometer or IMU arrives, keep the same stud boxes and replace the reference vector. That is a repaint, not a new segmenter. Phone and scanner tilt error are still unquantified here (doc 01, doc 02).
 
+Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. A digital level remains a later field comparison on the same real clouds, not the reference inside a generator scorecard.
+
 ## Green, yellow, red
 
 Let θ be the angle between the stud’s long axis and the floor normal. θ = 0° means perpendicular to the floor. Let τ be the working tolerance (~0.12°). Let ε be the half-width of the **device plus software** error on θ. Oz will supply ε later. It is **unknown** today.

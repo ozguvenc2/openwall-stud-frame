@@ -35,17 +35,19 @@ The image is the scaffold camera from `sam2_mask.default_stud_camera` on the one
 | 2 | `s1b_bow_2x4_amp19.05mm_lean0.000` | ran | fail | 1 | 1 | 23.9 | 4.48 | 0.04434 | yellow x1 |
 | 2 | `s1b_bow_2x4_amp6.35mm_lean0.000` | ran | fail | 1 | 1 | 13.15 | 5.96 | 0.00847 | yellow x1 |
 | 2 | `s1b_bow_2x4_amp6.35mm_lean0.300` | ran | fail | 1 | 1 | 11.14 | 4.63 | 0.00684 | yellow x1 |
-| 2 | `s1b_bow_wall_3` | ran | fail | 1 | 0.3333 | 1511.5 | 83.71 | 0.09337 | yellow x1 |
+| 2 | `s1b_bow_wall_3` | ran | fail | 1 | 0.3333 | 1511.5 | 83.71 | 0.08964 | yellow x1 |
 | 3 | `s1b_bow_2x4_amp19.05mm_lean0.000` | ran | fail | 0.25 | 1 | 30.24 | 3.61 | 0.12807 | yellow x4 |
 | 3 | `s1b_bow_2x4_amp6.35mm_lean0.000` | ran | fail | 0.125 | 1 | 30.63 | 4.63 | 0.1221 | yellow x8 |
 | 3 | `s1b_bow_2x4_amp6.35mm_lean0.300` | ran | fail | 0.125 | 1 | 31.1 | 4.59 | 0.04542 | yellow x8 |
-| 3 | `s1b_bow_wall_3` | ran | fail | 0.1765 | 1 | 31.13 | 7.72 | 0.04213 | yellow x17 |
+| 3 | `s1b_bow_wall_3` | ran | fail | 0.1765 | 1 | 31.13 | 7.72 | 0.03796 | yellow x17 |
 | 6 | `s1b_bow_2x4_amp19.05mm_lean0.000` | ran | fail | null | 0 | null | null | null | null |
 | 6 | `s1b_bow_2x4_amp6.35mm_lean0.000` | ran | fail | 1 | 1 | 13.35 | 5.98 | 0.00958 | yellow x1 |
 | 6 | `s1b_bow_2x4_amp6.35mm_lean0.300` | ran | fail | 1 | 1 | 11.65 | 4.63 | 0.00684 | yellow x1 |
 | 6 | `s1b_bow_wall_3` | ran | fail | null | 0 | null | null | null | null |
 
 Open3D on these four scenes was already measured on the cloud curriculum. The rows above are the same generator calls on Oz_PC, plus ranks 2, 3, and 6. Rank 3 is one box per RANSAC primitive, not the tuned face merge on PR #22.
+
+Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. The three floorless S1b studs stay on generator +Z. `s1b_bow_wall_3` has a floor, so its reference is `floor_normal`.
 
 Rank 2 is the in-process NumPy smoothness port. `native_pcl_region_growing` is false on these cards. The libpcl binary was not built, so these numbers are not a PCL measurement.
 

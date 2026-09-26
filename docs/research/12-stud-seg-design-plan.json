@@ -14,6 +14,14 @@
   "epsilon_locked": false,
   "placeholder_epsilon_deg": 0.05,
   "placeholder_epsilon_note": "Round illustration of the color rule. Not a measured device band. Production paint stays yellow.",
+  "synthetic_angle_reference": {
+    "rule": "Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading.",
+    "with_floor_or_slab": "floor_normal",
+    "without_floor": "gravity_z_no_floor_plane",
+    "level_on_synthetic": false,
+    "field_skil": "Class F and phase-2b may still use SKIL when Oz provides wood readings. Separate from synthetic tests.",
+    "pr25": "Painted-corner floor-gravity note stays parallel. Floor-up widened the SKIL gap. Synthetic tests still use the fitted floor normal."
+  },
   "stages": [
     0,
     1,

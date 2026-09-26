@@ -129,7 +129,7 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
         runtime_s=runtime_s,
         detection_note=detection_note,
         geometry_note=geometry_note,
-        angle_note="Truth is the generator lean against +Z. Not a SKIL reading.",
+        angle_extra="The long axis is not forced to Z.",
         cost={
             "runtime_s": round(runtime_s, 4),
             "license": "BSD",
