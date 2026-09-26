@@ -2,6 +2,8 @@
 
 Research date: **2026-09-24**. These are the pictures for the top five in [11-stud-segmentation-algorithm-ranking.md](../../11-stud-segmentation-algorithm-ranking.md). The design plan is [12-stud-seg-design-plan.md](../../12-stud-seg-design-plan.md).
 
+**Reclassification (2026-09-26).** Live buckets are [27-four-way-tool-classification.md](../../27-four-way-tool-classification.md). The rank-3 PNG is still the 2026-09-24 scaffold: that drawing did not execute CloudCompare. Later measurements did run and stay in the day table. Former bake-off rank 3 = CloudCompare, now bucket 4 (interactive GUI), not a geometry-first automated finder.
+
 Regenerate with `python scripts/render_algo_figures.py` from the repo root after `pip install -r requirements.txt`. Rank 1 is redrawn from the Open3D baseline. Ranks 2–5 are scaffold diagrams and stay labeled that way until those stacks actually run.
 
 | Rank | File | What you are looking at |

@@ -2,6 +2,8 @@
 
 Curriculum stages match [`METHODS.md`](METHODS.md). This file says what has been executed. It does not add a matrix that the research notes do not contain. Every executed row is class S. Class F has no scorecards.
 
+**Reclassification (2026-09-26).** Rank numbers in the rows below stay. Live buckets are `docs/research/27-four-way-tool-classification.md`. Former bake-off rank 3 = CloudCompare, now bucket 4 (interactive GUI). Those runs happened. They are not counted as a geometry-first automated finder. Geometry-first automated is former ranks 1, 2, and 6.
+
 ## Run versus planned
 
 | ID | What | Class | State on 2026-09-25 |

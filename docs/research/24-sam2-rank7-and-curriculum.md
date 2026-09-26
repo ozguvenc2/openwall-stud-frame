@@ -4,6 +4,8 @@ Date: **2026-09-25**. TruePlank is the app. OpenWall is the suite. The package i
 
 This note does two things. It adds **SAM 2 as bake-off rank 7**, separate from ranks 1–6. It records a class-S continuation of the stage ladder in [12-stud-seg-design-plan.md](12-stud-seg-design-plan.md) through a synthetic room. It does not rewrite the corner experiment into that ladder.
 
+**Reclassification (2026-09-26).** Live buckets are [27-four-way-tool-classification.md](27-four-way-tool-classification.md). The rank numbers in the tables below stay as archive labels. Former bake-off rank 3 = CloudCompare, now bucket 4 (interactive GUI), and those rows are no longer counted as a geometry-first automated finder. SAM 2 stays in this note. It is adjacent to the promptable-foundation bucket: image-prompted, not native 3D. The four foundation models are Point-SAM, SAM3D, OpenMask3D, and Segment3D ([26-point-sam-and-3d-peers.md](26-point-sam-and-3d-peers.md)). They are not scored here.
+
 Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading.
 
 Machine-readable scorecards: `artifacts/scorecards/curriculum/`. Summary: `artifacts/scorecards/curriculum/summary.json`. The day table picked up the new rows.
@@ -21,18 +23,18 @@ Those branches are not merged here. A synthetic room does not close them, and th
 
 ## Bake-off rank 7 is SAM 2
 
-Ranks 1–6 stay as already used in phase 1:
+Former ranks 1–6 stay as already used in phase 1. The bucket column is the 2026-09-26 lock. It does not change a measured cell.
 
-| Bake-off rank | Stack |
-| --- | --- |
-| 1 | Refined Open3D |
-| 2 | PCL / NumPy region-grow cuboid |
-| 3 | CloudCompare RANSAC shape detection |
-| 4 | Pointcept / PTv3 |
-| 5 | Open3D-ML RandLA-Net |
-| 6 | pyRANSAC-3D v0.7.0 sequential cuboid |
+| Former bake-off rank | Bucket | Stack |
+| --- | --- | --- |
+| 1 | 1. Geometry-first automated | Refined Open3D |
+| 2 | 1. Geometry-first automated | PCL / NumPy region-grow cuboid |
+| 3 | 4. Interactive GUI | CloudCompare RANSAC shape detection. Not a geometry-first automated finder. |
+| 4 | 2. Supervised learning | Pointcept / PTv3 |
+| 5 | 2. Supervised learning | Open3D-ML RandLA-Net |
+| 6 | 1. Geometry-first automated | pyRANSAC-3D v0.7.0 sequential cuboid |
 
-Rank 7 is [SAM 2](https://arxiv.org/abs/2408.00714) (Ravi et al., 2024), a promptable segmenter for images and video. It is a separate test. It is not a seventh point-cloud backbone.
+Rank 7 is [SAM 2](https://arxiv.org/abs/2408.00714) (Ravi et al., 2024), a promptable segmenter for images and video. It is adjacent to bucket 3 and is not a native 3D foundation model. It is a separate test. It is not a seventh point-cloud backbone. The room table below still labels it rank 7.
 
 The master table in [11-stud-segmentation-algorithm-ranking.md](11-stud-segmentation-algorithm-ranking.md) is unchanged. Row 6 there is still Chen, Jiang, and Xiong 2025. Row 7 there is still ClearEdge3D EdgeWise. Those rows are not this bake-off. The same split already exists for pyRANSAC-3D versus master-table row 6.
 
@@ -134,7 +136,7 @@ Stud spacing is 6 mm. Plates are 10 mm. The floor is 20 mm. Noise is 1 mm. That 
 
 This is not the Lot 62 Polycam loft. That file, and its density ladder, stay on PR #24.
 
-**Full room, ranks 1–7, Oz_PC (RTX 4080 SUPER).** A lean scored on the full cloud uses the fitted floor normal. ε is unlocked. Yellow is recorded only where a box was kept. A day-table `pass` means precision 1, recall 1, and yellow paint. It is not a field acceptance test.
+**Full room, former ranks 1–7, Oz_PC (RTX 4080 SUPER).** A lean scored on the full cloud uses the fitted floor normal. ε is unlocked. Yellow is recorded only where a box was kept. A day-table `pass` means precision 1, recall 1, and yellow paint. It is not a field acceptance test. Rank numbers in this table are archive labels. Former rank 3 is CloudCompare, now bucket 4. The numbers are the measurement that was stored. They are not re-counted as geometry-first.
 
 | Rank | Stack | Day row | P / R | Section (mm) | Length (mm) | MAE (°) | Max (°) | Paint | Runtime (s) | Reference |
 | --- | --- | --- | --- | ---: | ---: | ---: | ---: | --- | ---: | --- |
@@ -150,7 +152,7 @@ Rank 1 percent in band is 100. The first write-up recorded 1.9151 s, and the flo
 
 Rank 2 is the in-process NumPy port. The PCL binary did not build, so `native_pcl_region_growing` is false and these numbers are not a libpcl measurement. The grow returned 90 face clusters. The 20 mm adjacency step merged 89 of them, because the plates connect the studs, and left one member. That box is one false positive. Section, length, and angle stay null.
 
-Rank 3 is CloudCompare 2.14.beta. Each RANSAC-SD primitive is its own box. Primitives are not merged into a stud. Recall is 1. Precision is 0.2737 (95 boxes). Percent in band on the matched studs is 96.15. The extra boxes fail the day-table pass.
+Former rank 3, now bucket 4, is CloudCompare 2.14.beta. The row stays an archive measurement and is not a geometry-first automated finder. Each RANSAC-SD primitive is its own box. Primitives are not merged into a stud. Recall is 1. Precision is 0.2737 (95 boxes). Percent in band on the matched studs is 96.15. The extra boxes fail the day-table pass.
 
 Rank 4 ran with CUDA torch 2.7.0+cu126. The BIMStruct3D classes are clutter, floor, ceiling, wall, column, door, window, stairs, railing, and lights. None is a stud. Counts on this cloud: clutter 448,396, floor 79,300, railing 4,566, wall 39. No stud box and no paint. The histogram is the measurement. Weights are CC BY-NC-SA 4.0 and are not committed. PointGroup did not run.
 

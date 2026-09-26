@@ -2,6 +2,8 @@
 
 Date (America/Los_Angeles): **2026-09-25**. Machine: **Oz_PC**. This note is one rigid lean on one synthetic dressed 2×4. It is the stage 0 style bring-up (S1). It is not a multi-stud wall, not a plate-fixed bow (S1b), and not a field, phone, or SKIL measurement.
 
+**Reclassification (2026-09-26).** Rank numbers in this note stay. Live buckets are [27-four-way-tool-classification.md](27-four-way-tool-classification.md). Former bake-off rank 3 = CloudCompare, now bucket 4 (interactive GUI). The CloudCompare cards ran. They are archive measurements and are not counted as a geometry-first automated finder. Geometry-first automated on this sweep is former ranks 1, 2, and 6 only.
+
 Machine-readable twin: [19-phase1-s1-lean-sweep.json](19-phase1-s1-lean-sweep.json).
 
 Ranks 4 and 5 are controls. A histogram is not a stud score. Device ε is unlocked, so a production color is yellow when a box exists. This note does not paint green or red as the production call.

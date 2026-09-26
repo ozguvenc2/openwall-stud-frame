@@ -4,6 +4,8 @@ Date (America/Los_Angeles): **2026-09-25**. Machine: **Oz_PC** (RTX 4080 SUPER).
 
 Cloud PR [#26](https://github.com/ozguvenc2/openwall-stud-frame/pull/26) already ranks SAM 2 as bake-off rank 7 and scores Open3D through a synthetic room. This note is the Oz_PC continuation: one SAM 2 forward pass, and the S1b probes through Open3D, the PCL/NumPy cuboid, CloudCompare, and pyRANSAC-3D. Corner phase-2 (PRs #23–#25) is not a gate.
 
+**Reclassification (2026-09-26).** SAM 2 stays in this note as former bake-off rank 7. It is adjacent to the promptable-foundation bucket: image-prompted, not native 3D ([27-four-way-tool-classification.md](27-four-way-tool-classification.md)). CloudCompare in the S1b list is former rank 3, now bucket 4 (interactive GUI), not a geometry-first automated finder. The measured rows stay.
+
 Device epsilon is unlocked. Production paint is yellow. A bow row's angle is the chord. The rigid bars on the day table are not a bow-amplitude error.
 
 ## SAM 2

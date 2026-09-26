@@ -59,7 +59,9 @@ Once a finder returns stud points:
 
 Rank 1’s instance step is DBSCAN, `eps` 25 mm, `min_points` 20. An earlier setting (`eps` 20 mm, `min_points` 80) labeled the synthetic stud as noise. That edit is class S.
 
-## Seven bake-off ranks
+## Former seven bake-off ranks (archive labels)
+
+Live buckets are `docs/research/27-four-way-tool-classification.md` and Section 3.4 of the draft (Table 1a). This table is the rank ledger the runs were written with. Former bake-off rank 3 = CloudCompare, now bucket 4 (interactive GUI), not a geometry-first automated finder. Geometry-first automated is ranks 1, 2, and 6. Supervised is ranks 4 and 5. SAM 2 (rank 7) stays adjacent to the promptable bucket: image-prompted, not native 3D. The four foundation models are not in this table and are not scored here.
 
 | Rank | First step | State on 2026-09-25 |
 | --- | --- | --- |

@@ -8,6 +8,8 @@ One row is one algorithm on one scene that day, compared with that scene’s gro
 
 Ground-truth sources intended for later rows: `synthetic`, `skil`, `total_station`, `hand_label`. Do not type a field number that was not measured.
 
+**Archive note (2026-09-26).** Rows in this table are not reclassified in place. Live buckets are [27-four-way-tool-classification.md](27-four-way-tool-classification.md). Rows whose algorithm is `cloudcompare` stay, including the 2026-09-24 `not_run` stubs and the 2026-09-25 measurements. Former bake-off rank 3 = CloudCompare, now bucket 4 (interactive GUI). Those rows are archive measurements. They are no longer counted as a geometry-first automated finder. The CSV and the JSON mirror are not rewritten by that lock.
+
 | date | stage | scene | algorithm | ground_truth_source | detection_precision | detection_recall | detection_tp | detection_fp | detection_fn | geometry_section_err_mm | geometry_length_err_mm | angle_mae_deg | angle_pct_in_band | paint_correct_pct | device_eps_deg | runtime_s | notes | pass_fail |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-09-24 | 0 | stage0_2x4_lean0.000 | open3d | synthetic | 1 | 1 | 1 | 0 | 0 | 7.86 | 6.24 | 0.03084 | 100 | 100 | — | 0.0584 | Synthetic generator. device ε unlocked, so paint_correct_pct counts yellow production colors only. Scorecard: open3d_stage0_stage0_2x4_lean0.000.json. | pass |

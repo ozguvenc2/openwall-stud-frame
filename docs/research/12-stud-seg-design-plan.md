@@ -4,6 +4,8 @@ Date: **2026-09-24**. This is the working plan for finding vertical studs, boxin
 
 Machine-readable twin: [12-stud-seg-design-plan.json](12-stud-seg-design-plan.json). Figures: [images/algo-contenders/INDEX.md](images/algo-contenders/INDEX.md).
 
+**Reclassification (2026-09-26).** Live buckets are [27-four-way-tool-classification.md](27-four-way-tool-classification.md). The rank column below is the former bake-off label. Former rank 3 (CloudCompare) is bucket 4, an interactive GUI, and is not a geometry-first automated finder. The JSON twin of this plan is not rewritten.
+
 ## Goal
 
 On a bare wood frame (no drywall, no sheathing), instance-segment **vertical studs**, fit one tight oriented box each, measure the long-axis angle, and paint **green / yellow / red** only after a device error band ε exists.
@@ -32,17 +34,17 @@ The living bake-off log is [13-stud-seg-results-by-day.md](13-stud-seg-results-b
 
 ## Ranked contenders — what we do with each
 
-Order is doc 11. Status is this repo today.
+Former rank order is doc 11. Live buckets are doc 27. Status is this repo today. CloudCompare stays in the table because it ran. It is not counted as a geometry-first automated finder.
 
-| Rank | Stack | This repo | Next real experiment |
-| --- | --- | --- | --- |
-| 1 | Refined Open3D. Horizontal slab peel, DBSCAN with `eps` below the bay gap, 2×4 / 2×6 prior, minimal OBB, shared paint. | **Ready** on synthetic stages 0, 2, 3, and the stage-5 room. `scripts/run_stage0_baseline.py` and `scripts/run_curriculum_through_room.py`. | A real single stud (stage 1) with SKIL on it. Keep ε unlocked. |
-| 2 | PCL region growing, then a cuboid in the Özkan / Pöchtrager sense. **No** Bassier remote coplanar merge. **No** axis forced to Z. | Phase 1 scored a NumPy port. **Not re-run** on the room. | Same clouds as rank 1 when PCL is present. Count merged bays. |
-| 3 | CloudCompare RANSAC Shape Detection, CloudComPy optional for batch. Schnabel primitives. GPL-3.0 if linked. | Phase 1 scored it. **Not re-run** on the room. | On a multi-stud cloud, compare primitive count to stud count. |
-| 4 | Pointcept PTv3 / PointGroup. | Phase 1 control and a synthetic fine-tune exist. **Not run** on the room (no GPU weights here). The synthetic room is not the training gate. | Labels on a real stage-5 capture, then a fine-tune. BIMStruct3D zero-shot stays a control. |
-| 5 | Open3D-ML RandLA-Net or KPConv, S3DIS weights. | **Stub on this curriculum pass.** Phase 1 already ran it as a control and as a synthetic fine-tune. | One forward pass on a real stage-5 capture. The synthetic room below is not that gate. Do not paint from S3DIS labels. Do not copy S3DIS mIoU. |
-| 6 | pyRANSAC-3D v0.7.0 sequential cuboid after the rank-1 peel. Bake-off add. Not master-table row 6 (Chen 2025). | **Not re-run here.** Phase 1 S1 already scored it. | Same clouds as rank 1 when a machine runs the sweep. Not required for the synthetic room card. |
-| 7 | SAM 2 image/video mask, lifted onto points. Bake-off add. Not master-table row 7 (EdgeWise). | **Scaffold.** Projection ran. Weights did not. Stud metrics null. `python -m openwall_stud.contenders.sam2_mask`. | A registered RGB or depth view, then a mask, then the shared box. Doc 24. |
+| Former rank | Bucket | Stack | This repo | Next real experiment |
+| --- | --- | --- | --- | --- |
+| 1 | 1. Geometry-first automated | Refined Open3D. Horizontal slab peel, DBSCAN with `eps` below the bay gap, 2×4 / 2×6 prior, minimal OBB, shared paint. | **Ready** on synthetic stages 0, 2, 3, and the stage-5 room. `scripts/run_stage0_baseline.py` and `scripts/run_curriculum_through_room.py`. | A real single stud (stage 1) with SKIL on it. Keep ε unlocked. |
+| 2 | 1. Geometry-first automated | PCL region growing, then a cuboid in the Özkan / Pöchtrager sense. **No** Bassier remote coplanar merge. **No** axis forced to Z. | Phase 1 scored a NumPy port. **Not re-run** on the room. | Same clouds as rank 1 when PCL is present. Count merged bays. |
+| 3 | 4. Interactive GUI | CloudCompare RANSAC Shape Detection, CloudComPy optional for batch. Schnabel primitives. GPL-3.0 if linked. Manual edit and viz, not an automated finder. | Phase 1 scored the plugin. **Not re-run** on the room. Archive measurement. | On a multi-stud cloud, compare primitive count to stud count. That check does not move it into bucket 1. |
+| 4 | 2. Supervised learning | Pointcept PTv3 / PointGroup. | Phase 1 control and a synthetic fine-tune exist. **Not run** on the room (no GPU weights here). The synthetic room is not the training gate. | Labels on a real stage-5 capture, then a fine-tune. BIMStruct3D zero-shot stays a control. |
+| 5 | 2. Supervised learning | Open3D-ML RandLA-Net or KPConv, S3DIS weights. | **Stub on this curriculum pass.** Phase 1 already ran it as a control and as a synthetic fine-tune. | One forward pass on a real stage-5 capture. The synthetic room below is not that gate. Do not paint from S3DIS labels. Do not copy S3DIS mIoU. |
+| 6 | 1. Geometry-first automated | pyRANSAC-3D v0.7.0 sequential cuboid after the rank-1 peel. Bake-off add. Not master-table row 6 (Chen 2025). | **Not re-run here.** Phase 1 S1 already scored it. | Same clouds as rank 1 when a machine runs the sweep. Not required for the synthetic room card. |
+| 7 | Adjacent to 3 | SAM 2 image/video mask, lifted onto points. Image-prompted, not native 3D. Not master-table row 7 (EdgeWise). | **Scaffold plus the Oz_PC tiny pass in docs 24 and 25.** | A registered RGB or depth view, then a mask, then the shared box. Doc 24. |
 
 Shared post-step, once a stack actually returns stud points: tight box, θ versus the stored reference, then `openwall_stud.paint`. Ranks differ in the first arrow only.
 
@@ -90,7 +92,7 @@ Every capture records: sensor, export format, whether Z is gravity or only the f
 2. Stage 2 floor peel on a synthetic slab. Done beside stage 0.
 3. Stage 3 mini wall. Done on synthetic data. This is the gate for “the bay did not merge.”
 4. The same three scenes through PCL, on a machine that has PCL. Stop if bays merge or studs split.
-5. CloudCompare on the stage 3 cloud. Record primitive count versus stud count. Not a CI dependency.
+5. CloudCompare (bucket 4, interactive GUI; former rank 3) on the stage 3 cloud. Record primitive count versus stud count. Not a geometry-first automated finder and not a CI dependency.
 6. Real stage 1: one stud, phone or Mid-360, SKIL if it is standing. Yellow paint only.
 7. Stage 4: one wall and an opening. Still one class, “stud.”
 8. Stage 5: one room. The synthetic look-alike can be scored with rank 1 before a capture exists. Label studs for training only after the classical scorecard on a **real** capture is written. Then Pointcept may be trained. Open3D-ML runs once as a histogram, not as a painter. The synthetic room does not replace that gate.
