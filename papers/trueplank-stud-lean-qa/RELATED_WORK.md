@@ -23,9 +23,9 @@ Runs that changed what “related” means for a stack already in the plan:
 
 | Key | What it is for this paper |
 | --- | --- |
-| `schnabel2007ransac` | Planes, spheres, cylinders, cones, and tori. This is the family behind CloudCompare RANSAC Shape Detection (rank 3). Untuned, the plugin returned 4–8 primitives per synthetic stud and failed the stage-0 bars on 25 of 25 scenes. The stud-only tune (PR #22) keeps plane only and merges four long faces: stage-0 pass 25/25, one box. |
+| `schnabel2007ransac` | Planes, spheres, cylinders, cones, and tori. This is the family behind CloudCompare RANSAC Shape Detection (former rank 3, now the interactive GUI bucket, not a geometry-first automated finder). Untuned, the plugin returned 4–8 primitives per synthetic stud and failed the stage-0 bars on 25 of 25 scenes. The stud-only tune (PR #22) keeps plane only and merges four long faces: stage-0 pass 25/25, one box. Those rows stay. |
 | `fischler1981ransac` | Original RANSAC article. Context for Schnabel and for pyRANSAC-3D. |
-| `mariga2026pyransac` | pyRANSAC-3D v0.7.0. Rank 6. Run on class S (one stud and the 25-scene matrix, 25/25 stage-0 bars). The library publishes no stud accuracy. |
+| `mariga2026pyransac` | pyRANSAC-3D v0.7.0. Former rank 6, bucket 1 (geometry-first automated). Run on class S (one stud and the 25-scene matrix, 25/25 stage-0 bars). The library publishes no stud accuracy. |
 | `bassier2020walls` | Unsupervised BIM wall objects. The plan refuses a remote coplanar merge. |
 | `ntiyakunze2023sensors` | **Citation hygiene.** Crossref resolves `10.3390/s23041924` to Ntiyakunze and Inoue (2023), not to Bassier. |
 

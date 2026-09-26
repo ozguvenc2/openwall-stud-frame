@@ -25,7 +25,9 @@
     "reference_later": "imu_or_inclinometer_gravity",
     "synthetic_angle_reference": "floor_normal when the scene has a floor or slab; generator +Z only when it does not. No SKIL or other level on synthetic clouds.",
     "bakeoff_rank_7": "SAM 2 (not master-table row 7)",
-    "curriculum_doc": "docs/research/24-sam2-rank7-and-curriculum.md"
+    "curriculum_doc": "docs/research/24-sam2-rank7-and-curriculum.md",
+    "four_way_lock": "docs/research/27-four-way-tool-classification.md",
+    "four_way_note": "2026-09-26. Live buckets replace the reading of ranks 1-7 as one automated finder list. Geometry-first automated: Open3D, PCL/NumPy region-grow cuboid, pyRANSAC-3D. Supervised: Pointcept/PTv3, Open3D-ML RandLA-Net. Promptable foundation: Point-SAM, SAM3D, OpenMask3D, Segment3D. Interactive GUI: CloudCompare (former bake-off rank 3). SAM 2 stays adjacent (image-prompted, not native 3D). The top5_names array above is the 2026-09-24 shortlist and is not rewritten."
   },
   "stud_segmentation_design_plan": {
     "doc": "docs/research/12-stud-seg-design-plan.md",

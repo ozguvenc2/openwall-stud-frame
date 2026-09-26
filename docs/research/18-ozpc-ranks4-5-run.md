@@ -2,6 +2,8 @@
 
 Date (America/Los_Angeles): **2026-09-25**. Machine: **Oz_PC**. This note records ranks 4 and 5 only, on the same Stage 0 stud as PR #15 and PR #16. It does not re-run Open3D, PCL, CloudCompare, or pyRANSAC-3D. It is not a field measurement.
 
+**Reclassification (2026-09-26).** Ranks 4 and 5 are the supervised-learning bucket. CloudCompare, named above only as a stack this note did not re-run, is former bake-off rank 3 and now bucket 4 (interactive GUI). See [27-four-way-tool-classification.md](27-four-way-tool-classification.md). This note’s tables are unchanged.
+
 Machine-readable twin: [18-ozpc-ranks4-5-run.json](18-ozpc-ranks4-5-run.json).
 
 ## Scene

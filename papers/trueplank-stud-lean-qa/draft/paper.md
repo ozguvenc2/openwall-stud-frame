@@ -10,7 +10,7 @@ See ../Makefile. This file is the draft of record.
 
 # Instance detection and lean assessment of light-frame wood studs from point clouds
 
-**Draft.** 2026-09-25. Venue-agnostic Markdown in the shape of an Automation in Construction / ISPRS / Journal of Computing in Civil Engineering article. Not submitted. Not an arXiv upload.
+**Draft.** 2026-09-25. Four-way reclassification 2026-09-26: Section 5 numbers are unchanged. Venue-agnostic Markdown in the shape of an Automation in Construction / ISPRS / Journal of Computing in Civil Engineering article. Not submitted. Not an arXiv upload.
 
 **Authors.** Oz (placeholder). Gwench (placeholder). Legal names, affiliations, and CRediT roles are unassigned. Prior agents that edited the engineering notes are not authors.
 
@@ -30,7 +30,7 @@ See ../Makefile. This file is the draft of record.
 
 Light-frame wood studs are checked in the field with a level and a finish guideline. WoodWorks states that the International Building Code and the American Wood Council’s National Design Specification do not set a light-frame wood construction tolerance, and it summarizes a Handbook tightening to 1/4 inch in 10 feet when finishes such as gypsum wallboard are used. That figure converts to a working angle τ ≈ 0.1194°. Scan-to-BIM systems and historic-timber cuboid pipelines answer a modeling or roof-completeness question. They do not publish one oriented box per bare 2×4, a long-axis angle against a named reference, and a paint rule that stays yellow until a measured instrument band exists.
 
-This paper describes that conjunction as implemented in TruePlank, an OpenWall app. The cloud stays in its capture frame (Z-up in the generator). Each finder returns stud points. A shared step fits one minimal oriented bounding box, measures θ between the long axis and a stored reference, and paints yellow while ε is unknown. Six finders share that post-step. On a class-S protocol of 25 synthetic dressed 2×4 clouds (no floor; leans of 0°, 0.05°, 0.12°, 0.15°, 0.30°, 1°, and 4° about ±X and ±Y), Open3D, a NumPy region-grow cuboid, and sequential pyRANSAC-3D cuboids met the synthetic stage-0 bars on 25 of 25 scenes. CloudCompare RANSAC shape detection, with plane and cylinder enabled and one box per primitive, returned a lean on 25 of 25 scenes and failed those bars on all 25, because each stud became 4–8 face primitives. A stud-only tune of that plugin (plane only, then a merge of the four long faces) passed the same bars on 25 of 25 scenes and returned one box per scene. Office-vocabulary controls (a BIMStruct3D Point Transformer V3 and an S3DIS RandLA-Net) contain no stud class. A later synthetic fine-tune, head-only for the transformer (about 98 s) and a new 2-class layer for RandLA-Net (about 237 s), placed a stud box on 25 of 25 phase-1 clouds. Those clouds have no floor, and both models labeled every point as stud. Bake-off rank 7 is SAM 2, an image and video mask. On the pass in Section 5.6 the weights were not installed, so no mask metric is reported. Rank 1 was also scored on a synthetic 26-stud room; that room is not a jobsite. No level reading and no measured ε are reported.
+This paper describes that conjunction as implemented in TruePlank, an OpenWall app. The cloud stays in its capture frame (Z-up in the generator). Each finder returns stud points. A shared step fits one minimal oriented bounding box, measures θ between the long axis and a stored reference, and paints yellow while ε is unknown. The live classification (Section 3.4, Table 1a) has four buckets: three geometry-first automated tools (Open3D, a NumPy region-grow cuboid, and sequential pyRANSAC-3D cuboids), two supervised nets (Pointcept / PTv3 and Open3D-ML RandLA-Net), four promptable foundation models that this draft does not score (Point-SAM, SAM3D, OpenMask3D, and Segment3D), and one interactive viewer (CloudCompare). SAM 2 is adjacent to the foundation-model bucket: an image-prompted mask, not a native 3D model. Former bake-off ranks 1–7 in Table 1 are archive labels. On a class-S protocol of 25 synthetic dressed 2×4 clouds (no floor; leans of 0°, 0.05°, 0.12°, 0.15°, 0.30°, 1°, and 4° about ±X and ±Y), the three geometry-first tools met the synthetic stage-0 bars on 25 of 25 scenes. CloudCompare, former rank 3 and now the interactive GUI, was measured with its RANSAC shape detection plugin. With plane and cylinder enabled and one box per primitive, it returned a lean on 25 of 25 scenes and failed those bars on all 25, because each stud became 4–8 face primitives. A stud-only tune of that plugin (plane only, then a merge of the four long faces) passed the same bars on 25 of 25 scenes and returned one box per scene. Those rows stay. They are not a fourth geometry-first automated finder. Office-vocabulary controls (a BIMStruct3D Point Transformer V3 and an S3DIS RandLA-Net) contain no stud class. A later synthetic fine-tune, head-only for the transformer (about 98 s) and a new 2-class layer for RandLA-Net (about 237 s), placed a stud box on 25 of 25 phase-1 clouds. Those clouds have no floor, and both models labeled every point as stud. On the Oz_PC pass in Section 5.6, SAM 2 ran as one mask on one view of a synthetic room and kept no stud box. The earlier curriculum-VM card for that rank is still `blocked_install`. Rank 1 was also scored on that 26-stud room; that room is not a jobsite. No level reading and no measured ε are reported.
 
 ## Keywords
 
@@ -49,7 +49,7 @@ TruePlank’s target, on a bare frame with no drywall and no sheathing, is narro
 
 ε is unknown. The honest production paint is yellow on every stud.
 
-The implementation that exists today is a synthetic bring-up. It covers one classical Open3D stack on curriculum stages 0, 2, and 3 [zhou2018open3d, open3dSoftware], a six-finder pass on one synthetic stud, a 25-scene lean sweep (phase 1, S1), office-vocabulary controls on a GPU workstation, a synthetic fine-tune of those two networks, and a seven-rank pass through a synthetic room (Section 5.6). SAM 2 is bake-off rank 7. On Oz_PC it ran as one mask on one view of that room and kept no stud box. No jobsite cloud is in the repository. Section 5 is entirely class S. The painted-corner work in PRs #23 and #24 is a parallel experiment and is not a stage of this ladder.
+The implementation that exists today is a synthetic bring-up. It covers one classical Open3D stack on curriculum stages 0, 2, and 3 [zhou2018open3d, open3dSoftware], a six-finder pass on one synthetic stud, a 25-scene lean sweep (phase 1, S1), office-vocabulary controls on a GPU workstation, a synthetic fine-tune of those two networks, and a seven-rank pass through a synthetic room (Section 5.6). Those rank numbers are archive labels for the runs. The live split is Section 3.4: three geometry-first automated tools, two supervised nets, four unscored promptable foundation models, and one interactive viewer. SAM 2 is former bake-off rank 7 and is adjacent to the promptable-foundation bucket: image-prompted, not native 3D. On Oz_PC it ran as one mask on one view of that room and kept no stud box. CloudCompare is former rank 3 and is the interactive GUI; its plugin measurements in Section 5 stay and are not counted as geometry-first. No jobsite cloud is in the repository. Section 5 is entirely class S. The painted-corner work in PRs #23 and #24 is a parallel experiment and is not a stage of this ladder.
 
 ### 1.1 Gap
 
@@ -68,7 +68,7 @@ C1–C5 were candidates. The status column is what the repository supports on 20
 | C1 | A light-frame stud can be an instance: one tight box, plates peeled, a merged bay counted as a miss, then a long-axis angle against a stored reference. | **Illustrated on class S.** The seven-scene Open3D bring-up (including a four-stud mini-wall) and the 25-scene S1 sweep produce one box and a θ against generator +Z or a fitted floor normal. No independent count on a real bare frame. |
 | C2 | Lean QA stays yellow until a measured device-plus-algorithm band ε exists. | **Implemented, not measured.** Every production color in the scorecards is yellow. The 0.05° placeholder remains an illustration. |
 | C3 | Floor-normal angle and gravity plumb are different references. Replacing the vector repaints the same boxes. | **Specified, not paired.** Stage 0 and S1 use generator +Z. Stages 2 and 3 use a floor normal. No inclinometer or IMU pair exists. |
-| C4 | Historic-roof cuboid completeness, Schnabel primitives, indoor mIoU, and a single-stud pose error are the wrong score for 2×4 lean. | **Exercised on class S as a disagreement check.** Untuned Schnabel primitives fail the one-stud bar by returning several faces. A plane-only command plus a four-face merge then meets the stage-0 bars on these 25 clouds, and that merge keeps one box per scene. Office histograms have no stud class. A synthetic fine-tune can emit a box and still is not a field lean. The shared-cloud field bake-off is still open. |
+| C4 | Historic-roof cuboid completeness, Schnabel primitives, indoor mIoU, and a single-stud pose error are the wrong score for 2×4 lean. | **Exercised on class S as a disagreement check.** Untuned Schnabel primitives fail the one-stud bar by returning several faces. A plane-only command plus a four-face merge then meets the stage-0 bars on these 25 clouds, and that merge keeps one box per scene. Those CloudCompare rows stay as archive measurements of the interactive GUI (former rank 3, bucket 4). They are not a geometry-first automated finder. Office histograms have no stud class. A synthetic fine-tune can emit a box and still is not a field lean. The shared-cloud field bake-off is still open. |
 | C5 | An end-to-end budget (level, LiDAR, algorithm) can sit beside the paint, with empty terms left empty. | **Form still mostly empty.** Algorithm residuals on the generator are recorded in Section 5. Level and LiDAR terms are unfilled. They are not ε. |
 
 Drop a candidate if a later experiment does not support it.
@@ -85,21 +85,23 @@ These papers motivate rank 2: region growing, then a cuboid, without a remote co
 
 ### 2.2 Primitives and wall objects
 
-Schnabel, Wahl, and Klein detect planes, spheres, cylinders, cones, and tori in unorganized point clouds [schnabel2007ransac]. CloudCompare’s RANSAC Shape Detection plugin implements that family. A rectangular stud is not one of those primitives, and coplanar stud faces can collapse to one plane. Rank 3 exists so that primitive count can be compared with stud count on the same cloud. Section 5 records both the untuned comparison (one box per primitive) and the stud-only tune (plane only, then a merge of the four long faces into one box). The plugin still has no cuboid. The tune is class S on one stud per scene.
+Schnabel, Wahl, and Klein detect planes, spheres, cylinders, cones, and tori in unorganized point clouds [schnabel2007ransac]. CloudCompare’s RANSAC Shape Detection plugin implements that family. A rectangular stud is not one of those primitives, and coplanar stud faces can collapse to one plane. Former bake-off rank 3 was the label for that disagreement check: primitive count compared with stud count on the same cloud. The 2026-09-26 lock places CloudCompare in the interactive GUI bucket, not among the geometry-first automated tools. Section 5 still records both the untuned comparison (one box per primitive) and the stud-only tune (plane only, then a merge of the four long faces into one box). The plugin still has no cuboid. The tune is class S on one stud per scene. It ran. It is not a fourth geometry-first finder.
 
 Bassier and Vergauwen reconstruct BIM wall objects from point clouds without supervision [bassier2020walls]. The engineering plan refuses a merge of remote coplanar patches because studs that share a wall plane would become one instance. A Sensors 2023 DOI written next to the name Bassier in the engineering ranking resolves, on Crossref, to a different paper [ntiyakunze2023sensors]. This draft does not use that DOI as a Bassier citation.
 
 ### 2.3 Learned instance and semantic models
 
-Point Transformer V3 is a scalable point backbone with reported results on indoor and outdoor benchmarks [wu2024ptv3]. Pointcept is the codebase in which that backbone is trained [pointcept]. PointGroup is an instance-segmentation head from the same research line [jiang2020pointgroup]. Rank 4 in this repository is a BIMStruct3D semantic checkpoint used first as a control (no stud class) and then, in a separate experiment, as a frozen backbone with a new 2-class head. PointGroup itself was not run. Published ScanNet or S3DIS figures are left on those benchmarks.
+Point Transformer V3 is a scalable point backbone with reported results on indoor and outdoor benchmarks [wu2024ptv3]. Pointcept is the codebase in which that backbone is trained [pointcept]. PointGroup is an instance-segmentation head from the same research line [jiang2020pointgroup]. Former rank 4 in this repository is a BIMStruct3D semantic checkpoint used first as a control (no stud class) and then, in a separate experiment, as a frozen backbone with a new 2-class head. PointGroup itself was not run. Published ScanNet or S3DIS figures are left on those benchmarks. With former rank 5, this pair is the supervised-learning bucket: both need labels before they name a stud.
 
-Open3D-ML RandLA-Net with S3DIS weights is rank 5, first as a label histogram and then as a 2-class fine-tune. KPConv was not run. Open3D is the library behind the rank-1 baseline [zhou2018open3d, open3dSoftware]. Clustering after the plate peel is DBSCAN [ester1996dbscan]. The DBSCAN pagination in the bibliography is marked unverified until the KDD PDF is checked.
+Open3D-ML RandLA-Net with S3DIS weights is former rank 5, first as a label histogram and then as a 2-class fine-tune. KPConv was not run. Open3D is the library behind the former rank-1 baseline and is geometry-first, not this supervised pair [zhou2018open3d, open3dSoftware]. Clustering after the plate peel is DBSCAN [ester1996dbscan]. The DBSCAN pagination in the bibliography is marked unverified until the KDD PDF is checked.
 
-### 2.4 Cuboid RANSAC and a gated image mask
+### 2.4 Cuboid RANSAC, promptable models, and a gated image mask
 
-The methods shortlist (PR #14) proposed two bake-off adds and ran neither. Sequential cuboid fitting with pyRANSAC-3D v0.7.0 is now rank 6 and has been run on class S [mariga2026pyransac, fischler1981ransac]. Schnabel’s primitive set does not include that cuboid [schnabel2007ransac]. The library fits one cuboid per call. The fair experiment peels plates first, then repeats the fit with inlier removal and a 2×4 section test that is ours. No stud accuracy is published for the library. The numbers in Section 5 are this repository’s generator runs.
+The methods shortlist (PR #14) proposed two bake-off adds and ran neither. Sequential cuboid fitting with pyRANSAC-3D v0.7.0 is former rank 6, bucket 1 (geometry-first automated), and has been run on class S [mariga2026pyransac, fischler1981ransac]. Schnabel’s primitive set does not include that cuboid [schnabel2007ransac]. The library fits one cuboid per call. The fair experiment peels plates first, then repeats the fit with inlier removal and a 2×4 section test that is ours. No stud accuracy is published for the library. The numbers in Section 5 are this repository’s generator runs.
 
-SAM 2 is a promptable segmenter for images and video [ravi2024sam2]. It is bake-off rank 7, separate from ranks 1–6 and separate from the commercial row numbered 7 in the engineering ranking (EdgeWise). The mask applies to a stud cloud only when a camera is already registered: project the points, take the mask, lift the visible points, then the shared box. A multi-view set would union those lifts. A pure LAS or PLY skips the rank. Section 5.6 records a projection and a generator-mask control. The network itself has not been run.
+Four promptable foundation models sit in bucket 3 and are not scored in Section 5: Point-SAM [zhou2025pointsam], SAM3D in the Pointcept SegmentAnything3D sense [yang2023sam3d], OpenMask3D [takmaz2023openmask3d], and Segment3D [huang2024segment3d]. Naming them adds no stud metric. Meta’s generative image-to-mesh model that is also called SAM 3D is a different task and is not the SAM3D entry above.
+
+SAM 2 is a promptable segmenter for images and video [ravi2024sam2]. It is former bake-off rank 7, adjacent to bucket 3 because it is image-prompted and not a native 3D model, and separate from the commercial row numbered 7 in the engineering ranking (EdgeWise). The mask applies to a stud cloud only when a camera is already registered: project the points, take the mask, lift the visible points, then the shared box. A multi-view set would union those lifts. A pure LAS or PLY skips the rank. Section 5.6 records a projection, a generator-mask control, and one Oz_PC view that kept no stud box. The curriculum-VM card remains `blocked_install`. That work stays. SAM 2 is not one of the four foundation models.
 
 The same shortlist declines YOLO as the stud finder [jocher2023ultralytics]. Where an image detector sits in front of a 6D pose, Xie and Alwisy’s WFC README, as recorded in that note and not re-tabulated from the journal PDF here, gives their pose method a mean rotation of 1.43° and a median of 1.00°, with 73.61% of samples inside 20 mm and 2° [xie2026wfc]. That bar is about sixteen times τ. It is related context, not a wall-lean result.
 
@@ -117,10 +119,10 @@ Parameters, the blank error budget, and the statement that the names Hypothetica
 
 ### 3.1 Pipeline
 
-One cloud, then five steps. Ranks 1–6 differ in the instance step. Rank 7, if a mask exists, hands points to the same box and has not done so. The box, the angle, and the paint are shared. The frame is Z-up. The cloud is not rotated onto the floor.
+One cloud, then five steps. The three geometry-first tools differ in the instance step. The two supervised nets do too, once a stud class exists. CloudCompare, the interactive GUI, was measured with the same post-step and is not one of those automated finders. SAM 2, if a mask exists, hands points to the same box. The box, the angle, and the paint are shared. The frame is Z-up. The cloud is not rotated onto the floor.
 
 1. **Peel.** Remove near-horizontal slabs (floor and plates). Bands within one plate thickness go together so a plate’s vertical side faces do not bridge bays. Vertical stud faces stay.
-2. **Instance.** On the remainder, form one point set per physical stud. The seven bake-off ranks are listed in Table 1. A merged bay is a miss. Rank 7 is an image mask and is empty until a view exists.
+2. **Instance.** On the remainder, form one point set per physical stud. Live buckets are Table 1a. Former bake-off ranks are Table 1. A merged bay is a miss. Former rank 7 is an image mask and is empty until a view exists.
 3. **Box.** Fit one minimal oriented bounding box. Keep clusters whose section is near a dressed 2×4 or 2×6, whose length is between 1.2 m and 3.3 m, and whose long axis is within 20° of the reference.
 4. **Angle.** θ is the angle between that long axis and the stored reference. Zero means aligned with the reference. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. A later field gravity vector can replace the reference and repaint the same boxes. Class F may still use a SKIL when wood readings exist. That protocol is not the synthetic reference.
 5. **Paint.** Green when θ + ε ≤ τ, red when θ − ε > τ, yellow when the interval overlaps τ or when ε is unknown. ε is unknown, so production paint is yellow.
@@ -137,19 +139,38 @@ Every contender writes one scorecard: detection, geometry, angle, paint, and cos
 
 Stage-0 bars used as bring-up checks, not as a field acceptance test: precision = 1 and recall = 1, section error ≤ 10 mm, length error ≤ 25 mm, absolute angle error ≤ 0.05°, production paint yellow. `control` means the forward pass ran and those bars were not scored. `blocked_install` means the cloud was built and the stack did not segment it.
 
-### 3.4 Table 1. Seven bake-off ranks
+### 3.4 Four-way tool classification
+
+Oz locked this split on 2026-09-26 (`docs/research/27-four-way-tool-classification.md`). It is the live framing. Table 1 remains the former bake-off rank ledger. Former rank 3 is CloudCompare, now bucket 4. This section adds no measurement.
+
+The bake-off now has three geometry-first automated tools, two supervised nets, four foundation models, and one interactive viewer.
+
+**Table 1a. Four-way classification (2026-09-26).** Members only. A tool that Section 5 does not already score has no stud metric here.
+
+| Bucket | Kind | Members | Former label, where one exists |
+| --- | --- | --- | --- |
+| 1 | Geometry-first automated. RANSAC or classical geometry. No training. | Open3D. PCL / NumPy region-grow cuboid. pyRANSAC-3D. | Ranks 1, 2, and 6 |
+| 2 | Supervised learning. Needs labeled training. | Pointcept / PTv3. Open3D-ML RandLA-Net. | Ranks 4 and 5 |
+| 3 | Promptable foundation models. Transformer, no labels, GPU. | Point-SAM [zhou2025pointsam]. SAM3D, Pointcept SegmentAnything3D [yang2023sam3d]. OpenMask3D [takmaz2023openmask3d]. Segment3D [huang2024segment3d]. | None. Not scored in Section 5. |
+| 4 | Interactive GUI. Manual edit and visualization. Not an automated finder. | CloudCompare. | Former rank 3 |
+
+SAM 2 [ravi2024sam2] is adjacent to bucket 3. It is an image and video mask, lifted when a camera is registered. It is not a native 3D foundation model, and the rank-7 cards are not deleted. Former rank 7 is its archive label. Section 5.6 is that measurement.
+
+### 3.5 Table 1. Former bake-off ranks (archive labels)
+
+Table 1 keeps the rank numbers used when the runs were written. It is not the live classification. Table 1a is. Former bake-off rank 3 = CloudCompare, now bucket 4. The cells below are the 2026-09-25 roles. They are not a new count.
 
 | Rank | Stack | Role on 2026-09-25 | Where it was run |
 | --- | --- | --- | --- |
 | 1 | Refined Open3D: horizontal peel, DBSCAN (`eps` 25 mm, `min_points` 20), minimal oriented box [zhou2018open3d, ester1996dbscan] | Classical stud prior | Class S: stages 0, 2, 3, one-stud, and phase-1 S1 (25/25 stage-0 bars) |
 | 2 | Region growing, then a cuboid in the Özkan / Pöchtrager sense, no remote coplanar merge, axis not forced to Z [rusu2011pcl, ozkan2022timber] | Classical. On S1 the scorecard is a NumPy port (`native_pcl_region_growing` false). One Linux stud used PCL 1.14 | Class S: one-stud and S1 (25/25). Not a libpcl measurement on the 25-scene matrix |
-| 3 | CloudCompare RANSAC shape detection, Schnabel primitives [schnabel2007ransac]. Untuned: plane and cylinder, one box per primitive. Tuned: plane only, then a merge of the four long faces | Disagreement check, then a one-stud parameter set. The plugin has no cuboid | Class S. Linux one-stud: fail. Oz_PC untuned S1 (PR #19): lean on 25/25, stage-0 bars 0/25, 4–8 boxes. Oz_PC tuned S1 (PR #22): stage-0 bars 25/25, one box per scene |
+| 3 | CloudCompare RANSAC shape detection, Schnabel primitives [schnabel2007ransac]. Untuned: plane and cylinder, one box per primitive. Tuned: plane only, then a merge of the four long faces | Disagreement check, then a one-stud parameter set. The plugin has no cuboid. **Now bucket 4 (interactive GUI), not geometry-first.** | Class S. Linux one-stud: fail. Oz_PC untuned S1 (PR #19): lean on 25/25, stage-0 bars 0/25, 4–8 boxes. Oz_PC tuned S1 (PR #22): stage-0 bars 25/25, one box per scene |
 | 4 | Pointcept / BIMStruct3D PTv3 [wu2024ptv3, pointcept] | Control histogram, then a synthetic 2-class head on a frozen backbone. PointGroup not run | Class S control on Oz_PC (no stud class). Class S fine-tune in Section 5.3 |
 | 5 | Open3D-ML RandLA-Net, S3DIS weights, then a 2-class layer [zhou2018open3d] | Control histogram, then a synthetic fine-tune. KPConv not run | Same split as rank 4 |
 | 6 | pyRANSAC-3D v0.7.0 sequential cuboid after the rank-1 peel [mariga2026pyransac] | Rectangular primitive rank 3 does not have | Class S: one-stud and S1 (25/25). On the synthetic room the first cuboid wall-swallows (Section 5.6) |
 | 7 | SAM 2 image/video mask, lifted onto points when a camera is registered [ravi2024sam2] | Separate test. Not a point-cloud backbone. Not the commercial EdgeWise row | Class S. One Oz_PC view of the synthetic room kept no stud box (Section 5.6). The earlier curriculum-VM card is still `blocked_install` |
 
-### 3.5 Table 2. Scorecard fields
+### 3.6 Table 2. Scorecard fields
 
 | Section | Field | Definition used in this repo |
 | --- | --- | --- |
@@ -162,7 +183,7 @@ Stage-0 bars used as bring-up checks, not as a field acceptance test: precision 
 | Paint | Hypothetical colors | Colors if a placeholder ε of 0.05° were locked. Not a QA call |
 | — | `device_eps_deg` | Empty until a measured band exists |
 
-### 3.6 Error budget
+### 3.7 Error budget
 
 Three terms are reserved. Level and LiDAR are unfilled. Algorithm cells below are class S and are not ε.
 
@@ -216,7 +237,7 @@ Stage 3 length is short because the plate peel removes a thin band at the stud e
 
 ### 5.2 Phase 1 S1, 25 scenes × six finders (2026-09-25)
 
-**Table 4. Stage-0 bar counts on the 25-scene matrix (class S).** Source: the counts table in `docs/research/19-phase1-s1-lean-sweep.md` after the PR #19 rank-3 refresh. Ranges in the last column are the minimum and maximum of the 25 published scorecard rows in that note, not a new measurement.
+**Table 4. Stage-0 bar counts on the 25-scene matrix (class S).** Source: the counts table in `docs/research/19-phase1-s1-lean-sweep.md` after the PR #19 rank-3 refresh. Ranges in the last column are the minimum and maximum of the 25 published scorecard rows in that note, not a new measurement. Rank numbers are archive labels. Former rank 3 is CloudCompare, now bucket 4 (interactive GUI), and is not recounted as geometry-first.
 
 | Rank | Role | Pass | Fail | Control | What the 25 rows show |
 | --- | --- | ---: | ---: | ---: | --- |
@@ -270,7 +291,7 @@ Table 8 is the phase-1 S1 census in the scorecard sections from `docs/research/1
 
 Sources: `docs/research/19-phase1-s1-lean-sweep.md` and `artifacts/scorecards/phase1_s1/` for the six-finder sweep (PR #18 counts, PR #19 rank-3 measurement); `docs/research/20-synthetic-stud-finetune.md` and `artifacts/scorecards/phase1_s1_finetune/` for the rank 4 and 5 fine-tune (PR #20); `docs/research/21-cloudcompare-stud-param-tune.md` and `artifacts/scorecards/phase1_s1_cc_tuned/` on branch `cursor/cc-stud-param-tune-78b7` (PR #22) for the tuned CloudCompare row.
 
-**Table 8. Final phase-1 S1 comparison (class S).** Same 25 clouds. Hardware for the whole table: Oz_PC, Windows 11, Python 3.12.10. Classical rows are CPU. Ranks 4 and 5 use an NVIDIA GeForce RTX 4080 SUPER, driver 610.62, 16,376 MiB.
+**Table 8. Final phase-1 S1 comparison (class S).** Same 25 clouds. Hardware for the whole table: Oz_PC, Windows 11, Python 3.12.10. Geometry-first rows and the CloudCompare rows are CPU. Ranks 4 and 5 (supervised) use an NVIDIA GeForce RTX 4080 SUPER, driver 610.62, 16,376 MiB. Former rank 3 = CloudCompare, now bucket 4. Both CloudCompare rows stay. They are archive measurements of the interactive tool.
 
 | Row | Detection | Geometry | Angle | Paint | Cost |
 | --- | --- | --- | --- | --- | --- |
@@ -311,7 +332,7 @@ Stage 0 and the original stage-2 and stage-3 Open3D cards still meet the bring-u
 
 Probes, same rank, not gates. A four-stud wall at 2 mm noise has recall 0.25 (one box, section error 14.88 mm). Four DBSCAN clusters were present, so the bays did not merge; three failed the 15 mm section gate. An S1b bow of 6.35 mm (ends held, midspan offset) keeps one box and misses the 10 mm section bar (13.35 mm at lean 0°, chord MAE 0.00958°; 11.65 mm at chord lean 0.30°, MAE 0.00684°). A 19.05 mm bow returns no box: one cluster, minimal extents 45.9 × 113.2 × 2442.9 mm, dropped by the section gate. A three-stud wall with the middle stud bowed 6.35 mm keeps three boxes and a section error of 11.54 mm. The straight box is not a bow report.
 
-**Table 10. Synthetic room, ranks 1–7 (class S).** Scene `stage5_room_bay_lot62_look`, seed 62, 532,301 points, 26 dressed 2×4s, 6 mm stud spacing, 1 mm noise, corner air gap 0.10 m, no door-height header. Not the Lot 62 Polycam loft. Oz_PC, RTX 4080 SUPER. A lean scored on the full cloud uses the fitted floor normal. ε is unlocked. A day-table pass means one box per generator stud and yellow paint. Empty cells were not measured.
+**Table 10. Synthetic room, former ranks 1–7 (class S).** Scene `stage5_room_bay_lot62_look`, seed 62, 532,301 points, 26 dressed 2×4s, 6 mm stud spacing, 1 mm noise, corner air gap 0.10 m, no door-height header. Not the Lot 62 Polycam loft. Oz_PC, RTX 4080 SUPER. A lean scored on the full cloud uses the fitted floor normal. ε is unlocked. A day-table pass means one box per generator stud and yellow paint. Empty cells were not measured. Former rank 3 = CloudCompare, now bucket 4. The row is kept. It is not a geometry-first automated finder. Rank 7 is SAM 2, adjacent and image-prompted.
 
 | Rank | Stack | Day row | P / R | Section (mm) | Length (mm) | MAE (°) | Paint | Runtime (s) |
 | --- | --- | --- | --- | ---: | ---: | ---: | --- | ---: |
@@ -339,7 +360,7 @@ The synthetic passes show that the peel, a density cluster or a cuboid fit, the 
 
 Section residuals near 8 mm are large next to a tip offset of about 5 mm at τ over 8 ft, and they are still a statement about Gaussian tails on a complete surface. Length bias on the mini-wall is mostly the peeler. Angle errors of a few thousandths of a degree, and at most 0.01569° for rank 2 on the published S1 rows, sit under τ and under the 0.05° synthetic bar. They are errors against the generator. They are not a prediction of error under beam divergence, dropout, or an unleveled instrument.
 
-Rank 3, untuned, is the useful negative. RANSAC shape detection does return an angle — from 0.00123° to 0.08872° on the 25 rows — and still fails the stud definition, because a 2×4 is several planes. Recall stays 1 when one of those planes lands within 0.15 m of the stud center. Precision between 0.125 and 0.25 is the miss. Percent in band stays 100 on that row because the matched primitive sits inside τ, which is a different bar from stage 0.
+Former rank 3, untuned, is the useful negative, and it is an interactive-GUI measurement rather than a geometry-first finder. RANSAC shape detection does return an angle — from 0.00123° to 0.08872° on the 25 rows — and still fails the stud definition, because a 2×4 is several planes. Recall stays 1 when one of those planes lands within 0.15 m of the stud center. Precision between 0.125 and 0.25 is the miss. Percent in band stays 100 on that row because the matched primitive sits inside τ, which is a different bar from stage 0.
 
 The tuned command changes the question the plugin is asked. Plane only, a tighter in-plane cell, support 800, and a merge of the four long faces produce one box and a stage-0 pass on 25 of 25 scenes. Section error moves into the same band as the Open3D boxes (7.65–7.77 mm). Angle error is 0.00079–0.00861°. Length error on those cards is 0.02–0.51 mm. The scorecard’s own failure note still applies: the merge keeps one box, so a second stud in the same cloud would be dropped. Doc 21 says this is not a multi-stud segmenter. The plugin still has no cuboid. The pass is class S on one dressed stud.
 
@@ -349,15 +370,15 @@ Yellow paint is the result that should survive contact with a real cloud. A plac
 
 The validity threats in [`THREATS_TO_VALIDITY.md`](../THREATS_TO_VALIDITY.md) remain part of the discussion: construct (floor versus gravity, τ versus the 0.15° alternate versus code), internal (generator circularity, one threshold loop, peel shortening, NumPy region growing standing in for PCL, fine-tune batch-norm statistics), and external (no openings, no sensor model, no public LOT-62 cloud). The citation collision on the Bassier DOI is a documentation threat, and it is corrected in the bibliography.
 
-The curriculum continuation does not change that reading. Extra stage-2 leans and 3-stud and 5-stud walls still pass the same bars at 1 mm noise. At 2 mm noise the section gate drops three of four studs. A bow widens the straight box or, at 19.05 mm, removes it. The synthetic room shows that rank 1 can return one yellow box per stud when the generator keeps a corner gap and omits a header. The other six ranks on that same cloud do not: the NumPy cuboid glues the frame through the plates, untuned RANSAC-SD splits faces, the office-vocabulary networks name no stud, pyRANSAC-3D wall-swallows, and one SAM 2 mask does not become 26 boxes. It does not show a touching corner or a real Lot 62 cloud.
+The curriculum continuation does not change that reading. Extra stage-2 leans and 3-stud and 5-stud walls still pass the same bars at 1 mm noise. At 2 mm noise the section gate drops three of four studs. A bow widens the straight box or, at 19.05 mm, removes it. The synthetic room shows that former rank 1 (geometry-first) can return one yellow box per stud when the generator keeps a corner gap and omits a header. The other six archive ranks on that same cloud do not: the NumPy cuboid (geometry-first) glues the frame through the plates, untuned RANSAC-SD (interactive GUI, former rank 3) splits faces, the office-vocabulary networks (supervised) name no stud, pyRANSAC-3D (geometry-first) wall-swallows, and one SAM 2 mask (adjacent, image-prompted) does not become 26 boxes. It does not show a touching corner or a real Lot 62 cloud. Under the four-way lock those six rows are two geometry-first misses, one interactive-plugin split, two supervised controls, and one adjacent image mask. They are not six more geometry-first finders.
 
 What would change the claim is class F: one real stud, the finders on that cloud, a level protocol with the resolution written down, and ε still unlocked. PRs #23 and #24 do not supply that row. They remain a parallel corner experiment.
 
 ## 7. Conclusion
 
-TruePlank, an app in the OpenWall suite, instance-segments vertical studs, fits a minimal oriented box, and reports lean against an explicit Z-up reference. The paint rule refuses green and red while the device band is unknown. On synthetic dressed studs, Open3D, a NumPy region-grow cuboid, pyRANSAC-3D, and a stud-only CloudCompare tune (one merged box per scene) meet the stage-0 bars on a 25-scene lean sweep. The untuned CloudCompare command measures a lean and fails the one-stud bar by splitting the member into faces. Office-vocabulary networks do not name a stud until they are fine-tuned, and a synthetic fine-tune that labels an entire floorless cloud as stud is a bring-up, not a field detector.
+TruePlank, an app in the OpenWall suite, instance-segments vertical studs, fits a minimal oriented box, and reports lean against an explicit Z-up reference. The paint rule refuses green and red while the device band is unknown. On synthetic dressed studs, the three geometry-first automated tools — Open3D, a NumPy region-grow cuboid, and pyRANSAC-3D — meet the stage-0 bars on a 25-scene lean sweep. CloudCompare is the interactive GUI bucket (former rank 3). Its untuned command measures a lean and fails the one-stud bar by splitting the member into faces. Its stud-only tune (one merged box per scene) also met those bars on 25 of 25 scenes. That tune ran. It is an archive measurement of the interactive tool, not a fourth geometry-first finder. The two supervised nets do not name a stud until they are fine-tuned, and a synthetic fine-tune that labels an entire floorless cloud as stud is a bring-up, not a field detector. The four promptable foundation models are named and not scored.
 
-Future work, in the order the design plan already uses: a real stud and a level (ε still unlocked, so the color stays yellow); a bow report that is not a straight box (S1b was only probed); a multi-stud wall with plates through the tuned CloudCompare merge, which still does not claim that scene; native PCL if the binary is built; SAM 2 on a capture that already has a registered image. The one synthetic room view did not keep a stud box. Stages 4, 6, and 7 wait on real lumber. The synthetic room is not those stages. No class-F number is implied by the tables above.
+Future work, in the order the design plan already uses: a real stud and a level (ε still unlocked, so the color stays yellow); a bow report that is not a straight box (S1b was only probed); a multi-stud wall with plates through the tuned CloudCompare merge, which still does not claim that scene; native PCL if the binary is built; SAM 2, still the adjacent image mask, on a capture that already has a registered image. The one synthetic room view did not keep a stud box. The four foundation models wait on a prompt experiment that this draft does not contain. Stages 4, 6, and 7 wait on real lumber. The synthetic room is not those stages. No class-F number is implied by the tables above.
 
 ## Data and code
 
@@ -369,6 +390,8 @@ Repository code: `src/openwall_stud/`. Scorecards on this branch: `artifacts/sco
 - `docs/research/19-phase1-s1-lean-sweep.md`
 - `docs/research/20-synthetic-stud-finetune.md`
 - `docs/research/24-sam2-rank7-and-curriculum.md`
+- `docs/research/26-point-sam-and-3d-peers.md`
+- `docs/research/27-four-way-tool-classification.md` (live buckets; former rank 3 = CloudCompare, now bucket 4)
 - Design notes: `docs/research/12-stud-seg-design-plan.md`, `docs/research/11-stud-segmentation-algorithm-ranking.md`, `docs/tolerances.md`
 
 Curriculum scorecards from Section 5.6: `artifacts/scorecards/curriculum/`. The false-color projection is `sam2_projection_stage0_partids.png` in that directory. Its colors are part ids, not the QA paint.
@@ -385,7 +408,7 @@ Jobsite and residential scans can identify people and addresses. None are includ
 
 ## References
 
-Markdown list keyed to [`references.bib`](../references.bib). A later Pandoc pass can resolve the same keys (`make pdf` in the paper directory, when pandoc is installed). Entries marked **UNVERIFIED** must be checked before camera-ready. This revision did not add keys. DOI collisions are footnoted under Bassier.
+Markdown list keyed to [`references.bib`](../references.bib). A later Pandoc pass can resolve the same keys (`make pdf` in the paper directory, when pandoc is installed). Entries marked **UNVERIFIED** must be checked before camera-ready. The four foundation-model keys were already in `references.bib`. This framing revision did not add bibliography keys. DOI collisions are footnoted under Bassier.
 
 ### Timber cuboids and region growing
 
@@ -409,7 +432,7 @@ Markdown list keyed to [`references.bib`](../references.bib). A later Pandoc pas
 
 **ester1996dbscan.** Ester, M., Kriegel, H.-P., Sander, J., and Xu, X. (1996). A density-based algorithm for discovering clusters in large spatial databases with noise. *Proceedings of the Second International Conference on Knowledge Discovery and Data Mining (KDD)*, 226–231. AAAI Press. **UNVERIFIED PAGINATION.**
 
-**mariga2026pyransac.** Mariga, L. (2026). pyRANSAC-3D (version 0.7.0) [software]. Zenodo. https://doi.org/10.5281/zenodo.21988437 — Run on class S in this repository (rank 6). No published stud accuracy for the library.
+**mariga2026pyransac.** Mariga, L. (2026). pyRANSAC-3D (version 0.7.0) [software]. Zenodo. https://doi.org/10.5281/zenodo.21988437 — Run on class S in this repository (former rank 6, bucket 1). No published stud accuracy for the library.
 
 **bassier2020walls.** Bassier, M., and Vergauwen, M. (2020). Unsupervised reconstruction of Building Information Modeling wall objects from point cloud data. *Automation in Construction*, 120, 103338. https://doi.org/10.1016/j.autcon.2020.103338
 
@@ -427,7 +450,15 @@ Markdown list keyed to [`references.bib`](../references.bib). A later Pandoc pas
 
 **open3dSoftware.** Open3D authors. Open3D (version 0.20.0) [software]. https://github.com/isl-org/Open3D
 
-**ravi2024sam2.** Ravi, N., Gabeur, V., Hu, Y.-T., Hu, R., Ryali, C., Ma, T., Khedr, H., Rädle, R., Rolland, C., Gustafson, L., Mintun, E., Pan, J., Alwala, K. V., Carion, N., Wu, C.-Y., Girshick, R., Dollár, P., and Feichtenhofer, C. (2024). SAM 2: Segment anything in images and videos. arXiv:2408.00714. https://arxiv.org/abs/2408.00714 — Bake-off rank 7. Projection scaffold only in this draft. Weights not run.
+**ravi2024sam2.** Ravi, N., Gabeur, V., Hu, Y.-T., Hu, R., Ryali, C., Ma, T., Khedr, H., Rädle, R., Rolland, C., Gustafson, L., Mintun, E., Pan, J., Alwala, K. V., Carion, N., Wu, C.-Y., Girshick, R., Dollár, P., and Feichtenhofer, C. (2024). SAM 2: Segment anything in images and videos. arXiv:2408.00714. https://arxiv.org/abs/2408.00714 — Former bake-off rank 7. Adjacent to bucket 3: image-prompted, not native 3D. Section 5.6 records one Oz_PC view that kept no stud box. The curriculum-VM card remains `blocked_install`.
+
+**zhou2025pointsam.** Zhou, Y., Gu, J., Chiang, T. Y., Xiang, F., and Su, H. (2025). Point-SAM: Promptable 3D segmentation model for point clouds. *The Thirteenth International Conference on Learning Representations*. https://openreview.net/forum?id=yXCTDhZDh6 — Bucket 3. Named in Table 1a. Not scored in Section 5. Bibliography entry already in `references.bib`.
+
+**yang2023sam3d.** Yang, Y., Wu, X., He, T., Zhao, H., and Liu, X. (2023). SAM3D: Segment anything in 3D scenes. arXiv:2306.03908. https://arxiv.org/abs/2306.03908 — Pointcept SegmentAnything3D. Bucket 3. Not scored in Section 5. Not Meta’s generative image-to-mesh model.
+
+**takmaz2023openmask3d.** Takmaz, A., Fedele, E., Sumner, R. W., Pollefeys, M., Tombari, F., and Engelmann, F. (2023). OpenMask3D: Open-vocabulary 3D instance segmentation. *Advances in Neural Information Processing Systems 36*, 68367–68390. https://doi.org/10.52202/075280-2989 — Bucket 3. Not scored in Section 5.
+
+**huang2024segment3d.** Huang, R., Peng, S., Takmaz, A., Tombari, F., Pollefeys, M., Song, S., Huang, G., and Engelmann, F. (2024). Segment3D: Learning fine-grained class-agnostic 3D segmentation without manual labels. *Computer Vision — ECCV 2024*, 278–295. https://doi.org/10.1007/978-3-031-72754-2_16 — Bucket 3. Not scored in Section 5.
 
 ### Wood-stud pose and the image detector in front of it
 

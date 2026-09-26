@@ -9,6 +9,8 @@ Status date: **2026-09-25**.
 1. Scan-to-BIM lean measurement for light-frame wood studs: instance boxes, a finish tolerance, and a withheld pass/fail.
 2. Plumbness of bare wood studs from LiDAR point clouds: seven bake-off ranks, an oriented box, and a yellow paint rule. Rank 7 (SAM 2) is scaffolded and not run as a mask.
 
+2026-09-26: the live framing is the four-way lock in `docs/research/27-four-way-tool-classification.md` and Section 3.4 of the draft. Alternate title 2’s “seven ranks” wording is the earlier shelf line. Former rank 3 is CloudCompare, now the interactive GUI bucket. Section 5 numbers are unchanged. Section 5.6 records the Oz_PC SAM 2 view that kept no stud box.
+
 | Name | What it means here |
 | --- | --- |
 | **OpenWall** | The suite. |
@@ -26,7 +28,7 @@ Pandoc metadata: [`draft/header.yaml`](draft/header.yaml). Optional PDF note: [`
 | File | Role |
 | --- | --- |
 | [`draft/paper.md`](draft/paper.md) | Article skeleton: abstract through references |
-| [`METHODS.md`](METHODS.md) | Pipeline, seven bake-off ranks, τ and the 0.15° alternate, blank error budget |
+| [`METHODS.md`](METHODS.md) | Pipeline, former seven bake-off ranks (archive labels), τ and the 0.15° alternate, blank error budget. Live buckets are Section 3.4 of the draft. |
 | [`EXPERIMENTS.md`](EXPERIMENTS.md) | Which class-S runs exist |
 | [`RELATED_WORK.md`](RELATED_WORK.md) | How each bib key may be used |
 | [`references.bib`](references.bib) | Keys. Unverified entries stay marked |

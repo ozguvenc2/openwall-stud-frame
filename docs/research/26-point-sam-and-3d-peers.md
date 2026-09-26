@@ -6,6 +6,8 @@ Records live in [references.bib](../../papers/trueplank-stud-lean-qa/references.
 
 The order is the fit Oz asked to record for a residential wood-stud cloud (XYZ, with RGB when the capture has it) on that one GPU. It is a reading of input, prompt, and license. It is not a measured ranking.
 
+**Reclassification (2026-09-26).** Live buckets are [27-four-way-tool-classification.md](27-four-way-tool-classification.md). Orders 1–4 below are bucket 3, the four promptable foundation models (transformer, no labels, GPU): Point-SAM, SAM3D (Pointcept SegmentAnything3D), OpenMask3D, and Segment3D. They have no scorecard here. Point Transformer V3 stays bucket 2 (supervised; former bake-off rank 4). SAM 2 stays adjacent to bucket 3: image-prompted, not native 3D, former bake-off rank 7. Mask3D, SoftGroup, and ISBNet stay outside the four foundation models. CloudCompare is not in this note; it is bucket 4 (interactive GUI), former bake-off rank 3.
+
 ## Fit order
 
 | Order | Method | Key | License | Input | Promptable | GPU one-liner |
@@ -18,7 +20,7 @@ The order is the fit Oz asked to record for a residential wood-stud cloud (XYZ, 
 | 5 | SoftGroup | `vu2022softgroup` | MIT (`thangvubk/SoftGroup`). | Point cloud. Closed-set semantic grouping, then refinement. | Closed-set. | No 4080 SUPER figure on the repo API. |
 | 5 | ISBNet | `ngo2023isbnet` | BSD-3-Clause (`VinAIResearch/ISBNet`). | Point cloud. The abstract uses axis-aligned boxes inside the mask decoder. | Closed-set. | No 4080 SUPER figure on the repo API. |
 
-Point Transformer V3 (`wu2024ptv3`) stays the backbone already wired as bake-off rank 4 in [11-stud-segmentation-algorithm-ranking.md](11-stud-segmentation-algorithm-ranking.md), through Pointcept (`pointcept`). That row is a feature backbone. The promptable model in this table is Point-SAM. SAM 2 (`ravi2024sam2`) stays bake-off rank 7: an image and video mask, lifted when a camera is already registered ([24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md), [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md)).
+Point Transformer V3 (`wu2024ptv3`) stays the backbone already wired as former bake-off rank 4 in [11-stud-segmentation-algorithm-ranking.md](11-stud-segmentation-algorithm-ranking.md), through Pointcept (`pointcept`). That row is bucket 2 (supervised learning), a feature backbone, not one of the four foundation models. The promptable model in this table is Point-SAM. SAM 2 (`ravi2024sam2`) stays former bake-off rank 7 and stays adjacent to bucket 3: an image and video mask, lifted when a camera is already registered, not a native 3D model ([24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md), [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md)).
 
 Order 1 is the peer that takes a cloud and a point prompt. Orders 2 and 3 need posed frames, the same gate a pure LAS or PLY already applies to SAM 2. Order 4 is a trained class-agnostic 3D model; its code URL was not on the page fetched. Order 5 is the closed-set indoor instance family. A stud class is absent from those vocabularies in the same way the BIMStruct3D control has no stud class.
 

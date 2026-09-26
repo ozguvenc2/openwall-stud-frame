@@ -8,6 +8,8 @@ File-number note: unmerged PR [#6](https://github.com/ozguvenc2/openwall-stud-fr
 
 The stage ladder, capture protocol, pass bars, and the runnable synthetic Open3D path are in [12-stud-seg-design-plan.md](12-stud-seg-design-plan.md). The master-table order below is unchanged. Figures for the five contenders are in [images/algo-contenders/INDEX.md](images/algo-contenders/INDEX.md). Bake-off rank 7 (SAM 2) and the synthetic-room continuation are in [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md).
 
+**Reclassification (2026-09-26).** Live buckets are [27-four-way-tool-classification.md](27-four-way-tool-classification.md). The master table and the 2026-09-24 top five stay as archive order. Former bake-off rank 3 is CloudCompare, now bucket 4 (interactive GUI), and is not a geometry-first automated finder. Geometry-first automated is Open3D, the PCL / NumPy region-grow cuboid, and pyRANSAC-3D only.
+
 Nothing in this pass was downloaded. No checkpoint, LAS, or PLY was committed.
 
 ## Pipeline this ranking serves
@@ -80,27 +82,42 @@ The paint script’s own failure note, with the tildes it prints: about **12 upr
 
 Open3D 0.20 has no region growing and no separate Euclidean-cluster call (doc 08; `cluster_dbscan` is the density cluster). `detect_planar_patches` returns one box per **face**. PR #5 correctly avoids it for members.
 
-## Top 5 to run on the same clouds
+## Live four-way framing
 
-Run these five. Same clouds, same floor normal, same τ, same ε once it exists, same outputs: stud id, tight box, θ, interval, color. Do not download the ~223 GB IntCDC set (doc 06). A local bare-frame scan is the acceptance cloud. One already-local IntCDC preview, if it is on disk, is only the negative control above. WFC-Dataset is one stud and a box check, not a wall.
+Same clouds, same floor normal, same τ, same ε once it exists, same outputs: stud id, tight box, θ, interval, color. Do not download the ~223 GB IntCDC set (doc 06). A local bare-frame scan is the acceptance cloud. One already-local IntCDC preview, if it is on disk, is only the negative control above. WFC-Dataset is one stud and a box check, not a wall.
 
-| Rank | Stack | Why it is in the five |
+The live split is doc 27. Counts: three geometry-first automated tools, two supervised nets, four foundation models, and one interactive viewer.
+
+| Bucket | Kind | Members | Former bake-off label |
+| --- | --- | --- | --- |
+| 1 | Geometry-first automated. RANSAC or classical geometry. No training. | Open3D. PCL / NumPy region-grow cuboid. pyRANSAC-3D. | Ranks 1, 2, and 6 |
+| 2 | Supervised learning. Needs labeled training. | Pointcept / PTv3. Open3D-ML RandLA-Net. | Ranks 4 and 5 |
+| 3 | Promptable foundation models. Transformer, no labels, GPU. | Point-SAM. SAM3D (Pointcept SegmentAnything3D). OpenMask3D. Segment3D. Not scored here. | None. See doc 26. |
+| 4 | Interactive GUI. Manual edit and viz. Not an automated finder. | CloudCompare. | Former rank 3 |
+
+SAM 2 (former bake-off rank 7) is adjacent to bucket 3: an image-prompted mask, lifted when a camera is already registered. It is not one of the four native 3D foundation models. Docs 24 and 25 stay.
+
+### Archive shortlist (2026-09-24 top five)
+
+This table is the shortlist as written on 2026-09-24. It is not the live classification. CloudCompare was in that five so a second classical library could disagree with ranks 1–2. That reason is retired. Former bake-off rank 3 = CloudCompare, now bucket 4.
+
+| Former rank | Stack | Why it was in the five on 2026-09-24 |
 | --- | --- | --- |
 | 1 | Refined Open3D stud prior | The geometry of a bare stud wall is separated vertical sticks once the plates are gone. This is the shortest path to a floor-relative box and a yellow paint. The IntCDC recipe is the thing we change, not the library we drop. |
 | 2 | PCL region-grow, then a cuboid (Özkan / Pöchtrager rules) | The timber papers that actually build member cuboids. Use it where DBSCAN splits a stud into faces or merges a stud into a plate. Do **not** add Bassier’s remote coplanar merge: that glues neighboring studs. |
-| 3 | CloudCompare RANSAC-SD through CloudComPy | An independent primitive fitter (Schnabel). Planes and cylinders, not a 2×4 instance model. Kept so a second classical library can disagree with ranks 1–2 on the same cloud. |
+| 3 | CloudCompare RANSAC-SD through CloudComPy | An independent primitive fitter (Schnabel). Planes and cylinders, not a 2×4 instance model. Kept, on that date, so a second classical library could disagree with ranks 1–2 on the same cloud. **Now bucket 4.** Not a geometry-first automated finder. |
 | 4 | Pointcept PTv3 / PointGroup | The fine-tune path after we label studs on these clouds. The only public construction checkpoint found (BIMStruct3D) has no stud class; run it once as a negative control, not as the model. |
 | 5 | Open3D-ML RandLA-Net or KPConv, S3DIS weights | Office “beam” and “column” vocabulary. Run once so the S3DIS mIoU is not mistaken for stud accuracy. Not a production segmenter for this frame. |
 
-Ranks 6–12 in the master table below are not in the original five-stack bake-off.
+Ranks 6–12 in the master table below are not in that original five-stack shortlist. The master table itself is the 2026-09-24 engineering order. Read it with doc 27. Do not recount CloudCompare as geometry-first because it still occupies row 3.
 
-Bake-off **rank 6** is a later add, not that master-table row. Doc 17 (`17-methods-that-beat-shortlist`, the methods brief on PR #14) names pyRANSAC-3D v0.7.0 sequential cuboid, after rank 1’s plate peel, as an add. Oz approved it. The one-stud run is in [16-one-stud-five-finder-run.md](16-one-stud-five-finder-run.md). The Chen, Jiang, and Xiong 2025 row numbered 6 in the table stays out of the bake-off.
+Bake-off **rank 6** is a later add, not that master-table row, and it is bucket 1 (geometry-first automated) in the live table. Doc 17 (`17-methods-that-beat-shortlist`, the methods brief on PR #14) names pyRANSAC-3D v0.7.0 sequential cuboid, after rank 1’s plate peel, as an add. Oz approved it. The one-stud run is in [16-one-stud-five-finder-run.md](16-one-stud-five-finder-run.md). The Chen, Jiang, and Xiong 2025 row numbered 6 in the table stays out of the bake-off.
 
-Bake-off **rank 7** is SAM 2 (Ravi et al., 2024), also a later add, and also not the master-table row with that number. The master-table row numbered 7 remains ClearEdge3D EdgeWise. SAM 2 segments images and video. It applies to a stud cloud only by a registered view: project the points, take a mask, lift the visible points, then the shared box. A pure LAS or PLY skips it. On 2026-09-25 the weights were not installed on the cloud CPU that wrote [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md). That card’s stud metrics are null. A generator-mask control on one stud is recorded there and is not a SAM 2 score. Oz_PC later ran `facebook/sam2.1-hiera-tiny` on an RTX 4080 SUPER; the kept-stud cells are still null because the visible span is 1.010 m and the keep gate starts at 1.2 m. See [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md). Ranks 1–6 are unchanged.
+Bake-off **rank 7** is SAM 2 (Ravi et al., 2024), also a later add, and also not the master-table row with that number. The master-table row numbered 7 remains ClearEdge3D EdgeWise. SAM 2 segments images and video. It applies to a stud cloud only by a registered view: project the points, take a mask, lift the visible points, then the shared box. A pure LAS or PLY skips it. On 2026-09-25 the weights were not installed on the cloud CPU that wrote [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md). That card’s stud metrics are null. A generator-mask control on one stud is recorded there and is not a SAM 2 score. Oz_PC later ran `facebook/sam2.1-hiera-tiny` on an RTX 4080 SUPER; the kept-stud cells are still null because the visible span is 1.010 m and the keep gate starts at 1.2 m. See [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md). The rank numbers 1–6 are unchanged as archive labels. Their live buckets are the table above. CloudCompare stays row 3 of the master table and bucket 4 of the lock.
 
 ## Master table
 
-Every cell is filled. `unknown` and `n/a` say why. Metrics are from the named source only. A number from S3DIS, ScanNet, a historic roof, or one small timber specimen is **not** a 2×4 stud score.
+Every cell is filled. `unknown` and `n/a` say why. Metrics are from the named source only. A number from S3DIS, ScanNet, a historic roof, or one small timber specimen is **not** a 2×4 stud score. This table is the 2026-09-24 engineering order. It is not the live four-way split. Row 3 (CloudCompare) is an interactive GUI in doc 27.
 
 | Rank | Stack | License | Pricing | Stud instances on a bare 2×4 | Tight OBB | Floor angle then green/yellow/red | Device error | Hardware | Labels? | Wood-stud checkpoint | Cited metrics (benchmark named) | Fit (1–5) | Next experiment |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -149,9 +166,11 @@ OPALS is what the Özkan workflow names for segmentation. It is not an Open3D pl
 
 ### 3. CloudCompare RANSAC-SD / CloudComPy
 
-Schnabel, Wahl, and Klein (2007) detect planes, spheres, cylinders, cones, and tori. CloudCompare’s RANSAC Shape Detection plugin is that algorithm. CloudComPy 2.14.beta exposes `computeRANSAC_SD`. License is GPL-3.0 for CloudCompare and for the CloudComPy sources read this pass. Fine for an internal bake-off. Not fine to link into a closed app.
+**Now bucket 4 (interactive GUI), not a geometry-first automated finder.** Former bake-off rank 3. The measurements stay. See doc 27.
 
-A cylinder on a 2×4 is the wrong section. A plane on a wall face is the failure mode rank 1 refuses. Rank 3 stays in the five because it is a different fitter on the same points, not because we expect it to win.
+Schnabel, Wahl, and Klein (2007) detect planes, spheres, cylinders, cones, and tori. CloudCompare’s RANSAC Shape Detection plugin is that algorithm. CloudComPy 2.14.beta exposes `computeRANSAC_SD`. License is GPL-3.0 for CloudCompare and for the CloudComPy sources read this pass. Fine for an internal check. Not fine to link into a closed app.
+
+A cylinder on a 2×4 is the wrong section. A plane on a wall face is the failure mode rank 1 refuses. The 2026-09-24 shortlist kept this row so a different fitter could disagree on the same points. That shortlist reason does not put CloudCompare in bucket 1.
 
 ### 4. Pointcept PTv3 / PointGroup
 
@@ -170,6 +189,8 @@ The zoo ships semantic weights for SemanticKITTI, Toronto3D, S3DIS, Semantic3D, 
 Fit 2, and still in the five, because one controlled failure on our cloud is cheaper than a later argument from a 70.9 S3DIS mIoU.
 
 ### 7. SAM 2, bake-off only
+
+SAM 2 is adjacent to bucket 3 in doc 27: image-prompted, not a native 3D foundation model. The four foundation models (Point-SAM, SAM3D, OpenMask3D, Segment3D) are a different set and are not scored in this note.
 
 SAM 2 is a promptable model for images and video (arXiv:2408.00714). It has no stud class and no oriented box. The bake-off uses it only as a mask on a view that is already registered to the cloud. Multi-view masks would be unioned per stud before the shared box. One view misses occluded faces and can miss the stud ends; the generator-mask control in doc 24 dropped a 1.010 m visible span because the keep gate starts at 1.2 m.
 
