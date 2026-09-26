@@ -12,3 +12,6 @@ BIMStruct3D or S3DIS semantic checkpoints.
 
 Older copies under `artifacts/weights/finetune/` are left untouched for archive.
 Loaders prefer this directory, then fall back to the legacy path.
+
+Full-room heads (28 studs, doc 37) live in `fullroom/` and use different
+filenames. They are not a replacement of the files in the table above.

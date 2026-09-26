@@ -98,7 +98,12 @@ The head is not trained on color. Leans are still mixed inside each room so a pl
 | 0.67° | red | green at ε = 0 (0.67° ≤ 0.67140°); yellow at ε = 0.05° | NAHB interval overlaps τ |
 | 1.00°, 2.00° | red | red | outside both gauges after ε = 0.05° is removed |
 
-Each training room draws a permutation of that menu across the 28 studs (with replacement). Axes stay ±X and ±Y in the stud frame, the same axes as doc 20. Val rooms use the same menu and disjoint seeds.
+Each training room draws leans with replacement from that menu. Corner slots
+(the first and last stud on each wall) stop at 0.67°. A 1° or 2° tip on a
+corner closes the 40 mm plan gap `stage5_room_bay` already enforces, so 1.00°
+and 2.00° are planted on interior studs only. Axes stay ±X and ±Y in the stud
+frame, the same axes as doc 20. A 0° stud is stored as axis `none`. Val rooms
+use the same menus and disjoint seeds.
 
 ## How long, and what “trained” means
 
