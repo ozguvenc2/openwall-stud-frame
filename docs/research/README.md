@@ -43,6 +43,7 @@ Numbers are copied from the cited page or marked **unknown**. Vendor brochure fi
 | [29-train-all9-stage0.md](29-train-all9-stage0.md) | Stud-head short train + coherent all-nine stage0 one-beam scorecards. Not a full bake-off train. |
 | [30-fix-sam3d-openmask3d-stage0.md](30-fix-sam3d-openmask3d-stage0.md) | SAM3D full-stud multi-view lift + OpenMask3D synth posed RGB-D CLIP; all-nine stage0 re-run (9/9 pass). |
 | [31-four-stage-error-table.md](31-four-stage-error-table.md) | Four-stage error evolution (Synthetic GT → sampling noise → Skil ±0.05° realisticized → algorithm) for all nine on `stage0_2x4_lean0.000`. Stage2 measured; Stage4 from `artifacts/phase_neg1/all_nine_stage0.json`. |
+| [32-pipeline-master-diagram.md](32-pipeline-master-diagram.md) | Bake-off master pipeline Mermaid (L→R): Stage1 truth → Stage2 noise → Stage3 realisticized → geometry/supervised/foundation pipes → shared OBB → Stage4 scorecard. Source [diagrams/32-pipeline-master.mmd](diagrams/32-pipeline-master.mmd). CloudCompare out. |
 | [TruePlank paper space](../../papers/trueplank-stud-lean-qa/README.md) | Draft: instance detection and lean assessment of light-frame wood studs from point clouds (BeamWeaver / TruePlank / OpenWall). Class S only. Not a submission. |
 | [04-seed-funds.md](04-seed-funds.md) | NSF America’s Seed Fund AR/VR topic and nearby SBIR / construction awards. |
 | [05-misc-resources.md](05-misc-resources.md) | Gaussian splats versus clouds, MIT VNAV, the brief’s video and Gemini links, LinkedIn posts, aerial-LiDAR tools. |
