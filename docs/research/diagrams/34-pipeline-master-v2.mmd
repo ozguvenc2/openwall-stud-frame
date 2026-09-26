@@ -1,0 +1,62 @@
+%% OpenWall bake-off master pipeline v2 (doc 34). One L→R flow.
+%% Supersedes doc 32. CloudCompare OUT. No fabricated metrics.
+%% Paint yellow (ε unlocked). Named stages: AxiomForge → CloudSmith → TrueLevel → pipes → BoxFit → scorecard.
+flowchart LR
+  %% --- left spine: named stages ---
+  S1["Stage1 AxiomForge<br/>perfect mesh<br/>2×4 38.1×88.9 mm<br/>8 ft · 0° lean<br/>synthetic.py"]
+  S2["Stage2 CloudSmith<br/>mesh → cloud<br/>25,666 pts<br/>DIAL density · spacing_m<br/>DIAL noise σ · noise_std_m=0.001"]
+  S3["Stage3 TrueLevel<br/>realisticizer<br/>(a) Skil ~0.05° — theoretical<br/>(b) human leveler — not injected<br/>(c) lumber surface — not injected<br/>stage0: only Stage2 sampling noise"]
+
+  S1 --> S2 --> S3
+
+  %% --- diverge: three class pipes ---
+  subgraph GEO["Geometry-first ×3 · no training"]
+    direction TB
+    G1["Open3D<br/>• Python OBB on whole cloud<br/>open3d.org"]
+    G2["PCL<br/>• native WSL region-grow → OBB<br/>pointclouds.org"]
+    G3["pyRANSAC-3D<br/>• sequential cuboid RANSAC<br/>github.com/leomariga/pyRANSAC-3D"]
+  end
+
+  subgraph SUP["Supervised ×2 · 2-class stud heads"]
+    direction TB
+    TR["train short heads on synth<br/>→ artifacts/checkpoints/stud-heads"]
+    P4["Pointcept PTv3<br/>• transformer backbone<br/>github.com/Pointcept/Pointcept"]
+    P5["Open3D-ML<br/>• RandLA-Net / KPConv<br/>github.com/isl-org/Open3D-ML"]
+    INF["inference · label stud pts"]
+    TR --> P4
+    TR --> P5
+    P4 --> INF
+    P5 --> INF
+  end
+
+  subgraph FOU["Foundation / zero-shot ×4 · no stud fine-tune"]
+    direction TB
+    F6["Point-SAM<br/>• point prompt · ~349 pts<br/>github.com/zyc00/Point-SAM"]
+    F7["SAM3D<br/>• ViT-H multi-view · ~7188<br/>github.com/Pointcept/SegmentAnything3D"]
+    F8["OpenMask3D<br/>• CLIP ViT-B/32 posed RGB-D<br/>github.com/OpenMask3D/openmask3d"]
+    F9["Segment3D<br/>• Mask3D · ~17282<br/>segment3d.github.io"]
+  end
+
+  S3 --> GEO
+  S3 --> SUP
+  S3 --> FOU
+
+  %% --- converge ---
+  MASK["stud point mask ×9"]
+  G1 --> MASK
+  G2 --> MASK
+  G3 --> MASK
+  INF --> MASK
+  F6 --> MASK
+  F7 --> MASK
+  F8 --> MASK
+  F9 --> MASK
+
+  OBB["Stage4 BoxFit<br/>shared Open3D minimal OBB<br/>get_minimal_oriented_bounding_box<br/>open3d_baseline._obb_segments"]
+  MASK --> OBB
+
+  SC["Scorecard<br/>P/R · section mm · length mm · angle MAE<br/>paint G/Y/R · ε unlocked → yellow<br/>placeholder ε=0.05° · industry τ≈0.12°"]
+  OBB --> SC
+
+  CC[["CloudCompare OUT of bake-off"]]
+  style CC fill:transparent,stroke-dasharray: 5 5
