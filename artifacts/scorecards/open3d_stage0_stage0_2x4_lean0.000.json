@@ -14,10 +14,10 @@
     "spacing_m": 0.005,
     "noise_std_m": 0.001,
     "n_points": 25666,
+    "lean_deg": 0.0,
     "reference": "gravity_z_no_floor_plane",
     "floor_found": false,
-    "removed_z_intervals_m": [],
-    "tolerance_deg": 0.11937
+    "removed_z_intervals_m": []
   },
   "detection": {
     "n_true": 1,
@@ -94,7 +94,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.0584,
+    "runtime_s": 0.078,
     "dbscan_eps_m": 0.025,
     "dbscan_min_points": 20,
     "bbox_kind": "minimal_oriented",
@@ -112,5 +112,6 @@
       "PCA OBB on a short or one-sided cluster can yaw the long axis."
     ],
     "note": "Runtime is this process on this scene. It is not a field budget."
-  }
+  },
+  "scorecard_name": "open3d_stage0_stage0_2x4_lean0.000.json"
 }

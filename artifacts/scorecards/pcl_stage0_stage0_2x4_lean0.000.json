@@ -1,0 +1,204 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A2",
+  "algorithm": "PCL region-grow + cuboid (Ozkan/Pochtrager, no Bassier merge)",
+  "rank": 2,
+  "stage": 0,
+  "status": "ran",
+  "epsilon_locked": false,
+  "metrics_are_measurements": true,
+  "measurement_scope": "synthetic generator, this process, one stud",
+  "scene": {
+    "name": "stage0_2x4_lean0.000",
+    "stage": 0,
+    "nominal": "2x4",
+    "lean_deg": 0.0,
+    "lean_axis": "+X",
+    "seed": 1,
+    "spacing_m": 0.005,
+    "noise_std_m": 0.001,
+    "n_points": 25666,
+    "length_m": 2.4383999999999997,
+    "section_m": [
+      0.038099999999999995,
+      0.08889999999999999
+    ],
+    "has_floor": false,
+    "reference": "gravity_z_no_floor_plane",
+    "reference_meaning": "This synthetic scene has no floor. The generator +Z axis is the angle reference. The cloud is not rotated. A SKIL or other level reading is not the reference.",
+    "description": "Synthetic single stud. Generator gravity is +Z."
+  },
+  "implementation": {
+    "native_pcl_region_growing": true,
+    "region_grow": {
+      "implementation": "pcl::RegionGrowing",
+      "native_pcl_region_growing": true,
+      "smoothness_deg": 10.0,
+      "curvature_threshold": 1.0,
+      "neighbours": 30,
+      "min_cluster": 50,
+      "viewpoint": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "viewpoint_note": "Origin is inside this stud, so normals point inward and stay consistent on a face.",
+      "build_returncode": 127,
+      "build_log": "PCL headers not installed. Downloading the libpcl-dev deb for headers only.\n\nC:\\Repos\\openwall-stud-frame\\tools\\build_pcl_region_grow.sh: line 29: apt-get: command not found\n",
+      "binary": "wsl:$HOME/bin/pcl_region_grow",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "pcl_region_growing points=25666 clusters=1 smoothness_deg=10 curvature=1 k=30 min_cluster=50\n",
+      "library": "libpcl_segmentation.so.1.14"
+    },
+    "cuboid_assembly": {
+      "n_face_clusters": 1,
+      "n_unassigned": 154,
+      "adjacency_merges": 0,
+      "adjacency_gap_m": 0.02,
+      "voxel_m": 0.008,
+      "min_member_points": 100,
+      "n_members": 1,
+      "n_dropped_small_members": 0,
+      "remote_coplanar_merge": false,
+      "axis_forced_to_z": false
+    }
+  },
+  "implementation_short": "PCL 1.14 RegionGrowing returned 1 cluster and left 154 points unassigned. No face-union step ran. Minimal OBB, axis not forced to Z.",
+  "detection": {
+    "n_true": 1,
+    "n_pred": 1,
+    "true_positives": 1,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "match_radius_m": 0.15,
+    "scope": "synthetic_scene_only",
+    "note": "pcl::RegionGrowing (libpcl 1.14) returned 1 cluster and left 154 points unassigned. Adjacency merges were 0, so this cloud did not exercise a face-to-cuboid join. The box is the minimal OBB of that cluster. Counts are this synthetic stud, not a field accuracy."
+  },
+  "geometry": {
+    "max_section_error_mm": 7.86,
+    "max_length_error_mm": 6.24,
+    "per_stud": [
+      {
+        "stud_id": "S1",
+        "nominal": "2x4",
+        "nominal_guess": "2x4",
+        "section_true_mm": [
+          38.1,
+          88.9
+        ],
+        "section_measured_mm": [
+          45.96,
+          96.06
+        ],
+        "section_error_mm": [
+          7.86,
+          7.16
+        ],
+        "length_true_mm": 2438.4,
+        "length_measured_mm": 2444.64,
+        "length_error_mm": 6.24
+      }
+    ],
+    "bbox_kind": "minimal_oriented",
+    "note": "Section and length are that cluster's minimal OBB versus the dressed generator size. The long axis is not forced to Z. Printed errors can match the Open3D row when both boxes cover nearly the same points. The runtime and the cluster count are this PCL call."
+  },
+  "angle": {
+    "mae_deg": 0.03084,
+    "max_abs_error_deg": 0.03084,
+    "pct_in_band": 100.0,
+    "band_deg": 0.11937,
+    "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
+    "reference": "gravity_z_no_floor_plane",
+    "per_stud": [
+      {
+        "stud_id": "S1",
+        "true_deg": 0.0,
+        "measured_deg": 0.03084,
+        "abs_error_deg": 0.03084,
+        "production_color": "yellow",
+        "hypothetical_color": "green"
+      }
+    ],
+    "note": "Truth is the generator axis against +Z. This scene has no floor. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. The long axis is not forced to Z."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "tolerance_deg": 0.11937,
+    "production_colors": [
+      "yellow"
+    ],
+    "production_rule": "epsilon unlocked, so every stud is yellow",
+    "hypothetical_placeholder_epsilon_deg": 0.05,
+    "hypothetical_placeholder_note": "0.05 deg is a round illustration of the color rule. It is not a measured device band.",
+    "hypothetical_colors": [
+      "green"
+    ],
+    "note": "Do not read hypothetical colors as a pass/fail call."
+  },
+  "cost": {
+    "runtime_s": 3.2854,
+    "license": "BSD",
+    "license_url": "https://raw.githubusercontent.com/PointCloudLibrary/pcl/master/LICENSE.txt",
+    "hardware": "CPU",
+    "n_points_in": 25666,
+    "failure_modes": [
+      "Smoothness growing splits a stud into faces; the cuboid step has to reunite faces that touch.",
+      "An adjacency gap wide enough to cross a bay would merge neighboring studs. This run uses 20 mm.",
+      "Remote coplanar merge (Bassier) is not used.",
+      "Forcing the axis to Z would hide lean. This run does not.",
+      "\u00d6zkan 2022 beam-completeness figures are one historic roof and are not this score."
+    ],
+    "note": "Runtime is this process on this one stud. It is not a field budget.",
+    "region_grow": {
+      "implementation": "pcl::RegionGrowing",
+      "native_pcl_region_growing": true,
+      "smoothness_deg": 10.0,
+      "curvature_threshold": 1.0,
+      "neighbours": 30,
+      "min_cluster": 50,
+      "viewpoint": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "viewpoint_note": "Origin is inside this stud, so normals point inward and stay consistent on a face.",
+      "build_returncode": 127,
+      "build_log": "PCL headers not installed. Downloading the libpcl-dev deb for headers only.\n\nC:\\Repos\\openwall-stud-frame\\tools\\build_pcl_region_grow.sh: line 29: apt-get: command not found\n",
+      "binary": "wsl:$HOME/bin/pcl_region_grow",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "pcl_region_growing points=25666 clusters=1 smoothness_deg=10 curvature=1 k=30 min_cluster=50\n",
+      "library": "libpcl_segmentation.so.1.14"
+    },
+    "cuboid_assembly": {
+      "n_face_clusters": 1,
+      "n_unassigned": 154,
+      "adjacency_merges": 0,
+      "adjacency_gap_m": 0.02,
+      "voxel_m": 0.008,
+      "min_member_points": 100,
+      "n_members": 1,
+      "n_dropped_small_members": 0,
+      "remote_coplanar_merge": false,
+      "axis_forced_to_z": false
+    }
+  },
+  "notes": [
+    "Synthetic stage 0 only. Not a field measurement. Device epsilon is unlocked, so production paint is yellow."
+  ],
+  "stage0_bar_failures": [],
+  "stage0_bars": {
+    "detection": "precision = 1 and recall = 1",
+    "section_mm": 10.0,
+    "length_mm": 25.0,
+    "max_abs_angle_deg": 0.05,
+    "paint": "every production color yellow",
+    "scope": "synthetic stage 0 bring-up, not a field test"
+  },
+  "stage0_pass_fail": "pass",
+  "scorecard_name": "pcl_stage0_stage0_2x4_lean0.000.json"
+}
