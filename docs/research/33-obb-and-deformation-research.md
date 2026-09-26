@@ -2,7 +2,7 @@
 
 Date (America/Los_Angeles): **2026-09-26**. Writer: **Other**. Survey pass only — no new scorecard, no fabricated metrics, no fake URLs. Confidence is marked per row. Years and venues that were not re-checked against Crossref / official docs on this pass are labeled `surveyed; uncertain`.
 
-Companion docs: [27-four-way-tool-classification.md](27-four-way-tool-classification.md) (live buckets), [30-fix-sam3d-openmask3d-stage0.md](30-fix-sam3d-openmask3d-stage0.md) (shared OBB after mask), [31-four-stage-error-table.md](31-four-stage-error-table.md) (Stage2 noise on minimal OBB), [34-pipeline-master-v2.md](34-pipeline-master-v2.md) (canonical L→R master chart: AxiomForge → CloudSmith → TrueLevel → pipes → BoxFit → scorecard; Mermaid source [diagrams/34-pipeline-master-v2.mmd](diagrams/34-pipeline-master-v2.mmd); supersedes [32-pipeline-master-diagram.md](32-pipeline-master-diagram.md)). S1b bow probes: [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md), generator `s1b_bowed_stud` / `s1b_bow_wall` in `src/openwall_stud/synthetic.py`.
+Companion docs: [27-four-way-tool-classification.md](27-four-way-tool-classification.md) (live buckets), [30-fix-sam3d-openmask3d-stage0.md](30-fix-sam3d-openmask3d-stage0.md) (shared OBB after mask), [31-four-stage-error-table.md](31-four-stage-error-table.md) (Stage2 noise on minimal OBB), [34-pipeline-master-v2.md](34-pipeline-master-v2.md) (canonical L→R master chart: AxiomForge → CloudSmith → TrueLevel → pipes → BoxFit → scorecard; Mermaid source [diagrams/34-pipeline-master-v2.mmd](diagrams/34-pipeline-master-v2.mmd); supersedes [32-pipeline-master-diagram.md](32-pipeline-master-diagram.md)), [35-framing-lumber-wood-characteristics.md](35-framing-lumber-wood-characteristics.md) (grading-rule names for bow, crook, twist, and cup; Arizona moisture path; site defects; grain versus mass). S1b bow probes: [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md), generator `s1b_bowed_stud` / `s1b_bow_wall` in `src/openwall_stud/synthetic.py`.
 
 ## Current path (Stage0 default)
 
@@ -61,7 +61,7 @@ Ranked for **TruePlank stud clusters** (noisy dressed 2×4, shared mask → box)
 
 ## TRACK B — Non-primitive / deformed plank modeling
 
-Goal: customer insight **beyond a single lean angle** — bow, twist, and surface distortion on a long slender stud. Ties to existing S1b scenes: parabolic midspan offset with ends on the chord (`_apply_bow` in `synthetic.py`). Doc 25 already shows rigid OBB/section bars fail or fatten on bows while reporting the **chord** angle.
+Goal: customer insight **beyond a single lean angle** — bow, twist, and surface distortion on a long slender stud. Ties to existing S1b scenes: parabolic midspan offset with ends on the chord (`_apply_bow` in `synthetic.py`). Doc 25 already shows rigid OBB/section bars fail or fatten on bows while reporting the **chord** angle. Industry names, which face moves, and the mill-to-Arizona moisture path are in [35-framing-lumber-wood-characteristics.md](35-framing-lumber-wood-characteristics.md). That note does not change S1b, minimal OBB, paint, or ε. One axis fact from it: the default S1b parabola is on local **Y** (width), which grading rules call **crook**, while the scene is still named bow.
 
 ### Comparison table
 
