@@ -63,6 +63,8 @@ Ranked for **TruePlank stud clusters** (noisy dressed 2×4, shared mask → box)
 
 Goal: customer insight **beyond a single lean angle** — bow, twist, and surface distortion on a long slender stud. Ties to existing S1b scenes: parabolic midspan offset with ends on the chord (`_apply_bow` in `synthetic.py`). Doc 25 already shows rigid OBB/section bars fail or fatten on bows while reporting the **chord** angle. Industry names, which face moves, and the mill-to-Arizona moisture path are in [35-framing-lumber-wood-characteristics.md](35-framing-lumber-wood-characteristics.md). That note does not change S1b, minimal OBB, paint, or ε. One axis fact from it: the default S1b parabola is on local **Y** (width), which grading rules call **crook**, while the scene is still named bow.
 
+Doc 35’s “Later product: deformation metering” is the OpenWall direction to offer those readings as products beside lean: bow, crook and its crown edge, cup, and twist, under the grading-rule names. Stage0 stays the minimal-OBB lean. The offer is this track (B1–B2 for bow and crook with the axis labeled, B4 for twist, a face residual for cup). The fields are not on the scorecard. Neither note sets a ship date or a price.
+
 ### Comparison table
 
 | Method | Library / paper | What it quantifies | Fit on S1b-style bow / twist | Speed / deps | Confidence |

@@ -2,7 +2,7 @@
 
 Date (America/Los_Angeles): **2026-09-26**. Survey pass only — no scorecard, no generator change, no paint or ε change. Numbers copied from a page opened this pass are labeled with that page. A figure computed here is **derived**. A trade article is not a grading rule.
 
-This note is the wood-characteristics brief behind doc 33 Track B and behind the still-uninjected TrueLevel line “real lumber surface imperfections” in doc 34. It does not edit those locks. Companion: [33-obb-and-deformation-research.md](33-obb-and-deformation-research.md) (Track B centerline, deviation profile, twist slices). S1b scenes: [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md), [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md). Axis diagram source: [diagrams/35-warp-axes.mmd](diagrams/35-warp-axes.mmd).
+This note is the wood-characteristics brief behind doc 33 Track B and behind the still-uninjected TrueLevel line “real lumber surface imperfections” in doc 34. It does not edit those locks. Companion: [33-obb-and-deformation-research.md](33-obb-and-deformation-research.md) (Track B centerline, deviation profile, twist slices). S1b scenes: [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md), [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md). Axis diagram source: [diagrams/35-warp-axes.mmd](diagrams/35-warp-axes.mmd). The subsection “Later product: deformation metering” records a later OpenWall offer. It does not claim that offer ships.
 
 ## How to read this note
 
@@ -87,6 +87,14 @@ Doc 33 keeps minimal OBB as the Stage0 box and treats bow and twist as **extra f
 | Wane, checks, knots | Not deformation. Section 2. They bias a surface sample and a minimal box the same way missing faces do. | Box follows visible points. | Not generated. Doc 33 lists them as a future TrueLevel source, still not injected. |
 
 Stage0 remains a straight dressed prism plus sampling noise. Arizona warp is a reason Track B exists. It is not a reason to repaint Stage0.
+
+### Later product: deformation metering
+
+Oz and OpenWall’s later business direction is to offer products that determine twist and the other deformations on a stud, under the grading-rule names in this note: **bow** (flatwise, along the wall), **crook** and its **crown** edge (edgewise, in and out of the wall), **cup** (across the face), and **twist** (torsion along the length). Stage0 today is the lean of a straight piece, from the shared minimal OBB. Deformation metering is doc 33 Track B and later business development. It is not a field on the current scorecard.
+
+The measurement stack for that offer is the Track B order already written there, still unbuilt. B1 and B2 (slice centerline, then a deviation profile) are the bow and crook meters; the report stores the axis, so a local-Y offset stays crook and a local-X offset stays bow. B4 (per-slice heading) is the twist meter; a centerline alone misses a stud whose section rotates while the chord stays straight. Cup is a residual across the face, not a midspan number. Crown is which edge of a crook is high, not a fifth mode and not a fifth product. Combined warp and a kink follow the grade-rule reading above; one midspan scalar under-reports them. Wane, checks, and knots stay the section 2 cull list. They are not warp meters.
+
+No ship date and no price are set here. Paint stays yellow while device ε is unlocked. Minimal OBB stays the Stage0 box. This subsection adds no scorecard field and does not change S1b.
 
 ---
 
@@ -176,5 +184,6 @@ Stage0 paint stays yellow while device ε is unlocked. Minimal OBB stays the sha
 | CT density maps; latewood vs average SG; tracheid effect for grain angle | `surveyed`. Density-from-laser-spot is `surveyed; secondary` |
 | RGB grain or LiDAR intensity → stud center of mass | **Not supported.** Open research. Geometric centroid is not mass |
 | Paint, ε, minimal OBB, Stage0 locks | Unchanged. This note does not inject lumber defects into TrueLevel |
+| Later offer: meter bow, crook (and crown), cup, and twist on studs | Direction only. Stage0 remains lean via minimal OBB. The meters are doc 33 Track B and are not implemented. No date, no price |
 
-**Bottom line.** Name the axis: bow is flatwise, crook (spring) is edgewise, cup is across the face, twist is torsion, crown is the high edge of crook. Arizona’s outdoor EMC is far below the 15–19% framing mill target, so pieces keep moving after the stamp, especially in the sun on a broken bundle. Crews cull wane, end splits, and bad edge knots because nails and bearing fail, not because the wood looks busy. Grain and intensity are not a center-of-mass instrument; CT and a scale are. For TruePlank the useful extension of doc 33 is still a centerline and a twist profile with the axis labeled, plus an honest list of visible culls — not a density field, and not a new paint rule.
+**Bottom line.** Name the axis: bow is flatwise, crook (spring) is edgewise, cup is across the face, twist is torsion, crown is the high edge of crook. Arizona’s outdoor EMC is far below the 15–19% framing mill target, so pieces keep moving after the stamp, especially in the sun on a broken bundle. Crews cull wane, end splits, and bad edge knots because nails and bearing fail, not because the wood looks busy. Grain and intensity are not a center-of-mass instrument; CT and a scale are. For TruePlank the useful extension of doc 33 is still a centerline and a twist profile with the axis labeled, plus an honest list of visible culls — not a density field, and not a new paint rule. The later product direction is to offer that metering beside today’s lean call. It is not on the scorecard.
