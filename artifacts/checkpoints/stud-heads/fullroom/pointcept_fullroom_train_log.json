@@ -1,0 +1,75 @@
+{
+  "wall_s": 170.1,
+  "history": [
+    {
+      "n": 8,
+      "stud_iou": 0.9464629750283613,
+      "clutter_iou": 0.7533098961125487,
+      "stud_recall": 0.9556837915913725,
+      "rooms_with_both_classes": 8,
+      "selection_score": 0.849886435570455,
+      "epoch": 1,
+      "train_decoder": false,
+      "train_loss": 0.3174883086855213,
+      "epoch_s": 41.8,
+      "n_trainable": 4
+    },
+    {
+      "n": 8,
+      "stud_iou": 0.9645672248875253,
+      "clutter_iou": 0.8292780118152956,
+      "stud_recall": 0.9674472906546859,
+      "rooms_with_both_classes": 8,
+      "selection_score": 0.8969226183514105,
+      "epoch": 2,
+      "train_decoder": false,
+      "train_loss": 0.09842864540405571,
+      "epoch_s": 41.9,
+      "n_trainable": 4
+    },
+    {
+      "n": 8,
+      "stud_iou": 0.9677506648243562,
+      "clutter_iou": 0.8428873980167386,
+      "stud_recall": 0.9701731626850578,
+      "rooms_with_both_classes": 8,
+      "selection_score": 0.9053190314205475,
+      "epoch": 3,
+      "train_decoder": false,
+      "train_loss": 0.05682786158286035,
+      "epoch_s": 43.3,
+      "n_trainable": 4
+    },
+    {
+      "n": 8,
+      "stud_iou": 0.9695270848704922,
+      "clutter_iou": 0.8499206011890617,
+      "stud_recall": 0.9716776637543726,
+      "rooms_with_both_classes": 8,
+      "selection_score": 0.9097238430297769,
+      "epoch": 4,
+      "train_decoder": false,
+      "train_loss": 0.047008477772275604,
+      "epoch_s": 43.1,
+      "n_trainable": 4
+    }
+  ],
+  "best_row": {
+    "n": 8,
+    "stud_iou": 0.9695270848704922,
+    "clutter_iou": 0.8499206011890617,
+    "stud_recall": 0.9716776637543726,
+    "rooms_with_both_classes": 8,
+    "selection_score": 0.9097238430297769,
+    "epoch": 4,
+    "train_decoder": false,
+    "train_loss": 0.047008477772275604,
+    "epoch_s": 43.1,
+    "n_trainable": 4
+  },
+  "trained_decoder": false,
+  "best_selection_score": 0.9097238430297769,
+  "weight": "artifacts\\checkpoints\\stud-heads\\fullroom\\pointcept_stud_2class_fullroom.pth",
+  "copied_backbone_tensors": 486,
+  "recipe": "fullroom_28"
+}
