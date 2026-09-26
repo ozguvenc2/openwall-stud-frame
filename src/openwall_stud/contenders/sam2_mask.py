@@ -441,14 +441,354 @@ def control_card(scene: Scene, control: dict[str, Any], png_name: str | None) ->
     }
 
 
+def _rgb_from_occupied(part_image: np.ndarray, *, dilate_px: int = 1) -> tuple[np.ndarray, np.ndarray]:
+    """Wood-colored silhouette. Part ids are not colors.
+
+    Dilation fills single-pixel holes in the z-buffer so the network sees a
+    surface. The lift still uses only pixels that own a point.
+    """
+    occupied = part_image >= 0
+    if dilate_px > 0:
+        ys, xs = np.nonzero(occupied)
+        grown = occupied.copy()
+        height, width = occupied.shape
+        for dy in range(-dilate_px, dilate_px + 1):
+            for dx in range(-dilate_px, dilate_px + 1):
+                if dy * dy + dx * dx > dilate_px * dilate_px:
+                    continue
+                yy = np.clip(ys + dy, 0, height - 1)
+                xx = np.clip(xs + dx, 0, width - 1)
+                grown[yy, xx] = True
+        occupied_draw = grown
+    else:
+        occupied_draw = occupied
+    rgb = np.zeros((*part_image.shape, 3), dtype=np.uint8)
+    rgb[:] = (24, 24, 28)
+    rgb[occupied_draw] = (186, 140, 90)
+    return rgb, occupied_draw
+
+
+def _prompt_on_stud_pixels(part_image: np.ndarray) -> tuple[float, float] | None:
+    """Oracle click: centroid of generator stud pixels. Not a field click."""
+    ys, xs = np.nonzero(part_image == 2)
+    if ys.size == 0:
+        return None
+    return float(xs.mean()), float(ys.mean())
+
+
+def lift_mask_winners(raster: dict[str, Any], mask: np.ndarray) -> np.ndarray:
+    """Point indices for z-buffer winners whose pixel is inside ``mask``.
+
+    Empty pixels the mask fills do not invent points. Generator part ids are
+    not used as a filter.
+    """
+    if mask.shape != raster["part_image"].shape:
+        raise ValueError(f"mask shape {mask.shape} != {raster['part_image'].shape}")
+    winner = raster["winner"]
+    chosen = winner[mask.reshape(-1) & (winner >= 0)]
+    if chosen.size == 0:
+        return chosen
+    return np.unique(chosen)
+
+
+def _load_transformers_sam2(device: str) -> tuple[Any, Any, dict[str, Any]]:
+    """Load the tiny image checkpoint already cached, or download it.
+
+    ``facebook/sam2.1-hiera-tiny`` is published as a ``sam2_video`` config.
+    Transformers still builds ``Sam2Model`` from it. The load warning is stored.
+    """
+    import warnings
+
+    from transformers import Sam2Model, Sam2Processor
+
+    model_id = "facebook/sam2.1-hiera-tiny"
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        processor = Sam2Processor.from_pretrained(model_id)
+        model = Sam2Model.from_pretrained(model_id)
+    model = model.to(device)
+    model.eval()
+    warning_text = [str(item.message) for item in caught if "sam2" in str(item.message).lower()]
+    return processor, model, {"model_id": model_id, "load_warnings": warning_text}
+
+
+def _predict_mask(processor: Any, model: Any, rgb: np.ndarray, column: float, row: float) -> tuple[np.ndarray, dict[str, Any]]:
+    import torch
+    from PIL import Image
+
+    image = Image.fromarray(rgb, mode="RGB")
+    inputs = processor(images=image, input_points=[[[[column, row]]]], return_tensors="pt")
+    allowed = {"pixel_values", "input_points", "input_labels", "input_boxes"}
+    device = next(model.parameters()).device
+    tensors = {key: value.to(device) for key, value in inputs.items() if key in allowed and hasattr(value, "to")}
+    with torch.inference_mode():
+        outputs = model(**tensors)
+    scores = outputs.iou_scores.detach().float().cpu().numpy().reshape(-1)
+    choice = int(np.nanargmax(scores))
+    pred = outputs.pred_masks.detach().float().cpu().numpy()
+    flat = pred.reshape((-1,) + pred.shape[-2:])
+    chosen = flat[choice]
+    height, width = rgb.shape[:2]
+    info: dict[str, Any] = {
+        "iou_scores": [round(float(value), 5) for value in scores],
+        "chosen_index": choice,
+        "chosen_iou": round(float(scores[choice]), 5),
+        "low_res_shape": list(chosen.shape),
+    }
+    try:
+        taken = outputs.pred_masks[:, :, choice : choice + 1, ...]
+        processed = processor.post_process_masks(taken, inputs["original_sizes"])
+        array = processed[0] if isinstance(processed, (list, tuple)) else processed
+        if hasattr(array, "detach"):
+            array = array.detach().cpu().numpy()
+        array = np.squeeze(np.asarray(array))
+        if array.shape == (height, width):
+            info["resize"] = "post_process_masks"
+            return array.astype(bool), info
+        info["post_process_shape"] = list(array.shape)
+    except Exception as exc:
+        info["post_process_error"] = f"{type(exc).__name__}: {exc}"
+    ys = np.linspace(0, chosen.shape[0] - 1, height)
+    xs = np.linspace(0, chosen.shape[1] - 1, width)
+    resized = chosen[np.rint(ys).astype(int)][:, np.rint(xs).astype(int)]
+    info["resize"] = "nearest_logits_threshold_0"
+    return resized > 0.0, info
+
+
+def measure_rank7(
+    scene: Scene | None = None,
+    camera: Pinhole | None = None,
+) -> dict[str, Any]:
+    """One SAM 2 forward pass on the scaffold camera. Metrics stay null on failure."""
+    import time
+
+    scene = scene or stage0_single_stud(nominal="2x4", lean_deg=0.05, seed=2)
+    camera = camera or default_stud_camera()
+    raster = raster_nearest(scene.points_m, scene.part, camera)
+    install = probe_install()
+    attempt: dict[str, Any] = {
+        "paper": PAPER_URL,
+        "license_url": LICENSE_URL,
+        "install_probe": {key: install[key] for key in install if key != "blocker"},
+        "backend": "transformers.Sam2Model",
+        "prompt_source": "centroid of generator stud pixels on this render",
+        "image": "occupied z-buffer pixels, one wood color, dilated 1 px. Part ids are not colors.",
+    }
+    try:
+        import torch
+    except Exception as exc:
+        card = blocked_sam2_card(scene, raster, {
+            **install,
+            "blocker": f"torch did not import, so SAM 2 was not run. {type(exc).__name__}: {exc}",
+            "blocker_short": "torch missing",
+            "ready": False,
+        }, camera)
+        card["attempt"]["ozpc"] = attempt
+        return {"card": card, "raster": raster, "rgb": None, "mask": None}
+
+    if not torch.cuda.is_available():
+        card = blocked_sam2_card(scene, raster, {
+            **install,
+            "blocker": (
+                f"CUDA is not available (torch {torch.__version__}). "
+                "SAM 2 was not run on CPU. Stud metrics are null."
+            ),
+            "blocker_short": "no CUDA for SAM 2",
+            "ready": False,
+            "cuda": False,
+            "torch_version": torch.__version__,
+        }, camera)
+        card["attempt"]["ozpc"] = attempt
+        return {"card": card, "raster": raster, "rgb": None, "mask": None}
+
+    rgb, _drawn = _rgb_from_occupied(raster["part_image"])
+    prompt = _prompt_on_stud_pixels(raster["part_image"])
+    if prompt is None:
+        card = blocked_sam2_card(scene, raster, {
+            **install,
+            "blocker": "No generator stud pixel fell in the image, so SAM 2 was not prompted. Metrics are null.",
+            "blocker_short": "prompt missed the image",
+            "ready": False,
+        }, camera)
+        return {"card": card, "raster": raster, "rgb": rgb, "mask": None}
+
+    started = time.perf_counter()
+    try:
+        processor, model, loaded = _load_transformers_sam2("cuda")
+        mask, mask_info = _predict_mask(processor, model, rgb, prompt[0], prompt[1])
+    except Exception as exc:
+        card = blocked_sam2_card(scene, raster, {
+            **install,
+            "blocker": (
+                "SAM 2 weights did not complete a forward pass. "
+                f"{type(exc).__name__}: {exc}. Stud metrics are null."
+            ),
+            "blocker_short": "SAM 2 forward failed",
+            "ready": False,
+        }, camera)
+        card["attempt"]["ozpc"] = attempt | {"error": f"{type(exc).__name__}: {exc}"}
+        return {"card": card, "raster": raster, "rgb": rgb, "mask": None}
+    runtime_s = time.perf_counter() - started
+    indices = lift_mask_winners(raster, mask)
+    lifted = scene.points_m[indices] if len(indices) else np.zeros((0, 3))
+    control_scene = Scene(
+        name=f"{scene.name}_sam2_mask",
+        stage=scene.stage,
+        points_m=lifted,
+        part=np.full(len(lifted), 2, dtype=np.int32),
+        stud_slot=np.zeros(len(lifted), dtype=np.int32),
+        studs=list(scene.studs),
+        seed=scene.seed,
+        spacing_m=scene.spacing_m,
+        noise_std_m=scene.noise_std_m,
+        description="Points lifted from a SAM 2 mask on one synthetic render. " + scene.description,
+        meta={"mask_source": "sam2", "not_generator_mask": True},
+    )
+    run = run_baseline(control_scene) if len(lifted) >= 20 else None
+    sections = score_run(control_scene, run) if run is not None else None
+    if sections is None:
+        from openwall_stud.scorecard import empty_sections
+
+        sections = empty_sections()
+        for key in sections:
+            sections[key]["note"] = "SAM 2 ran. The lift had fewer than 20 points, so no box was scored."
+        sections["paint"]["epsilon_locked"] = False
+        sections["cost"]["runtime_s"] = round(runtime_s, 4)
+    else:
+        sections["cost"]["runtime_s"] = round(runtime_s, 4)
+        sections["cost"]["hardware"] = f"CUDA {torch.cuda.get_device_name(0)}"
+        sections["cost"]["license"] = "Apache-2.0"
+        sections["detection"]["note"] = (
+            "One SAM 2 mask on the scaffold camera, lifted through the z-buffer. "
+            "Counts are this synthetic render, not a field accuracy."
+        )
+        sections["angle"]["note"] = (
+            "Truth is the generator chord. The network does not emit the angle. The shared box does. Not a SKIL reading."
+        )
+    generator_stud = raster["part_image"] == 2
+    intersection = int(np.count_nonzero(generator_stud & mask))
+    union = int(np.count_nonzero(generator_stud | mask))
+    part = scene.part[indices] if len(indices) else np.zeros(0, dtype=np.int32)
+    visible = visible_box_record(lifted)
+    if visible is not None:
+        visible["note"] = (
+            "Minimal oriented box of the points lifted from this SAM 2 mask. "
+            "The stud-length gate may still drop it, which leaves detection null. "
+            "The network does not emit the box."
+        )
+    card = {
+        "schema": "openwall.stud_scorecard.v1",
+        "algorithm_id": SAM2["algorithm_id"],
+        "algorithm": SAM2["name"],
+        "rank": 7,
+        "stage": scene.stage,
+        "status": "ran",
+        "epsilon_locked": False,
+        "metrics_are_measurements": True,
+        "measurement_scope": (
+            "One synthetic pinhole, SAM 2 tiny, z-buffer lift, shared Open3D box. "
+            "Not a field image. The prompt is the generator stud centroid."
+        ),
+        "scene": {
+            "name": scene.name,
+            "description": scene.description,
+            "seed": scene.seed,
+            "n_points": scene.n_points,
+            "stage": scene.stage,
+        },
+        "implementation": {
+            **loaded,
+            "torch": torch.__version__,
+            "device": torch.cuda.get_device_name(0),
+            "prompt_px": [round(prompt[0], 2), round(prompt[1], 2)],
+            "mask": mask_info,
+            "pixel_agreement_with_generator_stud": {
+                "intersection_px": intersection,
+                "union_px": union,
+                "ratio": None if union == 0 else round(intersection / union, 4),
+                "note": (
+                    "Ratio of this mask against generator stud pixels on this render. "
+                    "The generator raster is not a field label."
+                ),
+            },
+            "n_mask_pixels": int(mask.sum()),
+            "n_generator_stud_pixels": int(generator_stud.sum()),
+            "n_lifted_points": int(len(indices)),
+            "lifted_part_counts": {
+                "floor": int(np.sum(part == 0)),
+                "plate": int(np.sum(part == 1)),
+                "stud": int(np.sum(part == 2)),
+            },
+            "camera": _camera_record(camera),
+        },
+        "visible_box": visible,
+        **sections,
+        "notes": [
+            "Bake-off rank 7. Master-table row 7 remains ClearEdge3D EdgeWise.",
+            "Device epsilon is unlocked. Production paint is yellow when a box is kept.",
+            "The prompt is the centroid of generator stud pixels. It is not a field click.",
+            "facebook/sam2.1-hiera-tiny is a sam2_video config loaded here as Sam2Model. Captured Python warnings are in implementation.load_warnings.",
+        ],
+    }
+    return {"card": card, "raster": raster, "rgb": rgb, "mask": mask, "runtime_s": runtime_s}
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="SAM 2 rank-7 scaffold on one synthetic stud.")
     parser.add_argument("--out-dir", type=Path, default=None)
     parser.add_argument("--stub", action="store_true", help="Write a null card and skip the projection.")
+    parser.add_argument(
+        "--measure",
+        action="store_true",
+        help="Run SAM 2 tiny on CUDA if this interpreter can. Writes sam2_rank7_ozpc.json.",
+    )
     args = parser.parse_args(argv)
     root = Path(__file__).resolve().parents[3]
     out_dir = args.out_dir or (root / "artifacts" / "scorecards" / "curriculum")
     out_dir.mkdir(parents=True, exist_ok=True)
+    if args.measure:
+        measured = measure_rank7()
+        card = measured["card"]
+        dest = out_dir / "sam2_rank7_ozpc.json"
+        write_scorecard(dest, card)
+        rgb = measured.get("rgb")
+        mask = measured.get("mask")
+        if rgb is not None and mask is not None:
+            import open3d as o3d
+
+            overlay = rgb.copy()
+            overlay[mask] = (0.55 * overlay[mask] + 0.45 * np.array([40, 210, 90])).astype(np.uint8)
+            png = out_dir / "sam2_rank7_ozpc_overlay.png"
+            o3d.io.write_image(str(png), o3d.geometry.Image(np.ascontiguousarray(overlay)))
+        from openwall_stud.results_by_day import append_day_row
+
+        status = card.get("status")
+        det = card.get("detection") or {}
+        if status == "blocked_install":
+            verdict = "blocked_install"
+            stored = None
+        elif det.get("recall") == 1.0 and det.get("precision") == 1.0:
+            verdict = "pass"
+            stored = card
+        else:
+            verdict = "fail"
+            stored = card if status == "ran" else None
+        append_day_row(
+            algorithm="sam2",
+            stage=int(card.get("stage") or 0),
+            scene=(card.get("scene") or {}).get("name") or "stage0_2x4_lean0.050",
+            ground_truth_source="synthetic",
+            pass_fail=verdict,
+            notes=(
+                "Oz_PC SAM 2 tiny on the scaffold camera. "
+                "Prompt is the generator stud centroid. "
+                f"Day-table bars: {verdict}. Device epsilon unlocked. "
+                f"Scorecard: curriculum/{dest.name}."
+            ),
+            card=stored,
+        )
+        print(f"sam2 measure status={card.get('status')} -> {dest}")
+        return 0 if card.get("status") in {"ran", "blocked_install"} else 1
     if args.stub:
         from openwall_stud.contenders.common import emit_stub, stub_card
 

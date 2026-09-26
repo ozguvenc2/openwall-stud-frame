@@ -1,0 +1,159 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "B7",
+  "algorithm": "SAM 2 image/video mask, lifted onto points",
+  "rank": 7,
+  "stage": 0,
+  "status": "ran",
+  "epsilon_locked": false,
+  "metrics_are_measurements": true,
+  "measurement_scope": "One synthetic pinhole, SAM 2 tiny, z-buffer lift, shared Open3D box. Not a field image. The prompt is the generator stud centroid.",
+  "scene": {
+    "name": "stage0_2x4_lean0.050",
+    "description": "Synthetic single stud. Generator gravity is +Z.",
+    "seed": 2,
+    "n_points": 25666,
+    "stage": 0
+  },
+  "implementation": {
+    "model_id": "facebook/sam2.1-hiera-tiny",
+    "load_warnings": [],
+    "torch": "2.7.0+cu126",
+    "device": "NVIDIA GeForce RTX 4080 SUPER",
+    "prompt_px": [
+      319.2,
+      236.54
+    ],
+    "mask": {
+      "iou_scores": [
+        0.18683,
+        0.35698,
+        0.9814
+      ],
+      "chosen_index": 2,
+      "chosen_iou": 0.9814,
+      "low_res_shape": [
+        256,
+        256
+      ],
+      "resize": "post_process_masks"
+    },
+    "pixel_agreement_with_generator_stud": {
+      "intersection_px": 8266,
+      "union_px": 18201,
+      "ratio": 0.4542,
+      "note": "Ratio of this mask against generator stud pixels on this render. The generator raster is not a field label."
+    },
+    "n_mask_pixels": 18198,
+    "n_generator_stud_pixels": 8269,
+    "n_lifted_points": 8266,
+    "lifted_part_counts": {
+      "floor": 0,
+      "plate": 0,
+      "stud": 8266
+    },
+    "camera": {
+      "eye_m": [
+        0.55,
+        -1.15,
+        1.15
+      ],
+      "target_m": [
+        0.0,
+        0.0,
+        1.22
+      ],
+      "up": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "fov_y_deg": 42.0,
+      "width": 640,
+      "height": 480,
+      "frame": "generator Z-up"
+    }
+  },
+  "visible_box": {
+    "extent_sorted_mm": [
+      44.78,
+      95.73,
+      1010.1
+    ],
+    "theta_vs_plus_z_deg": 0.07649,
+    "z_min_m": 0.7286,
+    "z_max_m": 1.7386,
+    "nominal_guess": "2x4",
+    "kept_by_stud_gate": false,
+    "drop_reasons": [
+      "length 1.010 m outside 1.2\u20133.3 m"
+    ],
+    "note": "Minimal oriented box of the points lifted from this SAM 2 mask. The stud-length gate may still drop it, which leaves detection null. The network does not emit the box."
+  },
+  "detection": {
+    "n_true": 1,
+    "n_pred": 0,
+    "true_positives": 0,
+    "false_positives": 0,
+    "false_negatives": 1,
+    "precision": null,
+    "recall": 0.0,
+    "match_radius_m": 0.15,
+    "scope": "synthetic_scene_only",
+    "note": "One SAM 2 mask on the scaffold camera, lifted through the z-buffer. Counts are this synthetic render, not a field accuracy."
+  },
+  "geometry": {
+    "max_section_error_mm": null,
+    "max_length_error_mm": null,
+    "per_stud": [],
+    "bbox_kind": "minimal_oriented",
+    "note": "Section is the two smaller minimal-OBB extents versus the dressed nominal. Length is the longest extent versus the generator length. Gaussian tails and the plate slab margin both move these numbers."
+  },
+  "angle": {
+    "mae_deg": null,
+    "max_abs_error_deg": null,
+    "pct_in_band": null,
+    "band_deg": 0.11937,
+    "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
+    "reference": "gravity_z_no_floor_plane",
+    "per_stud": [],
+    "note": "Truth is the generator chord. The network does not emit the angle. The shared box does. Not a SKIL reading."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "tolerance_deg": 0.11937,
+    "production_colors": [],
+    "production_rule": "epsilon unlocked, so every stud is yellow",
+    "hypothetical_placeholder_epsilon_deg": 0.05,
+    "hypothetical_placeholder_note": "0.05 deg is a round illustration of the color rule. It is not a measured device band.",
+    "hypothetical_colors": [],
+    "note": "Do not read hypothetical colors as a pass/fail call."
+  },
+  "cost": {
+    "runtime_s": 4.1175,
+    "dbscan_eps_m": 0.025,
+    "dbscan_min_points": 20,
+    "bbox_kind": "minimal_oriented",
+    "license": "Apache-2.0",
+    "license_url": "https://github.com/isl-org/Open3D",
+    "hardware": "CUDA NVIDIA GeForce RTX 4080 SUPER",
+    "n_points_in": 8266,
+    "n_points_after_peel": 8266,
+    "floor_found": false,
+    "failure_modes": [
+      "DBSCAN eps above the bay gap merges neighboring studs into one box.",
+      "DBSCAN eps below the surface spacing splits one stud into faces.",
+      "A plate side face left behind bridges bays.",
+      "Peeling a vertical stud-face plane would delete the wall.",
+      "PCA OBB on a short or one-sided cluster can yaw the long axis."
+    ],
+    "note": "Runtime is this process on this scene. It is not a field budget."
+  },
+  "notes": [
+    "Bake-off rank 7. Master-table row 7 remains ClearEdge3D EdgeWise.",
+    "Device epsilon is unlocked. Production paint is yellow when a box is kept.",
+    "The prompt is the centroid of generator stud pixels. It is not a field click.",
+    "facebook/sam2.1-hiera-tiny is a sam2_video config loaded here as Sam2Model. Captured Python warnings are in implementation.load_warnings."
+  ]
+}
