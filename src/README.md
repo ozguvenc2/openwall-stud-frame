@@ -6,7 +6,7 @@
 
 - `synthetic.py` — stage 0 single stud, stage 2 stud plus floor, stage 3 mini wall. Generator up axis is +Z.
 - `open3d_baseline.py` — rank 1 pipeline: peel horizontal slabs, DBSCAN, minimal OBB, lean, yellow paint while ε is unlocked.
-- `paint.py` — green / yellow / red. Unlocked ε is yellow.
+- `paint.py` — green / yellow / red. Unlocked ε is yellow. `dual_standard_passes` reports Handbook finish plumb and the NAHB warranty gauge, absolute and with the 0.05° SKIL device band.
 - `scorecard.py` — shared JSON writer (detection, geometry, angle, paint, cost) and `append_day_row`.
 - `results_by_day.py` — day table CSV, JSON, and markdown. Dates are America/Los_Angeles.
 - `contenders/` — PCL, CloudCompare RANSAC-SD, Pointcept, Open3D-ML, and pyRANSAC-3D rank 6 (the doc 17 add). See `contenders/README.md`.

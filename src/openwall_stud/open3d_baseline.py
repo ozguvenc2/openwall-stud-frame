@@ -12,8 +12,10 @@ Pipeline on one cloud:
    is the floor normal when a slab was peeled, otherwise generator +Z.
    The cloud is not rotated onto the floor.
 
-Device epsilon stays unlocked. Production paint is yellow. A placeholder
-epsilon is recorded beside it and is not a measured band.
+Device epsilon stays unlocked. Production paint is yellow. The scorecard
+also reports `dual_standard` (Handbook finish plumb and the NAHB warranty
+gauge; absolute, and the 0.05° SKIL device band). That report is not the
+production color.
 """
 
 from __future__ import annotations
@@ -29,7 +31,12 @@ from openwall_stud.angle_reference import (
     synthetic_angle_note,
 )
 from openwall_stud.lumber import DRESSED_SECTION_M, TOLERANCE_DEG
-from openwall_stud.paint import PLACEHOLDER_EPSILON_DEG, hypothetical_placeholder, paint_stud
+from openwall_stud.paint import (
+    PLACEHOLDER_EPSILON_DEG,
+    dual_standard_passes,
+    hypothetical_placeholder,
+    paint_stud,
+)
 from openwall_stud.synthetic import Scene
 
 # 20 mm connects a 5 mm surface sample, including across a face edge, and is
@@ -391,6 +398,18 @@ def score_run(scene: Scene, run: BaselineRun, *, match_radius_m: float = 0.15) -
             "hypothetical_placeholder_note": "0.05 deg is a round illustration of the color rule. It is not a measured device band.",
             "hypothetical_colors": [det.hypothetical_color for det in run.detections],
             "note": "Do not read hypothetical colors as a pass/fail call.",
+            "dual_standard": (
+                None
+                if not angle_errors
+                else dual_standard_passes(_round(float(np.mean(angle_errors)), 5))
+            ),
+            "dual_standard_note": (
+                "Reported colors on mean |measured - synthetic truth| for the "
+                "Handbook finish gauge and the NAHB warranty gauge. Absolute "
+                "uses no device error. The sensor column uses the 0.05 deg "
+                "SKIL device band only. Production colors stay yellow while "
+                "epsilon is unlocked."
+            ),
         },
         "cost": {
             "runtime_s": _round(run.runtime_s, 4),

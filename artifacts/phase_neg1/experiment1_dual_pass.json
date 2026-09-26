@@ -1,0 +1,370 @@
+{
+  "experiment": "1",
+  "scene": "stage0_2x4_lean0.000",
+  "description": "Single synthetic stud, no floor, no ceiling. Planted lean 0\u00b0. Colors recomputed from stored angle_mae_deg. Models were not re-run.",
+  "rule": "Let e = |measured lean \u2212 synthetic truth lean| in degrees. Let \u03c4 be the gauge. Let \u03b5 be 0\u00b0 on the absolute column and 0.05\u00b0 (SKIL device band) on the sensor column. Green if e + \u03b5 \u2264 \u03c4 (the whole interval is inside the gauge). Red if e \u2212 \u03b5 > \u03c4 (the whole interval is outside the gauge). Yellow if the interval overlaps \u03c4. When \u03b5 = 0 the interval is the point e, so green if e \u2264 \u03c4 and red if e > \u03c4; yellow does not occur, and e = \u03c4 is green. Production paint stays yellow while device \u03b5 is unlocked. The sensor column does not include human placement error or lumber surface defects.",
+  "source": "artifacts/phase_neg1/all_nine_stage0.json",
+  "rows": [
+    {
+      "algorithm": "open3d",
+      "bucket": "geometry-first",
+      "mean_abs_error_deg": 0.03084,
+      "true_lean_deg": 0.0,
+      "standards": [
+        {
+          "key": "handbook_finish_plumb",
+          "name": "Handbook finish plumb (1/4 in in 10 ft)",
+          "folklore_label": "Finnish-style folklore plumb (~0.12\u00b0, sometimes cited ~0.1\u00b0). Same 1/4 inch in 10 feet geometry. Not an AHJ code number.",
+          "threshold_deg": 0.11936603462520555,
+          "linear": "1/4 inch in 10 feet",
+          "citation": "Handbook of Construction Tolerances (Ballast), WoodWorks summary; docs/tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        },
+        {
+          "key": "nahb_warranty_gauge",
+          "name": "NAHB warranty gauge (3/8 in in 32 in)",
+          "folklore_label": null,
+          "threshold_deg": 0.6714041828499762,
+          "linear": "3/8 inch in 32 inches",
+          "citation": "NAHB Residential Construction Performance Guidelines 4-1-1; docs/research/36-az-framing-standards-inspector-tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        }
+      ]
+    },
+    {
+      "algorithm": "pcl",
+      "bucket": "geometry-first",
+      "mean_abs_error_deg": 0.03084,
+      "true_lean_deg": 0.0,
+      "standards": [
+        {
+          "key": "handbook_finish_plumb",
+          "name": "Handbook finish plumb (1/4 in in 10 ft)",
+          "folklore_label": "Finnish-style folklore plumb (~0.12\u00b0, sometimes cited ~0.1\u00b0). Same 1/4 inch in 10 feet geometry. Not an AHJ code number.",
+          "threshold_deg": 0.11936603462520555,
+          "linear": "1/4 inch in 10 feet",
+          "citation": "Handbook of Construction Tolerances (Ballast), WoodWorks summary; docs/tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        },
+        {
+          "key": "nahb_warranty_gauge",
+          "name": "NAHB warranty gauge (3/8 in in 32 in)",
+          "folklore_label": null,
+          "threshold_deg": 0.6714041828499762,
+          "linear": "3/8 inch in 32 inches",
+          "citation": "NAHB Residential Construction Performance Guidelines 4-1-1; docs/research/36-az-framing-standards-inspector-tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        }
+      ]
+    },
+    {
+      "algorithm": "pyransac3d",
+      "bucket": "geometry-first",
+      "mean_abs_error_deg": 0.03084,
+      "true_lean_deg": 0.0,
+      "standards": [
+        {
+          "key": "handbook_finish_plumb",
+          "name": "Handbook finish plumb (1/4 in in 10 ft)",
+          "folklore_label": "Finnish-style folklore plumb (~0.12\u00b0, sometimes cited ~0.1\u00b0). Same 1/4 inch in 10 feet geometry. Not an AHJ code number.",
+          "threshold_deg": 0.11936603462520555,
+          "linear": "1/4 inch in 10 feet",
+          "citation": "Handbook of Construction Tolerances (Ballast), WoodWorks summary; docs/tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        },
+        {
+          "key": "nahb_warranty_gauge",
+          "name": "NAHB warranty gauge (3/8 in in 32 in)",
+          "folklore_label": null,
+          "threshold_deg": 0.6714041828499762,
+          "linear": "3/8 inch in 32 inches",
+          "citation": "NAHB Residential Construction Performance Guidelines 4-1-1; docs/research/36-az-framing-standards-inspector-tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        }
+      ]
+    },
+    {
+      "algorithm": "pointcept_stud_head",
+      "bucket": "supervised",
+      "mean_abs_error_deg": 0.03084,
+      "true_lean_deg": 0.0,
+      "standards": [
+        {
+          "key": "handbook_finish_plumb",
+          "name": "Handbook finish plumb (1/4 in in 10 ft)",
+          "folklore_label": "Finnish-style folklore plumb (~0.12\u00b0, sometimes cited ~0.1\u00b0). Same 1/4 inch in 10 feet geometry. Not an AHJ code number.",
+          "threshold_deg": 0.11936603462520555,
+          "linear": "1/4 inch in 10 feet",
+          "citation": "Handbook of Construction Tolerances (Ballast), WoodWorks summary; docs/tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        },
+        {
+          "key": "nahb_warranty_gauge",
+          "name": "NAHB warranty gauge (3/8 in in 32 in)",
+          "folklore_label": null,
+          "threshold_deg": 0.6714041828499762,
+          "linear": "3/8 inch in 32 inches",
+          "citation": "NAHB Residential Construction Performance Guidelines 4-1-1; docs/research/36-az-framing-standards-inspector-tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        }
+      ]
+    },
+    {
+      "algorithm": "open3d_ml_stud_head",
+      "bucket": "supervised",
+      "mean_abs_error_deg": 0.03084,
+      "true_lean_deg": 0.0,
+      "standards": [
+        {
+          "key": "handbook_finish_plumb",
+          "name": "Handbook finish plumb (1/4 in in 10 ft)",
+          "folklore_label": "Finnish-style folklore plumb (~0.12\u00b0, sometimes cited ~0.1\u00b0). Same 1/4 inch in 10 feet geometry. Not an AHJ code number.",
+          "threshold_deg": 0.11936603462520555,
+          "linear": "1/4 inch in 10 feet",
+          "citation": "Handbook of Construction Tolerances (Ballast), WoodWorks summary; docs/tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        },
+        {
+          "key": "nahb_warranty_gauge",
+          "name": "NAHB warranty gauge (3/8 in in 32 in)",
+          "folklore_label": null,
+          "threshold_deg": 0.6714041828499762,
+          "linear": "3/8 inch in 32 inches",
+          "citation": "NAHB Residential Construction Performance Guidelines 4-1-1; docs/research/36-az-framing-standards-inspector-tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        }
+      ]
+    },
+    {
+      "algorithm": "pointsam",
+      "bucket": "promptable-foundation",
+      "mean_abs_error_deg": 0.03817,
+      "true_lean_deg": 0.0,
+      "standards": [
+        {
+          "key": "handbook_finish_plumb",
+          "name": "Handbook finish plumb (1/4 in in 10 ft)",
+          "folklore_label": "Finnish-style folklore plumb (~0.12\u00b0, sometimes cited ~0.1\u00b0). Same 1/4 inch in 10 feet geometry. Not an AHJ code number.",
+          "threshold_deg": 0.11936603462520555,
+          "linear": "1/4 inch in 10 feet",
+          "citation": "Handbook of Construction Tolerances (Ballast), WoodWorks summary; docs/tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        },
+        {
+          "key": "nahb_warranty_gauge",
+          "name": "NAHB warranty gauge (3/8 in in 32 in)",
+          "folklore_label": null,
+          "threshold_deg": 0.6714041828499762,
+          "linear": "3/8 inch in 32 inches",
+          "citation": "NAHB Residential Construction Performance Guidelines 4-1-1; docs/research/36-az-framing-standards-inspector-tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        }
+      ]
+    },
+    {
+      "algorithm": "sam3d",
+      "bucket": "promptable-foundation",
+      "mean_abs_error_deg": 0.03177,
+      "true_lean_deg": 0.0,
+      "standards": [
+        {
+          "key": "handbook_finish_plumb",
+          "name": "Handbook finish plumb (1/4 in in 10 ft)",
+          "folklore_label": "Finnish-style folklore plumb (~0.12\u00b0, sometimes cited ~0.1\u00b0). Same 1/4 inch in 10 feet geometry. Not an AHJ code number.",
+          "threshold_deg": 0.11936603462520555,
+          "linear": "1/4 inch in 10 feet",
+          "citation": "Handbook of Construction Tolerances (Ballast), WoodWorks summary; docs/tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        },
+        {
+          "key": "nahb_warranty_gauge",
+          "name": "NAHB warranty gauge (3/8 in in 32 in)",
+          "folklore_label": null,
+          "threshold_deg": 0.6714041828499762,
+          "linear": "3/8 inch in 32 inches",
+          "citation": "NAHB Residential Construction Performance Guidelines 4-1-1; docs/research/36-az-framing-standards-inspector-tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        }
+      ]
+    },
+    {
+      "algorithm": "openmask3d",
+      "bucket": "promptable-foundation",
+      "mean_abs_error_deg": 0.03019,
+      "true_lean_deg": 0.0,
+      "standards": [
+        {
+          "key": "handbook_finish_plumb",
+          "name": "Handbook finish plumb (1/4 in in 10 ft)",
+          "folklore_label": "Finnish-style folklore plumb (~0.12\u00b0, sometimes cited ~0.1\u00b0). Same 1/4 inch in 10 feet geometry. Not an AHJ code number.",
+          "threshold_deg": 0.11936603462520555,
+          "linear": "1/4 inch in 10 feet",
+          "citation": "Handbook of Construction Tolerances (Ballast), WoodWorks summary; docs/tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        },
+        {
+          "key": "nahb_warranty_gauge",
+          "name": "NAHB warranty gauge (3/8 in in 32 in)",
+          "folklore_label": null,
+          "threshold_deg": 0.6714041828499762,
+          "linear": "3/8 inch in 32 inches",
+          "citation": "NAHB Residential Construction Performance Guidelines 4-1-1; docs/research/36-az-framing-standards-inspector-tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        }
+      ]
+    },
+    {
+      "algorithm": "segment3d",
+      "bucket": "promptable-foundation",
+      "mean_abs_error_deg": 0.02398,
+      "true_lean_deg": 0.0,
+      "standards": [
+        {
+          "key": "handbook_finish_plumb",
+          "name": "Handbook finish plumb (1/4 in in 10 ft)",
+          "folklore_label": "Finnish-style folklore plumb (~0.12\u00b0, sometimes cited ~0.1\u00b0). Same 1/4 inch in 10 feet geometry. Not an AHJ code number.",
+          "threshold_deg": 0.11936603462520555,
+          "linear": "1/4 inch in 10 feet",
+          "citation": "Handbook of Construction Tolerances (Ballast), WoodWorks summary; docs/tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        },
+        {
+          "key": "nahb_warranty_gauge",
+          "name": "NAHB warranty gauge (3/8 in in 32 in)",
+          "folklore_label": null,
+          "threshold_deg": 0.6714041828499762,
+          "linear": "3/8 inch in 32 inches",
+          "citation": "NAHB Residential Construction Performance Guidelines 4-1-1; docs/research/36-az-framing-standards-inspector-tolerances.md",
+          "absolute": {
+            "color": "green",
+            "reason": "interval_inside"
+          },
+          "sensor": {
+            "color": "green",
+            "reason": "interval_inside"
+          }
+        }
+      ]
+    }
+  ],
+  "markdown": "| Model | Standard | Threshold (\u00b0) | Mean \\|err\\| (\u00b0) | Absolute | With sensor \u03b5 0.05\u00b0 |\n| --- | --- | ---: | ---: | --- | --- |\n| open3d | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03084 | green | green |\n| open3d | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03084 | green | green |\n| pcl | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03084 | green | green |\n| pcl | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03084 | green | green |\n| pyransac3d | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03084 | green | green |\n| pyransac3d | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03084 | green | green |\n| pointcept_stud_head | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03084 | green | green |\n| pointcept_stud_head | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03084 | green | green |\n| open3d_ml_stud_head | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03084 | green | green |\n| open3d_ml_stud_head | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03084 | green | green |\n| pointsam | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03817 | green | green |\n| pointsam | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03817 | green | green |\n| sam3d | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03177 | green | green |\n| sam3d | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03177 | green | green |\n| openmask3d | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03019 | green | green |\n| openmask3d | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03019 | green | green |\n| segment3d | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.02398 | green | green |\n| segment3d | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.02398 | green | green |"
+}

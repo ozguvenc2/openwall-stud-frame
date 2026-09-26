@@ -43,7 +43,7 @@ scripts/        # baseline runner, figure renderer, later download helpers
 
 ## Industry margins
 
-Sourced plumb guidelines and the derived ~0.12° conversion are in [`docs/tolerances.md`](docs/tolerances.md). A measured sensor error bar is still open. Do not paint pass/fail until that bar exists.
+Sourced plumb guidelines and the derived ~0.12° conversion are in [`docs/tolerances.md`](docs/tolerances.md). Production paint stays yellow until a measured device band is locked. A reported dual-pass (Handbook finish plumb and the NAHB warranty gauge, absolute and with the 0.05° SKIL device band) is in [`docs/research/31-four-stage-error-table.md`](docs/research/31-four-stage-error-table.md). That report is not the production color.
 
 ## Research docs
 

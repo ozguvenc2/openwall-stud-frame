@@ -81,8 +81,66 @@ On this lean0 scene, **no model’s Stage4 angle exceeds the Stage3 ±0.05° dev
 
 ## Product locks honored
 
-- Paint yellow only (device ε unlocked). `PLACEHOLDER_EPSILON_DEG` / Skil near-plumb ±0.05° is Stage3 theoretical only — not a locked measured ε.
-- Synth lean reference: generator +Z (no floor).
+- Paint yellow only (device ε unlocked). `PLACEHOLDER_EPSILON_DEG` / Skil near-plumb ±0.05° is Stage3 theoretical only — not a locked measured ε. The dual-pass table below reports colors; it does not flip this lock.
+- Synth lean reference: generator +Z (no floor). Stage0 planted lean stays **0°**.
 - CloudCompare out of the bake-off.
 - No fabricated metrics: Stage2 computed; Stage4 copied from `all_nine_stage0.json`.
 - Path: `artifacts/phase_neg1/` (underscore), not `phase-neg1`.
+
+## Dual-standard, dual-reference passes
+
+Date (America/Los_Angeles): **2026-09-26**. Policy for every model on every experiment from here on. **Experiment 1** is this scene: one stud, no floor, no ceiling, planted lean **0°** (`stage0_2x4_lean0.000`). Colors use the stored `angle_mae_deg` cells. Models were not re-run.
+
+Production paint stays **yellow** while device ε is unlocked. The matrix is a reported comparison of model error against two published gauges. It does not choose a new code tolerance and it does not replace the yellow production color.
+
+### Gauges (established, not new)
+
+| Standard | Linear figure | Decision threshold | What it is |
+| --- | --- | --- | --- |
+| Handbook finish plumb | 1/4 inch in 10 feet | `atan(0.25/120)` = **0.11937°** | Handbook of Construction Tolerances (Ballast), as summarized by WoodWorks ([tolerances.md](../tolerances.md)). This is the literature name for the figure Oz calls **Finnish-style folklore plumb** (~0.12°, sometimes ~0.1°). **Not an AHJ code number.** The repo has no Finnish code citation for it. |
+| NAHB warranty gauge | 3/8 inch in 32 inches | `atan(0.375/32)` = **0.67140°** | NAHB Residential Construction Performance Guidelines, guideline 4-1-1 ([doc 36](36-az-framing-standards-inspector-tolerances.md)). Doc 36 rounds the same derivation to **0.671°** (~0.67°). Warranty booklet, not an IRC red tag. |
+
+UFGS and the RSMeans 1/4 inch in 32 inches stay in doc 36. They are not columns.
+
+### Decision rule
+
+Implemented by `dual_standard_passes` in `src/openwall_stud/paint.py`. It calls the existing `paint_stud` interval tests with ε locked **for that column only**.
+
+Let **e** = |measured lean − synthetic truth lean| in degrees. On Experiment 1 the truth lean is 0°, so **e** is the stored `angle_mae_deg` (one stud, so the mean is that single error). Let **τ** be the gauge above. Let **ε** be **0°** on the absolute column and **0.05°** on the sensor column (`SENSOR_EPSILON_DEG`, the same constant as `PLACEHOLDER_EPSILON_DEG`).
+
+- **Green** if the whole interval sits inside the gauge: **e + ε ≤ τ** (`interval_inside`).
+- **Red** if the whole interval sits outside the gauge: **e − ε > τ** (`interval_outside`). The outside test is strict.
+- **Yellow** if the interval overlaps τ (`interval_overlaps`).
+
+When ε = 0 the interval is the point e, so the color is green if e ≤ τ and red if e > τ. Yellow does not occur. **e = τ is green**, the same edge as the existing “θ + ε = τ is inside” test.
+
+The 0.05° band is the SKIL / digital-level **device** error only. Human placement error and lumber surface or warp defects stay out (doc 33). They are not added to ε.
+
+Stage0 synth lean **0.0°** stays locked. Yellow-until-ε-locked still designs the production color. Yellow in this rule is only the sensor-column overlap.
+
+### Experiment 1 matrix
+
+One matrix for this experiment. Recomputed by `python scripts/score_experiment1_dual_pass.py` from `artifacts/phase_neg1/all_nine_stage0.json`, checked against each scorecard’s `abs_error_deg` and `true_deg = 0`. Artifact: `artifacts/phase_neg1/experiment1_dual_pass.json`. The four-stage cells above keep the same errors and are not given a second color grid. Doc 29’s pre-fix SAM3D angle (0.06871°) is a superseded card, not this round. Published BIMStruct3D and S3DIS controls have null stud lean and are not colored.
+
+| Model | Standard | Threshold (°) | Mean \|err\| (°) | Absolute | With sensor ε 0.05° |
+| --- | --- | ---: | ---: | --- | --- |
+| open3d | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03084 | green | green |
+| open3d | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03084 | green | green |
+| pcl | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03084 | green | green |
+| pcl | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03084 | green | green |
+| pyransac3d | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03084 | green | green |
+| pyransac3d | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03084 | green | green |
+| pointcept_stud_head | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03084 | green | green |
+| pointcept_stud_head | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03084 | green | green |
+| open3d_ml_stud_head | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03084 | green | green |
+| open3d_ml_stud_head | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03084 | green | green |
+| pointsam | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03817 | green | green |
+| pointsam | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03817 | green | green |
+| sam3d | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03177 | green | green |
+| sam3d | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03177 | green | green |
+| openmask3d | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.03019 | green | green |
+| openmask3d | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.03019 | green | green |
+| segment3d | Handbook finish plumb (1/4 in in 10 ft) | 0.11937 | 0.02398 | green | green |
+| segment3d | NAHB warranty gauge (3/8 in in 32 in) | 0.67140 | 0.02398 | green | green |
+
+Every model is green on both gauges and both columns. The largest stored error is Point-SAM **0.03817°**. Handbook sensor-green needs e + 0.05° ≤ 0.11937° (e ≤ 0.06937°). The NAHB gauge is wider. The stage 0 bar “angle ≤ 0.05°” is a separate bring-up check. It is not these colors.

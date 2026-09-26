@@ -44,6 +44,8 @@ Coherent runner: `scripts/phase_neg1_all_nine_stage0.py`. Table JSON: `artifacts
 
 **Verdict: 9/9 pass on stage0_2x4_lean0.000.** SAM3D and OpenMask3D now pass. Published BIMStruct3D / S3DIS controls remain `control` (~42 s / ~0.47 s).
 
+Industry green/yellow/red for this same one-stud scene (Experiment 1) is the dual-pass matrix in [31-four-stage-error-table.md](31-four-stage-error-table.md): Handbook finish plumb (0.11937°) and NAHB warranty gauge (0.67140°), each with an absolute column and a SKIL 0.05° sensor column. Those colors were recomputed from the stored `angle_mae_deg` cells. They do not replace the stage 0 bars above, and production paint stays yellow.
+
 ## Reproduce (Oz_PC)
 
 ```bat
