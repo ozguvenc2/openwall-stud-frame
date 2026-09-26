@@ -32,7 +32,7 @@
     "weight": "/mnt/c/Repos/openwall-stud-frame/data/cache/phase_neg1/pointsam/model.safetensors",
     "mask_index": 2,
     "iou_pred": 0.6445935964584351,
-    "gpu_ms": 313.2489318847656,
+    "gpu_ms": 349.011962890625,
     "prompt": "first-point after mean-center/normalize"
   },
   "implementation_short": "Point-SAM large, one positive point prompt, best IoU mask \u2192 stud labels.",
@@ -111,7 +111,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.3139,
+    "runtime_s": 0.3496,
     "license": "Point-SAM code + HF weights (see upstream); not a stud-trained head",
     "hardware": "cuda; torch 2.14.0+cu126; NVIDIA GeForce RTX 4080 SUPER",
     "bbox_kind": "minimal_oriented",

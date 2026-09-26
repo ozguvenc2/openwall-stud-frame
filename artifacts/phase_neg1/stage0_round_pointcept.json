@@ -9,7 +9,7 @@
     "section_mm": null,
     "length_mm": null,
     "angle_mae_deg": null,
-    "runtime_s": 42.2848,
+    "runtime_s": 42.184,
     "stud_metrics_scored": false
   },
   {
@@ -22,7 +22,7 @@
     "section_mm": 7.86,
     "length_mm": 6.24,
     "angle_mae_deg": 0.03084,
-    "runtime_s": 0.0771,
+    "runtime_s": 0.0798,
     "stud_metrics_scored": true
   }
 ]

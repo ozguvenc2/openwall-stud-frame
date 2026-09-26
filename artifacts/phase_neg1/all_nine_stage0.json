@@ -8,150 +8,120 @@
       "bucket": "geometry-first",
       "pass_fail": "pass",
       "scorecard": "open3d_stage0_stage0_2x4_lean0.000.json",
-      "runtime_s": 0.0543,
+      "runtime_s": 0.0546,
       "precision": 1.0,
       "recall": 1.0,
       "section_mm": 7.86,
       "length_mm": 6.24,
       "angle_mae_deg": 0.03084,
-      "reason": "pass",
-      "bar_failures": null,
-      "n_stud_points": null,
-      "gpu_ms": null
+      "reason": "pass"
     },
     {
       "algorithm": "pcl",
       "bucket": "geometry-first",
       "pass_fail": "pass",
       "scorecard": "pcl_stage0_stage0_2x4_lean0.000.json",
-      "runtime_s": 3.3391,
+      "runtime_s": 2.3064,
       "precision": 1.0,
       "recall": 1.0,
       "section_mm": 7.86,
       "length_mm": 6.24,
       "angle_mae_deg": 0.03084,
-      "reason": "pass",
-      "bar_failures": [],
-      "n_stud_points": null,
-      "gpu_ms": null
+      "reason": "pass"
     },
     {
       "algorithm": "pyransac3d",
       "bucket": "geometry-first",
       "pass_fail": "pass",
       "scorecard": "pyransac3d_stage0_stage0_2x4_lean0.000.json",
-      "runtime_s": 1.2443,
+      "runtime_s": 1.2024,
       "precision": 1.0,
       "recall": 1.0,
       "section_mm": 7.86,
       "length_mm": 6.24,
       "angle_mae_deg": 0.03084,
-      "reason": "pass",
-      "bar_failures": [],
-      "n_stud_points": null,
-      "gpu_ms": null
+      "reason": "pass"
     },
     {
       "algorithm": "pointcept_stud_head",
       "bucket": "supervised",
       "pass_fail": "pass",
       "scorecard": "pointcept_finetune_stage0_stage0_2x4_lean0.000.json",
-      "runtime_s": 0.0771,
+      "runtime_s": 0.0798,
       "precision": 1.0,
       "recall": 1.0,
       "section_mm": 7.86,
       "length_mm": 6.24,
       "angle_mae_deg": 0.03084,
-      "reason": "pass",
-      "bar_failures": [],
-      "n_stud_points": 25666,
-      "gpu_ms": null
+      "reason": "pass"
     },
     {
       "algorithm": "open3d_ml_stud_head",
       "bucket": "supervised",
       "pass_fail": "pass",
       "scorecard": "open3d_ml_finetune_stage0_stage0_2x4_lean0.000.json",
-      "runtime_s": 0.1453,
+      "runtime_s": 0.1965,
       "precision": 1.0,
       "recall": 1.0,
       "section_mm": 7.86,
       "length_mm": 6.24,
       "angle_mae_deg": 0.03084,
-      "reason": "pass",
-      "bar_failures": [],
-      "n_stud_points": 25666,
-      "gpu_ms": null
+      "reason": "pass"
     },
     {
       "algorithm": "pointsam",
       "bucket": "promptable-foundation",
       "pass_fail": "pass",
       "scorecard": "pointsam_stage0_stage0_2x4_lean0.000.json",
-      "runtime_s": 0.3139,
+      "runtime_s": 0.3496,
       "precision": 1.0,
       "recall": 1.0,
       "section_mm": 4.45,
       "length_mm": 6.22,
       "angle_mae_deg": 0.03817,
-      "reason": "zero-shot point prompt; not a stud-trained head",
-      "bar_failures": [],
-      "n_stud_points": 349,
-      "gpu_ms": 313.2489318847656
+      "reason": "zero-shot point prompt; not a stud-trained head"
     },
     {
       "algorithm": "sam3d",
       "bucket": "promptable-foundation",
-      "pass_fail": "fail",
+      "pass_fail": "pass",
       "scorecard": "sam3d_stage0_stage0_2x4_lean0.000.json",
-      "runtime_s": 0.2426,
+      "runtime_s": 0.2401,
       "precision": 1.0,
       "recall": 1.0,
-      "section_mm": 6.83,
-      "length_mm": 1427.98,
-      "angle_mae_deg": 0.06871,
-      "reason": "ViT-H pinhole lift; ScanNet multi-frame path not run; bars: length error 1427.98 mm > 25.0; angle error 0.06871 deg > 0.05",
-      "bar_failures": [
-        "length error 1427.98 mm > 25.0",
-        "angle error 0.06871 deg > 0.05"
-      ],
-      "n_stud_points": 8311,
-      "gpu_ms": 242.54010009765625
+      "section_mm": 7.83,
+      "length_mm": 4.3,
+      "angle_mae_deg": 0.03177,
+      "reason": "ViT-H full-stud multi-view lift; ScanNet multi-frame path not run"
     },
     {
       "algorithm": "openmask3d",
       "bucket": "promptable-foundation",
       "pass_fail": "pass",
       "scorecard": "openmask3d_stage0_stage0_2x4_lean0.000.json",
-      "runtime_s": 0.0254,
+      "runtime_s": 3.2926,
       "precision": 1.0,
       "recall": 1.0,
       "section_mm": 7.21,
       "length_mm": 6.24,
       "angle_mae_deg": 0.03019,
-      "reason": "mask-module scored; CLIP/posed RGB-D open-vocab stage blocked (no RGB-D on synth)",
-      "bar_failures": [],
-      "n_stud_points": 21488,
-      "gpu_ms": null
+      "reason": "mask-module + synth posed RGB-D CLIP open-vocab"
     },
     {
       "algorithm": "segment3d",
       "bucket": "promptable-foundation",
       "pass_fail": "pass",
       "scorecard": "segment3d_stage0_stage0_2x4_lean0.000.json",
-      "runtime_s": 0.5518,
+      "runtime_s": 0.4658,
       "precision": 1.0,
       "recall": 1.0,
       "section_mm": 7.88,
       "length_mm": 6.04,
       "angle_mae_deg": 0.02398,
-      "reason": "zero-shot Mask3D forward; cuML postprocess not run",
-      "bar_failures": [],
-      "n_stud_points": 17282,
-      "gpu_ms": 550.7599487304688
+      "reason": "zero-shot Mask3D forward; cuML postprocess not run"
     }
   ],
-  "supervised_controls": [
+  "supervised_stud_heads": [
     {
       "algorithm": "pointcept",
       "scorecard": "pointcept_stage0_stage0_2x4_lean0.000.json",
@@ -162,7 +132,7 @@
       "section_mm": null,
       "length_mm": null,
       "angle_mae_deg": null,
-      "runtime_s": 42.2848,
+      "runtime_s": 42.184,
       "stud_metrics_scored": false
     },
     {
@@ -175,10 +145,52 @@
       "section_mm": null,
       "length_mm": null,
       "angle_mae_deg": null,
-      "runtime_s": 0.5142,
+      "runtime_s": 0.4682,
       "stud_metrics_scored": false
     }
   ],
-  "date": "2026-09-25",
-  "host": "Oz_PC"
+  "step_logs": [
+    {
+      "step": "geometry",
+      "returncode": 0,
+      "wall_s": 4.586,
+      "stderr_tail": ""
+    },
+    {
+      "step": "pointcept",
+      "returncode": 0,
+      "wall_s": 51.491,
+      "stderr_tail": "[2026-09-26 00:32:13,686 INFO defaults.py line 77 41544] Totally 1 x 1 samples in tiles  set.\n"
+    },
+    {
+      "step": "o3dml",
+      "returncode": 0,
+      "wall_s": 4.437,
+      "stderr_tail": "\ntest 0/1:   0%|          | 0/500 [00:00<?, ?it/s]\ntest 0/1: 100%|##########| 500/500 [00:00<00:00, 3574.56it/s]\n\ntest 0/1:   0%|          | 0/2722 [00:00<?, ?it/s]\ntest 0/1: 100%|##########| 2722/2722 [00:00<00:00, 9858.63it/s]\n"
+    },
+    {
+      "step": "sam3d",
+      "returncode": 0,
+      "wall_s": 7.236,
+      "stderr_tail": ""
+    },
+    {
+      "step": "pointsam",
+      "returncode": 0,
+      "wall_s": 12.554,
+      "stderr_tail": "/home/pegassy/mlenv/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'large': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information\n  warnings.warn(msg, UserWarning)\n"
+    },
+    {
+      "step": "openmask3d",
+      "returncode": 0,
+      "wall_s": 5.666,
+      "stderr_tail": "/home/pegassy/mlenv/lib/python3.11/site-packages/clip/clip.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  from pkg_resources import packaging\n/home/pegassy/mlenv/lib/python3.11/site-packages/torch/jit/_serialization.py:176: FutureWarning: `torch.jit.load` is deprecated. Please switch to `torch.export`.\n  warnings.warn(\n"
+    },
+    {
+      "step": "segment3d",
+      "returncode": 0,
+      "wall_s": 5.407,
+      "stderr_tail": "/home/pegassy/mlenv/lib/python3.11/site-packages/MinkowskiEngine/__init__.py:36: UserWarning: The environment variable `OMP_NUM_THREADS` not set. MinkowskiEngine will automatically set `OMP_NUM_THREADS=16`. If you want to set `OMP_NUM_THREADS` manually, please export it on the command line before running a python script. e.g. `export OMP_NUM_THREADS=12; python your_program.py`. It is recommended to set it below 24.\n  warnings.warn(\n/mnt/c/Repos/openwall-stud-frame/scripts/phase_neg1_stage0_foundation.py:367: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.\n  blob = torch.load(str(ckpt), map_location=\"cpu\")\n/mnt/c/Repos/openwall-stud-frame/artifacts/third_party/Segment3D/models/mask3d_no_aux.py:223: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n  with autocast(enabled=False):\n"
+    }
+  ]
 }

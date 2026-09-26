@@ -263,7 +263,7 @@
     "note": "Open3D-ML RandLA-Net S3DIS forward pass on this one synthetic stud. Classes: ceiling, floor, wall, beam, column, window, door, table, chair, sofa, bookcase, board, clutter. Stud-named classes: none. RGB features were zeros because the generator cloud has no color. The library's own sampler pads when the subsampled cloud is shorter than 40960 points. predict_labels length 25666 on 25666 input points. Placeholder API labels were zeros and were not treated as ground truth. No stud box was fit and no paint color was assigned. KPConv was not run. S3DIS mIoU was not copied."
   },
   "cost": {
-    "runtime_s": 0.5142,
+    "runtime_s": 0.4682,
     "license": "Open3D-ML MIT; upstream RandLA-Net repo is CC BY-NC-SA 4.0",
     "hardware": "NVIDIA GeForce RTX 4080 SUPER; CUDA torch 2.13.0+cu126",
     "failure_modes": [

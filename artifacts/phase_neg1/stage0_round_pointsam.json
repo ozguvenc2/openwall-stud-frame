@@ -9,10 +9,10 @@
     "section_mm": 4.45,
     "length_mm": 6.22,
     "angle_mae_deg": 0.03817,
-    "runtime_s": 0.3139,
+    "runtime_s": 0.3496,
     "stud_metrics_scored": true,
     "n_stud_points": 349,
-    "gpu_ms": 313.2489318847656,
+    "gpu_ms": 349.011962890625,
     "reason": "zero-shot point prompt; not a stud-trained head"
   }
 ]

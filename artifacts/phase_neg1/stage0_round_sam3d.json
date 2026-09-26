@@ -9,10 +9,10 @@
     "section_mm": 7.83,
     "length_mm": 4.3,
     "angle_mae_deg": 0.03177,
-    "runtime_s": 0.2688,
+    "runtime_s": 0.2401,
     "stud_metrics_scored": true,
     "n_stud_points": 7188,
-    "gpu_ms": 268.6456708908081,
+    "gpu_ms": 240.01993370056152,
     "reason": "ViT-H full-stud multi-view lift; ScanNet multi-frame path not run"
   }
 ]

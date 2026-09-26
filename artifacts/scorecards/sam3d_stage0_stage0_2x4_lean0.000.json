@@ -63,7 +63,7 @@
       }
     ],
     "n_lifted": 7188,
-    "gpu_ms": 268.6456708908081,
+    "gpu_ms": 240.01993370056152,
     "note": "2D SAM ViT-H on full-stud pinholes + z-buffer lift union. Replaces FOV-cropped default_stud_camera that truncated length to ~1 m."
   },
   "implementation_short": "SAM ViT-H on full-stud front+back pinholes, mask union lifted \u2192 stud labels.",
@@ -142,7 +142,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.2688,
+    "runtime_s": 0.2401,
     "license": "segment-anything Apache-2.0; SAM3D upstream; not a stud-trained head",
     "hardware": "cuda; torch 2.7.0+cu126; NVIDIA GeForce RTX 4080 SUPER",
     "bbox_kind": "minimal_oriented",

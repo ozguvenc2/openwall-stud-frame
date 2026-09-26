@@ -377,7 +377,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 3.7886,
+    "runtime_s": 3.2926,
     "license": "OpenMask3D upstream; openai-clip; not a stud-trained head",
     "hardware": "clip device cuda; prior CUDA mask-module forward",
     "bbox_kind": "minimal_oriented",

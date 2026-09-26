@@ -9,7 +9,7 @@
     "section_mm": 7.21,
     "length_mm": 6.24,
     "angle_mae_deg": 0.03019,
-    "runtime_s": 3.7886,
+    "runtime_s": 3.2926,
     "stud_metrics_scored": true,
     "n_stud_points": 21488,
     "reason": "mask-module + synth posed RGB-D CLIP open-vocab"
