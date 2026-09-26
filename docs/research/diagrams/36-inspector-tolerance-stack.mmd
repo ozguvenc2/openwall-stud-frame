@@ -1,0 +1,17 @@
+%% Doc 36. What a residential framing inspection actually sorts,
+%% and which plumb numbers are code, warranty, finish, or grade.
+%% Does not change Stage0 paint, epsilon, or minimal OBB.
+flowchart TB
+  permit["Approved plans under the IRC edition on the permit<br/>AZ city or county, not a state house code"]
+  permit --> combo["Combination / pre-drywall inspection<br/>framing plus rough MEP, before cover"]
+  combo --> code{"Is it a written code or plan item?"}
+  code -->|yes| measure["Tape, plans, grade stamp, nail pattern<br/>anchors, notches, fireblock, hardware, truss bracing"]
+  code -->|no plumb clause| sight["No published degree<br/>level or sight only if the wall is obviously unusable"]
+  measure --> fail["Correction and reinspection<br/>notches, fireblock, hold-downs, shear nailing, anchors"]
+  measure --> pass["Pass the framed wall"]
+  sight --> warranty["Later warranty gauge, not the red tag<br/>NAHB 3/8 in in 32 in, about 0.67 deg"]
+  sight --> finish["Finish-plane guides, not IRC<br/>Handbook 1/4 in in 10 ft, about 0.12 deg<br/>GA-216 1/8 in between adjacent faces"]
+  pass --> lean["TruePlank chord lean is a different instrument<br/>doc 33 OBB angle, still yellow while epsilon is unlocked"]
+  warranty --> lean
+  finish --> crook["Doc 35 crook is midspan offset<br/>a plumb chord can still be 1/4 in crooked"]
+  crook --> lean

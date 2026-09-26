@@ -2,7 +2,7 @@
 
 Date (America/Los_Angeles): **2026-09-26**. Survey pass only — no scorecard, no generator change, no paint or ε change. Numbers copied from a page opened this pass are labeled with that page. A figure computed here is **derived**. A trade article is not a grading rule.
 
-This note is the wood-characteristics brief behind doc 33 Track B and behind the still-uninjected TrueLevel line “real lumber surface imperfections” in doc 34. It does not edit those locks. Companion: [33-obb-and-deformation-research.md](33-obb-and-deformation-research.md) (Track B centerline, deviation profile, twist slices). S1b scenes: [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md), [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md). Axis diagram source: [diagrams/35-warp-axes.mmd](diagrams/35-warp-axes.mmd).
+This note is the wood-characteristics brief behind doc 33 Track B and behind the still-uninjected TrueLevel line “real lumber surface imperfections” in doc 34. It does not edit those locks. Companions: [33-obb-and-deformation-research.md](33-obb-and-deformation-research.md) (Track B centerline, deviation profile, twist slices), [36-az-framing-standards-inspector-tolerances.md](36-az-framing-standards-inspector-tolerances.md) (which of these shapes an Arizona framing inspection actually cites, versus chord plumb). S1b scenes: [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md), [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md). Axis diagram source: [diagrams/35-warp-axes.mmd](diagrams/35-warp-axes.mmd).
 
 ## How to read this note
 
