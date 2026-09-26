@@ -4,7 +4,9 @@ data/cache/
 *.pcd
 *.las
 *.laz
-artifacts/one_stud/
+artifacts/fullroom/pcl_work/
+artifacts/fullroom/pcl_smoke/
+artifacts/fullroom/queue_console.txt
 artifacts/bin/
 artifacts/third_party/
 __pycache__/

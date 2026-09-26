@@ -1,0 +1,674 @@
+{
+  "stages": {
+    "exp1_dual_pass": {
+      "status": "skipped_present",
+      "time": "2026-09-26T12:36:40-07:00",
+      "title": "Experiment 1 dual-threshold rebuild (PR #41)",
+      "markers": [
+        "artifacts/phase_neg1/experiment1_dual_pass.json"
+      ]
+    },
+    "fullroom_phase0": {
+      "status": "skipped_present",
+      "time": "2026-09-26T12:36:40-07:00",
+      "title": "Full-room training decision",
+      "markers": [
+        "docs/research/37-fullroom-training-decision.md"
+      ]
+    },
+    "fullroom_phase1": {
+      "status": "skipped_present",
+      "time": "2026-09-26T12:36:40-07:00",
+      "title": "Full-room stud-head checkpoints",
+      "markers": [
+        "artifacts/checkpoints/stud-heads/fullroom/pointcept_stud_2class_fullroom.pth",
+        "artifacts/checkpoints/stud-heads/fullroom/randlanet_stud_2class_fullroom.pth"
+      ]
+    },
+    "fullroom_phase2": {
+      "status": "skipped_present",
+      "time": "2026-09-26T12:36:40-07:00",
+      "title": "Scenes A\u2013J expected colors",
+      "markers": [
+        "artifacts/fullroom/scenes_expected.json"
+      ]
+    },
+    "fullroom_A_open3d": {
+      "status": "success",
+      "time": "2026-09-26T12:36:41-07:00",
+      "title": "Scene A model open3d",
+      "result": "artifacts/fullroom/results/A_open3d.json",
+      "note": "result file already ok"
+    },
+    "fullroom_B_open3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:36:42-07:00",
+      "title": "Scene B model open3d",
+      "result": "artifacts/fullroom/results/B_open3d.json"
+    },
+    "fullroom_C_open3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:36:44-07:00",
+      "title": "Scene C model open3d",
+      "result": "artifacts/fullroom/results/C_open3d.json"
+    },
+    "fullroom_D_open3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:36:46-07:00",
+      "title": "Scene D model open3d",
+      "result": "artifacts/fullroom/results/D_open3d.json"
+    },
+    "fullroom_E_open3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:36:48-07:00",
+      "title": "Scene E model open3d",
+      "result": "artifacts/fullroom/results/E_open3d.json"
+    },
+    "fullroom_F_open3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:36:49-07:00",
+      "title": "Scene F model open3d",
+      "result": "artifacts/fullroom/results/F_open3d.json"
+    },
+    "fullroom_G_open3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:36:51-07:00",
+      "title": "Scene G model open3d",
+      "result": "artifacts/fullroom/results/G_open3d.json"
+    },
+    "fullroom_H_open3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:36:53-07:00",
+      "title": "Scene H model open3d",
+      "result": "artifacts/fullroom/results/H_open3d.json"
+    },
+    "fullroom_I_open3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:36:55-07:00",
+      "title": "Scene I model open3d",
+      "result": "artifacts/fullroom/results/I_open3d.json"
+    },
+    "fullroom_J_open3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:36:56-07:00",
+      "title": "Scene J model open3d",
+      "result": "artifacts/fullroom/results/J_open3d.json"
+    },
+    "fullroom_A_pointcept": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:37:08-07:00",
+      "title": "Scene A model pointcept",
+      "result": "artifacts/fullroom/results/A_pointcept.json"
+    },
+    "fullroom_B_pointcept": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:37:18-07:00",
+      "title": "Scene B model pointcept",
+      "result": "artifacts/fullroom/results/B_pointcept.json"
+    },
+    "fullroom_C_pointcept": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:37:29-07:00",
+      "title": "Scene C model pointcept",
+      "result": "artifacts/fullroom/results/C_pointcept.json"
+    },
+    "fullroom_D_pointcept": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:37:40-07:00",
+      "title": "Scene D model pointcept",
+      "result": "artifacts/fullroom/results/D_pointcept.json"
+    },
+    "fullroom_E_pointcept": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:37:50-07:00",
+      "title": "Scene E model pointcept",
+      "result": "artifacts/fullroom/results/E_pointcept.json"
+    },
+    "fullroom_F_pointcept": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:38:01-07:00",
+      "title": "Scene F model pointcept",
+      "result": "artifacts/fullroom/results/F_pointcept.json"
+    },
+    "fullroom_G_pointcept": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:38:12-07:00",
+      "title": "Scene G model pointcept",
+      "result": "artifacts/fullroom/results/G_pointcept.json"
+    },
+    "fullroom_H_pointcept": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:38:22-07:00",
+      "title": "Scene H model pointcept",
+      "result": "artifacts/fullroom/results/H_pointcept.json"
+    },
+    "fullroom_I_pointcept": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:38:33-07:00",
+      "title": "Scene I model pointcept",
+      "result": "artifacts/fullroom/results/I_pointcept.json"
+    },
+    "fullroom_J_pointcept": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:38:44-07:00",
+      "title": "Scene J model pointcept",
+      "result": "artifacts/fullroom/results/J_pointcept.json"
+    },
+    "fullroom_A_open3d_ml": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:38:51-07:00",
+      "title": "Scene A model open3d_ml",
+      "result": "artifacts/fullroom/results/A_open3d_ml.json"
+    },
+    "fullroom_B_open3d_ml": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:38:58-07:00",
+      "title": "Scene B model open3d_ml",
+      "result": "artifacts/fullroom/results/B_open3d_ml.json"
+    },
+    "fullroom_C_open3d_ml": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:39:06-07:00",
+      "title": "Scene C model open3d_ml",
+      "result": "artifacts/fullroom/results/C_open3d_ml.json"
+    },
+    "fullroom_D_open3d_ml": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:39:13-07:00",
+      "title": "Scene D model open3d_ml",
+      "result": "artifacts/fullroom/results/D_open3d_ml.json"
+    },
+    "fullroom_E_open3d_ml": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:39:20-07:00",
+      "title": "Scene E model open3d_ml",
+      "result": "artifacts/fullroom/results/E_open3d_ml.json"
+    },
+    "fullroom_F_open3d_ml": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:39:27-07:00",
+      "title": "Scene F model open3d_ml",
+      "result": "artifacts/fullroom/results/F_open3d_ml.json"
+    },
+    "fullroom_G_open3d_ml": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:39:35-07:00",
+      "title": "Scene G model open3d_ml",
+      "result": "artifacts/fullroom/results/G_open3d_ml.json"
+    },
+    "fullroom_H_open3d_ml": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:39:42-07:00",
+      "title": "Scene H model open3d_ml",
+      "result": "artifacts/fullroom/results/H_open3d_ml.json"
+    },
+    "fullroom_I_open3d_ml": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:39:49-07:00",
+      "title": "Scene I model open3d_ml",
+      "result": "artifacts/fullroom/results/I_open3d_ml.json"
+    },
+    "fullroom_J_open3d_ml": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:39:57-07:00",
+      "title": "Scene J model open3d_ml",
+      "result": "artifacts/fullroom/results/J_open3d_ml.json"
+    },
+    "fullroom_A_pcl": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:40:05-07:00",
+      "title": "Scene A model pcl",
+      "result": "artifacts/fullroom/results/A_pcl.json"
+    },
+    "fullroom_B_pcl": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:40:10-07:00",
+      "title": "Scene B model pcl",
+      "result": "artifacts/fullroom/results/B_pcl.json"
+    },
+    "fullroom_C_pcl": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:40:16-07:00",
+      "title": "Scene C model pcl",
+      "result": "artifacts/fullroom/results/C_pcl.json"
+    },
+    "fullroom_D_pcl": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:40:22-07:00",
+      "title": "Scene D model pcl",
+      "result": "artifacts/fullroom/results/D_pcl.json"
+    },
+    "fullroom_E_pcl": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:40:27-07:00",
+      "title": "Scene E model pcl",
+      "result": "artifacts/fullroom/results/E_pcl.json"
+    },
+    "fullroom_F_pcl": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:40:32-07:00",
+      "title": "Scene F model pcl",
+      "result": "artifacts/fullroom/results/F_pcl.json"
+    },
+    "fullroom_G_pcl": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:40:37-07:00",
+      "title": "Scene G model pcl",
+      "result": "artifacts/fullroom/results/G_pcl.json"
+    },
+    "fullroom_H_pcl": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:40:45-07:00",
+      "title": "Scene H model pcl",
+      "result": "artifacts/fullroom/results/H_pcl.json"
+    },
+    "fullroom_I_pcl": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:40:51-07:00",
+      "title": "Scene I model pcl",
+      "result": "artifacts/fullroom/results/I_pcl.json"
+    },
+    "fullroom_J_pcl": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:40:56-07:00",
+      "title": "Scene J model pcl",
+      "result": "artifacts/fullroom/results/J_pcl.json"
+    },
+    "fullroom_A_pyransac3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:41:16-07:00",
+      "title": "Scene A model pyransac3d",
+      "result": "artifacts/fullroom/results/A_pyransac3d.json"
+    },
+    "fullroom_B_pyransac3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:41:37-07:00",
+      "title": "Scene B model pyransac3d",
+      "result": "artifacts/fullroom/results/B_pyransac3d.json"
+    },
+    "fullroom_C_pyransac3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:41:58-07:00",
+      "title": "Scene C model pyransac3d",
+      "result": "artifacts/fullroom/results/C_pyransac3d.json"
+    },
+    "fullroom_D_pyransac3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:42:18-07:00",
+      "title": "Scene D model pyransac3d",
+      "result": "artifacts/fullroom/results/D_pyransac3d.json"
+    },
+    "fullroom_E_pyransac3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:42:39-07:00",
+      "title": "Scene E model pyransac3d",
+      "result": "artifacts/fullroom/results/E_pyransac3d.json"
+    },
+    "fullroom_F_pyransac3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:43:00-07:00",
+      "title": "Scene F model pyransac3d",
+      "result": "artifacts/fullroom/results/F_pyransac3d.json"
+    },
+    "fullroom_G_pyransac3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:43:20-07:00",
+      "title": "Scene G model pyransac3d",
+      "result": "artifacts/fullroom/results/G_pyransac3d.json"
+    },
+    "fullroom_H_pyransac3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:43:41-07:00",
+      "title": "Scene H model pyransac3d",
+      "result": "artifacts/fullroom/results/H_pyransac3d.json"
+    },
+    "fullroom_I_pyransac3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:44:01-07:00",
+      "title": "Scene I model pyransac3d",
+      "result": "artifacts/fullroom/results/I_pyransac3d.json"
+    },
+    "fullroom_J_pyransac3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:44:22-07:00",
+      "title": "Scene J model pyransac3d",
+      "result": "artifacts/fullroom/results/J_pyransac3d.json"
+    },
+    "fullroom_A_pointsam": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:39-07:00",
+      "title": "Scene A model pointsam",
+      "result": "artifacts/fullroom/results/A_pointsam.json"
+    },
+    "fullroom_B_pointsam": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:39-07:00",
+      "title": "Scene B model pointsam",
+      "result": "artifacts/fullroom/results/B_pointsam.json"
+    },
+    "fullroom_C_pointsam": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:40-07:00",
+      "title": "Scene C model pointsam",
+      "result": "artifacts/fullroom/results/C_pointsam.json"
+    },
+    "fullroom_D_pointsam": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:40-07:00",
+      "title": "Scene D model pointsam",
+      "result": "artifacts/fullroom/results/D_pointsam.json"
+    },
+    "fullroom_E_pointsam": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:41-07:00",
+      "title": "Scene E model pointsam",
+      "result": "artifacts/fullroom/results/E_pointsam.json"
+    },
+    "fullroom_F_pointsam": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:42-07:00",
+      "title": "Scene F model pointsam",
+      "result": "artifacts/fullroom/results/F_pointsam.json"
+    },
+    "fullroom_G_pointsam": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:42-07:00",
+      "title": "Scene G model pointsam",
+      "result": "artifacts/fullroom/results/G_pointsam.json"
+    },
+    "fullroom_H_pointsam": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:43-07:00",
+      "title": "Scene H model pointsam",
+      "result": "artifacts/fullroom/results/H_pointsam.json"
+    },
+    "fullroom_I_pointsam": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:44-07:00",
+      "title": "Scene I model pointsam",
+      "result": "artifacts/fullroom/results/I_pointsam.json"
+    },
+    "fullroom_J_pointsam": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:44-07:00",
+      "title": "Scene J model pointsam",
+      "result": "artifacts/fullroom/results/J_pointsam.json"
+    },
+    "fullroom_A_sam3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:45-07:00",
+      "title": "Scene A model sam3d",
+      "result": "artifacts/fullroom/results/A_sam3d.json"
+    },
+    "fullroom_B_sam3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:46-07:00",
+      "title": "Scene B model sam3d",
+      "result": "artifacts/fullroom/results/B_sam3d.json"
+    },
+    "fullroom_C_sam3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:46-07:00",
+      "title": "Scene C model sam3d",
+      "result": "artifacts/fullroom/results/C_sam3d.json"
+    },
+    "fullroom_D_sam3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:47-07:00",
+      "title": "Scene D model sam3d",
+      "result": "artifacts/fullroom/results/D_sam3d.json"
+    },
+    "fullroom_E_sam3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:48-07:00",
+      "title": "Scene E model sam3d",
+      "result": "artifacts/fullroom/results/E_sam3d.json"
+    },
+    "fullroom_F_sam3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:48-07:00",
+      "title": "Scene F model sam3d",
+      "result": "artifacts/fullroom/results/F_sam3d.json"
+    },
+    "fullroom_G_sam3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:49-07:00",
+      "title": "Scene G model sam3d",
+      "result": "artifacts/fullroom/results/G_sam3d.json"
+    },
+    "fullroom_H_sam3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:50-07:00",
+      "title": "Scene H model sam3d",
+      "result": "artifacts/fullroom/results/H_sam3d.json"
+    },
+    "fullroom_I_sam3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:50-07:00",
+      "title": "Scene I model sam3d",
+      "result": "artifacts/fullroom/results/I_sam3d.json"
+    },
+    "fullroom_J_sam3d": {
+      "status": "success",
+      "attempts": 2,
+      "time": "2026-09-26T12:45:12-07:00",
+      "title": "Scene J model sam3d",
+      "result": "artifacts/fullroom/results/J_sam3d.json"
+    },
+    "fullroom_A_openmask3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:12-07:00",
+      "title": "Scene A model openmask3d",
+      "result": "artifacts/fullroom/results/A_openmask3d.json"
+    },
+    "fullroom_B_openmask3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:13-07:00",
+      "title": "Scene B model openmask3d",
+      "result": "artifacts/fullroom/results/B_openmask3d.json"
+    },
+    "fullroom_C_openmask3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:13-07:00",
+      "title": "Scene C model openmask3d",
+      "result": "artifacts/fullroom/results/C_openmask3d.json"
+    },
+    "fullroom_D_openmask3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:14-07:00",
+      "title": "Scene D model openmask3d",
+      "result": "artifacts/fullroom/results/D_openmask3d.json"
+    },
+    "fullroom_E_openmask3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:15-07:00",
+      "title": "Scene E model openmask3d",
+      "result": "artifacts/fullroom/results/E_openmask3d.json"
+    },
+    "fullroom_F_openmask3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:15-07:00",
+      "title": "Scene F model openmask3d",
+      "result": "artifacts/fullroom/results/F_openmask3d.json"
+    },
+    "fullroom_G_openmask3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:16-07:00",
+      "title": "Scene G model openmask3d",
+      "result": "artifacts/fullroom/results/G_openmask3d.json"
+    },
+    "fullroom_H_openmask3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:17-07:00",
+      "title": "Scene H model openmask3d",
+      "result": "artifacts/fullroom/results/H_openmask3d.json"
+    },
+    "fullroom_I_openmask3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:17-07:00",
+      "title": "Scene I model openmask3d",
+      "result": "artifacts/fullroom/results/I_openmask3d.json"
+    },
+    "fullroom_J_openmask3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:18-07:00",
+      "title": "Scene J model openmask3d",
+      "result": "artifacts/fullroom/results/J_openmask3d.json"
+    },
+    "fullroom_A_segment3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:19-07:00",
+      "title": "Scene A model segment3d",
+      "result": "artifacts/fullroom/results/A_segment3d.json"
+    },
+    "fullroom_B_segment3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:19-07:00",
+      "title": "Scene B model segment3d",
+      "result": "artifacts/fullroom/results/B_segment3d.json"
+    },
+    "fullroom_C_segment3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:20-07:00",
+      "title": "Scene C model segment3d",
+      "result": "artifacts/fullroom/results/C_segment3d.json"
+    },
+    "fullroom_D_segment3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:21-07:00",
+      "title": "Scene D model segment3d",
+      "result": "artifacts/fullroom/results/D_segment3d.json"
+    },
+    "fullroom_E_segment3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:21-07:00",
+      "title": "Scene E model segment3d",
+      "result": "artifacts/fullroom/results/E_segment3d.json"
+    },
+    "fullroom_F_segment3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:22-07:00",
+      "title": "Scene F model segment3d",
+      "result": "artifacts/fullroom/results/F_segment3d.json"
+    },
+    "fullroom_G_segment3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:23-07:00",
+      "title": "Scene G model segment3d",
+      "result": "artifacts/fullroom/results/G_segment3d.json"
+    },
+    "fullroom_H_segment3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:23-07:00",
+      "title": "Scene H model segment3d",
+      "result": "artifacts/fullroom/results/H_segment3d.json"
+    },
+    "fullroom_I_segment3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:24-07:00",
+      "title": "Scene I model segment3d",
+      "result": "artifacts/fullroom/results/I_segment3d.json"
+    },
+    "fullroom_J_segment3d": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:25-07:00",
+      "title": "Scene J model segment3d",
+      "result": "artifacts/fullroom/results/J_segment3d.json"
+    },
+    "fullroom_phase5_aggregate": {
+      "status": "success",
+      "attempts": 1,
+      "time": "2026-09-26T12:45:50-07:00",
+      "title": "Catch-table aggregate",
+      "result": "artifacts/fullroom/catch_summary.json"
+    }
+  }
+}

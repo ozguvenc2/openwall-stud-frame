@@ -95,6 +95,7 @@ def build_summary() -> dict:
         scenes.append({"letter": letter, "models": models})
     improvements = sorted({item.get("improvement") for item in calibration_deltas})
     return {
+        "status": "ok",
         "experiment": "fullroom_phase4",
         "catch_definition": (
             "Caught red means the stud was matched within 0.15 m and the measured "
@@ -107,6 +108,33 @@ def build_summary() -> dict:
         "calibration_improvement": improvements,
         "n_result_files": len(list(RESULTS.glob("*.json"))) if RESULTS.is_dir() else 0,
     }
+
+
+def _zero_note() -> str:
+    """Explain measured zeros. Missing files stay a short sentence."""
+    pcl = _load("A", "pcl")
+    ransac = _load("A", "pyransac3d")
+    parts = []
+    if pcl and pcl.get("status") == "ok":
+        extra = pcl.get("model_extra") or {}
+        parts.append(
+            f"PCL on scene A: native region growing "
+            f"{extra.get('native_pcl_region_growing')}, "
+            f"{extra.get('n_members')} member after adjacency, "
+            f"{pcl['catch']['n_detections']} detections after the existing stud gate "
+            f"(section, length, upright). Catch stays 0 because nothing matched."
+        )
+    if ransac and ransac.get("status") == "ok":
+        extra = ransac.get("model_extra") or {}
+        parts.append(
+            f"pyRANSAC-3D on scene A: stopped `{extra.get('stopped')}`, "
+            f"accepted {extra.get('n_accepted')} cuboids, "
+            f"MAX_CUBOIDS {extra.get('max_cuboids')}. "
+            "Those existing limits were not raised."
+        )
+    if not parts:
+        return "No geometry extra was on disk for scene A."
+    return " ".join(parts)
 
 
 def _markdown(summary: dict) -> str:
@@ -173,6 +201,10 @@ def _markdown(summary: dict) -> str:
     ran = summary["n_result_files"]
     lines.extend(
         [
+            "",
+            "## What the zeros are",
+            "",
+            _zero_note(),
             "",
             f"Result files on disk when this note was written: {ran}.",
             "",

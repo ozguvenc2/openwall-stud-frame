@@ -415,7 +415,7 @@ def _write_result(payload: dict) -> Path:
 
 
 def _not_adapted(spec: dict, model: str, calibration: dict, before: dict) -> int:
-    after = {key: _sha256(path) for key, path in before.items()}
+    after = {str(path.relative_to(ROOT)): _sha256(path) for path in EXPERIMENT1_WEIGHTS}
     if before != after:
         raise SystemExit("Experiment 1 checkpoint bytes changed")
     payload = {

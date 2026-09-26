@@ -1,0 +1,347 @@
+2026-09-26T12:36:40-07:00 stage=exp1_dual_pass skipped_present
+2026-09-26T12:36:40-07:00 stage=fullroom_phase0 skipped_present
+2026-09-26T12:36:40-07:00 stage=fullroom_phase1 skipped_present
+2026-09-26T12:36:40-07:00 stage=fullroom_phase2 skipped_present
+2026-09-26T12:36:41-07:00 stage=fullroom_A_open3d success existing_result
+2026-09-26T12:36:41-07:00 stage=fullroom_B_open3d start attempt=1
+2026-09-26T12:36:42-07:00 stage=fullroom_B_open3d success attempt=1
+2026-09-26T12:36:42-07:00 stage=fullroom_C_open3d start attempt=1
+2026-09-26T12:36:44-07:00 stage=fullroom_C_open3d success attempt=1
+2026-09-26T12:36:44-07:00 stage=fullroom_D_open3d start attempt=1
+2026-09-26T12:36:46-07:00 stage=fullroom_D_open3d success attempt=1
+2026-09-26T12:36:46-07:00 stage=fullroom_E_open3d start attempt=1
+2026-09-26T12:36:48-07:00 stage=fullroom_E_open3d success attempt=1
+2026-09-26T12:36:48-07:00 stage=fullroom_F_open3d start attempt=1
+2026-09-26T12:36:49-07:00 stage=fullroom_F_open3d success attempt=1
+2026-09-26T12:36:49-07:00 stage=fullroom_G_open3d start attempt=1
+2026-09-26T12:36:51-07:00 stage=fullroom_G_open3d success attempt=1
+2026-09-26T12:36:51-07:00 stage=fullroom_H_open3d start attempt=1
+2026-09-26T12:36:53-07:00 stage=fullroom_H_open3d success attempt=1
+2026-09-26T12:36:53-07:00 stage=fullroom_I_open3d start attempt=1
+2026-09-26T12:36:55-07:00 stage=fullroom_I_open3d success attempt=1
+2026-09-26T12:36:55-07:00 stage=fullroom_J_open3d start attempt=1
+2026-09-26T12:36:56-07:00 stage=fullroom_J_open3d success attempt=1
+2026-09-26T12:36:56-07:00 stage=fullroom_A_pointcept start attempt=1
+2026-09-26T12:37:08-07:00 stage=fullroom_A_pointcept success attempt=1
+2026-09-26T12:37:08-07:00 stage=fullroom_B_pointcept start attempt=1
+2026-09-26T12:37:18-07:00 stage=fullroom_B_pointcept success attempt=1
+2026-09-26T12:37:18-07:00 stage=fullroom_C_pointcept start attempt=1
+2026-09-26T12:37:29-07:00 stage=fullroom_C_pointcept success attempt=1
+2026-09-26T12:37:29-07:00 stage=fullroom_D_pointcept start attempt=1
+2026-09-26T12:37:40-07:00 stage=fullroom_D_pointcept success attempt=1
+2026-09-26T12:37:40-07:00 stage=fullroom_E_pointcept start attempt=1
+2026-09-26T12:37:50-07:00 stage=fullroom_E_pointcept success attempt=1
+2026-09-26T12:37:50-07:00 stage=fullroom_F_pointcept start attempt=1
+2026-09-26T12:38:01-07:00 stage=fullroom_F_pointcept success attempt=1
+2026-09-26T12:38:01-07:00 stage=fullroom_G_pointcept start attempt=1
+2026-09-26T12:38:12-07:00 stage=fullroom_G_pointcept success attempt=1
+2026-09-26T12:38:12-07:00 stage=fullroom_H_pointcept start attempt=1
+2026-09-26T12:38:22-07:00 stage=fullroom_H_pointcept success attempt=1
+2026-09-26T12:38:22-07:00 stage=fullroom_I_pointcept start attempt=1
+2026-09-26T12:38:33-07:00 stage=fullroom_I_pointcept success attempt=1
+2026-09-26T12:38:33-07:00 stage=fullroom_J_pointcept start attempt=1
+2026-09-26T12:38:44-07:00 stage=fullroom_J_pointcept success attempt=1
+2026-09-26T12:38:44-07:00 stage=fullroom_A_open3d_ml start attempt=1
+2026-09-26T12:38:51-07:00 stage=fullroom_A_open3d_ml success attempt=1
+2026-09-26T12:38:51-07:00 stage=fullroom_B_open3d_ml start attempt=1
+2026-09-26T12:38:58-07:00 stage=fullroom_B_open3d_ml success attempt=1
+2026-09-26T12:38:58-07:00 stage=fullroom_C_open3d_ml start attempt=1
+2026-09-26T12:39:06-07:00 stage=fullroom_C_open3d_ml success attempt=1
+2026-09-26T12:39:06-07:00 stage=fullroom_D_open3d_ml start attempt=1
+2026-09-26T12:39:13-07:00 stage=fullroom_D_open3d_ml success attempt=1
+2026-09-26T12:39:13-07:00 stage=fullroom_E_open3d_ml start attempt=1
+2026-09-26T12:39:20-07:00 stage=fullroom_E_open3d_ml success attempt=1
+2026-09-26T12:39:20-07:00 stage=fullroom_F_open3d_ml start attempt=1
+2026-09-26T12:39:27-07:00 stage=fullroom_F_open3d_ml success attempt=1
+2026-09-26T12:39:27-07:00 stage=fullroom_G_open3d_ml start attempt=1
+2026-09-26T12:39:35-07:00 stage=fullroom_G_open3d_ml success attempt=1
+2026-09-26T12:39:35-07:00 stage=fullroom_H_open3d_ml start attempt=1
+2026-09-26T12:39:42-07:00 stage=fullroom_H_open3d_ml success attempt=1
+2026-09-26T12:39:42-07:00 stage=fullroom_I_open3d_ml start attempt=1
+2026-09-26T12:39:49-07:00 stage=fullroom_I_open3d_ml success attempt=1
+2026-09-26T12:39:49-07:00 stage=fullroom_J_open3d_ml start attempt=1
+2026-09-26T12:39:57-07:00 stage=fullroom_J_open3d_ml success attempt=1
+2026-09-26T12:39:57-07:00 stage=fullroom_A_pcl start attempt=1
+2026-09-26T12:40:05-07:00 stage=fullroom_A_pcl success attempt=1
+2026-09-26T12:40:05-07:00 stage=fullroom_B_pcl start attempt=1
+2026-09-26T12:40:10-07:00 stage=fullroom_B_pcl success attempt=1
+2026-09-26T12:40:10-07:00 stage=fullroom_C_pcl start attempt=1
+2026-09-26T12:40:16-07:00 stage=fullroom_C_pcl success attempt=1
+2026-09-26T12:40:16-07:00 stage=fullroom_D_pcl start attempt=1
+2026-09-26T12:40:22-07:00 stage=fullroom_D_pcl success attempt=1
+2026-09-26T12:40:22-07:00 stage=fullroom_E_pcl start attempt=1
+2026-09-26T12:40:27-07:00 stage=fullroom_E_pcl success attempt=1
+2026-09-26T12:40:27-07:00 stage=fullroom_F_pcl start attempt=1
+2026-09-26T12:40:32-07:00 stage=fullroom_F_pcl success attempt=1
+2026-09-26T12:40:32-07:00 stage=fullroom_G_pcl start attempt=1
+2026-09-26T12:40:37-07:00 stage=fullroom_G_pcl success attempt=1
+2026-09-26T12:40:37-07:00 stage=fullroom_H_pcl start attempt=1
+2026-09-26T12:40:45-07:00 stage=fullroom_H_pcl success attempt=1
+2026-09-26T12:40:45-07:00 stage=fullroom_I_pcl start attempt=1
+2026-09-26T12:40:51-07:00 stage=fullroom_I_pcl success attempt=1
+2026-09-26T12:40:51-07:00 stage=fullroom_J_pcl start attempt=1
+2026-09-26T12:40:56-07:00 stage=fullroom_J_pcl success attempt=1
+2026-09-26T12:40:56-07:00 stage=fullroom_A_pyransac3d start attempt=1
+2026-09-26T12:41:16-07:00 stage=fullroom_A_pyransac3d success attempt=1
+2026-09-26T12:41:16-07:00 stage=fullroom_B_pyransac3d start attempt=1
+2026-09-26T12:41:37-07:00 stage=fullroom_B_pyransac3d success attempt=1
+2026-09-26T12:41:37-07:00 stage=fullroom_C_pyransac3d start attempt=1
+2026-09-26T12:41:58-07:00 stage=fullroom_C_pyransac3d success attempt=1
+2026-09-26T12:41:58-07:00 stage=fullroom_D_pyransac3d start attempt=1
+2026-09-26T12:42:18-07:00 stage=fullroom_D_pyransac3d success attempt=1
+2026-09-26T12:42:18-07:00 stage=fullroom_E_pyransac3d start attempt=1
+2026-09-26T12:42:39-07:00 stage=fullroom_E_pyransac3d success attempt=1
+2026-09-26T12:42:39-07:00 stage=fullroom_F_pyransac3d start attempt=1
+2026-09-26T12:43:00-07:00 stage=fullroom_F_pyransac3d success attempt=1
+2026-09-26T12:43:00-07:00 stage=fullroom_G_pyransac3d start attempt=1
+2026-09-26T12:43:20-07:00 stage=fullroom_G_pyransac3d success attempt=1
+2026-09-26T12:43:20-07:00 stage=fullroom_H_pyransac3d start attempt=1
+2026-09-26T12:43:41-07:00 stage=fullroom_H_pyransac3d success attempt=1
+2026-09-26T12:43:41-07:00 stage=fullroom_I_pyransac3d start attempt=1
+2026-09-26T12:44:01-07:00 stage=fullroom_I_pyransac3d success attempt=1
+2026-09-26T12:44:01-07:00 stage=fullroom_J_pyransac3d start attempt=1
+2026-09-26T12:44:22-07:00 stage=fullroom_J_pyransac3d success attempt=1
+2026-09-26T12:44:22-07:00 stage=fullroom_A_pointsam start attempt=1
+2026-09-26T12:44:23-07:00 stage=fullroom_A_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:23-07:00 stage=fullroom_A_pointsam start attempt=2
+2026-09-26T12:44:23-07:00 stage=fullroom_A_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:23-07:00 stage=fullroom_A_pointsam start attempt=3
+2026-09-26T12:44:24-07:00 stage=fullroom_A_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:24-07:00 stage=fullroom_A_pointsam start attempt=4
+2026-09-26T12:44:25-07:00 stage=fullroom_A_pointsam failed attempts=4 cause=unknown
+2026-09-26T12:44:25-07:00 stage=fullroom_B_pointsam start attempt=1
+2026-09-26T12:44:25-07:00 stage=fullroom_B_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:25-07:00 stage=fullroom_B_pointsam start attempt=2
+2026-09-26T12:44:26-07:00 stage=fullroom_B_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:26-07:00 stage=fullroom_B_pointsam start attempt=3
+2026-09-26T12:44:26-07:00 stage=fullroom_B_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:26-07:00 stage=fullroom_B_pointsam start attempt=4
+2026-09-26T12:44:27-07:00 stage=fullroom_B_pointsam failed attempts=4 cause=unknown
+2026-09-26T12:44:27-07:00 stage=fullroom_C_pointsam start attempt=1
+2026-09-26T12:44:28-07:00 stage=fullroom_C_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:28-07:00 stage=fullroom_C_pointsam start attempt=2
+2026-09-26T12:44:28-07:00 stage=fullroom_C_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:28-07:00 stage=fullroom_C_pointsam start attempt=3
+2026-09-26T12:44:29-07:00 stage=fullroom_C_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:29-07:00 stage=fullroom_C_pointsam start attempt=4
+2026-09-26T12:44:30-07:00 stage=fullroom_C_pointsam failed attempts=4 cause=unknown
+2026-09-26T12:44:30-07:00 stage=fullroom_D_pointsam start attempt=1
+2026-09-26T12:44:30-07:00 stage=fullroom_D_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:30-07:00 stage=fullroom_D_pointsam start attempt=2
+2026-09-26T12:44:31-07:00 stage=fullroom_D_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:31-07:00 stage=fullroom_D_pointsam start attempt=3
+2026-09-26T12:44:32-07:00 stage=fullroom_D_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:32-07:00 stage=fullroom_D_pointsam start attempt=4
+2026-09-26T12:44:32-07:00 stage=fullroom_D_pointsam failed attempts=4 cause=unknown
+2026-09-26T12:44:32-07:00 stage=fullroom_E_pointsam start attempt=1
+2026-09-26T12:44:33-07:00 stage=fullroom_E_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:33-07:00 stage=fullroom_E_pointsam start attempt=2
+2026-09-26T12:44:33-07:00 stage=fullroom_E_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:33-07:00 stage=fullroom_E_pointsam start attempt=3
+2026-09-26T12:44:34-07:00 stage=fullroom_E_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:34-07:00 stage=fullroom_E_pointsam start attempt=4
+2026-09-26T12:44:35-07:00 stage=fullroom_E_pointsam failed attempts=4 cause=unknown
+2026-09-26T12:44:35-07:00 stage=fullroom_F_pointsam start attempt=1
+2026-09-26T12:44:35-07:00 stage=fullroom_F_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:35-07:00 stage=fullroom_F_pointsam start attempt=2
+2026-09-26T12:44:36-07:00 stage=fullroom_F_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:36-07:00 stage=fullroom_F_pointsam start attempt=3
+2026-09-26T12:44:37-07:00 stage=fullroom_F_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:37-07:00 stage=fullroom_F_pointsam start attempt=4
+2026-09-26T12:44:37-07:00 stage=fullroom_F_pointsam failed attempts=4 cause=unknown
+2026-09-26T12:44:37-07:00 stage=fullroom_G_pointsam start attempt=1
+2026-09-26T12:44:38-07:00 stage=fullroom_G_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:38-07:00 stage=fullroom_G_pointsam start attempt=2
+2026-09-26T12:44:39-07:00 stage=fullroom_G_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:39-07:00 stage=fullroom_G_pointsam start attempt=3
+2026-09-26T12:44:39-07:00 stage=fullroom_G_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:39-07:00 stage=fullroom_G_pointsam start attempt=4
+2026-09-26T12:44:40-07:00 stage=fullroom_G_pointsam failed attempts=4 cause=unknown
+2026-09-26T12:44:40-07:00 stage=fullroom_H_pointsam start attempt=1
+2026-09-26T12:44:40-07:00 stage=fullroom_H_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:40-07:00 stage=fullroom_H_pointsam start attempt=2
+2026-09-26T12:44:41-07:00 stage=fullroom_H_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:41-07:00 stage=fullroom_H_pointsam start attempt=3
+2026-09-26T12:44:42-07:00 stage=fullroom_H_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:42-07:00 stage=fullroom_H_pointsam start attempt=4
+2026-09-26T12:44:42-07:00 stage=fullroom_H_pointsam failed attempts=4 cause=unknown
+2026-09-26T12:44:42-07:00 stage=fullroom_I_pointsam start attempt=1
+2026-09-26T12:44:43-07:00 stage=fullroom_I_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:43-07:00 stage=fullroom_I_pointsam start attempt=2
+2026-09-26T12:44:44-07:00 stage=fullroom_I_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:44-07:00 stage=fullroom_I_pointsam start attempt=3
+2026-09-26T12:44:44-07:00 stage=fullroom_I_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:44-07:00 stage=fullroom_I_pointsam start attempt=4
+2026-09-26T12:44:45-07:00 stage=fullroom_I_pointsam failed attempts=4 cause=unknown
+2026-09-26T12:44:45-07:00 stage=fullroom_J_pointsam start attempt=1
+2026-09-26T12:44:46-07:00 stage=fullroom_J_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:46-07:00 stage=fullroom_J_pointsam start attempt=2
+2026-09-26T12:44:46-07:00 stage=fullroom_J_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:46-07:00 stage=fullroom_J_pointsam start attempt=3
+2026-09-26T12:44:47-07:00 stage=fullroom_J_pointsam recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:47-07:00 stage=fullroom_J_pointsam start attempt=4
+2026-09-26T12:44:47-07:00 stage=fullroom_J_pointsam failed attempts=4 cause=unknown
+2026-09-26T12:44:47-07:00 stage=fullroom_A_sam3d start attempt=1
+2026-09-26T12:44:48-07:00 stage=fullroom_A_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:48-07:00 stage=fullroom_A_sam3d start attempt=2
+2026-09-26T12:44:49-07:00 stage=fullroom_A_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:49-07:00 stage=fullroom_A_sam3d start attempt=3
+2026-09-26T12:44:49-07:00 stage=fullroom_A_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:49-07:00 stage=fullroom_A_sam3d start attempt=4
+2026-09-26T12:44:50-07:00 stage=fullroom_A_sam3d failed attempts=4 cause=unknown
+2026-09-26T12:44:50-07:00 stage=fullroom_B_sam3d start attempt=1
+2026-09-26T12:44:51-07:00 stage=fullroom_B_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:51-07:00 stage=fullroom_B_sam3d start attempt=2
+2026-09-26T12:44:51-07:00 stage=fullroom_B_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:51-07:00 stage=fullroom_B_sam3d start attempt=3
+2026-09-26T12:44:52-07:00 stage=fullroom_B_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:52-07:00 stage=fullroom_B_sam3d start attempt=4
+2026-09-26T12:44:53-07:00 stage=fullroom_B_sam3d failed attempts=4 cause=unknown
+2026-09-26T12:44:53-07:00 stage=fullroom_C_sam3d start attempt=1
+2026-09-26T12:44:53-07:00 stage=fullroom_C_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:53-07:00 stage=fullroom_C_sam3d start attempt=2
+2026-09-26T12:44:54-07:00 stage=fullroom_C_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:54-07:00 stage=fullroom_C_sam3d start attempt=3
+2026-09-26T12:44:54-07:00 stage=fullroom_C_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:54-07:00 stage=fullroom_C_sam3d start attempt=4
+2026-09-26T12:44:55-07:00 stage=fullroom_C_sam3d failed attempts=4 cause=unknown
+2026-09-26T12:44:55-07:00 stage=fullroom_D_sam3d start attempt=1
+2026-09-26T12:44:56-07:00 stage=fullroom_D_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:56-07:00 stage=fullroom_D_sam3d start attempt=2
+2026-09-26T12:44:56-07:00 stage=fullroom_D_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:56-07:00 stage=fullroom_D_sam3d start attempt=3
+2026-09-26T12:44:57-07:00 stage=fullroom_D_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:57-07:00 stage=fullroom_D_sam3d start attempt=4
+2026-09-26T12:44:58-07:00 stage=fullroom_D_sam3d failed attempts=4 cause=unknown
+2026-09-26T12:44:58-07:00 stage=fullroom_E_sam3d start attempt=1
+2026-09-26T12:44:58-07:00 stage=fullroom_E_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:58-07:00 stage=fullroom_E_sam3d start attempt=2
+2026-09-26T12:44:59-07:00 stage=fullroom_E_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:59-07:00 stage=fullroom_E_sam3d start attempt=3
+2026-09-26T12:44:59-07:00 stage=fullroom_E_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:44:59-07:00 stage=fullroom_E_sam3d start attempt=4
+2026-09-26T12:45:00-07:00 stage=fullroom_E_sam3d failed attempts=4 cause=unknown
+2026-09-26T12:45:00-07:00 stage=fullroom_F_sam3d start attempt=1
+2026-09-26T12:45:01-07:00 stage=fullroom_F_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:01-07:00 stage=fullroom_F_sam3d start attempt=2
+2026-09-26T12:45:01-07:00 stage=fullroom_F_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:01-07:00 stage=fullroom_F_sam3d start attempt=3
+2026-09-26T12:45:02-07:00 stage=fullroom_F_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:02-07:00 stage=fullroom_F_sam3d start attempt=4
+2026-09-26T12:45:03-07:00 stage=fullroom_F_sam3d failed attempts=4 cause=unknown
+2026-09-26T12:45:03-07:00 stage=fullroom_G_sam3d start attempt=1
+2026-09-26T12:45:03-07:00 stage=fullroom_G_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:03-07:00 stage=fullroom_G_sam3d start attempt=2
+2026-09-26T12:45:04-07:00 stage=fullroom_G_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:04-07:00 stage=fullroom_G_sam3d start attempt=3
+2026-09-26T12:45:05-07:00 stage=fullroom_G_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:05-07:00 stage=fullroom_G_sam3d start attempt=4
+2026-09-26T12:45:05-07:00 stage=fullroom_G_sam3d failed attempts=4 cause=unknown
+2026-09-26T12:45:05-07:00 stage=fullroom_H_sam3d start attempt=1
+2026-09-26T12:45:06-07:00 stage=fullroom_H_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:06-07:00 stage=fullroom_H_sam3d start attempt=2
+2026-09-26T12:45:06-07:00 stage=fullroom_H_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:06-07:00 stage=fullroom_H_sam3d start attempt=3
+2026-09-26T12:45:07-07:00 stage=fullroom_H_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:07-07:00 stage=fullroom_H_sam3d start attempt=4
+2026-09-26T12:45:08-07:00 stage=fullroom_H_sam3d failed attempts=4 cause=unknown
+2026-09-26T12:45:08-07:00 stage=fullroom_I_sam3d start attempt=1
+2026-09-26T12:45:08-07:00 stage=fullroom_I_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:08-07:00 stage=fullroom_I_sam3d start attempt=2
+2026-09-26T12:45:09-07:00 stage=fullroom_I_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:09-07:00 stage=fullroom_I_sam3d start attempt=3
+2026-09-26T12:45:10-07:00 stage=fullroom_I_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:10-07:00 stage=fullroom_I_sam3d start attempt=4
+2026-09-26T12:45:10-07:00 stage=fullroom_I_sam3d failed attempts=4 cause=unknown
+2026-09-26T12:45:10-07:00 stage=fullroom_J_sam3d start attempt=1
+2026-09-26T12:45:11-07:00 stage=fullroom_J_sam3d recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:11-07:00 stage=fullroom_J_sam3d start attempt=2
+2026-09-26T12:45:12-07:00 stage=fullroom_J_sam3d success attempt=2
+2026-09-26T12:45:12-07:00 stage=fullroom_A_openmask3d start attempt=1
+2026-09-26T12:45:12-07:00 stage=fullroom_A_openmask3d success attempt=1
+2026-09-26T12:45:12-07:00 stage=fullroom_B_openmask3d start attempt=1
+2026-09-26T12:45:13-07:00 stage=fullroom_B_openmask3d success attempt=1
+2026-09-26T12:45:13-07:00 stage=fullroom_C_openmask3d start attempt=1
+2026-09-26T12:45:13-07:00 stage=fullroom_C_openmask3d success attempt=1
+2026-09-26T12:45:13-07:00 stage=fullroom_D_openmask3d start attempt=1
+2026-09-26T12:45:14-07:00 stage=fullroom_D_openmask3d success attempt=1
+2026-09-26T12:45:14-07:00 stage=fullroom_E_openmask3d start attempt=1
+2026-09-26T12:45:15-07:00 stage=fullroom_E_openmask3d success attempt=1
+2026-09-26T12:45:15-07:00 stage=fullroom_F_openmask3d start attempt=1
+2026-09-26T12:45:15-07:00 stage=fullroom_F_openmask3d success attempt=1
+2026-09-26T12:45:15-07:00 stage=fullroom_G_openmask3d start attempt=1
+2026-09-26T12:45:16-07:00 stage=fullroom_G_openmask3d success attempt=1
+2026-09-26T12:45:16-07:00 stage=fullroom_H_openmask3d start attempt=1
+2026-09-26T12:45:17-07:00 stage=fullroom_H_openmask3d success attempt=1
+2026-09-26T12:45:17-07:00 stage=fullroom_I_openmask3d start attempt=1
+2026-09-26T12:45:17-07:00 stage=fullroom_I_openmask3d success attempt=1
+2026-09-26T12:45:17-07:00 stage=fullroom_J_openmask3d start attempt=1
+2026-09-26T12:45:18-07:00 stage=fullroom_J_openmask3d success attempt=1
+2026-09-26T12:45:18-07:00 stage=fullroom_A_segment3d start attempt=1
+2026-09-26T12:45:19-07:00 stage=fullroom_A_segment3d success attempt=1
+2026-09-26T12:45:19-07:00 stage=fullroom_B_segment3d start attempt=1
+2026-09-26T12:45:19-07:00 stage=fullroom_B_segment3d success attempt=1
+2026-09-26T12:45:19-07:00 stage=fullroom_C_segment3d start attempt=1
+2026-09-26T12:45:20-07:00 stage=fullroom_C_segment3d success attempt=1
+2026-09-26T12:45:20-07:00 stage=fullroom_D_segment3d start attempt=1
+2026-09-26T12:45:21-07:00 stage=fullroom_D_segment3d success attempt=1
+2026-09-26T12:45:21-07:00 stage=fullroom_E_segment3d start attempt=1
+2026-09-26T12:45:21-07:00 stage=fullroom_E_segment3d success attempt=1
+2026-09-26T12:45:21-07:00 stage=fullroom_F_segment3d start attempt=1
+2026-09-26T12:45:22-07:00 stage=fullroom_F_segment3d success attempt=1
+2026-09-26T12:45:22-07:00 stage=fullroom_G_segment3d start attempt=1
+2026-09-26T12:45:23-07:00 stage=fullroom_G_segment3d success attempt=1
+2026-09-26T12:45:23-07:00 stage=fullroom_H_segment3d start attempt=1
+2026-09-26T12:45:23-07:00 stage=fullroom_H_segment3d success attempt=1
+2026-09-26T12:45:23-07:00 stage=fullroom_I_segment3d start attempt=1
+2026-09-26T12:45:24-07:00 stage=fullroom_I_segment3d success attempt=1
+2026-09-26T12:45:24-07:00 stage=fullroom_J_segment3d start attempt=1
+2026-09-26T12:45:25-07:00 stage=fullroom_J_segment3d success attempt=1
+2026-09-26T12:45:25-07:00 stage=fullroom_phase5_aggregate start attempt=1
+2026-09-26T12:45:25-07:00 stage=fullroom_phase5_aggregate recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:25-07:00 stage=fullroom_phase5_aggregate start attempt=2
+2026-09-26T12:45:25-07:00 stage=fullroom_phase5_aggregate recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:25-07:00 stage=fullroom_phase5_aggregate start attempt=3
+2026-09-26T12:45:25-07:00 stage=fullroom_phase5_aggregate recover cause=unknown action=retry_same_stage applied=True detail=No automatic patch. The same stage is restarted.
+2026-09-26T12:45:25-07:00 stage=fullroom_phase5_aggregate start attempt=4
+2026-09-26T12:45:25-07:00 stage=fullroom_phase5_aggregate failed attempts=4 cause=unknown
+2026-09-26T12:45:38-07:00 stage=fullroom_A_pointsam start attempt=1
+2026-09-26T12:45:39-07:00 stage=fullroom_A_pointsam success attempt=1
+2026-09-26T12:45:39-07:00 stage=fullroom_B_pointsam start attempt=1
+2026-09-26T12:45:39-07:00 stage=fullroom_B_pointsam success attempt=1
+2026-09-26T12:45:39-07:00 stage=fullroom_C_pointsam start attempt=1
+2026-09-26T12:45:40-07:00 stage=fullroom_C_pointsam success attempt=1
+2026-09-26T12:45:40-07:00 stage=fullroom_D_pointsam start attempt=1
+2026-09-26T12:45:40-07:00 stage=fullroom_D_pointsam success attempt=1
+2026-09-26T12:45:40-07:00 stage=fullroom_E_pointsam start attempt=1
+2026-09-26T12:45:41-07:00 stage=fullroom_E_pointsam success attempt=1
+2026-09-26T12:45:41-07:00 stage=fullroom_F_pointsam start attempt=1
+2026-09-26T12:45:42-07:00 stage=fullroom_F_pointsam success attempt=1
+2026-09-26T12:45:42-07:00 stage=fullroom_G_pointsam start attempt=1
+2026-09-26T12:45:42-07:00 stage=fullroom_G_pointsam success attempt=1
+2026-09-26T12:45:42-07:00 stage=fullroom_H_pointsam start attempt=1
+2026-09-26T12:45:43-07:00 stage=fullroom_H_pointsam success attempt=1
+2026-09-26T12:45:43-07:00 stage=fullroom_I_pointsam start attempt=1
+2026-09-26T12:45:44-07:00 stage=fullroom_I_pointsam success attempt=1
+2026-09-26T12:45:44-07:00 stage=fullroom_J_pointsam start attempt=1
+2026-09-26T12:45:44-07:00 stage=fullroom_J_pointsam success attempt=1
+2026-09-26T12:45:44-07:00 stage=fullroom_A_sam3d start attempt=1
+2026-09-26T12:45:45-07:00 stage=fullroom_A_sam3d success attempt=1
+2026-09-26T12:45:45-07:00 stage=fullroom_B_sam3d start attempt=1
+2026-09-26T12:45:46-07:00 stage=fullroom_B_sam3d success attempt=1
+2026-09-26T12:45:46-07:00 stage=fullroom_C_sam3d start attempt=1
+2026-09-26T12:45:46-07:00 stage=fullroom_C_sam3d success attempt=1
+2026-09-26T12:45:46-07:00 stage=fullroom_D_sam3d start attempt=1
+2026-09-26T12:45:47-07:00 stage=fullroom_D_sam3d success attempt=1
+2026-09-26T12:45:47-07:00 stage=fullroom_E_sam3d start attempt=1
+2026-09-26T12:45:48-07:00 stage=fullroom_E_sam3d success attempt=1
+2026-09-26T12:45:48-07:00 stage=fullroom_F_sam3d start attempt=1
+2026-09-26T12:45:48-07:00 stage=fullroom_F_sam3d success attempt=1
+2026-09-26T12:45:48-07:00 stage=fullroom_G_sam3d start attempt=1
+2026-09-26T12:45:49-07:00 stage=fullroom_G_sam3d success attempt=1
+2026-09-26T12:45:49-07:00 stage=fullroom_H_sam3d start attempt=1
+2026-09-26T12:45:50-07:00 stage=fullroom_H_sam3d success attempt=1
+2026-09-26T12:45:50-07:00 stage=fullroom_I_sam3d start attempt=1
+2026-09-26T12:45:50-07:00 stage=fullroom_I_sam3d success attempt=1
+2026-09-26T12:45:50-07:00 stage=fullroom_phase5_aggregate start attempt=1
+2026-09-26T12:45:50-07:00 stage=fullroom_phase5_aggregate success attempt=1
