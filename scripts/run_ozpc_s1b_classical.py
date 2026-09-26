@@ -223,7 +223,14 @@ def write_report() -> None:
         lines.append("")
         box = sam.get("visible_box")
         if box:
-            lines.append(f"Visible box (kept or dropped): `{json.dumps(box)}`.")
+            lines.append(
+                f"The shared stud gate kept this box: {box.get('kept_by_stud_gate')}. "
+                f"Extents mm: {box.get('extent_sorted_mm')}. "
+                f"Angle vs +Z: {box.get('theta_vs_plus_z_deg')}°. "
+                f"Drop reasons: {box.get('drop_reasons') or 'none'}."
+            )
+            lines.append("")
+            lines.append(box.get("note") or "")
             lines.append("")
     lines.extend(
         [
@@ -260,6 +267,12 @@ def write_report() -> None:
         [
             "",
             "Open3D on these four scenes was already measured on the cloud curriculum. The rows above are the same generator calls on Oz_PC, plus ranks 2, 3, and 6. Rank 3 is one box per RANSAC primitive, not the tuned face merge on PR #22.",
+            "",
+            "Rank 2 is the in-process NumPy smoothness port. `native_pcl_region_growing` is false on these cards. The libpcl binary was not built, so these numbers are not a PCL measurement.",
+        ]
+    )
+    lines.extend(
+        [
             "",
             "A room was not re-run here. Rank 1 on `stage5_room_bay_lot62_look` stays the cloud card in doc 24. Ranks 2–7 on that room stay not_run.",
             "",

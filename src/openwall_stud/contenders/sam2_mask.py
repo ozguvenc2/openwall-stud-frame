@@ -670,6 +670,12 @@ def measure_rank7(
     union = int(np.count_nonzero(generator_stud | mask))
     part = scene.part[indices] if len(indices) else np.zeros(0, dtype=np.int32)
     visible = visible_box_record(lifted)
+    if visible is not None:
+        visible["note"] = (
+            "Minimal oriented box of the points lifted from this SAM 2 mask. "
+            "The stud-length gate may still drop it, which leaves detection null. "
+            "The network does not emit the box."
+        )
     card = {
         "schema": "openwall.stud_scorecard.v1",
         "algorithm_id": SAM2["algorithm_id"],
@@ -706,6 +712,7 @@ def measure_rank7(
                 ),
             },
             "n_mask_pixels": int(mask.sum()),
+            "n_generator_stud_pixels": int(generator_stud.sum()),
             "n_lifted_points": int(len(indices)),
             "lifted_part_counts": {
                 "floor": int(np.sum(part == 0)),
@@ -720,7 +727,7 @@ def measure_rank7(
             "Bake-off rank 7. Master-table row 7 remains ClearEdge3D EdgeWise.",
             "Device epsilon is unlocked. Production paint is yellow when a box is kept.",
             "The prompt is the centroid of generator stud pixels. It is not a field click.",
-            "facebook/sam2.1-hiera-tiny loads as a sam2_video config into Sam2Model. The load warning is on this card.",
+            "facebook/sam2.1-hiera-tiny is a sam2_video config loaded here as Sam2Model. Captured Python warnings are in implementation.load_warnings.",
         ],
     }
     return {"card": card, "raster": raster, "rgb": rgb, "mask": mask, "runtime_s": runtime_s}
@@ -753,6 +760,33 @@ def main(argv: list[str] | None = None) -> int:
             overlay[mask] = (0.55 * overlay[mask] + 0.45 * np.array([40, 210, 90])).astype(np.uint8)
             png = out_dir / "sam2_rank7_ozpc_overlay.png"
             o3d.io.write_image(str(png), o3d.geometry.Image(np.ascontiguousarray(overlay)))
+        from openwall_stud.results_by_day import append_day_row
+
+        status = card.get("status")
+        det = card.get("detection") or {}
+        if status == "blocked_install":
+            verdict = "blocked_install"
+            stored = None
+        elif det.get("recall") == 1.0 and det.get("precision") == 1.0:
+            verdict = "pass"
+            stored = card
+        else:
+            verdict = "fail"
+            stored = card if status == "ran" else None
+        append_day_row(
+            algorithm="sam2",
+            stage=int(card.get("stage") or 0),
+            scene=(card.get("scene") or {}).get("name") or "stage0_2x4_lean0.050",
+            ground_truth_source="synthetic",
+            pass_fail=verdict,
+            notes=(
+                "Oz_PC SAM 2 tiny on the scaffold camera. "
+                "Prompt is the generator stud centroid. "
+                f"Day-table bars: {verdict}. Device epsilon unlocked. "
+                f"Scorecard: curriculum/{dest.name}."
+            ),
+            card=stored,
+        )
         print(f"sam2 measure status={card.get('status')} -> {dest}")
         return 0 if card.get("status") in {"ran", "blocked_install"} else 1
     if args.stub:

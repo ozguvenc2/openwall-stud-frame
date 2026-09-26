@@ -51,6 +51,8 @@ Code: `openwall_stud.contenders.sam2_mask`. Command: `python -m openwall_stud.co
 
 This VM had no NVIDIA GPU (`nvidia-smi` absent), no PyTorch, and no `sam2` install. `SAM2_CHECKPOINT` was unset. The rank-7 card is `blocked_install`. Stud precision, recall, section, length, and angle on that card are null. No mask IoU was computed.
 
+Oz_PC later ran the tiny checkpoint on an RTX 4080 SUPER. That measurement is [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md). It does not change the null card above.
+
 What did run is the pinhole raster of one synthetic 2×4 (lean 0.05° about +X, seed 2, 25,666 points), the same stud as the one-stud protocol.
 
 | Projection fact | Value |

@@ -1,0 +1,160 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A6",
+  "algorithm": "pyRANSAC-3D sequential cuboid",
+  "rank": 6,
+  "stage": 0,
+  "status": "ran",
+  "epsilon_locked": false,
+  "metrics_are_measurements": true,
+  "measurement_scope": "synthetic generator, this process, one stud",
+  "scene": {
+    "name": "s1b_bow_2x4_amp19.05mm_lean0.000",
+    "stage": 0,
+    "nominal": "2x4",
+    "lean_deg": 0.0,
+    "lean_axis": "+X",
+    "seed": 43,
+    "spacing_m": 0.005,
+    "noise_std_m": 0.001,
+    "n_points": 25666,
+    "length_m": 2.4383999999999997,
+    "section_m": [
+      0.038099999999999995,
+      0.08889999999999999
+    ],
+    "reference": "gravity_z_no_floor_plane",
+    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "description": "S1b synthetic bowed 2x4. Midspan bow 19.05 mm along local Y. Chord lean 0.000 deg about +X. Ends held. No floor. Not a stage-0 gate and not a field bow.",
+    "n_studs": 1,
+    "bow_m": 0.01905,
+    "bow_axis": "Y",
+    "chord_note": "Stored long axis is the chord. Section error is not a bow amplitude."
+  },
+  "implementation": {
+    "module": "openwall_stud.contenders.pyransac3d_cuboid",
+    "library": "pyransac3d",
+    "version": "0.7.0",
+    "license": "Apache-2.0",
+    "doi": "https://doi.org/10.5281/zenodo.7212567",
+    "thresh_m": 0.05,
+    "max_iteration": 1000,
+    "random_seed": 43,
+    "random_note": "Python random.seed(scene.seed + attempt) immediately before each Cuboid.fit. v0.7.0 has no seed argument.",
+    "peel": {
+      "floor_found": false,
+      "n_points_in": 25666,
+      "n_points_after_peel": 25666,
+      "removed_z_intervals_m": [],
+      "note": "Same horizontal-slab peel as rank 1. Stage 0 has no floor and no plate, so a stud cloud is kept whole. The cloud is not rotated. The angle reference stays generator +Z."
+    },
+    "wall_swallow": {
+      "triggered": false,
+      "second_extent_limit_m": 0.3,
+      "long_extent_limit_m": 4.0,
+      "log": "Wall-swallow check passed. First cuboid extents [76.8, 119.1, 2442.9] mm stay inside a single-stud limit (second extent <= 0.30 m and longest extent <= 4.0 m)."
+    },
+    "attempts": [
+      {
+        "index": 0,
+        "random_seed": 43,
+        "n_points_in": 25666,
+        "n_inliers": 25666,
+        "extents_sorted_m": [
+          0.07677,
+          0.11912,
+          2.44288
+        ],
+        "wall_swallow": false,
+        "nominal_guess": null,
+        "obb_extent_sorted_m": [
+          0.04586,
+          0.11323,
+          2.44289
+        ],
+        "theta_deg": 0.03496,
+        "decision": "rejected_section_prior"
+      }
+    ],
+    "stopped": "too_few_points_remaining",
+    "n_accepted": 0,
+    "n_inliers_accepted": 0,
+    "section_gate": "Shared minimal OBB versus dressed 2x4 or 2x6, 15 mm gate, length 1.2 m to 3.3 m. Library extents are the wall-swallow check only."
+  },
+  "implementation_short": "pyRANSAC-3D 0.7.0 sequential cuboid accepted 0 clusters (stop=too_few_points_remaining). Wall-swallow triggered=False. Shared minimal OBB, axis not forced to Z.",
+  "detection": {
+    "n_true": 1,
+    "n_pred": 0,
+    "true_positives": 0,
+    "false_positives": 0,
+    "false_negatives": 1,
+    "precision": null,
+    "recall": 0.0,
+    "match_radius_m": 0.15,
+    "scope": "synthetic_scene_only",
+    "note": "Sequential pyRANSAC-3D cuboids after the rank 1 horizontal-slab peel. A cuboid is kept only when the shared minimal OBB is a 2x4 or 2x6 stick. Wall-swallow check passed. First cuboid extents [76.8, 119.1, 2442.9] mm stay inside a single-stud limit (second extent <= 0.30 m and longest extent <= 4.0 m). Counts are this synthetic stud, not a field accuracy."
+  },
+  "geometry": {
+    "max_section_error_mm": null,
+    "max_length_error_mm": null,
+    "per_stud": [],
+    "bbox_kind": "minimal_oriented",
+    "note": "Section and length are the shared minimal OBB of accepted inliers versus the dressed generator size. The library extents are on the implementation record and are not this section error. The long axis is not forced to Z."
+  },
+  "angle": {
+    "mae_deg": null,
+    "max_abs_error_deg": null,
+    "pct_in_band": null,
+    "band_deg": 0.11937,
+    "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
+    "reference": "gravity_z_no_floor_plane",
+    "per_stud": [],
+    "note": "Truth is the generator lean against +Z. Stage 0 has no floor. Not a SKIL reading."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "tolerance_deg": 0.11937,
+    "production_colors": [],
+    "production_rule": "epsilon unlocked, so every stud is yellow",
+    "hypothetical_placeholder_epsilon_deg": 0.05,
+    "hypothetical_placeholder_note": "0.05 deg is a round illustration of the color rule. It is not a measured device band.",
+    "hypothetical_colors": [],
+    "note": "Do not read hypothetical colors as a pass/fail call."
+  },
+  "cost": {
+    "runtime_s": 1.1992,
+    "license": "Apache-2.0",
+    "license_url": "https://github.com/leomariga/pyRANSAC-3D/blob/v0.7.0/LICENSE",
+    "hardware": "CPU",
+    "n_points_in": 25666,
+    "n_points_after_peel": 25666,
+    "floor_found": false,
+    "failure_modes": [
+      "One cuboid on a whole wall can lock onto coplanar stud faces. The first-cuboid extent check logs that and stops.",
+      "Library extents are a min-area rectangle after snapping the dominant face. They run fatter than the shared minimal OBB.",
+      "thresh 0.05 m is the library default. A much smaller thresh can drop the far face of the 89 mm width.",
+      "Removing inliers from a one-face cuboid would carve the stud. This run did not do that when the first box covered the member.",
+      "Forcing the axis to Z would hide lean. This run does not."
+    ],
+    "note": "Runtime is this process on this one stud. It is not a field budget.",
+    "pyransac3d_version": "0.7.0",
+    "thresh_m": 0.05,
+    "max_iteration": 1000
+  },
+  "notes": [
+    "Synthetic stage 0 only. Not a field measurement. Device epsilon is unlocked, so production paint is yellow.",
+    "Wall-swallow check passed. First cuboid extents [76.8, 119.1, 2442.9] mm stay inside a single-stud limit (second extent <= 0.30 m and longest extent <= 4.0 m)."
+  ],
+  "curriculum": "s1b",
+  "machine": "Oz_PC",
+  "stage_gate": false,
+  "rigid_bar_failures": [
+    "detection P=None R=0.0",
+    "section None mm > 10.0",
+    "length None mm > 25.0",
+    "angle None deg > 0.05",
+    "no production color"
+  ],
+  "rigid_bars_note": "These are the rigid dressed-stud bars. A bow fattens the section. This list is not a bow-amplitude error and not a field acceptance test."
+}

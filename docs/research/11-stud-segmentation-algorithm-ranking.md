@@ -94,7 +94,7 @@ Ranks 6–12 in the master table below are not in the original five-stack bake-o
 
 Bake-off **rank 6** is a later add, not that master-table row. Doc 17 (`17-methods-that-beat-shortlist`, the methods brief on PR #14) names pyRANSAC-3D v0.7.0 sequential cuboid, after rank 1’s plate peel, as an add. Oz approved it. The one-stud run is in [16-one-stud-five-finder-run.md](16-one-stud-five-finder-run.md). The Chen, Jiang, and Xiong 2025 row numbered 6 in the table stays out of the bake-off.
 
-Bake-off **rank 7** is SAM 2 (Ravi et al., 2024), also a later add, and also not the master-table row with that number. The master-table row numbered 7 remains ClearEdge3D EdgeWise. SAM 2 segments images and video. It applies to a stud cloud only by a registered view: project the points, take a mask, lift the visible points, then the shared box. A pure LAS or PLY skips it. On 2026-09-25 the weights were not installed on the cloud CPU that wrote [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md). The rank-7 stud metrics are null. A generator-mask control on one stud is recorded there and is not a SAM 2 score. Ranks 1–6 are unchanged.
+Bake-off **rank 7** is SAM 2 (Ravi et al., 2024), also a later add, and also not the master-table row with that number. The master-table row numbered 7 remains ClearEdge3D EdgeWise. SAM 2 segments images and video. It applies to a stud cloud only by a registered view: project the points, take a mask, lift the visible points, then the shared box. A pure LAS or PLY skips it. On 2026-09-25 the weights were not installed on the cloud CPU that wrote [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md). That card’s stud metrics are null. A generator-mask control on one stud is recorded there and is not a SAM 2 score. Oz_PC later ran `facebook/sam2.1-hiera-tiny` on an RTX 4080 SUPER; the kept-stud cells are still null because the visible span is 1.010 m and the keep gate starts at 1.2 m. See [25-ozpc-sam2-s1b.md](25-ozpc-sam2-s1b.md). Ranks 1–6 are unchanged.
 
 ## Master table
 
@@ -171,7 +171,7 @@ Fit 2, and still in the five, because one controlled failure on our cloud is che
 
 SAM 2 is a promptable model for images and video (arXiv:2408.00714). It has no stud class and no oriented box. The bake-off uses it only as a mask on a view that is already registered to the cloud. Multi-view masks would be unioned per stud before the shared box. One view misses occluded faces and can miss the stud ends; the generator-mask control in doc 24 dropped a 1.010 m visible span because the keep gate starts at 1.2 m.
 
-The checkpoint was not loaded in that pass. No mask IoU is stated. License for the SAM 2 code and the official checkpoints is Apache-2.0; nothing was linked. EdgeWise, which occupies master-table rank 7, stays out of the bake-off.
+The cloud CPU pass did not load a checkpoint, and it does not state a mask IoU. Oz_PC loaded `facebook/sam2.1-hiera-tiny` and records the predicted IoU scores on the card in doc 25. Those scores are the network’s own mask ranking, not a stud mIoU. License for the SAM 2 code and the official checkpoints is Apache-2.0; nothing was linked. EdgeWise, which occupies master-table rank 7, stays out of the bake-off.
 
 ### Commercial scan-to-BIM
 
@@ -179,7 +179,7 @@ EdgeWise, PointCab, and CloudWorx do not document bare wood studs. Verity does n
 
 ## Shared post-step (every rank)
 
-Segmentation output → points of one stud → tight OBB → θ versus the stored floor normal → interval with ε → green, yellow, or red. Bake-off ranks differ in the first arrow only. Rank 7 has not returned points. Reporting S3DIS mIoU, roof-beam completeness, a SAM 2 video J&F, or a 3% dimension error as if it were stud-angle accuracy is out of scope for the bake-off.
+Segmentation output → points of one stud → tight OBB → θ versus the stored floor normal → interval with ε → green, yellow, or red. Bake-off ranks differ in the first arrow only. Rank 7 on Oz_PC returned lifted points; the length gate dropped the box, so the kept-stud cells stay null. Reporting S3DIS mIoU, roof-beam completeness, a SAM 2 video J&F, or a 3% dimension error as if it were stud-angle accuracy is out of scope for the bake-off.
 
 Later metric, same clouds, digital level per stud:
 

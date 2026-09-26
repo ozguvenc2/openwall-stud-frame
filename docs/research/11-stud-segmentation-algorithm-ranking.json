@@ -379,11 +379,12 @@
       "license": "Apache-2.0 (code and official checkpoints). Not linked in this pass.",
       "license_url": "https://github.com/facebookresearch/sam2",
       "paper": "https://arxiv.org/abs/2408.00714",
-      "status": "blocked_install",
+      "status": "ran_on_ozpc_kept_stud_null",
       "stud_metrics": null,
       "how_it_applies": "Project a registered RGB or depth view, take a mask, lift visible points, then the shared box. A bare LAS or PLY skips it. Multi-view lifts would be unioned.",
-      "this_pass": "docs/research/24-sam2-rank7-and-curriculum.md",
-      "note": "No mask IoU. Generator-mask control is not a SAM 2 score."
+      "this_pass": "docs/research/25-ozpc-sam2-s1b.md",
+      "cloud_pass": "docs/research/24-sam2-rank7-and-curriculum.md",
+      "note": "Oz_PC ran facebook/sam2.1-hiera-tiny through transformers on an RTX 4080 SUPER. The predicted mask IoU is the network score, not a stud mIoU. Kept-stud cells stay null: the visible span is 1.010 m and the keep gate starts at 1.2 m. The cloud CPU card remains blocked_install. The generator-mask control is not a SAM 2 score."
     }
   ]
 }
