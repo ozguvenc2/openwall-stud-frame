@@ -16,4 +16,6 @@
 
 `build_fullroom_manifest.py` writes `data/finetune/fullroom_28_manifest.json` (48 train rooms, 8 val rooms, 28 studs each). `train_randlanet_fullroom.py` and `train_pointcept_fullroom.py` save new heads under `artifacts/checkpoints/stud-heads/fullroom/`. They do not overwrite the Experiment 1 checkpoints. `smoke_fullroom_phase1.py --role geometry|pointcept|randlanet` checks that those heads load and that Open3D, PCL, and pyRANSAC-3D still run. `build_fullroom_scenes.py` writes scenes A–J (`artifacts/fullroom/scenes_expected.json`). Decision: `docs/research/37-fullroom-training-decision.md`. Scenes: `docs/research/39-fullroom-scenes.md`. Train note: `docs/research/38-fullroom-stud-head-train.md`.
 
+`experiment_queue_runner.py` is the self-healing queue for the remaining full-room scenarios. It skips Experiment 1 when `artifacts/phase_neg1/experiment1_dual_pass.json` is already present, skips Phases 0–2 when their files are present, and runs one process per scene and model via `run_fullroom_scenario.py`. A failed stage is logged, diagnosed, retried up to three times, and then marked failed so the rest of the queue continues. `aggregate_fullroom_catch.py` writes the catch tables from those result files. Invoke note: `docs/research/40-experiment-queue-runner.md`.
+
 Dataset download helpers are not here yet. Large clouds stay linked from `docs/research/`.
