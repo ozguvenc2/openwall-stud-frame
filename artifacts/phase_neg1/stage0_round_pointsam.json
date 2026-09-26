@@ -1,0 +1,18 @@
+[
+  {
+    "algorithm": "pointsam",
+    "scorecard": "pointsam_stage0_stage0_2x4_lean0.000.json",
+    "status": "ran",
+    "pass_fail": "pass",
+    "precision": 1.0,
+    "recall": 1.0,
+    "section_mm": 4.45,
+    "length_mm": 6.22,
+    "angle_mae_deg": 0.03817,
+    "runtime_s": 0.3139,
+    "stud_metrics_scored": true,
+    "n_stud_points": 349,
+    "gpu_ms": 313.2489318847656,
+    "reason": "zero-shot point prompt; not a stud-trained head"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "algorithm": "open3d",
+    "scorecard": "open3d_stage0_stage0_2x4_lean0.000.json",
+    "status": "ran_synthetic",
+    "pass_fail": "pass",
+    "precision": 1.0,
+    "recall": 1.0,
+    "section_mm": 7.86,
+    "length_mm": 6.24,
+    "angle_mae_deg": 0.03084,
+    "runtime_s": 0.0543,
+    "stud_metrics_scored": true
+  },
+  {
+    "algorithm": "pcl",
+    "scorecard": "pcl_stage0_stage0_2x4_lean0.000.json",
+    "status": "ran",
+    "pass_fail": "pass",
+    "precision": 1.0,
+    "recall": 1.0,
+    "section_mm": 7.86,
+    "length_mm": 6.24,
+    "angle_mae_deg": 0.03084,
+    "runtime_s": 3.3391,
+    "stud_metrics_scored": true
+  },
+  {
+    "algorithm": "pyransac3d",
+    "scorecard": "pyransac3d_stage0_stage0_2x4_lean0.000.json",
+    "status": "ran",
+    "pass_fail": "pass",
+    "precision": 1.0,
+    "recall": 1.0,
+    "section_mm": 7.86,
+    "length_mm": 6.24,
+    "angle_mae_deg": 0.03084,
+    "runtime_s": 1.2443,
+    "stud_metrics_scored": true
+  }
+]

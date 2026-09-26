@@ -1,13 +1,13 @@
 {
   "schema": "openwall.stud_scorecard.v1",
-  "algorithm_id": "A4",
-  "algorithm": "Pointcept PTv3 fine-tuned stud/clutter (synthetic)",
-  "rank": 4,
+  "algorithm_id": "F2",
+  "algorithm": "SAM3D (Yang et al.) ViT-H pinhole lift",
+  "rank": 9,
   "stage": 0,
   "status": "ran",
   "epsilon_locked": false,
   "metrics_are_measurements": true,
-  "measurement_scope": "synthetic fine-tune inference; stud box is the minimal OBB of points labeled stud",
+  "measurement_scope": "foundation zero-shot / promptable mask \u2192 stud labels \u2192 minimal OBB; synthetic scene only; not a field accuracy",
   "scene": {
     "name": "stage0_2x4_lean0.000",
     "stage": 0,
@@ -29,34 +29,18 @@
     "description": "Synthetic single stud. Generator gravity is +Z."
   },
   "implementation": {
-    "weight": "C:\\Repos\\openwall-stud-frame\\artifacts\\checkpoints\\stud-heads\\pointcept_stud_2class.pth",
-    "meta": {
-      "selection_score": 0.9903513490627605,
-      "val": {
-        "n": 33,
-        "stud_recall_stud_scenes": 1.0,
-        "stud_iou_floor_scenes": 0.9924681554152092,
-        "clutter_iou_floor_scenes": 0.9785858917730721,
-        "selection_score": 0.9903513490627605,
-        "epoch": 2,
-        "train_decoder": false,
-        "train_loss": 0.000994065761520905,
-        "epoch_s": 29.2,
-        "n_trainable": 4
-      },
-      "trained_decoder": false,
-      "torch": "2.7.0+cu126",
-      "cuda": "12.6",
-      "init": "BIMStruct3D PT-v3m1 backbone, new 2-class MLP head",
-      "classes": [
-        "clutter",
-        "stud"
-      ],
-      "synthetic_only": true,
-      "not_full_bakeoff_train": true
-    }
+    "identity": "Pointcept/SegmentAnything3D yang2023sam3d",
+    "weight": "C:\\Repos\\openwall-stud-frame\\data\\cache\\phase_neg1\\sam\\sam_vit_h_4b8939.pth",
+    "prompt_px": [
+      319.4418716256749,
+      236.8259148170366
+    ],
+    "best_score": 1.0047301054000854,
+    "n_lifted": 8311,
+    "gpu_ms": 242.54010009765625,
+    "note": "2D SAM ViT-H + z-buffer lift. pointops knn is install smoke only."
   },
-  "implementation_short": "PTv3 backbone plus a 2-class head, minimal OBB on stud points.",
+  "implementation_short": "SAM ViT-H on scaffold pinhole, best mask lifted to points \u2192 stud labels.",
   "detection": {
     "n_true": 1,
     "n_pred": 1,
@@ -67,11 +51,11 @@
     "recall": 1.0,
     "match_radius_m": 0.15,
     "scope": "synthetic_scene_only",
-    "note": "25666 points labeled stud (class 1) of 25666. A box is fit when that count is at least 50. Counts are this synthetic scene, not a field accuracy."
+    "note": "8311 points labeled stud (class 1) of 25666. A box is fit when that count is at least 50. Counts are this synthetic scene, not a field accuracy."
   },
   "geometry": {
-    "max_section_error_mm": 7.86,
-    "max_length_error_mm": 6.24,
+    "max_section_error_mm": 6.83,
+    "max_length_error_mm": 1427.98,
     "per_stud": [
       {
         "stud_id": "S1",
@@ -82,24 +66,24 @@
           88.9
         ],
         "section_measured_mm": [
-          45.96,
-          96.06
+          44.85,
+          95.73
         ],
         "section_error_mm": [
-          7.86,
-          7.16
+          6.75,
+          6.83
         ],
         "length_true_mm": 2438.4,
-        "length_measured_mm": 2444.64,
-        "length_error_mm": 6.24
+        "length_measured_mm": 1010.42,
+        "length_error_mm": -1427.98
       }
     ],
     "bbox_kind": "minimal_oriented",
     "note": "Section and length are the minimal OBB of the stud-labeled points versus the dressed generator stud. Same box as the classical finders."
   },
   "angle": {
-    "mae_deg": 0.03084,
-    "max_abs_error_deg": 0.03084,
+    "mae_deg": 0.06871,
+    "max_abs_error_deg": 0.06871,
     "pct_in_band": 100.0,
     "band_deg": 0.11937,
     "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
@@ -108,8 +92,8 @@
       {
         "stud_id": "S1",
         "true_deg": 0.0,
-        "measured_deg": 0.03084,
-        "abs_error_deg": 0.03084,
+        "measured_deg": 0.06871,
+        "abs_error_deg": 0.06871,
         "production_color": "yellow",
         "hypothetical_color": "green"
       }
@@ -132,15 +116,16 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.0771,
-    "license": "MIT code; BIMStruct3D weights CC BY-NC-SA 4.0, not committed",
-    "hardware": "cuda",
+    "runtime_s": 0.2426,
+    "license": "segment-anything Apache-2.0; SAM3D upstream; not a stud-trained head",
+    "hardware": "cuda; torch 2.7.0+cu126; NVIDIA GeForce RTX 4080 SUPER",
     "bbox_kind": "minimal_oriented",
     "failure_modes": [
-      "Trained on synthetic dressed studs only.",
-      "Color features are zeros."
+      "ScanNet multi-frame SAM3D path not used; single synthetic pinhole only.",
+      "Occluded points are not lifted.",
+      "Zero-shot image mask, not a stud-class train."
     ],
-    "n_stud_points": 25666,
+    "n_stud_points": 8311,
     "stud_min_points": 50,
     "note": "Runtime is this inference on this scene, after weights were already loaded."
   },
@@ -156,20 +141,23 @@
       {
         "id": 0,
         "name": "clutter",
-        "count": 0
+        "count": 17355
       },
       {
         "id": 1,
         "name": "stud",
-        "count": 25666
+        "count": 8311
       }
     ],
-    "n_stud_points": 25666,
-    "stud_fraction": 1.0,
+    "n_stud_points": 8311,
+    "stud_fraction": 0.3238,
     "stud_box": true,
     "synthetic_only": true
   },
-  "stage0_bar_failures": [],
+  "stage0_bar_failures": [
+    "length error 1427.98 mm > 25.0",
+    "angle error 0.06871 deg > 0.05"
+  ],
   "stage0_bars": {
     "detection": "precision = 1 and recall = 1",
     "section_mm": 10.0,
@@ -178,6 +166,6 @@
     "paint": "every production color yellow",
     "scope": "synthetic stage 0 bring-up, not a field test"
   },
-  "stage0_pass_fail": "pass",
-  "scorecard_name": "pointcept_finetune_stage0_stage0_2x4_lean0.000.json"
+  "stage0_pass_fail": "fail",
+  "scorecard_name": "sam3d_stage0_stage0_2x4_lean0.000.json"
 }

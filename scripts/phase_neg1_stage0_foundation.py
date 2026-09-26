@@ -125,6 +125,7 @@ def run_pointsam() -> dict:
             "prompt": "first-point after mean-center/normalize",
         },
         implementation_short="Point-SAM large, one positive point prompt, best IoU mask → stud labels.",
+        day_algorithm="pointsam",
     )
     row = summary_row("pointsam", card)
     row["gpu_ms"] = gpu_ms
@@ -199,10 +200,15 @@ def run_sam3d() -> dict:
             "note": "2D SAM ViT-H + z-buffer lift. pointops knn is install smoke only.",
         },
         implementation_short="SAM ViT-H on scaffold pinhole, best mask lifted to points → stud labels.",
+        day_algorithm="sam3d",
     )
     row = summary_row("sam3d", card)
     row["gpu_ms"] = gpu_ms
-    row["reason"] = "ViT-H pinhole lift; ScanNet multi-frame path not run"
+    fails = card.get("stage0_bar_failures") or []
+    row["reason"] = (
+        "ViT-H pinhole lift; ScanNet multi-frame path not run"
+        + (f"; bars: {'; '.join(fails)}" if fails else "")
+    )
     return row
 
 
@@ -259,6 +265,7 @@ def run_openmask3d() -> dict:
             "clip_stage": "blocked_no_posed_rgbd",
         },
         implementation_short="OpenMask3D mask module best instance → stud labels. CLIP skipped.",
+        day_algorithm="openmask3d",
     )
     row = summary_row("openmask3d", card)
     row["reason"] = (
@@ -339,27 +346,29 @@ def run_segment3d() -> dict:
     if not isinstance(outputs, dict) or "pred_logits" not in outputs or "pred_masks" not in outputs:
         return blocked_row("segment3d", f"unexpected outputs keys={list(outputs) if isinstance(outputs, dict) else type(outputs)}")
     logits = outputs["pred_logits"][0]  # [Q, C]
-    pred_masks = outputs["pred_masks"][0]  # [N_vox, Q] or similar
+    raw_masks = outputs["pred_masks"]
+    # Mask3D returns a list of length batch; each entry is [N_vox, Q].
+    pred_masks = raw_masks[0] if isinstance(raw_masks, list) else raw_masks[0]
     # Objectness: max over classes excluding void if present; else max over all.
     scores = logits.softmax(-1)[..., 1:].max(-1).values if logits.shape[-1] > 1 else logits.softmax(-1).max(-1).values
     best = int(torch.argmax(scores).item())
     vox_mask = pred_masks[:, best].detach().float().cpu().numpy() > 0.0
     inv = np.asarray(inverse_map).reshape(-1)
-    point_mask = np.zeros(cloud.n_points, dtype=bool)
-    # inverse_map maps voxel → original point index (Segment3D demo convention).
-    if inv.shape[0] == vox_mask.shape[0]:
+    # prepare_data inverse_map is point → voxel index (length = n_points).
+    if inv.shape[0] == cloud.n_points and inv.max() < vox_mask.shape[0]:
+        point_mask = vox_mask[inv].astype(bool)
+    elif inv.shape[0] == vox_mask.shape[0]:
+        point_mask = np.zeros(cloud.n_points, dtype=bool)
         chosen = inv[vox_mask]
         chosen = chosen[(chosen >= 0) & (chosen < cloud.n_points)]
         point_mask[chosen] = True
+    elif vox_mask.shape[0] == cloud.n_points:
+        point_mask = vox_mask.astype(bool)
     else:
-        # Fallback: if masks are already per-point.
-        if vox_mask.shape[0] == cloud.n_points:
-            point_mask = vox_mask.astype(bool)
-        else:
-            return blocked_row(
-                "segment3d",
-                f"cannot map pred_masks {tuple(pred_masks.shape)} via inverse_map {inv.shape}",
-            )
+        return blocked_row(
+            "segment3d",
+            f"cannot map pred_masks {tuple(pred_masks.shape)} via inverse_map {inv.shape}",
+        )
     labels = labels_from_mask(point_mask, cloud.n_points)
     dest = OUT / f"segment3d_stage0_{cloud.name}.json"
     card = write_foundation_card(
@@ -383,11 +392,12 @@ def run_segment3d() -> dict:
             "query_index": best,
             "query_score": float(scores[best].detach().cpu()),
             "pred_logits": list(outputs["pred_logits"].shape),
-            "pred_masks": list(outputs["pred_masks"].shape),
+            "pred_masks": list(pred_masks.shape),
             "gpu_ms": gpu_ms,
             "n_stud_points": int(point_mask.sum()),
         },
         implementation_short="Segment3D Mask3D best query mask → stud labels. No cuML.",
+        day_algorithm="segment3d",
     )
     row = summary_row("segment3d", card)
     row["gpu_ms"] = gpu_ms

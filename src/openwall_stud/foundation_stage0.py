@@ -41,6 +41,7 @@ def write_foundation_card(
     failure_modes: list[str],
     implementation: dict[str, Any],
     implementation_short: str,
+    day_algorithm: str | None = None,
 ) -> dict[str, Any]:
     card, _ = score_stud_labels(
         scene,
@@ -64,6 +65,20 @@ def write_foundation_card(
     dest = __import__("pathlib").Path(dest)
     card["scorecard_name"] = dest.name
     write_scorecard(dest, card)
+    if day_algorithm:
+        from openwall_stud.one_stud import day_notes
+        from openwall_stud.results_by_day import append_day_row, repo_root
+
+        append_day_row(
+            algorithm=day_algorithm,
+            stage=0,
+            scene=scene.name,
+            ground_truth_source="synthetic",
+            pass_fail=card.get("stage0_pass_fail") or "fail",
+            notes=day_notes(card, dest.name),
+            card=card,
+            root=repo_root(),
+        )
     return card
 
 
