@@ -7,8 +7,9 @@ From the repo root:
 Stage 0 and the original stage-2 and stage-3 Open3D cards are linked, not
 re-measured. New straight-stud scenes at 1 mm noise use the existing bars.
 Bow (S1b), 2 mm noise, and the stage-5 room are probes: their cards are
-written either way. Ranks 2–6 are not re-run on the room. SAM 2 does not
-invent a mask. Stages 6 and 7 stay null.
+written either way. Ranks 2–7 on the room are scored by
+``scripts/run_room_all_ranks.py``. This script does not replace those
+measured cards with ``not_run`` stubs. Stages 6 and 7 stay null.
 
 Device epsilon stays unlocked. Production paint stays yellow.
 """
@@ -318,6 +319,13 @@ def main() -> int:
     room_name = "stage5_room_bay_lot62_look"
     stub_files = []
     for algorithm, rank, algorithm_id, title, note in ROOM_STUBS:
+        measured_path = out_dir / f"{algorithm}_{room_name}.json"
+        if measured_path.is_file():
+            measured = json.loads(measured_path.read_text(encoding="utf-8"))
+            if measured.get("status") not in {None, "stub_not_run"}:
+                print(f"keep measured room card {measured_path.name}", flush=True)
+                stub_files.append(measured_path.name)
+                continue
         card = _not_run_card(
             algorithm_id=algorithm_id,
             algorithm=title,

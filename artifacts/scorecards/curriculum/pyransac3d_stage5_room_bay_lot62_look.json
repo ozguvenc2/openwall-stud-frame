@@ -1,0 +1,150 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "A6",
+  "algorithm": "pyRANSAC-3D sequential cuboid",
+  "rank": 6,
+  "stage": 5,
+  "status": "ran",
+  "epsilon_locked": false,
+  "metrics_are_measurements": true,
+  "measurement_scope": "synthetic generator, this process, stage-5 room",
+  "scene": {
+    "name": "stage5_room_bay_lot62_look",
+    "stage": 5,
+    "nominal": "2x4",
+    "lean_deg": 0.2,
+    "lean_axis": "+X",
+    "seed": 62,
+    "spacing_m": 0.006,
+    "noise_std_m": 0.001,
+    "n_points": 532301,
+    "length_m": 2.4383999999999997,
+    "section_m": [
+      0.038099999999999995,
+      0.08889999999999999
+    ],
+    "has_floor": true,
+    "reference": "floor_normal",
+    "reference_meaning": "This synthetic scene has a floor or slab. Lean is measured against the fitted floor normal. The cloud is not rotated. A SKIL or other level reading is not the reference.",
+    "description": "Synthetic room or bay with a LOT-62 look: four stud walls, 16 inch centers, corner air gap 0.10 m, door gap on the south wall (5 south studs kept), plates and floor, no header. Not the Lot 62 Polycam file. Not a real capture. Not stages 6 or 7."
+  },
+  "implementation": {
+    "module": "openwall_stud.contenders.pyransac3d_cuboid",
+    "library": "pyransac3d",
+    "version": "0.7.0",
+    "license": "Apache-2.0",
+    "doi": "https://doi.org/10.5281/zenodo.7212567",
+    "thresh_m": 0.05,
+    "max_iteration": 1000,
+    "random_seed": 62,
+    "random_note": "Python random.seed(scene.seed + attempt) immediately before each Cuboid.fit. v0.7.0 has no seed argument.",
+    "peel": {
+      "floor_found": true,
+      "n_points_in": 532301,
+      "n_points_after_peel": 439845,
+      "removed_z_intervals_m": [
+        [
+          -0.010248784033992289,
+          0.04852453961191431
+        ],
+        [
+          2.4654583162912265,
+          2.525855809180177
+        ]
+      ],
+      "reference": "floor_normal",
+      "note": "Same horizontal-slab peel as rank 1. Angle reference for this cloud is floor_normal. The cloud is not rotated. A level reading is not the synthetic reference."
+    },
+    "wall_swallow": {
+      "triggered": true,
+      "second_extent_limit_m": 0.3,
+      "long_extent_limit_m": 4.0,
+      "log": "WALL SWALLOW: first cuboid extents [2480.9, 2885.8, 2886.6] mm exceed a single stud (second extent > 0.30 m or longest extent > 4.0 m). That cuboid was rejected and sequential fitting stopped. This is a log on the scorecard, not a schema failure."
+    },
+    "attempts": [
+      {
+        "index": 0,
+        "random_seed": 62,
+        "n_points_in": 439845,
+        "n_inliers": 176906,
+        "extents_sorted_m": [
+          2.48092,
+          2.88581,
+          2.8866
+        ],
+        "wall_swallow": true,
+        "decision": "rejected_wall_swallow"
+      }
+    ],
+    "stopped": "wall_swallow",
+    "n_accepted": 0,
+    "n_inliers_accepted": 0,
+    "section_gate": "Shared minimal OBB versus dressed 2x4 or 2x6, 15 mm gate, length 1.2 m to 3.3 m. Library extents are the wall-swallow check only."
+  },
+  "implementation_short": "WALL SWALLOW: first cuboid extents [2480.9, 2885.8, 2886.6] mm exceed a single stud (second extent > 0.30 m or longest extent > 4.0 m). That cuboid was rejected and sequential fitting stopped. This is a log on the scorecard, not a schema failure.",
+  "detection": {
+    "n_true": 26,
+    "n_pred": 0,
+    "true_positives": 0,
+    "false_positives": 0,
+    "false_negatives": 26,
+    "precision": null,
+    "recall": 0.0,
+    "match_radius_m": 0.15,
+    "scope": "synthetic_scene_only",
+    "note": "Sequential pyRANSAC-3D cuboids after the rank 1 horizontal-slab peel. A cuboid is kept only when the shared minimal OBB is a 2x4 or 2x6 stick. WALL SWALLOW: first cuboid extents [2480.9, 2885.8, 2886.6] mm exceed a single stud (second extent > 0.30 m or longest extent > 4.0 m). That cuboid was rejected and sequential fitting stopped. This is a log on the scorecard, not a schema failure. Counts are this stage-5 synthetic room, not a field accuracy."
+  },
+  "geometry": {
+    "max_section_error_mm": null,
+    "max_length_error_mm": null,
+    "per_stud": [],
+    "bbox_kind": "minimal_oriented",
+    "note": "Section and length are the shared minimal OBB of accepted inliers versus the dressed generator size. The library extents are on the implementation record and are not this section error. The long axis is not forced to Z."
+  },
+  "angle": {
+    "mae_deg": null,
+    "max_abs_error_deg": null,
+    "pct_in_band": null,
+    "band_deg": 0.11937,
+    "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
+    "reference": "floor_normal",
+    "per_stud": [],
+    "note": "Truth is the generator axis against the fitted floor normal. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. The long axis is not forced to Z."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "tolerance_deg": 0.11937,
+    "production_colors": [],
+    "production_rule": "epsilon unlocked, so every stud is yellow",
+    "hypothetical_placeholder_epsilon_deg": 0.05,
+    "hypothetical_placeholder_note": "0.05 deg is a round illustration of the color rule. It is not a measured device band.",
+    "hypothetical_colors": [],
+    "note": "Do not read hypothetical colors as a pass/fail call."
+  },
+  "cost": {
+    "runtime_s": 18.3118,
+    "license": "Apache-2.0",
+    "license_url": "https://github.com/leomariga/pyRANSAC-3D/blob/v0.7.0/LICENSE",
+    "hardware": "CPU",
+    "n_points_in": 532301,
+    "n_points_after_peel": 439845,
+    "floor_found": true,
+    "failure_modes": [
+      "One cuboid on a whole wall can lock onto coplanar stud faces. The first-cuboid extent check logs that and stops.",
+      "Library extents are a min-area rectangle after snapping the dominant face. They run fatter than the shared minimal OBB.",
+      "thresh 0.05 m is the library default. A much smaller thresh can drop the far face of the 89 mm width.",
+      "Removing inliers from a one-face cuboid would carve the stud. This run did not do that when the first box covered the member.",
+      "Forcing the axis to Z would hide lean. This run does not."
+    ],
+    "note": "Runtime is this process on this stage-5 room. It is not a field budget.",
+    "pyransac3d_version": "0.7.0",
+    "thresh_m": 0.05,
+    "max_iteration": 1000
+  },
+  "notes": [
+    "Synthetic stage 0 only. Not a field measurement. Device epsilon is unlocked, so production paint is yellow.",
+    "WALL SWALLOW: first cuboid extents [2480.9, 2885.8, 2886.6] mm exceed a single stud (second extent > 0.30 m or longest extent > 4.0 m). That cuboid was rejected and sequential fitting stopped. This is a log on the scorecard, not a schema failure.",
+    "Stage 5 synthetic room stage5_room_bay_lot62_look. The scene has a floor, so a lean scored on the full cloud uses the fitted floor normal. A SKIL or other level reading is not the reference. Device epsilon is unlocked, so any production paint is yellow. There is no numeric stage-5 acceptance bar. A day-table pass means one box per generator stud and yellow paint. Not stages 6 or 7. Not the Lot 62 Polycam file. Corner phase-2 (PRs #23, #24, #25) is parallel and is not a gate."
+  ]
+}

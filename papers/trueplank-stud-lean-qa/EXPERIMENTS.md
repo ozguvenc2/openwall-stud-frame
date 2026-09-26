@@ -16,7 +16,7 @@ Curriculum stages match [`METHODS.md`](METHODS.md). This file says what has been
 | E6–E7 | Story, complex frame | F | **Planned.** Stub cards only. The synthetic room is not these stages |
 | ER | Realisticized generator | R | **Not specified** |
 | E-sam | SAM 2 mask lifted onto points | S scaffold | **Blocked.** 2026-09-25, this CPU. No torch, no `sam2`, no checkpoint. Projection of one stud recorded. Stud metrics null. `docs/research/24-sam2-rank7-and-curriculum.md` |
-| E-room | Rank 1 on a synthetic 26-stud room, plus stage 2/3 expansions and S1b | S | **Run** 2026-09-25, CPU. Room recall 1, yellow. 2 mm noise and bows do not clear the straight-stud bars. Ranks 2–7 on the room `not_run`. Stages 6–7 stub. Same note |
+| E-room | Ranks 1–7 on a synthetic 26-stud room, plus stage 2/3 expansions and S1b | S | **Run** 2026-09-25. Rank 1 recall 1, yellow, floor normal. Ranks 2, 3, 6, and 7 fail the one-box-per-stud check. Ranks 4 and 5 are controls. Stages 6–7 stub. Same note |
 | E3 | One real stud, finders, SKIL if standing | F | **Planned.** No cloud in git. Unchanged by E-room |
 
 The one-stud protocol in the design plan is the field arm (E3). E-one is the synthetic stand-in and must stay labeled class S.

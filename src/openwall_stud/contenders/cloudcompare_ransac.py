@@ -209,6 +209,10 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
         str(out_dir),
     ]
     env = _process_env()
+    # A one-stud cloud finishes well inside three minutes. The stage-5 room
+    # is about five times larger and has a plane per face, so the same plugin
+    # gets a longer wait before the attempt is recorded as blocked.
+    timeout_s = 180 if scene.n_points < 200_000 else 900
     started = time.perf_counter()
     proc = subprocess.run(
         command,
@@ -216,7 +220,7 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
         capture_output=True,
         text=True,
         env=env,
-        timeout=180,
+        timeout=timeout_s,
         cwd=work,
         **_subprocess_kwargs(),
     )
@@ -230,6 +234,7 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
         "n_points": scene.n_points,
         "binary": binary,
         "binary_source": binary_source,
+        "timeout_s": timeout_s,
         "command": command,
         "returncode": proc.returncode,
         "n_primitive_clouds": len(clouds),

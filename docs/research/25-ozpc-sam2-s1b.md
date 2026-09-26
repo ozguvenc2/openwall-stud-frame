@@ -51,5 +51,5 @@ Synthetic tests measure lean against the fitted floor normal when the scene has 
 
 Rank 2 is the in-process NumPy smoothness port. `native_pcl_region_growing` is false on these cards. The libpcl binary was not built, so these numbers are not a PCL measurement.
 
-A room was not re-run here. Rank 1 on `stage5_room_bay_lot62_look` stays the cloud card in doc 24. Ranks 2–7 on that room stay not_run.
+This script does not re-score the room. Ranks 1–7 on `stage5_room_bay_lot62_look` are the Oz_PC cards in doc 24.
 

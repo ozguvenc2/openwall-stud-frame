@@ -95,7 +95,7 @@ Stage 0 and the original stage-2 and stage-3 Open3D cards were linked and checke
 - `artifacts/scorecards/open3d_stage2_stage2_2x4_lean0.200.json`
 - `artifacts/scorecards/open3d_stage3_stage3_mini_wall_4.json`
 
-New scenes were generated and scored with rank 1 only (Open3D 0.20, CPU). Script: `scripts/run_curriculum_through_room.py`.
+New scenes other than the room were generated and scored with rank 1 only (Open3D 0.20, CPU). Script: `scripts/run_curriculum_through_room.py`. The room was scored on Oz_PC with ranks 1–7. Script: `scripts/run_room_all_ranks.py`.
 
 **Gate** means the scene uses the stage bars already in the design plan (1 mm noise, rigid studs). **Probe** means the card is kept either way. Stage 5 has no numeric bar in the design plan. A day-table `pass` on the room means one box per generator stud and yellow paint. It is not a field acceptance test.
 
@@ -134,23 +134,31 @@ Stud spacing is 6 mm. Plates are 10 mm. The floor is 20 mm. Noise is 1 mm. That 
 
 This is not the Lot 62 Polycam loft. That file, and its density ladder, stay on PR #24.
 
-| | Rank 1 (Open3D) |
-| --- | --- |
-| Points | 532,301 |
-| Studs | 26 true, 26 predicted |
-| Precision / recall | 1 / 1 |
-| Max section error | 7.93 mm |
-| Max length error | 22.12 mm |
-| MAE | 0.01134° |
-| Max absolute angle error | 0.04230° |
-| Percent in band | 100 |
-| Reference | Floor normal. The cloud was not rotated. |
-| Paint | Yellow on all 26. ε unlocked. |
-| Runtime | 1.9151 s on the first write-up. The lock re-run kept the angle, section, and length and stored 0.9466 s in the scorecard JSON. |
+**Full room, ranks 1–7, Oz_PC (RTX 4080 SUPER).** A lean scored on the full cloud uses the fitted floor normal. ε is unlocked. Yellow is recorded only where a box was kept. A day-table `pass` means precision 1, recall 1, and yellow paint. It is not a field acceptance test.
 
-Compared with the stage-3 bring-up checks (section ≤ 10 mm, length ≤ 30 mm, angle ≤ 0.10°, recall 1), these figures sit inside those checks. The design plan still has **no numeric bar for stage 5**. The synthetic room does not unlock Pointcept training. Training still waits on a real capture with stud labels. Card: `artifacts/scorecards/curriculum/open3d_stage5_room_bay_lot62_look.json`.
+| Rank | Stack | Day row | P / R | Section (mm) | Length (mm) | MAE (°) | Max (°) | Paint | Runtime (s) | Reference |
+| --- | --- | --- | --- | ---: | ---: | ---: | ---: | --- | ---: | --- |
+| 1 | Open3D | pass | 1 / 1 (26/26) | 7.93 | 22.12 | 0.01134 | 0.04230 | yellow ×26 | 0.8955 | `floor_normal` |
+| 2 | NumPy region-grow cuboid | fail | 0 / 0 (1 false positive) | — | — | — | — | yellow ×1 | 14.7016 | `floor_normal` |
+| 3 | CloudCompare RANSAC-SD, untuned | fail | 0.2737 / 1 (26 tp, 69 fp) | 31.63 | 61.33 | 0.04529 | 0.15542 | yellow ×95 | 2.5988 | `floor_normal` |
+| 4 | Pointcept PTv3, BIMStruct3D | control | — | — | — | — | — | — | 94.0376 | `floor_normal` |
+| 5 | Open3D-ML RandLA-Net, S3DIS | control | — | — | — | — | — | — | 1.5528 | `floor_normal` |
+| 6 | pyRANSAC-3D 0.7.0 | fail | — / 0 (0 boxes) | — | — | — | — | — | 18.3118 | `floor_normal` |
+| 7 | SAM 2.1 hiera-tiny, one view | fail | — / 0 (0 boxes) | — | — | — | — | — | 4.2568 | `gravity_z_no_floor_plane` on the lift |
 
-Ranks 2–6 and rank 7 on this room are `not_run`. Null metrics. Ranks 4 and 5 were not given a forward pass here (no GPU weights), so those rows are not `control`.
+Rank 1 percent in band is 100. The first write-up recorded 1.9151 s, and the floor-normal lock re-run stored 0.9466 s. This pass stored 0.8955 s. Angle, section, and length are the same figures. They sit inside the stage-3 bring-up checks (section ≤ 10 mm, length ≤ 30 mm, angle ≤ 0.10°, recall 1). The design plan still has **no numeric bar for stage 5**. The room does not unlock Pointcept training. Card: `artifacts/scorecards/curriculum/open3d_stage5_room_bay_lot62_look.json`.
+
+Rank 2 is the in-process NumPy port. The PCL binary did not build, so `native_pcl_region_growing` is false and these numbers are not a libpcl measurement. The grow returned 90 face clusters. The 20 mm adjacency step merged 89 of them, because the plates connect the studs, and left one member. That box is one false positive. Section, length, and angle stay null.
+
+Rank 3 is CloudCompare 2.14.beta. Each RANSAC-SD primitive is its own box. Primitives are not merged into a stud. Recall is 1. Precision is 0.2737 (95 boxes). Percent in band on the matched studs is 96.15. The extra boxes fail the day-table pass.
+
+Rank 4 ran with CUDA torch 2.7.0+cu126. The BIMStruct3D classes are clutter, floor, ceiling, wall, column, door, window, stairs, railing, and lights. None is a stud. Counts on this cloud: clutter 448,396, floor 79,300, railing 4,566, wall 39. No stud box and no paint. The histogram is the measurement. Weights are CC BY-NC-SA 4.0 and are not committed. PointGroup did not run.
+
+Rank 5 ran in the torch 2.13 interpreter that imports `open3d.ml.torch`. S3DIS names have no stud. Counts: window 314,597, door 139,612, floor 50,390, clutter 27,348, wall 354. S3DIS mIoU was not copied. No stud box and no paint.
+
+Rank 6 wall-swallowed. The first cuboid was 2480.9 × 2885.8 × 2886.6 mm, which is past the single-stud extent check. That cuboid was rejected and sequential fitting stopped. Recall is 0. The scored angle stays null. The card still names the floor normal as the reference for this cloud.
+
+Rank 7 is one pinhole south of the bay (768 × 512, 60° vertical field, eye near (1.23, −2.60, 1.18) m, target at the room center). `facebook/sam2.1-hiera-tiny` loaded as `transformers.Sam2Model` on CUDA. The prompt is the centroid of generator stud pixels on that render, not a field click. The mask covers 1,184 pixels against 79,434 generator stud pixels (intersection 781, ratio 0.0098). The chosen mask score is 0.829. The lift is 781 stud points and no floor or plate points. A visible box of those points is 38.00 × 90.54 × 2337.34 mm at 0.0308° against +Z, and that span would pass the stud-length gate. The shared DBSCAN prior kept no box, so recall is 0 and the scored angle is null. The lift has no floor part, so this card’s angle reference is generator +Z. That is the rule for a cloud with no floor. It is not a level reading, and one mask is not 26 studs. Images: `artifacts/scorecards/curriculum/sam2_room_prompt.png` and `sam2_room_mask.png`.
 
 ### Stages 6 and 7
 
@@ -158,8 +166,10 @@ Stub cards only, one per rank, metrics null. Stage 6 needs a real single-story c
 
 ## What this note refuses
 
-- A SAM 2 mask IoU, a stud score, or a runtime for the network.
+- Reading the SAM 2 pixel ratio, the visible span, or the network runtime as stud detection. One mask is not 26 studs.
+- Copying a Pointcept or S3DIS histogram into a stud MAE or a paint color.
 - Green or red paint. ε is unlocked.
 - Calling the 2 mm miss or the bow misses a pass.
 - Treating the synthetic room as the Lot 62 scan, as class F, or as the gate that lets ranks 4 and 5 train.
-- Folding PR #23 or PR #24 into the stage list.
+- Folding PR #23, PR #24, or PR #25 into the stage list.
+- Inventing stage 6 or stage 7 metrics. Those cards stay null until a real whole-frame capture exists.

@@ -525,13 +525,16 @@
       "epsilon_locked": false
     }
   },
+  "room_measured": [
+    "open3d_stage5_room_bay_lot62_look.json",
+    "pcl_stage5_room_bay_lot62_look.json",
+    "cloudcompare_stage5_room_bay_lot62_look.json",
+    "pointcept_stage5_room_bay_lot62_look.json",
+    "open3d_ml_stage5_room_bay_lot62_look.json",
+    "pyransac3d_stage5_room_bay_lot62_look.json",
+    "sam2_stage5_room_bay_lot62_look.json"
+  ],
   "room_stubs": [
-    "pcl_stage5_not_run.json",
-    "cloudcompare_stage5_not_run.json",
-    "pointcept_stage5_not_run.json",
-    "open3d_ml_stage5_not_run.json",
-    "pyransac3d_stage5_not_run.json",
-    "sam2_stage5_not_run.json",
     "open3d_stage6_not_run.json",
     "pcl_stage6_not_run.json",
     "cloudcompare_stage6_not_run.json",
