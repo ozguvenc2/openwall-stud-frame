@@ -7,8 +7,9 @@ From the repo root:
 Stage 0 and the original stage-2 and stage-3 Open3D cards are linked, not
 re-measured. New straight-stud scenes at 1 mm noise use the existing bars.
 Bow (S1b), 2 mm noise, and the stage-5 room are probes: their cards are
-written either way. Ranks 2–6 are not re-run on the room. SAM 2 does not
-invent a mask. Stages 6 and 7 stay null.
+written either way. Ranks 2–7 on the room are scored by
+``scripts/run_room_all_ranks.py``. This script does not replace those
+measured cards with ``not_run`` stubs. Stages 6 and 7 stay null.
 
 Device epsilon stays unlocked. Production paint stays yellow.
 """
@@ -31,6 +32,11 @@ from openwall_stud.contenders.sam2_mask import (
     probe_install,
     raster_nearest,
     save_part_png,
+)
+from openwall_stud.angle_reference import (
+    REFERENCE_FLOOR,
+    REFERENCE_GENERATOR_Z,
+    scene_has_floor,
 )
 from openwall_stud.lumber import TOLERANCE_DEG
 from openwall_stud.open3d_baseline import run_baseline, score_run
@@ -158,6 +164,12 @@ def _run_open3d(scene, out_dir: Path, *, gate: bool) -> tuple[dict, list[str]]:
     print(f"running {scene.name} stage {scene.stage} points {scene.n_points} studs {len(scene.studs)}", flush=True)
     run = run_baseline(scene)
     sections = score_run(scene, run)
+    expected = REFERENCE_FLOOR if scene_has_floor(scene) else REFERENCE_GENERATOR_Z
+    if run.reference != expected or sections["angle"]["reference"] != expected:
+        raise SystemExit(
+            f"{scene.name}: synthetic angle_reference {run.reference!r} / "
+            f"{sections['angle']['reference']!r}, expected {expected!r}"
+        )
     card = _open3d_card(scene, run, sections)
     dest = out_dir / f"open3d_{scene.name}.json"
     write_scorecard(dest, card)
@@ -221,6 +233,10 @@ def _link_existing(score_dir: Path) -> list[dict]:
         for name in names:
             path = score_dir / name
             card = read_scorecard(path)
+            expected = REFERENCE_FLOOR if stage >= 2 else REFERENCE_GENERATOR_Z
+            got = (card.get("angle") or {}).get("reference")
+            if got != expected:
+                raise SystemExit(f"{name}: linked synthetic reference {got!r}, expected {expected!r}")
             failures = _failures(stage, card, name)
             linked.append(
                 {
@@ -303,6 +319,13 @@ def main() -> int:
     room_name = "stage5_room_bay_lot62_look"
     stub_files = []
     for algorithm, rank, algorithm_id, title, note in ROOM_STUBS:
+        measured_path = out_dir / f"{algorithm}_{room_name}.json"
+        if measured_path.is_file():
+            measured = json.loads(measured_path.read_text(encoding="utf-8"))
+            if measured.get("status") not in {None, "stub_not_run"}:
+                print(f"keep measured room card {measured_path.name}", flush=True)
+                stub_files.append(measured_path.name)
+                continue
         card = _not_run_card(
             algorithm_id=algorithm_id,
             algorithm=title,

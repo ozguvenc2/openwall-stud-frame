@@ -14,6 +14,14 @@
   "epsilon_locked": false,
   "placeholder_epsilon_deg": 0.05,
   "placeholder_epsilon_note": "Round illustration of the color rule. Not a measured device band. Production paint stays yellow.",
+  "synthetic_angle_reference": {
+    "rule": "Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading.",
+    "with_floor_or_slab": "floor_normal",
+    "without_floor": "gravity_z_no_floor_plane",
+    "level_on_synthetic": false,
+    "field_skil": "Class F and phase-2b may still use SKIL when Oz provides wood readings. Separate from synthetic tests.",
+    "pr25": "Painted-corner floor-gravity note stays parallel. Floor-up widened the SKIL gap. Synthetic tests still use the fitted floor normal."
+  },
   "stages": [
     0,
     1,
@@ -30,7 +38,7 @@
     3,
     5
   ],
-  "stage5_note": "Synthetic room only. Rank 1 scored. Not a real capture and not a training gate.",
+  "stage5_note": "Synthetic room only. Ranks 1-7 scored on Oz_PC. Not a real capture and not a training gate.",
   "contenders": [
     {
       "rank": 1,
@@ -188,26 +196,32 @@
     "epsilon_locked": false,
     "parallel_prs": [
       23,
-      24
+      24,
+      25
     ],
     "parallel_note": "Corner field and neural experiments. Not a stage gate.",
     "sam2_bakeoff_rank": 7,
-    "sam2_status": "blocked_install",
+    "sam2_status": "ran_one_room_view_no_stud_box",
+    "sam2_curriculum_vm": "blocked_install",
     "stage5_synthetic_room": {
       "scene": "stage5_room_bay_lot62_look",
-      "algorithm": "open3d",
       "n_points": 532301,
       "n_studs": 26,
-      "precision": 1,
-      "recall": 1,
-      "max_section_error_mm": 7.93,
-      "max_length_error_mm": 22.12,
-      "mae_deg": 0.01134,
-      "max_abs_angle_error_deg": 0.0423,
-      "paint": "yellow",
-      "runtime_s": 1.9151,
+      "reference": "floor_normal",
       "acceptance_bar": null,
-      "training_gate": false
+      "training_gate": false,
+      "open3d": {
+        "day_row": "pass",
+        "precision": 1,
+        "recall": 1,
+        "max_section_error_mm": 7.93,
+        "max_length_error_mm": 22.12,
+        "mae_deg": 0.01134,
+        "max_abs_angle_error_deg": 0.0423,
+        "paint": "yellow",
+        "runtime_s": 0.8955
+      },
+      "script": "scripts/run_room_all_ranks.py"
     },
     "stages_6_and_7": "not_run"
   }

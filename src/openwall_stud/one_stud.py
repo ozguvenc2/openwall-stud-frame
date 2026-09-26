@@ -9,6 +9,11 @@ from __future__ import annotations
 
 from typing import Any
 
+from openwall_stud.angle_reference import (
+    REFERENCE_FLOOR,
+    REFERENCE_GENERATOR_Z,
+    scene_has_floor,
+)
 from openwall_stud.synthetic import Scene, stage0_single_stud
 
 NOMINAL = "2x4"
@@ -29,6 +34,21 @@ def make_scene() -> Scene:
 
 def scene_record(scene: Scene) -> dict[str, Any]:
     stud = scene.studs[0]
+    has_floor = scene_has_floor(scene)
+    if has_floor:
+        reference = REFERENCE_FLOOR
+        meaning = (
+            "This synthetic scene has a floor or slab. Lean is measured against "
+            "the fitted floor normal. The cloud is not rotated. A SKIL or other "
+            "level reading is not the reference."
+        )
+    else:
+        reference = REFERENCE_GENERATOR_Z
+        meaning = (
+            "This synthetic scene has no floor. The generator +Z axis is the "
+            "angle reference. The cloud is not rotated. A SKIL or other level "
+            "reading is not the reference."
+        )
     return {
         "name": scene.name,
         "stage": scene.stage,
@@ -41,11 +61,9 @@ def scene_record(scene: Scene) -> dict[str, Any]:
         "n_points": scene.n_points,
         "length_m": stud.length_m,
         "section_m": [float(stud.section_m[0]), float(stud.section_m[1])],
-        "reference": "gravity_z_no_floor_plane",
-        "reference_meaning": (
-            "Stage 0 has no floor. The generator +Z axis is the angle reference. "
-            "The cloud is not rotated."
-        ),
+        "has_floor": has_floor,
+        "reference": reference,
+        "reference_meaning": meaning,
         "description": scene.description,
     }
 

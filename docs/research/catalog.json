@@ -23,6 +23,7 @@
     "finding": "Head-to-head the five stacks above on the same bare-frame clouds. Floor normal is the temporary angle reference and is not gravity. Device error is unknown, so the honest paint is yellow until Oz supplies it. No public wood-stud checkpoint. The IntCDC classical trial is a negative log, not an accuracy.",
     "reference_now": "floor_normal",
     "reference_later": "imu_or_inclinometer_gravity",
+    "synthetic_angle_reference": "floor_normal when the scene has a floor or slab; generator +Z only when it does not. No SKIL or other level on synthetic clouds.",
     "bakeoff_rank_7": "SAM 2 (not master-table row 7)",
     "curriculum_doc": "docs/research/24-sam2-rank7-and-curriculum.md"
   },

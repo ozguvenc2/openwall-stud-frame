@@ -76,7 +76,7 @@
         "hypothetical_color": "green"
       }
     ],
-    "note": "Truth is the generator lean against the same reference vector the pipeline used. Not a SKIL reading."
+    "note": "Truth is the generator axis against +Z. This scene has no floor. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading."
   },
   "paint": {
     "epsilon_locked": false,
@@ -94,7 +94,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.089,
+    "runtime_s": 0.0584,
     "dbscan_eps_m": 0.025,
     "dbscan_min_points": 20,
     "bbox_kind": "minimal_oriented",

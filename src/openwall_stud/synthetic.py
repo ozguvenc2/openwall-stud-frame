@@ -463,7 +463,10 @@ def stage2_stud_and_floor(
         seed=seed,
         spacing_m=spacing_m,
         noise_std_m=noise_std_m,
-        description="Synthetic stud on a floor slab. Floor is context to remove, not the plumb reference for a later gravity call.",
+        description=(
+            "Synthetic stud on a floor slab. Lean is measured against the fitted floor normal. "
+            "The cloud is not rotated. The floor normal is not a gravity or level reading."
+        ),
         rng=rng,
     )
 

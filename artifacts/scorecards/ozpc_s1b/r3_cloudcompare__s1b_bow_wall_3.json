@@ -3,7 +3,7 @@
   "algorithm_id": "A3",
   "algorithm": "CloudCompare RANSAC-SD / CloudComPy",
   "rank": 3,
-  "stage": 0,
+  "stage": 3,
   "status": "ran",
   "epsilon_locked": false,
   "metrics_are_measurements": true,
@@ -23,8 +23,9 @@
       0.038099999999999995,
       0.08889999999999999
     ],
-    "reference": "gravity_z_no_floor_plane",
-    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "has_floor": true,
+    "reference": "floor_normal",
+    "reference_meaning": "This synthetic scene has a floor or slab. Lean is measured against the fitted floor normal. The cloud is not rotated. A SKIL or other level reading is not the reference.",
     "description": "S1b synthetic wall, 3 2x4 studs. Stud slot 1 bows 6.35 mm at midspan along local Y. Ends held. Plates and floor are context. Not a stage-3 gate.",
     "n_studs": 3,
     "bow_m": 0.00635,
@@ -83,6 +84,7 @@
         "stud_stud - Cloud_CYLINDER_0003_cloud.ply",
         "stud_stud - Cloud_CYLINDER_0004_cloud.ply",
         "stud_stud - Cloud_CYLINDER_0005_cloud.ply",
+        "stud_stud - Cloud_CYLINDER_0006_cloud.ply",
         "stud_stud - Cloud_PLANE_0001_cloud.ply",
         "stud_stud - Cloud_PLANE_0002_cloud.ply",
         "stud_stud - Cloud_PLANE_0003_cloud.ply",
@@ -93,12 +95,11 @@
         "stud_stud - Cloud_PLANE_0008_cloud.ply",
         "stud_stud - Cloud_PLANE_0009_cloud.ply",
         "stud_stud - Cloud_PLANE_0010_cloud.ply",
-        "stud_stud - Cloud_PLANE_0011_cloud.ply",
-        "stud_stud - Cloud_PLANE_0012_cloud.ply"
+        "stud_stud - Cloud_PLANE_0011_cloud.ply"
       ],
       "gpl": "Separate process. GPL sources were not copied into this repository."
     },
-    "log_tail": "03:31] [Plugin][Mesh I/O] New file extensions registered: DAE GLTF IFC\n[17:03:31] [Plugin][Additional I/O] New file extensions registered: ICM OUT PN POLY POV PV SOI SX\n[17:03:31] [Plugin][Core I/O] New file extensions registered:  GEOREF MA OBJ OFF PDMS PTX SBF STL VTK\n[17:03:31] [Plugin][CSV Matrix I/O] New file extensions registered: CSV\n[17:03:31] [Plugin][DP] New file extensions registered: DP\n[17:03:31] [Plugin][E57] New file extensions registered: E57\n[17:03:31] [Plugin][FARO file I/O] New file extensions registered: FWS\n[17:03:31] [Plugin][FBX] New file extensions registered: FBX\n[17:03:31] [Plugin][LAS (I/O Plugin)] New file extensions registered: LAS\n[17:03:31] [Plugin][PCD file I/O] New file extensions registered: PCD\n[17:03:31] [Plugin][Photoscan I/O] New file extensions registered: PSZ\n[17:03:31] [Plugin][RDB2 (I/O Plugin)] New file extensions registered: RDB2\n[17:03:31] [Plugin][Riegl RDB I/O] New file extensions registered: RDS\n[17:03:31] [Plugin][Step file loader (I/O plugin)] New file extensions registered: STEP\n[17:03:31] [Global Shift] Max abs. coord = 1e+04 / max abs. diag = 1e+06\n[17:03:31] [NO TIMESTAMP] Command detected\n[17:03:31] [NO TIMESTAMP] finished in 0.00 s.\n[17:03:31] [AUTO SAVE STATE] Command detected\n[17:03:31] Auto-save is disabled\n[17:03:31] [AUTO SAVE STATE] finished in 0.00 s.\n[17:03:31] [CHANGE CLOUD OUTPUT FORMAT] Command detected\n[17:03:31] Output export format (clouds) set to: PLY\n[17:03:31] [CHANGE CLOUD OUTPUT FORMAT] finished in 0.00 s.\n[17:03:31] [CHANGE PLY OUTPUT FORMAT] Command detected\n[17:03:31] [CHANGE PLY OUTPUT FORMAT] finished in 0.00 s.\n[17:03:31] [LOAD] Command detected\n[17:03:31] Opening file: 'C:\\Repos\\openwall-stud-frame\\artifacts\\one_stud\\cloudcompare\\stud.ply'\n[17:03:31] [PLY][Comment] Created by Open3D\n[17:03:31] [I/O] File 'C:\\Repos\\openwall-stud-frame\\artifacts\\one_stud\\cloudcompare\\stud.ply' loaded successfully\n[17:03:31] Found one cloud with 106274 points\n[17:03:31] [LOAD] finished in 0.03 s.\n[17:03:31] [RANSAC] Command detected\n[17:03:31] \tRANSAC : EPSILON_ABSOLUTE\n[17:03:31] \tEpsilon : 0.008\n[17:03:31] \tRANSAC : BITMAP_EPSILON_ABSOLUTE\n[17:03:31] \tBitmap Epsilon : 0.02\n[17:03:31] \tRANSAC : SUPPORT_POINTS\n[17:03:31] \tsupport points: 400\n[17:03:31] \tRANSAC : MAX_NORMAL_DEV\n[17:03:31] \tMax Normal Deviation : 25\n[17:03:31] \tRANSAC : PROBABILITY\n[17:03:31] \tProbability : 0.01\n[17:03:31] \tRANSAC : ENABLE_PRIMITIVE\n[17:03:31] \tRANSAC : OUTPUT_INDIVIDUAL_SUBCLOUDS\n[17:03:31] \tRANSAC : OUT_CLOUD_DIR\n[17:03:31] \tOUT_CLOUD_DIR : C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives\n[17:03:31] [qRANSAC] Search Timing: 0.514 s\n[17:03:31] [qRansacSD] Skipping shape, did not meet minimum point requirement\n[17:03:31] [qRansacSD] Skipping shape, did not meet minimum point requirement\n[17:03:31] [qRansacSD] Skipping shape, did not meet minimum point requirement\n[17:03:31] [qRansacSD] Input cloud has been automtically hidden!\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0001_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0002_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0003_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0004_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0005_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0006_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0007_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0008_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0009_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0010_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0011_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0001_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0002_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0003_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0004_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0005_cloud.ply' saved successfully\n[17:03:31] [SAVING]\n[17:03:31] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0012_cloud.ply' saved successfully\n[17:03:31] [RANSAC] finished in 0.80 s.\n[17:03:31] Processed finished in 0.83 s.\n\n"
+    "log_tail": "rching: C:/Program Files/CloudCompare/data/CCCorp/CloudCompare/plugins\n[17:27:28] [Plugin][Mesh I/O] New file extensions registered: DAE GLTF IFC\n[17:27:28] [Plugin][Additional I/O] New file extensions registered: ICM OUT PN POLY POV PV SOI SX\n[17:27:28] [Plugin][Core I/O] New file extensions registered:  GEOREF MA OBJ OFF PDMS PTX SBF STL VTK\n[17:27:28] [Plugin][CSV Matrix I/O] New file extensions registered: CSV\n[17:27:28] [Plugin][DP] New file extensions registered: DP\n[17:27:28] [Plugin][E57] New file extensions registered: E57\n[17:27:28] [Plugin][FARO file I/O] New file extensions registered: FWS\n[17:27:28] [Plugin][FBX] New file extensions registered: FBX\n[17:27:28] [Plugin][LAS (I/O Plugin)] New file extensions registered: LAS\n[17:27:28] [Plugin][PCD file I/O] New file extensions registered: PCD\n[17:27:28] [Plugin][Photoscan I/O] New file extensions registered: PSZ\n[17:27:28] [Plugin][RDB2 (I/O Plugin)] New file extensions registered: RDB2\n[17:27:28] [Plugin][Riegl RDB I/O] New file extensions registered: RDS\n[17:27:28] [Plugin][Step file loader (I/O plugin)] New file extensions registered: STEP\n[17:27:28] [Global Shift] Max abs. coord = 1e+04 / max abs. diag = 1e+06\n[17:27:28] [NO TIMESTAMP] Command detected\n[17:27:28] [NO TIMESTAMP] finished in 0.00 s.\n[17:27:28] [AUTO SAVE STATE] Command detected\n[17:27:28] Auto-save is disabled\n[17:27:28] [AUTO SAVE STATE] finished in 0.00 s.\n[17:27:28] [CHANGE CLOUD OUTPUT FORMAT] Command detected\n[17:27:28] Output export format (clouds) set to: PLY\n[17:27:28] [CHANGE CLOUD OUTPUT FORMAT] finished in 0.00 s.\n[17:27:28] [CHANGE PLY OUTPUT FORMAT] Command detected\n[17:27:28] [CHANGE PLY OUTPUT FORMAT] finished in 0.00 s.\n[17:27:28] [LOAD] Command detected\n[17:27:28] Opening file: 'C:\\Repos\\openwall-stud-frame\\artifacts\\one_stud\\cloudcompare\\stud.ply'\n[17:27:28] [PLY][Comment] Created by Open3D\n[17:27:28] [I/O] File 'C:\\Repos\\openwall-stud-frame\\artifacts\\one_stud\\cloudcompare\\stud.ply' loaded successfully\n[17:27:28] Found one cloud with 106274 points\n[17:27:28] [LOAD] finished in 0.03 s.\n[17:27:28] [RANSAC] Command detected\n[17:27:28] \tRANSAC : EPSILON_ABSOLUTE\n[17:27:28] \tEpsilon : 0.008\n[17:27:28] \tRANSAC : BITMAP_EPSILON_ABSOLUTE\n[17:27:28] \tBitmap Epsilon : 0.02\n[17:27:28] \tRANSAC : SUPPORT_POINTS\n[17:27:28] \tsupport points: 400\n[17:27:28] \tRANSAC : MAX_NORMAL_DEV\n[17:27:28] \tMax Normal Deviation : 25\n[17:27:28] \tRANSAC : PROBABILITY\n[17:27:28] \tProbability : 0.01\n[17:27:28] \tRANSAC : ENABLE_PRIMITIVE\n[17:27:28] \tRANSAC : OUTPUT_INDIVIDUAL_SUBCLOUDS\n[17:27:28] \tRANSAC : OUT_CLOUD_DIR\n[17:27:28] \tOUT_CLOUD_DIR : C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives\n[17:27:29] [qRANSAC] Search Timing: 0.508 s\n[17:27:29] [qRansacSD] Skipping shape, did not meet minimum point requirement\n[17:27:29] [qRansacSD] Skipping shape, did not meet minimum point requirement\n[17:27:29] [qRansacSD] Input cloud has been automtically hidden!\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0001_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0001_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0002_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0003_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0004_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0005_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0006_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0007_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0008_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0009_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0010_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_PLANE_0011_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0002_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0003_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0004_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0005_cloud.ply' saved successfully\n[17:27:29] [SAVING]\n[17:27:29] [I/O] File 'C:/Repos/openwall-stud-frame/artifacts/one_stud/cloudcompare/primitives/stud_stud - Cloud_CYLINDER_0006_cloud.ply' saved successfully\n[17:27:29] [RANSAC] finished in 0.79 s.\n[17:27:29] Processed finished in 0.82 s.\n\n"
   },
   "implementation_short": "CloudCompare 2.14.beta (Aug 29 2026) RANSAC-SD, one OBB per plane or cylinder primitive, primitives not merged.",
   "detection": {
@@ -182,39 +183,39 @@
     "note": "Section and length are the minimal OBB of one primitive's points versus the dressed stud. A plane on one face is expected to miss the stud section."
   },
   "angle": {
-    "mae_deg": 0.04213,
-    "max_abs_error_deg": 0.07445,
+    "mae_deg": 0.03796,
+    "max_abs_error_deg": 0.06859,
     "pct_in_band": 100.0,
     "band_deg": 0.11937,
     "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
-    "reference": "gravity_z_no_floor_plane",
+    "reference": "floor_normal",
     "per_stud": [
       {
         "stud_id": "S1",
-        "true_deg": 0.0,
-        "measured_deg": 0.07445,
-        "abs_error_deg": 0.07445,
+        "true_deg": 0.00433,
+        "measured_deg": 0.07291,
+        "abs_error_deg": 0.06859,
         "production_color": "yellow",
         "hypothetical_color": "yellow"
       },
       {
         "stud_id": "S3",
-        "true_deg": 0.2,
-        "measured_deg": 0.22561,
-        "abs_error_deg": 0.02561,
+        "true_deg": 0.19897,
+        "measured_deg": 0.22437,
+        "abs_error_deg": 0.0254,
         "production_color": "yellow",
         "hypothetical_color": "red"
       },
       {
         "stud_id": "S2",
-        "true_deg": 0.0,
-        "measured_deg": 0.02631,
-        "abs_error_deg": 0.02631,
+        "true_deg": 0.00433,
+        "measured_deg": 0.02421,
+        "abs_error_deg": 0.01988,
         "production_color": "yellow",
         "hypothetical_color": "green"
       }
     ],
-    "note": "Truth is the generator lean against +Z. Not a SKIL reading. A face plane's long axis may still lie along the stud."
+    "note": "Truth is the generator axis against the fitted floor normal. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. A face plane's long axis may still lie along the stud."
   },
   "paint": {
     "epsilon_locked": false,
@@ -248,15 +249,15 @@
       "red",
       "red",
       "green",
-      "yellow",
-      "yellow",
-      "green",
-      "green",
-      "green",
-      "green",
-      "green",
-      "green",
       "red",
+      "yellow",
+      "yellow",
+      "green",
+      "green",
+      "green",
+      "green",
+      "green",
+      "yellow",
       "red",
       "red",
       "red"
@@ -264,7 +265,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 1.2794,
+    "runtime_s": 3.186,
     "license": "GPL-3.0",
     "license_note": "CloudCompare was executed as a separate process. Its sources were not vendored or linked.",
     "hardware": "CPU",

@@ -1,0 +1,159 @@
+{
+  "schema": "openwall.stud_scorecard.v1",
+  "algorithm_id": "B7",
+  "algorithm": "SAM 2 image/video mask, lifted onto points",
+  "rank": 7,
+  "stage": 5,
+  "status": "ran",
+  "epsilon_locked": false,
+  "metrics_are_measurements": true,
+  "measurement_scope": "One synthetic pinhole, SAM 2 tiny, z-buffer lift, shared Open3D box. Not a field image. The prompt is the generator stud centroid.",
+  "scene": {
+    "name": "stage5_room_bay_lot62_look",
+    "description": "Synthetic room or bay with a LOT-62 look: four stud walls, 16 inch centers, corner air gap 0.10 m, door gap on the south wall (5 south studs kept), plates and floor, no header. Not the Lot 62 Polycam file. Not a real capture. Not stages 6 or 7.",
+    "seed": 62,
+    "n_points": 532301,
+    "stage": 5
+  },
+  "implementation": {
+    "model_id": "facebook/sam2.1-hiera-tiny",
+    "load_warnings": [],
+    "torch": "2.7.0+cu126",
+    "device": "NVIDIA GeForce RTX 4080 SUPER",
+    "prompt_px": [
+      384.6,
+      244.83
+    ],
+    "mask": {
+      "iou_scores": [
+        0.08419,
+        0.82899,
+        0.16942
+      ],
+      "chosen_index": 1,
+      "chosen_iou": 0.82899,
+      "low_res_shape": [
+        256,
+        256
+      ],
+      "resize": "post_process_masks"
+    },
+    "pixel_agreement_with_generator_stud": {
+      "intersection_px": 781,
+      "union_px": 79837,
+      "ratio": 0.0098,
+      "note": "Ratio of this mask against generator stud pixels on this render. The generator raster is not a field label."
+    },
+    "n_mask_pixels": 1184,
+    "n_generator_stud_pixels": 79434,
+    "n_lifted_points": 781,
+    "lifted_part_counts": {
+      "floor": 0,
+      "plate": 0,
+      "stud": 781
+    },
+    "camera": {
+      "eye_m": [
+        1.2326937208180992,
+        -2.6030589884305324,
+        1.1816163614891035
+      ],
+      "target_m": [
+        1.2326937208180992,
+        1.4716443430454074,
+        1.1816163614891035
+      ],
+      "up": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "fov_y_deg": 60.0,
+      "width": 768,
+      "height": 512,
+      "frame": "generator Z-up"
+    },
+    "room_limit": "One pinhole and one mask. This is not 26 stud instances. The source room has a floor. The shared box, when one is scored, uses the reference of the lifted cloud."
+  },
+  "visible_box": {
+    "extent_sorted_mm": [
+      38.0,
+      90.54,
+      2337.34
+    ],
+    "theta_vs_plus_z_deg": 0.0308,
+    "z_min_m": 0.1033,
+    "z_max_m": 2.4407,
+    "nominal_guess": "2x4",
+    "kept_by_stud_gate": true,
+    "drop_reasons": [],
+    "note": "Minimal oriented box of the points lifted from this SAM 2 mask. The stud-length gate may still drop it, which leaves detection null. The network does not emit the box."
+  },
+  "detection": {
+    "n_true": 26,
+    "n_pred": 0,
+    "true_positives": 0,
+    "false_positives": 0,
+    "false_negatives": 26,
+    "precision": null,
+    "recall": 0.0,
+    "match_radius_m": 0.15,
+    "scope": "synthetic_scene_only",
+    "note": "One SAM 2 mask on one room overview camera, lifted through the z-buffer. Counts are this synthetic render, not a field accuracy."
+  },
+  "geometry": {
+    "max_section_error_mm": null,
+    "max_length_error_mm": null,
+    "per_stud": [],
+    "bbox_kind": "minimal_oriented",
+    "note": "Section is the two smaller minimal-OBB extents versus the dressed nominal. Length is the longest extent versus the generator length. Gaussian tails and the plate slab margin both move these numbers."
+  },
+  "angle": {
+    "mae_deg": null,
+    "max_abs_error_deg": null,
+    "pct_in_band": null,
+    "band_deg": 0.11937,
+    "band_meaning": "Percent of matched studs whose |measured - synthetic truth| is within the working tolerance.",
+    "reference": "gravity_z_no_floor_plane",
+    "per_stud": [],
+    "note": "Truth is the generator axis against +Z. This scene has no floor. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. The network does not emit the angle. The shared box does."
+  },
+  "paint": {
+    "epsilon_locked": false,
+    "epsilon_deg": null,
+    "tolerance_deg": 0.11937,
+    "production_colors": [],
+    "production_rule": "epsilon unlocked, so every stud is yellow",
+    "hypothetical_placeholder_epsilon_deg": 0.05,
+    "hypothetical_placeholder_note": "0.05 deg is a round illustration of the color rule. It is not a measured device band.",
+    "hypothetical_colors": [],
+    "note": "Do not read hypothetical colors as a pass/fail call."
+  },
+  "cost": {
+    "runtime_s": 4.2568,
+    "dbscan_eps_m": 0.025,
+    "dbscan_min_points": 20,
+    "bbox_kind": "minimal_oriented",
+    "license": "Apache-2.0",
+    "license_url": "https://github.com/isl-org/Open3D",
+    "hardware": "CUDA NVIDIA GeForce RTX 4080 SUPER",
+    "n_points_in": 781,
+    "n_points_after_peel": 781,
+    "floor_found": false,
+    "failure_modes": [
+      "DBSCAN eps above the bay gap merges neighboring studs into one box.",
+      "DBSCAN eps below the surface spacing splits one stud into faces.",
+      "A plate side face left behind bridges bays.",
+      "Peeling a vertical stud-face plane would delete the wall.",
+      "PCA OBB on a short or one-sided cluster can yaw the long axis."
+    ],
+    "note": "Runtime is this process on this scene. It is not a field budget."
+  },
+  "notes": [
+    "Bake-off rank 7. Master-table row 7 remains ClearEdge3D EdgeWise.",
+    "Device epsilon is unlocked. Production paint is yellow when a box is kept.",
+    "The prompt is the centroid of generator stud pixels. It is not a field click.",
+    "facebook/sam2.1-hiera-tiny is a sam2_video config loaded here as Sam2Model. Captured Python warnings are in implementation.load_warnings.",
+    "Stage 5 synthetic room stage5_room_bay_lot62_look. The scene has a floor, so a lean scored on the full cloud uses the fitted floor normal. A SKIL or other level reading is not the reference. Device epsilon is unlocked, so any production paint is yellow. There is no numeric stage-5 acceptance bar. A day-table pass means one box per generator stud and yellow paint. Not stages 6 or 7. Not the Lot 62 Polycam file. Corner phase-2 (PRs #23, #24, #25) is parallel and is not a gate."
+  ]
+}

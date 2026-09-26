@@ -6,7 +6,7 @@
   "stage": 5,
   "status": "ran_synthetic",
   "metrics_are_measurements": true,
-  "measurement_scope": "synthetic generator, this process",
+  "measurement_scope": "synthetic generator, this process, stage-5 room",
   "epsilon_locked": false,
   "scene": {
     "name": "stage5_room_bay_lot62_look",
@@ -16,6 +16,7 @@
     "noise_std_m": 0.001,
     "n_points": 532301,
     "n_studs": 26,
+    "has_floor": true,
     "reference": "floor_normal",
     "floor_found": true,
     "removed_z_intervals_m": [
@@ -28,7 +29,6 @@
         2.525855809180177
       ]
     ],
-    "tolerance_deg": 0.11937,
     "meta": {
       "curriculum_class": "stage5_synthetic_room",
       "look": "LOT-62 framed bay you can walk",
@@ -809,7 +809,7 @@
         "hypothetical_color": "red"
       }
     ],
-    "note": "Truth is the generator lean against the same reference vector the pipeline used. Not a SKIL reading."
+    "note": "Truth is the generator axis against the fitted floor normal. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading."
   },
   "paint": {
     "epsilon_locked": false,
@@ -877,7 +877,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 1.9151,
+    "runtime_s": 0.8955,
     "dbscan_eps_m": 0.025,
     "dbscan_min_points": 20,
     "bbox_kind": "minimal_oriented",
@@ -895,5 +895,8 @@
       "PCA OBB on a short or one-sided cluster can yaw the long axis."
     ],
     "note": "Runtime is this process on this scene. It is not a field budget."
-  }
+  },
+  "notes": [
+    "Stage 5 synthetic room stage5_room_bay_lot62_look. The scene has a floor, so a lean scored on the full cloud uses the fitted floor normal. A SKIL or other level reading is not the reference. Device epsilon is unlocked, so any production paint is yellow. There is no numeric stage-5 acceptance bar. A day-table pass means one box per generator stud and yellow paint. Not stages 6 or 7. Not the Lot 62 Polycam file. Corner phase-2 (PRs #23, #24, #25) is parallel and is not a gate."
+  ]
 }

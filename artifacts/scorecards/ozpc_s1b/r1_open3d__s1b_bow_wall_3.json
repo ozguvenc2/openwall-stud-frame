@@ -23,8 +23,9 @@
       0.038099999999999995,
       0.08889999999999999
     ],
-    "reference": "gravity_z_no_floor_plane",
-    "reference_meaning": "Stage 0 has no floor. The generator +Z axis is the angle reference. The cloud is not rotated.",
+    "has_floor": true,
+    "reference": "floor_normal",
+    "reference_meaning": "This synthetic scene has a floor or slab. Lean is measured against the fitted floor normal. The cloud is not rotated. A SKIL or other level reading is not the reference.",
     "description": "S1b synthetic wall, 3 2x4 studs. Stud slot 1 bows 6.35 mm at midspan along local Y. Ends held. Plates and floor are context. Not a stage-3 gate.",
     "n_studs": 3,
     "bow_m": 0.00635,
@@ -150,7 +151,7 @@
         "hypothetical_color": "green"
       }
     ],
-    "note": "Truth is the generator chord against the reference this run used. A bow amplitude is not this angle. Not a SKIL reading."
+    "note": "Truth is the generator axis against the fitted floor normal. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. The stored axis is the chord. A bow amplitude is not this angle."
   },
   "paint": {
     "epsilon_locked": false,
@@ -172,7 +173,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.1698,
+    "runtime_s": 0.1623,
     "dbscan_eps_m": 0.025,
     "dbscan_min_points": 20,
     "bbox_kind": "minimal_oriented",

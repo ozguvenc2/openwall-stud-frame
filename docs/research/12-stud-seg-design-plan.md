@@ -10,7 +10,7 @@ On a bare wood frame (no drywall, no sheathing), instance-segment **vertical stu
 
 Until ε is locked, every stud is **yellow**. A binary green/red overclaims. The working tolerance τ is the derived **~0.12°** in [../tolerances.md](../tolerances.md): `atan((1/4 inch) / (10 feet)) ≈ 0.1194°`. It is the Handbook figure as summarized by WoodWorks, not an IRC clause.
 
-The product phase reports that angle against the **floor normal** (doc 11). The cloud is not rotated onto the floor. A later inclinometer or IMU replaces the reference vector. The boxes stay. Stage 0 has no floor, so the generator’s **+Z** is the reference and the scorecard says so.
+The product phase reports that angle against the **floor normal** (doc 11). The cloud is not rotated onto the floor. A later inclinometer or IMU replaces the reference vector on a field cloud. The boxes stay. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading.
 
 Plates are peeled. They are not a QA class in this plan. King, jack, and cripple names are not required.
 
@@ -22,7 +22,7 @@ Every stage, every algorithm, one JSON object with these sections. The writer is
 | --- | --- |
 | Detection | Precision and recall. One box per physical stud. A merged bay is a miss. Match radius on synthetic scenes is 0.15 m. |
 | Geometry | The two smaller OBB extents versus dressed 2×4 (38.1 × 88.9 mm) or 2×6 (38.1 × 139.7 mm), and the long extent versus length. |
-| Angle | MAE and the percent of studs whose absolute error versus the reference (synthetic truth, or SKIL once a stud is standing) is inside τ. |
+| Angle | MAE and the percent of studs whose absolute error versus the reference is inside τ. On a synthetic cloud the reference is the fitted floor normal, or generator +Z when that cloud has no floor. A SKIL mean is a field reference only, and only when the three wood readings agree. |
 | Paint | Production color. Unlocked ε forces yellow. A placeholder ε of **0.05°** may be stored beside it and is not a device measurement. |
 | Cost | Runtime, license, hardware, and the failure modes we already know. |
 
@@ -48,7 +48,7 @@ Shared post-step, once a stack actually returns stud points: tight box, θ versu
 
 On 2026-09-25 the five finders were attempted on one synthetic 2×4 at 0.05° lean (seed 2). See [16-one-stud-five-finder-run.md](16-one-stud-five-finder-run.md). Phase 1 then ran the six-finder lean sweep. The curriculum continuation in [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md) adds SAM 2 as bake-off rank 7 and carries rank 1 through a synthetic room. It does not replace those earlier notes.
 
-The painted-corner pilot (PR [#24](https://github.com/ozguvenc2/openwall-stud-frame/pull/24)) and the synthetic neural corner (PR [#23](https://github.com/ozguvenc2/openwall-stud-frame/pull/23)) are a **parallel** experiment. They are not a stage in the ladder below and they are not a gate on it.
+The painted-corner pilot (PR [#24](https://github.com/ozguvenc2/openwall-stud-frame/pull/24)) and the synthetic neural corner (PR [#23](https://github.com/ozguvenc2/openwall-stud-frame/pull/23)) are a **parallel** experiment. They are not a stage in the ladder below and they are not a gate on it. The painted-corner floor-gravity check (PR [#25](https://github.com/ozguvenc2/openwall-stud-frame/pull/25)) stays a parallel field note: measuring that corner against floor-up widened the SKIL gap. This plan does not tell the field protocol to ignore that finding. Synthetic tests still use the fitted floor normal.
 
 Pictures: rank 1 is a drawing of the real run. Ranks 2–5 are diagrams with a scaffold banner. The wall in those diagrams is the synthetic stage 3 input, not that stack’s output.
 
@@ -75,12 +75,12 @@ Sensors, in the order we will actually touch them. Doc 01 still stands: phone Li
 2. **Livox Mid-360** on a tripod when the same stud needs a denser cloud. Static accelerometer for an up vector if we need one (doc 02). Range precision on the spec sheet is still coarser than the tip budget. Record the unit and the pose.
 3. **Survey TLS** when a green/red call is the point of the session. Use the scanner inclinometer or DAC as the gravity vector (doc 02). Do not then level the cloud to the floor.
 
-**SKIL (or any digital level), BOT / MID / TOP**, stages 1 and up, when the stud is standing and the face is reachable:
+**SKIL (or any digital level), BOT / MID / TOP**, is the field protocol for class F and phase-2b, when Oz provides wood readings and the stud is standing and the face is reachable. It is not the reference on a synthetic cloud.
 
 - One face of one stud. Bottom third, mid-height, top third.
 - Write the level model, the resolution printed on that model, the three readings, and the sign (which way the face leans).
 - Do not invent a resolution. If the three readings differ by more than that printed resolution, mark the stud yellow and do not publish an MAE for it. The spread rule stays that sentence until the first session shows a better one.
-- The scorecard angle reference is the mean of the three only when they agree. Stage 0 uses the generator instead of a level. There is no SKIL number in this repo.
+- On that field stud, the scorecard angle reference is the mean of the three only when they agree. Synthetic tests do not use these readings. There is no SKIL number in the synthetic scorecards.
 
 Every capture records: sensor, export format, whether Z is gravity or only the file axis, and the floor-normal vector if one was fit. Plates and headers stay in the cloud as things to peel or ignore.
 
@@ -151,7 +151,7 @@ Write-up: [24-sam2-rank7-and-curriculum.md](24-sam2-rank7-and-curriculum.md). Sc
 
 Stage 0 and the original stage-2 and stage-3 cards were linked and still meet the bars above. New rank-1 gates at 1 mm noise also meet them: three more stage-2 leans (0°, 0.12°, 1°) and stage-3 walls of 3, 4 (milder leans), and 5 studs. A 2 mm noise wall does not: recall 0.25, four clusters, three dropped by the 15 mm section gate. S1b bows of 6.35 mm keep a box and miss the 10 mm section bar. A 19.05 mm bow is dropped by that gate. Details and the cluster extents are in doc 24.
 
-Stage 5 synthetic room, rank 1, this process: 532,301 points, 26 studs, precision 1, recall 1, section 7.93 mm, length 22.12 mm, MAE 0.01134°, max angle 0.04230°, yellow, 1.9151 s, floor normal. Corner air gap 0.10 m. No header. Not the Lot 62 Polycam file (that file is PR #24). No stage-5 acceptance bar is declared from this row. Ranks 2–7 on the room are `not_run`. Stages 6 and 7 are stubs with null metrics.
+Stage 5 synthetic room, ranks 1–7 on Oz_PC: 532,301 points, 26 studs, floor normal on every full-cloud lean. Rank 1 passes the day-table check (precision 1, recall 1, section 7.93 mm, length 22.12 mm, MAE 0.01134°, max angle 0.04230°, yellow ×26). The first write-up recorded 1.9151 s. The lock re-run stored 0.9466 s. The room pass stored 0.8955 s. Angle, section, and length did not move. Rank 2 (NumPy port) returns one false positive after the plates glue the frame. Rank 3 recall is 1 with precision 0.2737 (95 primitive boxes). Ranks 4 and 5 are control histograms with no stud class. Rank 6 wall-swallows and keeps no box. Rank 7 is one SAM 2 view and keeps no box. The table is in doc 24. Corner air gap 0.10 m. No header. Not the Lot 62 Polycam file (that file is PR #24). No stage-5 acceptance bar is declared from this row. Corner phase-2 (PRs #23, #24, #25) stays parallel and is not a gate. Stages 6 and 7 are stubs with null metrics.
 
 SAM 2 rank 7: `blocked_install`. Projection of the seed-2 stud produced 8,269 occupied pixels. No mask metric. The generator-mask control lifted 8,269 points and kept no stud box, because the visible length is 1.010 m.
 

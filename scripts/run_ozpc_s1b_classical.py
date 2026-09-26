@@ -57,9 +57,11 @@ def _open3d(scene):
     sections["detection"]["note"] = (
         "Refined Open3D on this S1b probe. Counts are this synthetic scene, not a field accuracy."
     )
-    sections["angle"]["note"] = (
-        "Truth is the generator chord against the reference this run used. "
-        "A bow amplitude is not this angle. Not a SKIL reading."
+    from openwall_stud.angle_reference import synthetic_angle_note
+
+    sections["angle"]["note"] = synthetic_angle_note(
+        run.reference,
+        extra="The stored axis is the chord. A bow amplitude is not this angle.",
     )
     card = ran_card(
         algorithm_id="A1",
@@ -109,6 +111,7 @@ def _bar_failures(scene, card: dict) -> list[str]:
 def _store(key: str, rank: int, scene, card: dict) -> Path:
     card["curriculum"] = "s1b"
     card["machine"] = "Oz_PC"
+    card["stage"] = int(scene.stage)
     card["stage_gate"] = False
     scene_meta = getattr(scene, "meta", None) or {}
     card["scene"]["n_studs"] = len(scene.studs)
@@ -268,13 +271,15 @@ def write_report() -> None:
             "",
             "Open3D on these four scenes was already measured on the cloud curriculum. The rows above are the same generator calls on Oz_PC, plus ranks 2, 3, and 6. Rank 3 is one box per RANSAC primitive, not the tuned face merge on PR #22.",
             "",
+            "Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading. The three floorless S1b studs stay on generator +Z. `s1b_bow_wall_3` has a floor, so its reference is `floor_normal`.",
+            "",
             "Rank 2 is the in-process NumPy smoothness port. `native_pcl_region_growing` is false on these cards. The libpcl binary was not built, so these numbers are not a PCL measurement.",
         ]
     )
     lines.extend(
         [
             "",
-            "A room was not re-run here. Rank 1 on `stage5_room_bay_lot62_look` stays the cloud card in doc 24. Ranks 2–7 on that room stay not_run.",
+            "This script does not re-score the room. Ranks 1–7 on `stage5_room_bay_lot62_look` are the Oz_PC cards in doc 24.",
             "",
         ]
     )

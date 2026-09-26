@@ -141,11 +141,18 @@ def _fit_once(points: np.ndarray, seed: int) -> Any:
     )
 
 
-def sequential_cuboids(points: np.ndarray, *, seed: int) -> dict[str, Any]:
+def sequential_cuboids(
+    points: np.ndarray,
+    *,
+    seed: int,
+    has_floor: bool = False,
+) -> dict[str, Any]:
     """Peel, then repeated cuboid fits. Returns clusters and the run log."""
+    from openwall_stud.angle_reference import lock_synthetic_reference
     from openwall_stud.poststep import detections_from_clusters
 
     keep, floor_normal, intervals = peel_horizontal_slabs(points)
+    reference_name, reference_vec = lock_synthetic_reference(floor_normal, has_floor=has_floor)
     work = np.ascontiguousarray(points[keep], dtype=np.float64)
     accepted: list[np.ndarray] = []
     attempts: list[dict[str, Any]] = []
@@ -183,7 +190,7 @@ def sequential_cuboids(points: np.ndarray, *, seed: int) -> dict[str, Any]:
                 attempts.append(record)
                 stopped = "wall_swallow"
                 break
-        detections = detections_from_clusters([work[inliers]])
+        detections = detections_from_clusters([work[inliers]], reference=reference_vec)
         if not detections:
             record["decision"] = "rejected_too_few_points_for_obb"
             attempts.append(record)
@@ -228,10 +235,11 @@ def sequential_cuboids(points: np.ndarray, *, seed: int) -> dict[str, Any]:
             "n_points_in": int(len(points)),
             "n_points_after_peel": int(keep.sum()),
             "removed_z_intervals_m": [[float(lo), float(hi)] for lo, hi in intervals],
+            "reference": reference_name,
             "note": (
                 "Same horizontal-slab peel as rank 1. "
-                "Stage 0 has no floor and no plate, so a stud cloud is kept whole. "
-                "The cloud is not rotated. The angle reference stays generator +Z."
+                f"Angle reference for this cloud is {reference_name}. "
+                "The cloud is not rotated. A level reading is not the synthetic reference."
             ),
         },
     }
@@ -272,7 +280,13 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
         return card, []
 
     started = time.perf_counter()
-    fitted = sequential_cuboids(scene.points_m, seed=int(scene.seed))
+    from openwall_stud.angle_reference import scene_has_floor
+
+    fitted = sequential_cuboids(
+        scene.points_m,
+        seed=int(scene.seed),
+        has_floor=scene_has_floor(scene),
+    )
     runtime_s = time.perf_counter() - started
     swallow = fitted["wall_swallow"]
     attempts = fitted["attempts"]
@@ -308,7 +322,7 @@ def run_one_stud(scene: Scene | None = None) -> tuple[dict[str, Any], list]:
             "The library extents are on the implementation record and are not this section error. "
             "The long axis is not forced to Z."
         ),
-        angle_note="Truth is the generator lean against +Z. Stage 0 has no floor. Not a SKIL reading.",
+        angle_extra="The long axis is not forced to Z.",
         cost={
             "runtime_s": round(runtime_s, 4),
             "license": "Apache-2.0",

@@ -141,7 +141,7 @@
       "mae_deg": 0.02551,
       "max_angle_deg": 0.02551,
       "pct_in_band": 100.0,
-      "runtime_s": 0.2184,
+      "runtime_s": 0.0617,
       "reference": "floor_normal",
       "paint": [
         "yellow"
@@ -164,7 +164,7 @@
       "mae_deg": 0.01788,
       "max_angle_deg": 0.01788,
       "pct_in_band": 100.0,
-      "runtime_s": 0.1346,
+      "runtime_s": 0.061,
       "reference": "floor_normal",
       "paint": [
         "yellow"
@@ -187,7 +187,7 @@
       "mae_deg": 0.01714,
       "max_angle_deg": 0.01714,
       "pct_in_band": 100.0,
-      "runtime_s": 0.1373,
+      "runtime_s": 0.0644,
       "reference": "floor_normal",
       "paint": [
         "yellow"
@@ -210,7 +210,7 @@
       "mae_deg": 0.0168,
       "max_angle_deg": 0.03139,
       "pct_in_band": 100.0,
-      "runtime_s": 0.3639,
+      "runtime_s": 0.1559,
       "reference": "floor_normal",
       "paint": [
         "yellow",
@@ -235,7 +235,7 @@
       "mae_deg": 0.01846,
       "max_angle_deg": 0.03838,
       "pct_in_band": 100.0,
-      "runtime_s": 0.6085,
+      "runtime_s": 0.2835,
       "reference": "floor_normal",
       "paint": [
         "yellow",
@@ -262,7 +262,7 @@
       "mae_deg": 0.01928,
       "max_angle_deg": 0.03317,
       "pct_in_band": 100.0,
-      "runtime_s": 0.4779,
+      "runtime_s": 0.2217,
       "reference": "floor_normal",
       "paint": [
         "yellow",
@@ -288,7 +288,7 @@
       "mae_deg": 0.03765,
       "max_angle_deg": 0.03765,
       "pct_in_band": 100.0,
-      "runtime_s": 0.4894,
+      "runtime_s": 0.2434,
       "reference": "floor_normal",
       "paint": [
         "yellow"
@@ -314,7 +314,7 @@
       "mae_deg": 0.00958,
       "max_angle_deg": 0.00958,
       "pct_in_band": 100.0,
-      "runtime_s": 0.1087,
+      "runtime_s": 0.0493,
       "reference": "gravity_z_no_floor_plane",
       "paint": [
         "yellow"
@@ -339,7 +339,7 @@
       "mae_deg": 0.00684,
       "max_angle_deg": 0.00684,
       "pct_in_band": 100.0,
-      "runtime_s": 0.112,
+      "runtime_s": 0.0559,
       "reference": "gravity_z_no_floor_plane",
       "paint": [
         "yellow"
@@ -364,7 +364,7 @@
       "mae_deg": null,
       "max_angle_deg": null,
       "pct_in_band": null,
-      "runtime_s": 0.1148,
+      "runtime_s": 0.0583,
       "reference": "gravity_z_no_floor_plane",
       "paint": [],
       "epsilon_locked": false,
@@ -391,7 +391,7 @@
       "mae_deg": 0.01325,
       "max_angle_deg": 0.02345,
       "pct_in_band": 100.0,
-      "runtime_s": 0.365,
+      "runtime_s": 0.17,
       "reference": "floor_normal",
       "paint": [
         "yellow",
@@ -418,7 +418,7 @@
       "mae_deg": 0.01134,
       "max_angle_deg": 0.0423,
       "pct_in_band": 100.0,
-      "runtime_s": 1.9151,
+      "runtime_s": 0.9466,
       "reference": "floor_normal",
       "paint": [
         "yellow",
@@ -519,19 +519,22 @@
       "mae_deg": null,
       "max_angle_deg": null,
       "pct_in_band": null,
-      "runtime_s": 0.0416,
+      "runtime_s": 0.0297,
       "reference": "gravity_z_no_floor_plane",
       "paint": [],
       "epsilon_locked": false
     }
   },
+  "room_measured": [
+    "open3d_stage5_room_bay_lot62_look.json",
+    "pcl_stage5_room_bay_lot62_look.json",
+    "cloudcompare_stage5_room_bay_lot62_look.json",
+    "pointcept_stage5_room_bay_lot62_look.json",
+    "open3d_ml_stage5_room_bay_lot62_look.json",
+    "pyransac3d_stage5_room_bay_lot62_look.json",
+    "sam2_stage5_room_bay_lot62_look.json"
+  ],
   "room_stubs": [
-    "pcl_stage5_not_run.json",
-    "cloudcompare_stage5_not_run.json",
-    "pointcept_stage5_not_run.json",
-    "open3d_ml_stage5_not_run.json",
-    "pyransac3d_stage5_not_run.json",
-    "sam2_stage5_not_run.json",
     "open3d_stage6_not_run.json",
     "pcl_stage6_not_run.json",
     "cloudcompare_stage6_not_run.json",

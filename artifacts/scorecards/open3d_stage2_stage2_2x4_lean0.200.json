@@ -9,7 +9,7 @@
   "measurement_scope": "synthetic generator, this process",
   "scene": {
     "name": "stage2_2x4_lean0.200",
-    "description": "Synthetic stud on a floor slab. Floor is context to remove, not the plumb reference for a later gravity call.",
+    "description": "Synthetic stud on a floor slab. Lean is measured against the fitted floor normal. The cloud is not rotated. The floor normal is not a gravity or level reading.",
     "seed": 6,
     "spacing_m": 0.005,
     "noise_std_m": 0.001,
@@ -81,7 +81,7 @@
         "hypothetical_color": "red"
       }
     ],
-    "note": "Truth is the generator lean against the same reference vector the pipeline used. Not a SKIL reading."
+    "note": "Truth is the generator axis against the fitted floor normal. Synthetic tests measure lean against the fitted floor normal when the scene has a floor or slab, and against generator +Z only when it does not. They do not use a SKIL or any other level reading."
   },
   "paint": {
     "epsilon_locked": false,
@@ -99,7 +99,7 @@
     "note": "Do not read hypothetical colors as a pass/fail call."
   },
   "cost": {
-    "runtime_s": 0.0864,
+    "runtime_s": 0.0537,
     "dbscan_eps_m": 0.025,
     "dbscan_min_points": 20,
     "bbox_kind": "minimal_oriented",

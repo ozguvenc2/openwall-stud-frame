@@ -60,6 +60,7 @@ def members_from_labels(points: np.ndarray, labels: np.ndarray) -> tuple[list[np
         coarse = cloud.voxel_down_sample(VOXEL_M)
         clouds[cluster_id] = np.asarray(coarse.points) if len(coarse.points) else selected
 
+    print(f"region-grow adjacency: {len(ids)} face clusters", flush=True)
     merges = 0
     for index, left in enumerate(ids):
         for right in ids[index + 1 :]:
