@@ -15,7 +15,10 @@ import numpy as np
 
 from openwall_stud.finetune_synth import CLASS_NAMES, repo_root
 
-WEIGHT_DIR = repo_root() / "artifacts" / "weights" / "finetune"
+# Stud-head checkpoints live here. Published S3DIS zoo weights stay in the
+# gitignored Open3D-ML cache and are never rewritten by this path.
+WEIGHT_DIR = repo_root() / "artifacts" / "checkpoints" / "stud-heads"
+LEGACY_WEIGHT_DIR = repo_root() / "artifacts" / "weights" / "finetune"
 WEIGHT_NAME = "randlanet_stud_2class.pth"
 S3DIS_NAME = "randlanet_s3dis_202201071330utc.pth"
 
@@ -25,6 +28,19 @@ NUM_CLASSES = 2
 
 
 def weight_path() -> Path:
+    """Prefer the stud-heads checkpoint; fall back to the older finetune path."""
+    primary = WEIGHT_DIR / WEIGHT_NAME
+    if primary.is_file():
+        return primary
+    legacy = LEGACY_WEIGHT_DIR / WEIGHT_NAME
+    if legacy.is_file():
+        return legacy
+    return primary
+
+
+def save_weight_path() -> Path:
+    """Always write new stud heads under artifacts/checkpoints/stud-heads/."""
+    WEIGHT_DIR.mkdir(parents=True, exist_ok=True)
     return WEIGHT_DIR / WEIGHT_NAME
 
 

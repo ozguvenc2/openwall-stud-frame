@@ -1,0 +1,48 @@
+{
+  "wall_s": 146.6,
+  "epochs": 3,
+  "train_presentations": 468,
+  "best_selection_score": 0.9898267976191374,
+  "history": [
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 1.0,
+      "stud_iou_floor_scenes": 0.9667972422104009,
+      "clutter_iou_floor_scenes": 0.8988620085192282,
+      "mean_runtime_s": 0.2153816696954891,
+      "selection_score": 0.9552197502432097,
+      "epoch": 1,
+      "train_loss": 0.600980926106055,
+      "epoch_s": 51.2
+    },
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 1.0,
+      "stud_iou_floor_scenes": 0.9915074887541476,
+      "clutter_iou_floor_scenes": 0.9759228039984157,
+      "mean_runtime_s": 0.20963521212406427,
+      "selection_score": 0.9891434309175211,
+      "epoch": 2,
+      "train_loss": 0.06917423692245322,
+      "epoch_s": 47.6
+    },
+    {
+      "n": 33,
+      "stud_recall_stud_scenes": 1.0,
+      "stud_iou_floor_scenes": 0.9920487242748068,
+      "clutter_iou_floor_scenes": 0.9774316685826054,
+      "mean_runtime_s": 0.2073828818190095,
+      "selection_score": 0.9898267976191374,
+      "epoch": 3,
+      "train_loss": 0.013705904817439489,
+      "epoch_s": 47.7
+    }
+  ],
+  "s3dis_skipped": [
+    "fc1.3.conv.weight",
+    "fc1.3.conv.bias"
+  ],
+  "num_classes": 2,
+  "weight": "C:\\Repos\\openwall-stud-frame\\artifacts\\checkpoints\\stud-heads\\randlanet_stud_2class.pth",
+  "not_full_bakeoff_train": true
+}
